@@ -1,0 +1,39 @@
+= DOB: Open Built Environment Data
+
+== Introduction
+
+DOB is an open data initiative to share built environment data in a structured way.
+The platform is based on the principles of Linked Data, which means that data is published in a way that it can be easily connected to other data sources on the web.
+This allows for the creation of a network of built environment data that can be used for a wide range of applications.
+
+== Persistent Identifier
+
+We propose using W3C's w3id.org service to provide a persistent identifier for the DOB platform. This identifier will be used to reference all vocabularies, instance identifiers, and linked data resources related to the DOB platform:
+
+----
+w3id.org/dob
+----
+
+== Prefixes
+
+The following prefixes will be used to distinguish the core DOB vocabulary, British National Grid vocabulary, and instance identifiers.
+
+|===
+| Prefix | URI | Description
+
+| dob
+| w3id.org/dob/voc#
+| Core DOB vocabulary. Example usage: `dob:Result`
+
+| bng
+| w3id.org/dob/voc/epsg-27700#
+| British National Grid vocabulary. Example usage: `bng:easting`
+
+| did
+| w3id.org/dob/id/
+| Instance Identifiers. Example usage: `did:zone_12345`
+|===
+
+== Licence
+
+The vocabularies and data instances will be released under open licences, such as Creative Commons or Open Data Commons licences, ensuring that they can be freely accessed, reused, and redistributed under the terms of the respective licences.
