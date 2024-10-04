@@ -1,0 +1,44 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix wgs84: <https://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix bng: <https://w3id.org/dob/voc/epsg-27700#> .
+@prefix did: <https://w3id.org/dob/id/> .
+
+did:zone_550e8400-e29b-41d4-a716-446655440000 a sosa:FeatureOfInterest ;
+    dob:hasUPRN "85128358125"^^xsd:integer ;
+    sosa:isFeatureOfInterestOf did:activity_afb3ae07-cbb8-4791-9149-7a0439c2c269 .
+
+did:activity_afb3ae07-cbb8-4791-9149-7a0439c2c269 a prov:Activity ;
+    prov:used did:OS_UPRN_August2024 ;
+    prov:generated did:result_b731932b-4d24-4055-a32e-dd4ddfdb3be6 ;
+    sosa:hasFeatureOfInterest did:zone-550e8400-e29b-41d4-a716-446655440000 .
+
+did:result_b731932b-4d24-4055-a32e-dd4ddfdb3be6 a dob:Result ;
+    prov:wasGeneratedBy did:activity_afb3ae07-cbb8-4791-9149-7a0439c2c269 ;
+    prov:wasDerivedFrom did:OS_Open_UPRN_August2024 ;
+    wgs84:lat "51.5424466"^^xsd:float ;
+    wgs84:long "-0.135764"^^xsd:float ;
+    bng:easting "529375"^^xsd:integer ;
+    bng:northing "184263"^^xsd:integer .
+
+did:OS_UPRN_August2024 a dcat:Distribution ;
+    dct:issued "2024-08-01"^^xsd:date ; 
+    dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
+    dcat:accessURL <https://osdatahub.os.uk/downloads/open/OpenUPRN> .
+
+did:OS_UPRN a dcat:Dataset ;
+    dct:title "OS Open UPRN"@en ;
+    dct:description "An open dataset containing all the Unique Property Reference Numbers (UPRNs) found in AddressBase Premium, with their respective geometries in British National Grid and Latitude, Longitude."@en ;
+    dcat:distribution did:OS_UPRN_August2024 ;
+    dct:publisher <https://www.ordnancesurvey.co.uk/> ;
+    dcat:theme dop:Location .
