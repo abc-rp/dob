@@ -1,0 +1,15 @@
+@prefix bng: <https://w3id.org/dob/voc/epsg-27700#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix easting: <http://statistics.data.gov.uk/def/spatialrelations/epsg-27700/easting> .
+@prefix northing: <http://statistics.data.gov.uk/def/spatialrelations/epsg-27700/northing> .
+
+# Wrapper ontology for EPSG 27700
+
+bng:easting a owl:DatatypeProperty ;
+    owl:equivalentProperty easting: ;
+    rdfs:isDefinedBy easting: .
+
+bng:northing a owl:DatatypeProperty ;
+    owl:equivalentProperty northing: ;
+    rdfs:isDefinedBy northing: .
