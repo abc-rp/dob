@@ -1,0 +1,57 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+@prefix dob: <https://w3id.org/dob/voc#> .
+
+dob: a owl:Ontology ;
+    dct:title "Open Built Environment Data Ontology"@en
+    owl:imports prov: , sosa: , ssn: , bot: , dcat: .
+                     
+dob:Result a rdfs:Class , owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Result"@en
+    rdfs:comment "The Result of an Activity. This class is limited to distinct and identifiable data points and and does not represent collections or aggregations of data."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty prov:isGeneratedBy ;
+        owl:allValuesFrom [
+            a owl:Restriction ;
+            owl:onProperty ssn:forProperty ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger 
+        ]
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty prov:isGeneratedBy ;
+        owl:allValuesFrom [
+            a owl:Restriction ;
+            owl:onProperty sosa:hasFeatureOfInterest ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger 
+        ] 
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty prov:isGeneratedBy ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger ] .
+
+dob:hasUPRN a rdf:Property ;
+    rdfs:label "Unique Property Reference Number"@en ;
+    rdfs:subPropertyOf dct:identifier ;
+    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain"@en ;
+    rdfs:seeAlso <https://www.geoplace.co.uk/addresses-streets/location-data/the-uprn> ;
+    rdfs:domain bot:Zone ;
+    rdfs:range xsd:integer .
+
+dob:usedProcedure a owl:ObjectProperty ;
+    rdfs:comment "A relation that links to a re-usable Plan used in an Activity."@en ;
+    rdfs:subPropertyOf prov:used ;
+    rdfs:domain prov:Activity ;
+    rdfs:range prov:Plan .
