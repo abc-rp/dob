@@ -29,22 +29,22 @@ The following prefixes will be used to distinguish the vocabularies and instance
 | Prefix | URI | Description | Licence
 
 | dob
-| w3id.org/dob/voc#
+| https://w3id.org/dob/voc#
 | Core DOB vocabulary. Example usage: `dob:Result`
 | To be determined (indicative: CC0)
 
 | dop
-| w3id.org/dob/voc/prop#
+| https://w3id.org/dob/voc/prop#
 | Property definitions. Example usage: `dop:Height`
 | To be determined (indicative: CC0)
 
 | bng
-| w3id.org/dob/voc/epsg-27700#
+| https://w3id.org/dob/voc/epsg-27700#
 | British National Grid vocabulary. Example usage: `bng:easting`
 | To be determined (indicative: CC0)
 
 | did
-| w3id.org/dob/id/
+| https://w3id.org/dob/id/
 | Instance Identifiers. Example usage: `did:zone_12345`
 | To be determined (indicative: ODbL + CC-BY-SA / CC-BY / OGL-UK-3.0)
 |===
