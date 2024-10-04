@@ -1,4 +1,4 @@
-[back to readme](/../README.adoc)
+[back to readme](../README.adoc)
 
 # DOB DRAFT Version 0.0.1
 
@@ -13,7 +13,8 @@
 * [Sensor Metadata](#sensor-metadata)
 * [Software, Procedure and File Metadata](#software-procedure-and-file-metadata)
 * [All Classes](#all-classes)
-* [All Properties](#all-properties)
+* [DOB Properties](#dob-properties)
+* [BNG Properties](#bng-properties)
 * [Predefined Instances](#predefined-instances)
 * [Reused Ontologies](#reused-ontologies)
 * [Alignments](#alignments)
@@ -263,14 +264,14 @@ Inferences derived from ML Pipelines may be described using the [MLFlow2PROV](#m
 
 ## All Classes
 
-The following classes are documented in more detail [here](voc/dob.ttl).
+The following classes are documented in more detail [here](../voc/index.ttl).
 
 #### dob:Result
 The Result of an Activity. This class is limited to distinct data points and does not represent collections or aggregations of data.
 
-## All Properties
+## DOB Properties
 
-The following properties are documented in more detail [here](voc/dob.ttl).
+The following properties are documented in more detail [here](../voc/index.ttl).
 
 #### dob:hasUPRN
 The Unique Property Reference Number [[UPRN](#uprn)] of the zone.
@@ -281,11 +282,19 @@ A relation that links to a re-usable Plan used in an Activity.
 #### dob:wasInformedByDeployment
 An activity A is dependent on or informed by a deployment D, by way of some unspecified entity that is generated in deployment D and used by A.
 
+## BNG Properties
+
+The following wrapper vocabulary is documented in more detail [here](../voc/epsg-27700/index.ttl).
+
+#### bng:easting
+
+#### bng:northing
+
 ## Predefined Instances
 
 A discussed in the [Results](#results) section, a list of predefined instances will be released. This will include a list of instances of ssn:Property. 
 
-An incomplete list is available under the [DOP](/../voc/prop/index.ttl) vocabulary.
+An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
 
 ## Reused Ontologies
 
