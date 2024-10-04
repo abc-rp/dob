@@ -6,7 +6,7 @@ IMPORTANT: This document is a draft and is subject to change.
 
 DOB is an initiative that provides structured open data for the built environment, facilitating data sharing and connectivity.
 The platform is based on the principles of Linked Data, which means that data is published in a way that it can be easily connected to other data sources on the web.
-This allows for the creation of a network of built environment data that can be used for a wide range of applications.
+This enables a network of built environment data that can be used for a wide range of applications.
 
 == Persistent Identifier
 
