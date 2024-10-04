@@ -8,6 +8,10 @@ DOB is an initiative that provides structured open data for the built environmen
 The platform is based on the principles of Linked Data, which means that data is published in a way that it can be easily connected to other data sources on the web.
 This enables a network of built environment data that can be used for a wide range of applications.
 
+== The DOB Ontology
+
+The draft documentation for the ontology is available link:docs/ontology.md[here].
+
 == Persistent Identifier
 
 We propose using the w3id.org service to provide a persistent identifier for the DOB platform.
