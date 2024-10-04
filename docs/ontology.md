@@ -52,15 +52,15 @@ The following namespace prefixes are used throughout this document.
 
 The DOB Ontology uses the W3C PROV Ontology [[PROV-O](#prov-o)] as a framework. This ontology is composed of three main classes: 
 
-* **prov:Entity**, a physical, digital, conceptual, or other kind of thing with some fixed aspects
-* **prov:Activity**, something that occurs over a period of time and acts upon or with entities
-* **prov:Agent**, something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity
+* `prov:Entity`, a physical, digital, conceptual, or other kind of thing with some fixed aspects
+* `prov:Activity`, something that occurs over a period of time and acts upon or with entities
+* `prov:Agent`, something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity
 
 PROV-O expresses the W3C PROV standard PROV-DM [[PROV-DM](#prov-dm)] as an OWL ontology.
 
 We have chosen to use this ontology as a framework as it is very flexible and allows us to easily extend our ontology when needed. 
 
-The section concerning dob:Result, prov:Activity and sosa:FeatureOfInterest is based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) but more generalised. This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
+The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest` is based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) but more generalised. This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
 
 Classes and properties in this diagram:
 * [dob:Result](#dobresult)
@@ -93,9 +93,9 @@ The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#v
 * The observation must be made by 1 Sensor
 * The observation took place at a particular time
 
-Using sosa:Observation is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
+Using `sosa:Observation` is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
 
-It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by prov:Activity) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the prov:Activity) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data.
+It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data.
 
 Classes and properties in this diagram:
 
@@ -131,7 +131,7 @@ This is data that is taken directly from external datasets, such as from the Off
 
 DCAT is widely used in open linked data. Some of the organisations that use DCAT are [ONS (Office for National Statistics)](https://github.com/ONSdigital/application-profile/blob/531fd289f8200491ae7b21d18978bdc8cd565704/cataloguing.md), European Data Portal [[DCAT-AP](#dcat-ap)], and US Department of the Interior [[DCAT-US](#dcat-us)]. 
 
-We represent activities that use data from external datasets by the property prov:used attached to an instance of the class dcat:Distribution. The dcat:Distribution is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated dcat:Dataset.
+We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
 
 Classes and properties in this diagram:
 
@@ -161,11 +161,11 @@ Classes and properties in this diagram:
 
 ## Results
 
-This section is about how we would present our results and observations (around the class dob:Result).
+This section is about how we would present our results and observations (around the class `dob:Result`).
 
 The general structure is as follows:
 
-* The property being described would fall under ssn:Property. This would link to the relevant sosa:FeatureOfInterest and prov:Activity. A working list of properties is available in [Predefined Instances](#predefined-instances)
+* The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. A working list of properties is available in [Predefined Instances](#predefined-instances)
 * Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
 
 ```turtle
@@ -180,7 +180,7 @@ did:activity_1234 a prov:Activity ;
     ssn:forProperty dop:Height .
 ```
 
-* Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of skos:Concept. An example for energy ratings is shown below.
+* Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
 
 ```turtle
 did:result_1235 a dob:Result ;
@@ -197,9 +197,9 @@ did:activity-1235 a prov:Activity ;
 
 These custom properties are not well developed so are not documented here. 
 
-* Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common wgs84:lat and wgs84:long [[W3C BASIC GEO](#w3c-basic-geo)].
+* Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common `wgs84:lat` and `wgs84:long` [[W3C BASIC GEO](#w3c-basic-geo)].
 
-If we proceed with the above structure, a table of instances of ssn:Property [[VOCAB SSN](#vocab-ssn)] and their associated object/datatype properties will be released. 
+If we proceed with the above structure, a table of instances of `ssn:Property` [[VOCAB SSN](#vocab-ssn)] and their associated object/datatype properties will be released. 
 
 The codelists used may include those recommended or created by 
 
@@ -211,28 +211,28 @@ The codelists used may include those recommended or created by
 
 ![Diagram](resources/zone_identifier.png)
 
-Instances of bot:Zone serve as our unique identifiers for buildings, storeys, spaces and sites, and all data released ultimately links back to a bot:Zone.
+Instances of `bot:Zone` serve as our unique identifiers for buildings, storeys, spaces and sites, and all data released ultimately links back to a `bot:Zone`.
 
-The class bot:Zone [[BOT](#bot)] is defined as "A part of the physical world or a virtual world that is inherently both located in this world and has a 3D spatial extent". This includes individual buildings, a site such as a school or park, individual flats or even specific rooms. The reason for using this class is because of the range of objects that UPRNs [[UPRN](#uprn)] have been assigned to (they have been assigned to objects like bus shelters and post boxes). 
+The class `bot:Zone` [[BOT](#bot)] is defined as "A part of the physical world or a virtual world that is inherently both located in this world and has a 3D spatial extent". This includes individual buildings, a site such as a school or park, individual flats or even specific rooms. The reason for using this class is because of the range of objects that UPRNs [[UPRN](#uprn)] have been assigned to (they have been assigned to objects like bus shelters and post boxes). 
 
-As UPRNs are intrinsic to the building and describe the building all the way from its construction to demolition, the property dob:hasUPRN is one of the few properties that is connected directly to the bot:Zone without an intermediate node. 
+As UPRNs are intrinsic to the building and describe the building all the way from its construction to demolition, the property `dob:hasUPRN` is one of the few properties that is connected directly to the `bot:Zone` without an intermediate node. 
 
-The within:outputarea property is an [ONS Geography Linked Data](#ons-geography-linked-data) property, and the E00 identifier refers to a specific output area. This is used to enable us to use their [SPARQL endpoint](https://statistics.data.gov.uk/sparql) [[SPARQL](#sparql)] for querying to allow for more detailed location data. 
+The `within:outputarea` property is an [ONS Geography Linked Data](#ons-geography-linked-data) property, and the E00 identifier refers to a specific output area. This is used to enable us to use their [SPARQL endpoint](https://statistics.data.gov.uk/sparql) [[SPARQL](#sparql)] for querying to allow for more detailed location data. 
 
 An [output area](https://www.ons.gov.uk/methodology/geography/ukgeographies/statisticalgeographies) [[ONS Geography Linked Data](#ons-geography-linked-data)] is the lowest level of geographical area for census statistics. It is maintained by the ONS and is updated every 10 years following the census. 
 
 Classes and properties in this diagram:
 
-* bot:Zone [[BOT](#bot)]
+* `bot:Zone` [[BOT](#bot)]
 * [dob:hasUPRN](#dobhasuprn)
-* within:outputarea [[ONS Geography Linked Data](#ons-geography-linked-data)]
-* sid: [[ONS Geography Linked Data](#ons-geography-linked-data)]
+* `within:outputarea` [[ONS Geography Linked Data](#ons-geography-linked-data)]
+* `sid:` [[ONS Geography Linked Data](#ons-geography-linked-data)]
 
 ## Zone Topology and Elements
 
 ![Diagram](resources/building_topology.png)
 
-All zones and elements are instances of sosa:FeatureOfInterest. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
+All zones and elements are instances of `sosa:FeatureOfInterest`. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
 
 Classes and properties in this diagram:
 
@@ -292,7 +292,7 @@ The following wrapper vocabulary is documented in more detail [here](../voc/epsg
 
 ## Predefined Instances
 
-A discussed in the [Results](#results) section, a list of predefined instances will be released. This will include a list of instances of ssn:Property. 
+A discussed in the [Results](#results) section, a list of predefined instances will be released. This will include a list of instances of `ssn:Property`. 
 
 An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
 
@@ -300,15 +300,15 @@ An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabular
 
 #### PROV Ontology
 
-Our ontology reuses the PROV Ontology [[PROV-O](#prov-o)]. This ontology is used as the underlying framework for our ontology, with all classes sub-classed to one or more of prov:Entity, prov:Activity and prov:Agent. Most properties are also aligned to PROV-O properties.
+Our ontology reuses the PROV Ontology [[PROV-O](#prov-o)]. This ontology is used as the underlying framework for our ontology, with all classes sub-classed to one or more of `prov:Entity`, `prov:Activity` and `prov:Agent`. Most properties are also aligned to PROV-O properties.
 
 #### BOT Ontology
 
-Our ontology reuses the Building Topology Ontology [[BOT](#bot)]. This ontology describes the core topological concepts on buildings. All instances are subclassed to sosa:FeatureOfInterest.
+Our ontology reuses the Building Topology Ontology [[BOT](#bot)]. This ontology describes the core topological concepts on buildings. All instances are subclassed to `sosa:FeatureOfInterest`.
 
 #### BEO Ontology
 
-The Building Element Ontology [[BEO](#beo)] provides an ontology based on the IfcBuildingElement subtree in the IFC specification. All beo:BuildingElement instances are subclassed to bot:Element and sosa:FeatureOfInterest.
+The Building Element Ontology [[BEO](#beo)] provides an ontology based on the IfcBuildingElement subtree in the IFC specification. All `beo:BuildingElement` instances are subclassed to `bot:Element` and `sosa:FeatureOfInterest`.
 
 #### SOSA SSN Ontology
 
