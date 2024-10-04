@@ -5,20 +5,20 @@
 @prefix ssn: <https://www.w3.org/ns/ssn#> .
 
 dop:Width a ssn:Property ;
-    rdfs:label "Width" ;
+    rdfs:label "Width"@en ;
     skos:related ifc:width_IfcCShapeProfileDef,
         ifc:width_IfcLShapeProfileDef,
         ifc:width_IfcPixelTexture .
 
 dop:Height a ssn:Property ;
-    rdfs:label "Height" ;
+    rdfs:label "Height"@en ;
     skos:related ifc:height_IfcPixelTexture,
         ifc:height_IfcRectangularPyramid,
         ifc:height_IfcRightCircularCone,
         ifc:height_IfcRightCircularCylinder .
 
 dop:Depth a ssn:Property ;
-    rdfs:label "Depth" ;
+    rdfs:label "Depth"@en ;
     skos:related ifc:depth_IfcCShapeProfileDef,
         ifc:depth_IfcExtrudedAreaSolid,
         ifc:depth_IfcLShapeProfileDef,
@@ -28,11 +28,11 @@ dop:Depth a ssn:Property ;
         ifc:depth_IfcZShapeProfileDef .
 
 dop:Angle a ssn:Property ;
-    rdfs:label "Angle" ;
+    rdfs:label "Angle"@en ;
     skos:related ifc:angle_IfcRevolvedAreaSolid .
 
 dop:StyleOperation a ssn:Property ;
-    rdfs:label "StyleOperation" ;
-    rdfs:comment "Describe how a feature of interest operates" ;
+    rdfs:label "StyleOperation"@en ;
+    rdfs:comment "Describes how a Feature Of Interest operates."@en ;
     skos:related ifc:IfcWindowStyleOperationEnum ,
         ifc:IfcDoorStyleOperationEnum .
