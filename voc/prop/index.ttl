@@ -1,0 +1,38 @@
+@prefix ifc: <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+@prefix rdfs: <https://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <https://www.w3.org/2004/02/skos/core#> .
+@prefix ssn: <https://www.w3.org/ns/ssn#> .
+
+dop:Width a ssn:Property ;
+    rdfs:label "Width" ;
+    skos:related ifc:width_IfcCShapeProfileDef,
+        ifc:width_IfcLShapeProfileDef,
+        ifc:width_IfcPixelTexture .
+
+dop:Height a ssn:Property ;
+    rdfs:label "Height" ;
+    skos:related ifc:height_IfcPixelTexture,
+        ifc:height_IfcRectangularPyramid,
+        ifc:height_IfcRightCircularCone,
+        ifc:height_IfcRightCircularCylinder .
+
+dop:Depth a ssn:Property ;
+    rdfs:label "Depth" ;
+    skos:related ifc:depth_IfcCShapeProfileDef,
+        ifc:depth_IfcExtrudedAreaSolid,
+        ifc:depth_IfcLShapeProfileDef,
+        ifc:depth_IfcSurfaceOfLinearExtrusion,
+        ifc:depth_IfcTShapeProfileDef,
+        ifc:depth_IfcUShapeProfileDef,
+        ifc:depth_IfcZShapeProfileDef .
+
+dop:Angle a ssn:Property ;
+    rdfs:label "Angle" ;
+    skos:related ifc:angle_IfcRevolvedAreaSolid .
+
+dop:StyleOperation a ssn:Property ;
+    rdfs:label "StyleOperation" ;
+    rdfs:comment "Describe how a feature of interest operates" ;
+    skos:related ifc:IfcWindowStyleOperationEnum ,
+        ifc:IfcDoorStyleOperationEnum .
