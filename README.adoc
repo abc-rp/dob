@@ -52,3 +52,7 @@ DID instance data will be published in various named graphs under appropriate li
 == Licence
 
 The vocabularies and data instances will be released under open licences, such as the Open Government Licence (OGL-UK-3.0), Creative Commons (CC-BY-4.0), or the Open Data Commons Open Database License (ODbL-1.0).
+
+== Feedback and Submission
+
+Please submit feedback via the Github issue tracker.
