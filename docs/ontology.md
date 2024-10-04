@@ -1,4 +1,4 @@
-[back to readme](README.adoc)
+[back to readme](/../README.adoc)
 
 # DOB DRAFT Version 0.0.1
 
@@ -6,7 +6,6 @@
 
 * [DOB Overview](#dob-overview)
 * [Sensor Observations](#sensor-observations)
-* [Inference](#inference)
 * [External Datasets](#external-datasets)
 * [Results](#results)
 * [Zone Identifier and Location](#zone-identifier-and-location)
@@ -48,7 +47,7 @@ The following namespace prefixes are used throughout this document.
 
 ## DOB Overview
 
-![Diagram](images/dob_overview.png)
+![Diagram](resources/dob_overview.png)
 
 The DOB Ontology uses the W3C PROV Ontology [[PROV-O](#prov-o)] as a framework. This ontology is composed of three main classes: 
 
@@ -60,7 +59,7 @@ PROV-O expresses the W3C PROV standard PROV-DM [[PROV-DM](#prov-dm)] as an OWL o
 
 We have chosen to use this ontology as a framework as it is very flexible and allows us to easily extend our ontology when needed. 
 
-The section concerning dob:Result, prov:Activity and sosa:FeatureOfInterest is based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) but more generalised. This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments).
+The section concerning dob:Result, prov:Activity and sosa:FeatureOfInterest is based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) but more generalised. This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
 
 Classes and properties in this diagram:
 * [dob:Result](#dobresult)
@@ -86,7 +85,7 @@ Classes and properties in this diagram:
 
 ## Sensor Observations
 
-![Diagram](images/sensor_observation.png)
+![Diagram](resources/sensor_observation.png)
 
 The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
 * The observation must be connected to 1 Feature Of Interest
@@ -123,32 +122,9 @@ Classes and properties in this diagram:
 * sosa:madeObservation [[VOCAB-SSN](#vocab-ssn)]
 * sosa:resultTime [[VOCAB-SSN](#vocab-ssn)]
 
-## Inference
-
-![Diagram](images/inferences.png)
-
-This section concerns inferences from available data, such as our sensor data, external data, or other sources. These are inferred using a procedure such as a Machine Learning Pipeline (ML Pipeline).
-
-Classes and properties in this diagram:
-
-* [dob:Result](#dobresult)
-* prov:Activity [[PROV-O](#prov-o)]
-* prov:Plan [[PROV-O](#prov-o)]
-* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
-* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
-* ssn:Deployment [[VOCAB-SSN](#vocab-ssn)]
-* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
-* [dob:usedProcedure](#dobusedprocedure)
-* prov:used [[PROV-O](#prov-o)]
-* prov:generated [[PROV-O](#prov-o)]
-* prov:wasGeneratedBy [[PROV-O](#prov-o)]
-* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-
 ## External Datasets
 
-![Diagram](images/external_datasets.png)
+![Diagram](resources/external_datasets.png)
 
 This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
 
@@ -184,7 +160,7 @@ Classes and properties in this diagram:
 
 ## Results
 
-This section is about how we would present our results and observations (around the class dob:Result). This section is very unstable and any feedback would be welcome.
+This section is about how we would present our results and observations (around the class dob:Result).
 
 The general structure is as follows:
 
@@ -192,51 +168,53 @@ The general structure is as follows:
 * Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
 
 ```turtle
-:result_1234 a dob:Result , qudt:QuantityValue ;
-    prov:wasGeneratedBy :activity_1234 ;
+did:result_1234 a dob:Result , qudt:QuantityValue ;
+    prov:wasGeneratedBy did:activity_1234 ;
     qudt:numericValue "0.52"^^xsd:float ;
     qudt:hasUnit qudt-unit:M .
     
-:activity_1234 a prov:Activity ;
-    prov:generated :result_1234 ;
-    sosa:hasFeatureOfInterest window_1234 ;
-    ssn:forProperty :Height .
+did:activity_1234 a prov:Activity ;
+    prov:generated did:result_1234 ;
+    sosa:hasFeatureOfInterest did:window_1234 ;
+    ssn:forProperty dop:Height .
 ```
 
 * Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of skos:Concept. An example for energy ratings is shown below.
 
 ```turtle
-:result_1235 a dob:Result ;
-    prov:wasGeneratedBy :activity_1235 ;
-    dob:energyRating :EPC_Energy_Rating_A ;
-    dob:energyRatingSystem :UK_EPC ;
+did:result_1235 a dob:Result ;
+    prov:wasGeneratedBy did:activity_1235 ;
+    dop:energyRating dop:EPC_Energy_Rating_A ;
+    dop:energyRatingSystem dop:UK_EPC ;
     dct:issued "2024-01-01"^^xsd:date .
     
-:activity-1235 a prov:Activity ;
-    prov:generated :result_1235 ;
-    sosa:hasFeatureOfInterest zone_1235 ;
-    ssn:forProperty :EnergyRating .
+did:activity-1235 a prov:Activity ;
+    prov:generated did:result_1235 ;
+    sosa:hasFeatureOfInterest did:zone_1235 ;
+    ssn:forProperty dop:EnergyRating .
 ```
 
 These custom properties are not well developed so are not documented here. 
 
 * Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common wgs84:lat and wgs84:long [[W3C BASIC GEO](#w3c-basic-geo)].
 
-If we proceed with the above structure, a table of ssn:Properties [[VOCAB SSN](#vocab-ssn)] and their associated object/datatype properties will be released. 
+If we proceed with the above structure, a table of instances of ssn:Property [[VOCAB SSN](#vocab-ssn)] and their associated object/datatype properties will be released. 
 
 The codelists used may include those recommended or created by 
 
-* [ONS](https://github.com/ONSdigital/application-profile/blob/531fd289f8200491ae7b21d18978bdc8cd565704/code-lists.md)
+* [ONS](https://github.com/ONSdigital/application-profile/blob/draft/code-lists.md)
 * [SDMX](http://purl.org/linked-data/sdmx/2009/code#)
 * [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs)
 
 ## Zone Identifier and Location
 
-![Diagram](images/zone_identifier.png)
+![Diagram](resources/zone_identifier.png)
 
-The class bot:Zone [[BOT](#bot)] is defined as "A part of the physical world or a virtual world that is inherently both located in this world and has a 3D spatial extent". This includes individual buildings, a site such as a school or park, individual flats or even rooms. The reason for using such a vague class is because of the range of objects that UPRNs [[UPRN](#uprn)] are assigned to (they have been assigned to objects like bus shelters and post boxes). As UPRNs are intrinsic to the building and describe the building all the way from its construction to demolition, the property dob:hasUPRN is one of the few properties that is connected directly to the bot:Zone without an intermediate node. 
+Instances of bot:Zone serve as our unique identifiers for buildings, storeys, spaces and sites, and all data released ultimately links back to a bot:Zone.
 
-Instances of bot:Zone serve as our unique identifiers for buildings, storeys, spaces and sites, and all data released ultimately links back to a bot:Zone (for now).
+The class bot:Zone [[BOT](#bot)] is defined as "A part of the physical world or a virtual world that is inherently both located in this world and has a 3D spatial extent". This includes individual buildings, a site such as a school or park, individual flats or even specific rooms. The reason for using this class is because of the range of objects that UPRNs [[UPRN](#uprn)] have been assigned to (they have been assigned to objects like bus shelters and post boxes). 
+
+As UPRNs are intrinsic to the building and describe the building all the way from its construction to demolition, the property dob:hasUPRN is one of the few properties that is connected directly to the bot:Zone without an intermediate node. 
 
 The within:outputarea property is an [ONS Geography Linked Data](#ons-geography-linked-data) property, and the E00 identifier refers to a specific output area. This is used to enable us to use their [SPARQL endpoint](https://statistics.data.gov.uk/sparql) [[SPARQL](#sparql)] for querying to allow for more detailed location data. 
 
@@ -251,7 +229,7 @@ Classes and properties in this diagram:
 
 ## Zone Topology and Elements
 
-![Diagram](images/building_topology.png)
+![Diagram](resources/building_topology.png)
 
 All zones and elements are instances of sosa:FeatureOfInterest. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
 
@@ -269,7 +247,7 @@ Classes and properties in this diagram:
 
 ## Sensor Metadata
 
-![Diagram](images/sensor_metadata.png)
+![Diagram](resources/sensor_metadata.png)
 
 This section describes metadata about our sensors and their deployment. Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). 
 
@@ -277,7 +255,7 @@ This section of the ontology is currently unstable and will be for internal use.
 
 ## Software, Procedure, and File Metadata
 
-![Diagram](images/file_metadata.png)
+![Diagram](resources/file_metadata.png)
 
 As our current files are hosted on GitHub, tracking the provenance of these files involves tracking Git commits. This takes the form of the Git commits section of the [MLFlow2PROV](#mlflow2prov) model. This section will also be for internal use and unlikely to be released publicly. The relevant classes and properties suggested here are not included in the current documentation.
 
@@ -305,9 +283,9 @@ An activity A is dependent on or informed by a deployment D, by way of some unsp
 
 ## Predefined Instances
 
-A discussed in the [Results](#results) section, a list of predefined instances will be released. This will include a list of ssn:Properties.
+A discussed in the [Results](#results) section, a list of predefined instances will be released. This will include a list of instances of ssn:Property. 
 
-TODO: Add list of instances
+An incomplete list is available under the [DOP](/../voc/prop/index.ttl) vocabulary.
 
 ## Reused Ontologies
 
@@ -343,11 +321,11 @@ We are using the existing alignments:
 
 There exists an alignment from DCAT to PROV, however it is provisional and incomplete. The alignment is available [here](https://github.com/w3c/dxwg/blob/gh-pages/dcat/rdf/dcat-prov.ttl).
 
-There is also no alignment between many SSN terms and PROV, however an old alignments that use the outdated version of SSN can be found [here](https://github.com/Semantic-Observations/obs-models/blob/42fe5cb5bcfc467c9cddab0e9b8e3290b786dc42/ontologies/PROV_SSN.ttl#L135) and discussed [here](https://ceur-ws.org/Vol-1401/tc-ssn2014-complete.pdf#page=69) [[SSN-PROV](#ssn-prov)].
+There is also no alignment between many SSN terms and PROV, however an old alignments that use the outdated version of SSN can be found [here](https://github.com/Semantic-Observations/obs-models/blob/master/ontologies/PROV_SSN.ttl) and discussed [here](https://ceur-ws.org/Vol-1401/tc-ssn2014-complete.pdf#page=69) [[SSN-PROV](#ssn-prov)].
 
-We also cannot find any existing alignments between BOT and PROV. 
+We cannot find any existing alignments between BOT and PROV, and BEO and PROV.
 
-We have created our own alignments between our ontology and other ontologies, which are available in Turtle format [here](voc/alignment.ttl).
+We have created our own alignments between our ontology and other ontologies, which are available in Turtle format [here](alignments/alignment.ttl).
 
 ## References
 
