@@ -8,7 +8,7 @@ This allows for the creation of a network of built environment data that can be 
 
 == Persistent Identifier
 
-We propose using W3C's w3id.org service to provide a persistent identifier for the DOB platform. This identifier will be used to reference all vocabularies, instance identifiers, and linked data resources related to the DOB platform:
+We propose using the w3id.org service to provide a persistent identifier for the DOB platform. This identifier will be used to reference all vocabularies, instance identifiers, and linked data resources related to the DOB platform:
 
 ----
 w3id.org/dob
