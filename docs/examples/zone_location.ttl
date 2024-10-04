@@ -1,7 +1,7 @@
 @prefix bot: <https://w3id.org/bot#> .
 @prefix sid: <http://statistics.data.gov.uk/id/statistical-geography/> .
 @prefix within: <http://statistics.data.gov.uk/def/spatialrelations/within#> .
-@prefix dob-zone: <https://w3id.org/xri/id/zone/> .
+@prefix did: <https://w3id.org/dob/id/> .
 
-dob-zone:zone-550e8400-e29b-41d4-a716-446655440000 a bot:Zone ;
+did:zone-550e8400-e29b-41d4-a716-446655440000 a bot:Zone ;
     within:outputarea sid:E00004259 .
