@@ -1,0 +1,41 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt> .
+@prefix qudt-unit: <http://qudt.org/2.1/vocab/unit> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix beo: <https://pi.pauwel.be/voc/buildingelement> .
+
+@prefix did: <https://w3id.org/dob/id#> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+
+
+did:zone_550e8400-e29b-41d4-a716-446655440000 bot:hasElement did:window_12345 .
+
+did:window_12345 a bot:BuildingElement, beo:Window ;
+    sosa:isFeatureOfInterestOf did:activity_12345 ;
+    ssn:hasProperty dop:Height .
+
+did:activity_12345 a prov:Activity ;
+    sosa:hasFeatureOfInterest did:window_12345 ;
+    prov:wasInformedBy did:observation_12345 ;
+    ssn:forProperty dop:Height ;
+    prov:generated did:result_17243 ;
+    dob:wasInformedByDeployment did:deployment_615243 ;
+    dob:usedProcedure did:procedure_76123 .
+
+did:result_17243 a dob:DataPoint , qudt:QuantityValue ;
+    qudt:numericValue "1.234"^^xsd:float ;
+    qudt:hasUnit qudt-unit:M ;
+    prov:wasGeneratedBy did:activity_12345 .
+
+did:observation_12345 a sosa:Observation ;
+    sosa:madeBySensor did:lidar_8523 ;
+    sosa:resultTime "24-02-02T00:00:00Z"^^xsd:dateTime ;
+    dob:wasInformedByDeployment did:deployment_615243 . 
