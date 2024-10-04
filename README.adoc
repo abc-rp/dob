@@ -47,7 +47,7 @@ The following prefixes will be used to distinguish the vocabularies and instance
 
 == Named graphs
 
-DID instance data will be published in various named graphs under apropriate licences.
+DID instance data will be published in various named graphs under appropriate licences.
 
 == Licence
 
