@@ -57,7 +57,7 @@ did:EPC_EnglandWales a dcat:Dataset ;
 dop:EnergyRating a ssn:Property .
 
 dop:energyRating a rdf:Property , owl:DatatypeProperty ;
-    rdfs:label "Energy Rating"@en . 
+    rdfs:label "Energy Rating"@en ;
     rdfs:comment "A measurement of a building or appliance's energy efficiency."@en ;
     rdfs:range xsd:string .
 
@@ -66,7 +66,7 @@ dop:energyRatingSystem a rdf:Property , owl:ObjectProperty ;
     rdfs:range dop:EnergyRatingSystem .
 
 dop:EnergyRatingSystem a rdfs:Class, owl:Class ;
-    rdfs:subClassOf skos:Concept .
+    rdfs:subClassOf skos:Concept ;
     rdfs:comment "Codelist of energy rating systems."@en .
 
 dop:UK_EPC a skos:Concept, dop:EnergyRatingSystem ;
