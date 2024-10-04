@@ -1,14 +1,17 @@
 = DOB: Open Built Environment Data
 
+IMPORTANT: This document is a draft and is subject to change.
+
 == Introduction
 
-DOB is an open data initiative to share built environment data in a structured way.
+DOB is an initiative that provides structured open data for the built environment, facilitating data sharing and connectivity.
 The platform is based on the principles of Linked Data, which means that data is published in a way that it can be easily connected to other data sources on the web.
 This allows for the creation of a network of built environment data that can be used for a wide range of applications.
 
 == Persistent Identifier
 
-We propose using the w3id.org service to provide a persistent identifier for the DOB platform. This identifier will be used to reference all vocabularies, instance identifiers, and linked data resources related to the DOB platform:
+We propose using the w3id.org service to provide a persistent identifier for the DOB platform.
+This identifier will be used to reference all vocabularies, instance identifiers, and linked data resources related to the DOB platform:
 
 ----
 w3id.org/dob
@@ -16,24 +19,36 @@ w3id.org/dob
 
 == Prefixes
 
-The following prefixes will be used to distinguish the core DOB vocabulary, British National Grid vocabulary, and instance identifiers.
+The following prefixes will be used to distinguish the vocabularies and instance identifiers.
 
 |===
-| Prefix | URI | Description
+| Prefix | URI | Description | Licence
 
 | dob
 | w3id.org/dob/voc#
 | Core DOB vocabulary. Example usage: `dob:Result`
+| To be determined (indicative: CC0)
+
+| dop
+| w3id.org/dob/voc/prop#
+| Property definitions. Example usage: `dop:Height`
+| To be determined (indicative: CC0)
 
 | bng
 | w3id.org/dob/voc/epsg-27700#
 | British National Grid vocabulary. Example usage: `bng:easting`
+| To be determined (indicative: CC0)
 
 | did
 | w3id.org/dob/id/
 | Instance Identifiers. Example usage: `did:zone_12345`
+| To be determined (indicative: ODbL + CC-BY-SA / CC-BY / OGL-UK-3.0)
 |===
+
+== Named graphs
+
+DID instance data will be published in various named graphs under apropriate licences.
 
 == Licence
 
-The vocabularies and data instances will be released under open licences, such as Creative Commons or Open Data Commons licences, ensuring that they can be freely accessed, reused, and redistributed under the terms of the respective licences.
+The vocabularies and data instances will be released under open licences, such as the Open Government Licence (OGL-UK-3.0), Creative Commons (CC-BY-4.0), or the Open Data Commons Open Database License (ODbL-1.0).
