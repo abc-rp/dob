@@ -34,17 +34,17 @@ The following prefixes will be used to distinguish between vocabularies and inst
 | dob
 | https://w3id.org/dob/voc#
 | Core DOB vocabulary. Example usage: `dob:Result`
-| Proposed: CC0
+| Proposed: `CC0`
 
 | dop
 | https://w3id.org/dob/voc/prop#
 | Property definitions. Example usage: `dop:Height`
-| Proposed: CC0
+| Proposed: `CC0`
 
 | bng
 | https://w3id.org/dob/voc/epsg-27700#
 | British National Grid vocabulary. Example usage: `bng:easting`
-| Proposed: CC0
+| Proposed: `CC0`
 
 | did
 | https://w3id.org/dob/id/
@@ -74,7 +74,7 @@ All ontologies used in the DOB platform will be placed in their own graph for ea
 
 ==== Licence
 
-All DOB ontologies will be released under the CC0 licence, ensuring they can be freely reused.
+All DOB ontologies will be released under the `CC0` licence, ensuring they can be freely reused.
 Any third-party ontologies included will retain their original licences and will be documented in this graph.
 
 === Domain-Specific Insights
@@ -108,8 +108,8 @@ This allows users to connect DOB’s unique zone identifiers to existing dataset
 
 ==== Licence
 
-Where possible, DOB will publish alignment data under open licences like CC-BY to facilitate reuse.
-If source data has specific licensing requirements (e.g., OS UPRN data using OGL-UK-3.0), these licences will be reflected in the alignment graph licence.
+Where possible, DOB will publish alignment data under open licences like `CC-BY` to facilitate reuse.
+If source data has specific licensing requirements (e.g., OS UPRN data using `OGL-UK-3.0`), these licences will be reflected in the alignment graph licence.
 
 == Feedback and Submission
 
