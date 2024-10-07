@@ -62,7 +62,9 @@ These graphs will ensure that specific datasets or themes can be managed separat
 
 The base namespace for DOB graphs is:
 
-`https://w3id.org/dob/graph/`
+----
+https://w3id.org/dob/graph/
+----
 
 This serves as the foundation for all named graphs under the DOB platform.
 
@@ -70,7 +72,9 @@ This serves as the foundation for all named graphs under the DOB platform.
 
 All ontologies used in the DOB platform will be placed in their own graph for ease of reuse across other named graphs.
 
-`https://w3id.org/dob/graph/ontology/`
+----
+https://w3id.org/dob/graph/ontology/
+----
 
 ==== Licence
 
@@ -84,7 +88,9 @@ Each theme will have its own named graph, and location-specific data will be par
 
 For example, insights related to the built environment in the United Kingdom will be stored in the following graph:
 
-`https://w3id.org/dob/graph/built-environment/gb/`
+----
+https://w3id.org/dob/graph/built-environment/gb/
+----
 
 ==== Licence
 
@@ -102,7 +108,9 @@ We will create alignment graphs to link our unique zone IDs to these existing da
 
 The graph for UK zone alignment would be:
 
-`https://w3id.org/dob/graph/built-environment/gb/zones/`
+----
+https://w3id.org/dob/graph/built-environment/gb/zones/
+----
 
 This allows users to connect DOB’s unique zone identifiers to existing datasets such as the UPRN database.
 
