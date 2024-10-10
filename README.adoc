@@ -34,17 +34,17 @@ The following prefixes will be used to distinguish between vocabularies and inst
 | dob
 | https://w3id.org/dob/voc#
 | Core DOB vocabulary. Example usage: `dob:Result`
-| Proposed: `CC0`
+| Proposed: `CC-BY`
 
 | dop
 | https://w3id.org/dob/voc/prop#
 | Property definitions. Example usage: `dop:Height`
-| Proposed: `CC0`
+| Proposed: `CC-BY`
 
 | bng
 | https://w3id.org/dob/voc/epsg-27700#
 | British National Grid vocabulary. Example usage: `bng:easting`
-| Proposed: `CC0`
+| Proposed: `CC-BY`
 
 | did
 | https://w3id.org/dob/id/
@@ -78,7 +78,7 @@ https://w3id.org/dob/graph/ontology/
 
 ==== Licence
 
-All DOB ontologies will be released under the `CC0` licence, ensuring they can be freely reused.
+All DOB ontologies will be released under the `CC-BY` licence, ensuring they can be freely reused.
 Any third-party ontologies included will retain their original licences and will be documented in this graph.
 
 === Domain-Specific Insights
