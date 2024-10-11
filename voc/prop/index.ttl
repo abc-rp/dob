@@ -1,38 +1,1708 @@
-@prefix ifc: <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dop: <https://w3id.org/dob/voc/prop#> .
-@prefix rdfs: <https://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <https://www.w3.org/2004/02/skos/core#> .
-@prefix ssn: <https://www.w3.org/ns/ssn#> .
+@prefix ifc: <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-dop:Width a ssn:Property ;
-    rdfs:label "Width"@en ;
-    skos:related ifc:width_IfcCShapeProfileDef,
-        ifc:width_IfcLShapeProfileDef,
-        ifc:width_IfcPixelTexture .
+dop:AbsorbedDose a ssn:Property ;
+    qudt:quantityKind quantitykind:AbsorbedDose .
 
-dop:Height a ssn:Property ;
-    rdfs:label "Height"@en ;
-    skos:related ifc:height_IfcPixelTexture,
-        ifc:height_IfcRectangularPyramid,
-        ifc:height_IfcRightCircularCone,
-        ifc:height_IfcRightCircularCylinder .
+dop:Acceleration a ssn:Property ;
+    qudt:quantityKind quantitykind:Acceleration .
 
-dop:Depth a ssn:Property ;
-    rdfs:label "Depth"@en ;
-    skos:related ifc:depth_IfcCShapeProfileDef,
-        ifc:depth_IfcExtrudedAreaSolid,
-        ifc:depth_IfcLShapeProfileDef,
-        ifc:depth_IfcSurfaceOfLinearExtrusion,
-        ifc:depth_IfcTShapeProfileDef,
-        ifc:depth_IfcUShapeProfileDef,
-        ifc:depth_IfcZShapeProfileDef .
+dop:ActualDate a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:ActualDuration a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:ActualFinish a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:ActualStart a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:ActualWork a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:AgreementFlag a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:AmountOfSubstance a ssn:Property ;
+    qudt:quantityKind quantitykind:AmountOfSubstance .
+
+dop:AnchorageSlip a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
 
 dop:Angle a ssn:Property ;
-    rdfs:label "Angle"@en ;
-    skos:related ifc:angle_IfcRevolvedAreaSolid .
+    qudt:quantityKind quantitykind:Angle ;
+    skos:broader dop:PlaneAngle .
 
-dop:StyleOperation a ssn:Property ;
-    rdfs:label "StyleOperation"@en ;
-    rdfs:comment "Describes how a Feature Of Interest operates."@en ;
-    skos:related ifc:IfcWindowStyleOperationEnum ,
-        ifc:IfcDoorStyleOperationEnum .
+dop:AngularVelocity a ssn:Property ;
+    qudt:quantityKind quantitykind:AngularVelocity .
+
+dop:ApplicableDate a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:ApplicableEntity a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:ApplicableOccurrence a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:ApplicationFullName a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ApplicationIdentifier a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:AreaValue a ssn:Property ;
+    qudt:quantityKind quantitykind:Area ;
+    skos:broader dop:Area .
+
+dop:AttributeIdentifier a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:AxisTag a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:BarCount a ssn:Property ;
+    qudt:quantityKind quantitykind:Count ;
+    skos:broader dop:Count .
+
+dop:BarLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:BeamWidthAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:PositivePlaneAngle ;
+    skos:broader dop:PositivePlaneAngle .
+
+dop:BendingShapeCode a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:BottomFlangeEdgeRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:BottomFlangeFilletRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:BottomFlangeSlope a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:BottomFlangeThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:BottomFlangeWidth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:BottomRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:BottomXDim a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:BoxAlignment a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:CasingDepth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:CasingThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:Category a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Closed a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:ClosedCurve a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:Coefficient a ssn:Property ;
+    qudt:quantityKind quantitykind:Ratio ;
+    skos:broader dop:Ratio .
+
+dop:ColourComponents a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:ColourTemperature a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermodynamicTemperature ;
+    skos:broader dop:ThermodynamicTemperature .
+
+dop:CompressionFailureX a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:CompressionFailureY a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:CompressionFailureZ a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:ConcentrationExponent a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:Condition a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ConnectionType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ConstantAttenuation a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:ConstraintSource a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ConstructionType a ssn:Property ;
+    rdfs:label "ConstructionType" ;
+    rdfs:comment "Type of construction (framed, glazed, etc.)" ;
+    rdfs:seeAlso ifc:IfcDoorStyleConstructionEnum,
+        ifc:IfcWindowStyleConstructionEnum .
+
+dop:ContextIdentifier a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ContextType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ConversionOffset a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:CountValue a ssn:Property ;
+    qudt:quantityKind quantitykind:Count ;
+    skos:broader dop:Count .
+
+dop:Country a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:CreationDate a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:CreationTime a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:CrossSectionArea a ssn:Property ;
+    qudt:quantityKind quantitykind:Area ;
+    skos:broader dop:Area .
+
+dop:Currency a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:DefinitionType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Degree a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:DeltaTConstant a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermodynamicTemperature ;
+    skos:broader dop:ThermodynamicTemperature .
+
+dop:DeltaTY a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermodynamicTemperature ;
+    skos:broader dop:ThermodynamicTemperature .
+
+dop:DeltaTZ a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermodynamicTemperature ;
+    skos:broader dop:ThermodynamicTemperature .
+
+dop:Depth a ssn:Property ;
+    qudt:quantityKind quantitykind:Depth ;
+    skos:broader dop:Length .
+
+dop:Description a ssn:Property ;
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
+
+dop:DestabilizingLoad a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:Discrimination a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:DispersionFactor a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:DisplacementX a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:DisplacementY a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:DisplacementZ a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:Distance a ssn:Property ;
+    qudt:quantityKind quantitykind:Distance ;
+    skos:broader dop:Length .
+
+dop:DistanceAttenuation a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:Distortion a ssn:Property ;
+    qudt:quantityKind quantitykind:Curvature ;
+    skos:broader dop:Curvature .
+
+dop:DoseEquivalent a ssn:Property ;
+    qudt:quantityKind quantitykind:DoseEquivalent .
+
+dop:DynamicViscosity a ssn:Property ;
+    qudt:quantityKind quantitykind:DynamicViscosity .
+
+dop:EarlyDate a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:EarlyFinish a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:EarlyStart a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:Eastings a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:EccentricityInX a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:EccentricityInY a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:EccentricityInZ a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:EdgeRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:Edition a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:EditionDate a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:EffectiveDepth a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:ElectricCharge a ssn:Property ;
+    qudt:quantityKind quantitykind:ElectricCharge .
+
+dop:ElectricCurrent a ssn:Property ;
+    qudt:quantityKind quantitykind:ElectricCurrent .
+
+dop:ElectronicFormat a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:ElementType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Elevation a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:ElevationOfRefHeight a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:ElevationOfTerrain a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:ElevationWithFlooring a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:EndTime a ssn:Property ;
+    qudt:quantityKind quantitykind:Time ;
+    skos:broader dop:Time .
+
+dop:Energy a ssn:Property ;
+    qudt:quantityKind quantitykind:Energy .
+
+dop:Expression a ssn:Property ;
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
+
+dop:Factor a ssn:Property ;
+    qudt:quantityKind quantitykind:Ratio ;
+    skos:broader dop:Ratio .
+
+dop:FamilyName a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:FilletRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:Finish a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:FinishTime a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:FixedUntilDate a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:FlangeEdgeRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:FlangeSlope a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:FlangeThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:FlangeWidth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:ForceX a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:ForceY a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:ForceZ a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:Formula a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:FrameDepth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:FrameThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:FreeFloat a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:Frequency a ssn:Property ;
+    qudt:quantityKind quantitykind:Frequency .
+
+dop:FrictionCoefficient a ssn:Property ;
+    qudt:quantityKind quantitykind:FrictionCoefficient .
+
+dop:GeodeticDatum a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:Girth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:GivenName a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:HatchLineAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:HeatFluxDensity a ssn:Property ;
+    qudt:quantityKind quantitykind:HeatFluxDensity .
+
+dop:HeatingValue a ssn:Property ;
+    qudt:quantityKind quantitykind:HeatingValue .
+
+dop:Height a ssn:Property ;
+    qudt:quantityKind quantitykind:Height ;
+    skos:broader dop:Integer .
+
+dop:Identification a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:Illuminance a ssn:Property ;
+    qudt:quantityKind quantitykind:Illuminance .
+
+dop:ImplicitOuter a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:IncorporationDate a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:Inductance a ssn:Property ;
+    qudt:quantityKind quantitykind:Inductance .
+
+dop:InnerFilletRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:InnerRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:InstanceName a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:IntendedUse a ssn:Property ;
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
+
+dop:Intent a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:InterferenceType a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:InternalFilletRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:InternalLocation a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Interval a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:InvisibleSegmentLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:IonConcentration a ssn:Property ;
+    qudt:quantityKind quantitykind:IonConcentration .
+
+dop:IsCritical a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:IsHeading a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:IsLinear a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:IsMilestone a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:IsOverAllocated a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:IsVentilated a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:IsothermalMoistureCapacity a ssn:Property ;
+    qudt:quantityKind quantitykind:IsothermalMoistureCapacity .
+
+dop:KinematicViscosity a ssn:Property ;
+    qudt:quantityKind quantitykind:KinematicViscosity .
+
+dop:LandTitleNumber a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Language a ssn:Property ;
+    rdfs:range xsd:language ;
+    skos:broader dop:LanguageId .
+
+dop:LastModifiedDate a ssn:Property ;
+    rdfs:range xsd:dateTimeStamp ;
+    skos:broader dop:TimeStamp .
+
+dop:LastRevisionTime a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:LastUpdateDate a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:LateDate a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:LateFinish a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:LateStart a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:LayerBlocked a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:LayerFrozen a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:LayerOn a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:LayerSetName a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:LayerThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:LegSlope a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:LengthValue a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:Level a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:LevelingDelay a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:LifeCyclePhase a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:LinearForceX a ssn:Property ;
+    qudt:quantityKind quantitykind:LinearForce ;
+    skos:broader dop:LinearForce .
+
+dop:LinearForceY a ssn:Property ;
+    qudt:quantityKind quantitykind:LinearForce ;
+    skos:broader dop:LinearForce .
+
+dop:LinearForceZ a ssn:Property ;
+    qudt:quantityKind quantitykind:LinearForce ;
+    skos:broader dop:LinearForce .
+
+dop:LinearStiffness a ssn:Property ;
+    qudt:quantityKind quantitykind:LinearStiffness .
+
+dop:LinearVelocity a ssn:Property ;
+    qudt:quantityKind quantitykind:LinearVelocity .
+
+dop:LiningDepth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:LiningOffset a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:LiningThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:LiningToPanelOffsetX a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:LiningToPanelOffsetY a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:LongDescription a ssn:Property ;
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
+
+dop:LongName a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:LongitudinalBarCrossSectionArea a ssn:Property ;
+    qudt:quantityKind quantitykind:Area ;
+    skos:broader dop:Area .
+
+dop:LongitudinalBarNominalDiameter a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:LongitudinalBarSpacing a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:LongitudinalEndPosition a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:LongitudinalStartPosition a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:LuminousFlux a ssn:Property ;
+    qudt:quantityKind quantitykind:LuminousFlux .
+
+dop:LuminousIntensity a ssn:Property ;
+    qudt:quantityKind quantitykind:LuminousIntensity .
+
+dop:LuminousIntensityDistribution a ssn:Property ;
+    qudt:quantityKind quantitykind:LuminousIntensityDistribution .
+
+dop:MagneticFlux a ssn:Property ;
+    qudt:quantityKind quantitykind:MagneticFlux .
+
+dop:MagneticFluxDensity a ssn:Property ;
+    qudt:quantityKind quantitykind:MagneticFluxDensity .
+
+dop:Magnitude a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:MainPlaneAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:MajorRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:MapProjection a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:MapZone a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:MassDensity a ssn:Property ;
+    qudt:quantityKind quantitykind:MassDensity .
+
+dop:MassFlowRate a ssn:Property ;
+    qudt:quantityKind quantitykind:MassFlowRate .
+
+dop:MassPerLength a ssn:Property ;
+    qudt:quantityKind quantitykind:MassPerLength .
+
+dop:MeshLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:MeshWidth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:MethodOfMeasurement a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:MinCurvatureRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:MinorRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:Mode a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:ModelorDraughting a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:ModulusOfElasticity a ssn:Property ;
+    qudt:quantityKind quantitykind:ModulusOfElasticity .
+
+dop:ModulusOfLinearSubgradeReaction a ssn:Property ;
+    qudt:quantityKind quantitykind:ModulusOfLinearSubgradeReaction .
+
+dop:ModulusOfRotationalSubgradeReaction a ssn:Property ;
+    qudt:quantityKind quantitykind:ModulusOfRotationalSubgradeReaction .
+
+dop:ModulusOfSubgradeReaction a ssn:Property ;
+    qudt:quantityKind quantitykind:ModulusOfSubgradeReaction .
+
+dop:MoistureDiffusivity a ssn:Property ;
+    qudt:quantityKind quantitykind:MoistureDiffusivity .
+
+dop:MomentOfInertia a ssn:Property ;
+    qudt:quantityKind quantitykind:MomentOfInertia .
+
+dop:MomentX a ssn:Property ;
+    qudt:quantityKind quantitykind:Torque ;
+    skos:broader dop:Torque .
+
+dop:MomentY a ssn:Property ;
+    qudt:quantityKind quantitykind:Torque ;
+    skos:broader dop:Torque .
+
+dop:MomentZ a ssn:Property ;
+    qudt:quantityKind quantitykind:Torque ;
+    skos:broader dop:Torque .
+
+dop:MullionThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:Name a ssn:Property ;
+    rdfs:range xsd:Name ;
+    skos:broader dop:Identifier .
+
+dop:NominalBarDiameter a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:NominalDiameter a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:NominalLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:Northings a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:NumberOfRisers a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:NumberOfTreads a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:ObjectType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Occurrences a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:OffsetFromReferenceLine a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:OperationType a ssn:Property ;
+    rdfs:label "OperationType" ;
+    rdfs:comment "Type of operation (e.g., sliding, swinging)" ;
+    rdfs:seeAlso ifc:IfcDoorStyleOperationEnum,
+        ifc:IfcWindowStyleOperationEnum .
+
+dop:Orientation a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:OrthogonalHeight a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:OuterFilletRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:OverallDepth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:OverallHeight a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:OverallWidth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:PagerNumber a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:PanelDepth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:ParameterTakesPrecedence a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:PartitioningType a ssn:Property ;
+    rdfs:label "PartitioningType" ;
+    rdfs:comment "Type of partitioning configuration" ;
+    rdfs:seeAlso ifc:IfcWindowTypePartitioningEnum .
+
+dop:Phase a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:PlanarForceX a ssn:Property ;
+    qudt:quantityKind quantitykind:PlanarForce ;
+    skos:broader dop:PlanarForce .
+
+dop:PlanarForceY a ssn:Property ;
+    qudt:quantityKind quantitykind:PlanarForce ;
+    skos:broader dop:PlanarForce .
+
+dop:PlanarForceZ a ssn:Property ;
+    qudt:quantityKind quantitykind:PlanarForce ;
+    skos:broader dop:PlanarForce .
+
+dop:Position a ssn:Property ;
+    rdfs:label "Position" ;
+    rdfs:comment "Position of the element (left, right, center)" ;
+    rdfs:range xsd:integer ;
+    rdfs:seeAlso ifc:IfcDoorPanelPositionEnum,
+        ifc:IfcWindowPanelPositionEnum ;
+    skos:broader dop:Integer .
+
+dop:PositiveInteger a ssn:Property ;
+    rdfs:range xsd:positiveInteger ;
+    skos:broader dop:Integer .
+
+dop:PostalBox a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:PostalCode a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Power a ssn:Property ;
+    qudt:quantityKind quantitykind:Power .
+
+dop:PreStress a ssn:Property ;
+    qudt:quantityKind quantitykind:Pressure ;
+    skos:broader dop:Pressure .
+
+dop:Precision a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:PredefinedType a ssn:Property ;
+    rdfs:label "PredefinedType" ;
+    rdfs:comment "Predefined classification for the object" ;
+    rdfs:seeAlso ifc:IfcDoorTypeEnum,
+        ifc:IfcRoofTypeEnum,
+        ifc:IfcWindowTypeEnum .
+
+dop:PrimaryMeasureType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Priority a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:ProcessType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ProductDefinitional a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:ProfileName a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Purpose a ssn:Property ;
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
+
+dop:QuadricAttenuation a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:Qualifier a ssn:Property ;
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
+
+dop:Quality a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:RadioActivity a ssn:Property ;
+    qudt:quantityKind quantitykind:Radioactivity .
+
+dop:Radius a ssn:Property ;
+    qudt:quantityKind quantitykind:Radius ;
+    skos:broader dop:PositiveLength .
+
+dop:RasterCode a ssn:Property ;
+    rdfs:range xsd:hexBinary ;
+    skos:broader dop:Binary .
+
+dop:RasterFormat a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:RateDateTime a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:RefElevation a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:ReferenceExtent a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:RefractionIndex a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:Region a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:RelationshipType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:RemainingTime a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:RemainingWork a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:RepeatS a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:RepeatT a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:RepresentationIdentifier a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:RepresentationType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ResourceType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:Revision a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:RiserHeight a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:RotationalDisplacementRX a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:RotationalDisplacementRY a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:RotationalDisplacementRZ a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:RotationalMass a ssn:Property ;
+    qudt:quantityKind quantitykind:RotationalMass .
+
+dop:RotationalStiffness a ssn:Property ;
+    qudt:quantityKind quantitykind:RotationalStiffness .
+
+dop:RoundingRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:SameSense a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:Scale a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:Scale2 a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:Scale3 a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:ScheduleContour a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:ScheduleDate a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:ScheduleDuration a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:ScheduleFinish a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:ScheduleStart a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:ScheduleWork a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:Scope a ssn:Property ;
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
+
+dop:SecondaryMeasureType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:SectionModulus a ssn:Property ;
+    qudt:quantityKind quantitykind:SectionModulus .
+
+dop:SelfIntersect a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:SemiAxis1 a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:SemiAxis2 a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:SenseAgreement a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:ShearModulus a ssn:Property ;
+    qudt:quantityKind quantitykind:ShearModulus .
+
+dop:ShearReinforcement a ssn:Property ;
+    qudt:quantityKind quantitykind:Ratio ;
+    skos:broader dop:Ratio .
+
+dop:SheathDiameter a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:SizeInX a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:SizeInY a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:Sizeable a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:SlippageX a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:SlippageY a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:SlippageZ a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:SolidAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:SolidAngle .
+
+dop:Sort a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:SoundPower a ssn:Property ;
+    qudt:quantityKind quantitykind:SoundPower .
+
+dop:SoundPowerLevel a ssn:Property ;
+    qudt:quantityKind quantitykind:SoundPowerLevel .
+
+dop:SoundPressure a ssn:Property ;
+    qudt:quantityKind quantitykind:SoundPressure .
+
+dop:SoundPressureLevel a ssn:Property ;
+    qudt:quantityKind quantitykind:SoundPressureLevel .
+
+dop:Source a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:SpecificHeatCapacity a ssn:Property ;
+    qudt:quantityKind quantitykind:SpecificHeatCapacity .
+
+dop:SpreadAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:PositivePlaneAngle ;
+    skos:broader dop:PositivePlaneAngle .
+
+dop:Start a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:StartTime a ssn:Property ;
+    qudt:quantityKind quantitykind:Time ;
+    skos:broader dop:Time .
+
+dop:Status a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:StatusTime a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:SteelGrade a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:SubmittedOn a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:SupportedLength a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:Tag a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:TemperatureGradient a ssn:Property ;
+    qudt:quantityKind quantitykind:TemperatureGradient .
+
+dop:TemperatureRateOfChange a ssn:Property ;
+    qudt:quantityKind quantitykind:TemperatureRateOfChange .
+
+dop:TensionFailureX a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:TensionFailureY a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:TensionFailureZ a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:TensionForce a ssn:Property ;
+    qudt:quantityKind quantitykind:Force ;
+    skos:broader dop:Force .
+
+dop:ThermalAdmittance a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermalAdmittance .
+
+dop:ThermalConductivity a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermalConductivity .
+
+dop:ThermalExpansionCoefficient a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermalExpansionCoefficient .
+
+dop:ThermalResistance a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermalResistance .
+
+dop:ThermalTransmittance a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermalTransmittance .
+
+dop:Thickness a ssn:Property ;
+    qudt:quantityKind quantitykind:Thickness ;
+    skos:broader dop:PositiveLength .
+
+dop:ThresholdDepth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:ThresholdOffset a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:ThresholdThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:TimeOfApproval a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:TimeStep a ssn:Property ;
+    qudt:quantityKind quantitykind:Time ;
+    skos:broader dop:Time .
+
+dop:TimeValue a ssn:Property ;
+    qudt:quantityKind quantitykind:Time ;
+    skos:broader dop:Time .
+
+dop:TopFlangeEdgeRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:TopFlangeFilletRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:TopFlangeSlope a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:TopFlangeThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:TopFlangeWidth a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:TopXDim a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:TopXOffset a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:TotalCrossSectionArea a ssn:Property ;
+    qudt:quantityKind quantitykind:Area ;
+    skos:broader dop:Area .
+
+dop:TotalFloat a ssn:Property ;
+    rdfs:range xsd:duration ;
+    skos:broader dop:Duration .
+
+dop:Town a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:TransomOffset a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:TransomThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:TransverseBarCrossSectionArea a ssn:Property ;
+    qudt:quantityKind quantitykind:Area ;
+    skos:broader dop:Area .
+
+dop:TransverseBarNominalDiameter a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:TransverseBarSpacing a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:TransversePosition a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:TreadLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:TypeIdentifier a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:UClosed a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:UDegree a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:UpdateDate a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:Usage a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UsageName a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:Usense a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:UserDefinedDataOrigin a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedEventTriggerType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedGrade a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedOperationType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedPartitioningType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedPurpose a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedQualifier a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedRole a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedSequenceType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedTargetView a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:UserDefinedType a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:VClosed a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Logical .
+
+dop:VDegree a ssn:Property ;
+    rdfs:range xsd:integer ;
+    skos:broader dop:Integer .
+
+dop:ValidFrom a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:ValidUntil a ssn:Property ;
+    rdfs:range xsd:date ;
+    skos:broader dop:Date .
+
+dop:ValueSource a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:VaporPermeability a ssn:Property ;
+    qudt:quantityKind quantitykind:VaporPermeability .
+
+dop:Version a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:VersionDate a ssn:Property ;
+    rdfs:range xsd:dateTime ;
+    skos:broader dop:DateTime .
+
+dop:VerticalDatum a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:VisibleSegmentLength a ssn:Property ;
+    qudt:quantityKind quantitykind:Length ;
+    skos:broader dop:Length .
+
+dop:VolumeValue a ssn:Property ;
+    qudt:quantityKind quantitykind:Volume ;
+    skos:broader dop:Volume .
+
+dop:Vsense a ssn:Property ;
+    rdfs:range xsd:boolean ;
+    skos:broader dop:Boolean .
+
+dop:WallThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:WarpingConstant a ssn:Property ;
+    qudt:quantityKind quantitykind:WarpingConstant .
+
+dop:WarpingMoment a ssn:Property ;
+    qudt:quantityKind quantitykind:WarpingMoment .
+
+dop:WebEdgeRadius a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:NonNegativeLength .
+
+dop:WebSlope a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:WebThickness a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:WeightValue a ssn:Property ;
+    qudt:quantityKind quantitykind:Mass ;
+    skos:broader dop:Mass .
+
+dop:Width a ssn:Property ;
+    qudt:quantityKind quantitykind:Width ;
+    skos:broader dop:Integer .
+
+dop:WorkMethod a ssn:Property ;
+    rdfs:range xsd:string ;
+    skos:broader dop:Label .
+
+dop:XAxisAbscissa a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:XAxisOrdinate a ssn:Property ;
+    rdfs:range xsd:double ;
+    skos:broader dop:Real .
+
+dop:XDim a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:XLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:YDim a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:YLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:ZDim a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:ZLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
+
+dop:constructionType a ssn:Property ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:ConstructionTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] .
+
+dop:operationType a ssn:Property ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:OperationTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] .
+
+dop:partitioningType a ssn:Property ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:PartitioningTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] .
+
+dop:position a ssn:Property ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:PositionScheme ;
+                        owl:onProperty skos:inScheme ] ) ] .
+
+dop:predefinedType a ssn:Property ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:PredefinedTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] .
+
+dop:Binary a ssn:Property ;
+    rdfs:range xsd:hexBinary .
+
+dop:ConstructionTypeScheme a skos:ConceptScheme .
+
+dop:Curvature a ssn:Property ;
+    qudt:quantityKind quantitykind:Curvature .
+
+dop:LanguageId a ssn:Property ;
+    skos:broader dop:Identifier .
+
+dop:Mass a ssn:Property ;
+    qudt:quantityKind quantitykind:Mass .
+
+dop:OperationTypeScheme a skos:ConceptScheme .
+
+dop:PartitioningTypeScheme a skos:ConceptScheme .
+
+dop:PositionScheme a skos:ConceptScheme .
+
+dop:PredefinedTypeScheme a skos:ConceptScheme .
+
+dop:Pressure a ssn:Property ;
+    qudt:quantityKind quantitykind:Pressure .
+
+dop:TimeStamp a ssn:Property ;
+    rdfs:range xsd:dateTimeStamp ;
+    skos:broader dop:DateTime .
+
+dop:Volume a ssn:Property ;
+    qudt:quantityKind quantitykind:Volume .
+
+dop:Count a ssn:Property ;
+    qudt:quantityKind quantitykind:Count .
+
+dop:PositivePlaneAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:PositivePlaneAngle ;
+    skos:broader dop:PlaneAngle .
+
+dop:LinearForce a ssn:Property ;
+    qudt:quantityKind quantitykind:LinearForce .
+
+dop:PlanarForce a ssn:Property ;
+    qudt:quantityKind quantitykind:PlanarForce .
+
+dop:Ratio a ssn:Property ;
+    qudt:quantityKind quantitykind:Ratio .
+
+dop:Torque a ssn:Property ;
+    qudt:quantityKind quantitykind:Torque .
+
+dop:ThermodynamicTemperature a ssn:Property ;
+    qudt:quantityKind quantitykind:ThermodynamicTemperature .
+
+dop:Time a ssn:Property ;
+    qudt:quantityKind quantitykind:Time .
+
+dop:Area a ssn:Property ;
+    qudt:quantityKind quantitykind:Area .
+
+dop:Text a ssn:Property ;
+    rdfs:range xsd:normalizedString .
+
+dop:Logical a ssn:Property ;
+    rdfs:range xsd:boolean .
+
+dop:Date a ssn:Property ;
+    rdfs:range xsd:date .
+
+dop:Duration a ssn:Property ;
+    rdfs:range xsd:duration .
+
+dop:Force a ssn:Property ;
+    qudt:quantityKind quantitykind:Force .
+
+dop:PlaneAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle .
+
+dop:Integer a ssn:Property ;
+    rdfs:range xsd:integer .
+
+dop:Real a ssn:Property ;
+    rdfs:range xsd:double .
+
+dop:NonNegativeLength a ssn:Property ;
+    qudt:quantityKind quantitykind:NonNegativeLength ;
+    skos:broader dop:Length .
+
+dop:Identifier a ssn:Property ;
+    rdfs:range dcterms:identifier .
+
+dop:Boolean a ssn:Property ;
+    rdfs:range xsd:boolean .
+
+dop:DateTime a ssn:Property ;
+    rdfs:range xsd:dateTime .
+
+dop:Length a ssn:Property ;
+    qudt:quantityKind quantitykind:Length .
+
+dop:PositiveLength a ssn:Property ;
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:Length .
+
+dop:Label a ssn:Property ;
+    rdfs:range xsd:string .
+
