@@ -40,6 +40,21 @@ dop:AgreementFlag a ssn:Property ;
     rdfs:range xsd:boolean ;
     skos:broader dop:Boolean .
 
+dop:Aluminium a skos:Concept ;
+    skos:exactMatch ifc:ALUMINIUM ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "Aluminium"@en .
+
+dop:AluminiumPlastic a skos:Concept ;
+    skos:exactMatch ifc:ALUMINIUM_PLASTIC ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "Aluminium Plastic"@en .
+
+dop:AluminiumWood a skos:Concept ;
+    skos:exactMatch ifc:ALUMINIUM_WOOD ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "Aluminium Wood"@en .
+
 dop:AmountOfSubstance a ssn:Property ;
     qudt:quantityKind quantitykind:AmountOfSubstance .
 
@@ -90,6 +105,11 @@ dop:BarLength a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
 
+dop:BarrelRoof a skos:Concept ;
+    skos:exactMatch ifc:BARREL_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Barrel Roof"@en .
+
 dop:BeamWidthAngle a ssn:Property ;
     qudt:quantityKind quantitykind:PositivePlaneAngle ;
     skos:broader dop:PositivePlaneAngle .
@@ -97,6 +117,11 @@ dop:BeamWidthAngle a ssn:Property ;
 dop:BendingShapeCode a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
+
+dop:Bottom a skos:Concept ;
+    skos:exactMatch ifc:BOTTOM ;
+    skos:inScheme dop:PositionScheme ;
+    skos:prefLabel "Bottom"@en .
 
 dop:BottomFlangeEdgeRadius a ssn:Property ;
     qudt:quantityKind quantitykind:NonNegativeLength ;
@@ -129,6 +154,11 @@ dop:BottomXDim a ssn:Property ;
 dop:BoxAlignment a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
+
+dop:ButterflyRoof a skos:Concept ;
+    skos:exactMatch ifc:BUTTERFLY_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Butterfly Roof"@en .
 
 dop:CasingDepth a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
@@ -197,6 +227,10 @@ dop:ConstraintSource a ssn:Property ;
 dop:ConstructionType a ssn:Property ;
     rdfs:label "ConstructionType" ;
     rdfs:comment "Type of construction (framed, glazed, etc.)" ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:ConstructionTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] ;
     rdfs:seeAlso ifc:IfcDoorStyleConstructionEnum,
         ifc:IfcWindowStyleConstructionEnum .
 
@@ -300,8 +334,70 @@ dop:Distortion a ssn:Property ;
     qudt:quantityKind quantitykind:Curvature ;
     skos:broader dop:Curvature .
 
+dop:DomeRoof a skos:Concept ;
+    skos:exactMatch ifc:DOME_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Dome Roof"@en .
+
+dop:Door a skos:Concept ;
+    skos:exactMatch ifc:DOOR ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Door"@en .
+
 dop:DoseEquivalent a ssn:Property ;
     qudt:quantityKind quantitykind:DoseEquivalent .
+
+dop:DoubleDoorDoubleSwing a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_DOOR_DOUBLE_SWING ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Door Double Swing"@en .
+
+dop:DoubleDoorFolding a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_DOOR_FOLDING ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Door Folding"@en .
+
+dop:DoubleDoorSingleSwing a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_DOOR_SINGLE_SWING ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Door Single Swing"@en .
+
+dop:DoubleDoorSingleSwingOppositeLeft a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Door Single Swing Opposite Left"@en .
+
+dop:DoubleDoorSingleSwingOppositeRight a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Door Single Swing Opposite Right"@en .
+
+dop:DoubleDoorSliding a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_DOOR_SLIDING ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Door Sliding"@en .
+
+dop:DoublePanelHorizontal a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_PANEL_HORIZONTAL ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Double Panel Horizontal"@en .
+
+dop:DoublePanelVertical a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_PANEL_VERTICAL ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Double Panel Vertical"@en .
+
+dop:DoubleSwingLeft a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_SWING_LEFT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Swing Left"@en .
+
+dop:DoubleSwingRight a skos:Concept ;
+    skos:exactMatch ifc:DOUBLE_SWING_RIGHT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Double Swing Right"@en .
 
 dop:DynamicViscosity a ssn:Property ;
     qudt:quantityKind quantitykind:DynamicViscosity .
@@ -430,6 +526,21 @@ dop:FlangeWidth a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
 
+dop:FlatRoof a skos:Concept ;
+    skos:exactMatch ifc:FLAT_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Flat Roof"@en .
+
+dop:FoldingToLeft a skos:Concept ;
+    skos:exactMatch ifc:FOLDING_TO_LEFT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Folding To Left"@en .
+
+dop:FoldingToRight a skos:Concept ;
+    skos:exactMatch ifc:FOLDING_TO_RIGHT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Folding To Right"@en .
+
 dop:ForceX a ssn:Property ;
     qudt:quantityKind quantitykind:Force ;
     skos:broader dop:Force .
@@ -458,11 +569,31 @@ dop:FreeFloat a ssn:Property ;
     rdfs:range xsd:duration ;
     skos:broader dop:Duration .
 
+dop:Freeform a skos:Concept ;
+    skos:exactMatch ifc:FREEFORM ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Freeform"@en .
+
 dop:Frequency a ssn:Property ;
     qudt:quantityKind quantitykind:Frequency .
 
 dop:FrictionCoefficient a ssn:Property ;
     qudt:quantityKind quantitykind:FrictionCoefficient .
+
+dop:GableRoof a skos:Concept ;
+    skos:exactMatch ifc:GABLE_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Gable Roof"@en .
+
+dop:GambrelRoof a skos:Concept ;
+    skos:exactMatch ifc:GAMBREL_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Gambrel Roof"@en .
+
+dop:Gate a skos:Concept ;
+    skos:exactMatch ifc:GATE ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Gate"@en .
 
 dop:GeodeticDatum a ssn:Property ;
     skos:broader dop:Identifier .
@@ -487,7 +618,22 @@ dop:HeatingValue a ssn:Property ;
 
 dop:Height a ssn:Property ;
     qudt:quantityKind quantitykind:Height ;
-    skos:broader dop:PositiveLength .
+    skos:broader dop:Integer .
+
+dop:HighGradeSteel a skos:Concept ;
+    skos:exactMatch ifc:HIGH_GRADE_STEEL ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "High Grade Steel"@en .
+
+dop:HipRoof a skos:Concept ;
+    skos:exactMatch ifc:HIP_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Hip Roof"@en .
+
+dop:HippedGableRoof a skos:Concept ;
+    skos:exactMatch ifc:HIPPED_GABLE_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Hipped Gable Roof"@en .
 
 dop:Identification a ssn:Property ;
     skos:broader dop:Identifier .
@@ -630,6 +776,11 @@ dop:LayerThickness a ssn:Property ;
     qudt:quantityKind quantitykind:NonNegativeLength ;
     skos:broader dop:NonNegativeLength .
 
+dop:Left a skos:Concept ;
+    skos:exactMatch ifc:LEFT ;
+    skos:inScheme dop:PositionScheme ;
+    skos:prefLabel "Left"@en .
+
 dop:LegSlope a ssn:Property ;
     qudt:quantityKind quantitykind:PlaneAngle ;
     skos:broader dop:PlaneAngle .
@@ -649,6 +800,11 @@ dop:LevelingDelay a ssn:Property ;
 dop:LifeCyclePhase a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
+
+dop:Lightdome a skos:Concept ;
+    skos:exactMatch ifc:LIGHTDOME ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Lightdome"@en .
 
 dop:LinearForceX a ssn:Property ;
     qudt:quantityKind quantitykind:LinearForce ;
@@ -743,6 +899,11 @@ dop:MajorRadius a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
 
+dop:MansardRoof a skos:Concept ;
+    skos:exactMatch ifc:MANSARD_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Mansard Roof"@en .
+
 dop:MapProjection a ssn:Property ;
     skos:broader dop:Identifier .
 
@@ -770,6 +931,11 @@ dop:MethodOfMeasurement a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
+dop:Middle a skos:Concept ;
+    skos:exactMatch ifc:MIDDLE ;
+    skos:inScheme dop:PositionScheme ;
+    skos:prefLabel "Middle"@en .
+
 dop:MinCurvatureRadius a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
@@ -779,7 +945,8 @@ dop:MinorRadius a ssn:Property ;
     skos:broader dop:PositiveLength .
 
 dop:Mode a ssn:Property ;
-    skos:broader dop:Identifier .
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Label .
 
 dop:ModelorDraughting a ssn:Property ;
     rdfs:range xsd:boolean ;
@@ -821,7 +988,7 @@ dop:MullionThickness a ssn:Property ;
 
 dop:Name a ssn:Property ;
     rdfs:range xsd:Name ;
-    skos:broader dop:Identifier .
+    skos:broader dop:Label .
 
 dop:NominalBarDiameter a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
@@ -838,6 +1005,15 @@ dop:NominalLength a ssn:Property ;
 dop:Northings a ssn:Property ;
     qudt:quantityKind quantitykind:Length ;
     skos:broader dop:Length .
+
+dop:Notdefined a skos:Concept ;
+    skos:exactMatch ifc:NOTDEFINED ;
+    skos:inScheme dop:ConstructionTypeScheme,
+        dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme,
+        dop:PositionScheme,
+        dop:PredefinedTypeScheme ;
+    skos:prefLabel "Notdefined"@en .
 
 dop:NumberOfRisers a ssn:Property ;
     rdfs:range xsd:integer ;
@@ -862,6 +1038,10 @@ dop:OffsetFromReferenceLine a ssn:Property ;
 dop:OperationType a ssn:Property ;
     rdfs:label "OperationType" ;
     rdfs:comment "Type of operation (e.g., sliding, swinging)" ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:OperationTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] ;
     rdfs:seeAlso ifc:IfcDoorStyleOperationEnum,
         ifc:IfcWindowStyleOperationEnum .
 
@@ -872,6 +1052,11 @@ dop:Orientation a ssn:Property ;
 dop:OrthogonalHeight a ssn:Property ;
     qudt:quantityKind quantitykind:Length ;
     skos:broader dop:Length .
+
+dop:OtherConstruction a skos:Concept ;
+    skos:exactMatch ifc:OTHER_CONSTRUCTION ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "Other Construction"@en .
 
 dop:OuterFilletRadius a ssn:Property ;
     qudt:quantityKind quantitykind:NonNegativeLength ;
@@ -904,7 +1089,16 @@ dop:ParameterTakesPrecedence a ssn:Property ;
 dop:PartitioningType a ssn:Property ;
     rdfs:label "PartitioningType" ;
     rdfs:comment "Type of partitioning configuration" ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:PartitioningTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] ;
     rdfs:seeAlso ifc:IfcWindowTypePartitioningEnum .
+
+dop:PavilionRoof a skos:Concept ;
+    skos:exactMatch ifc:PAVILION_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Pavilion Roof"@en .
 
 dop:Phase a ssn:Property ;
     rdfs:range xsd:normalizedString ;
@@ -922,13 +1116,20 @@ dop:PlanarForceZ a ssn:Property ;
     qudt:quantityKind quantitykind:PlanarForce ;
     skos:broader dop:PlanarForce .
 
+dop:Plastic a skos:Concept ;
+    skos:exactMatch ifc:PLASTIC ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "Plastic"@en .
+
 dop:Position a ssn:Property ;
     rdfs:label "Position" ;
     rdfs:comment "Position of the element (left, right, center)" ;
-    rdfs:range xsd:integer ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:PositionScheme ;
+                        owl:onProperty skos:inScheme ] ) ] ;
     rdfs:seeAlso ifc:IfcDoorPanelPositionEnum,
-        ifc:IfcWindowPanelPositionEnum ;
-    skos:broader dop:Integer .
+        ifc:IfcWindowPanelPositionEnum .
 
 dop:PositiveInteger a ssn:Property ;
     rdfs:range xsd:positiveInteger ;
@@ -956,6 +1157,10 @@ dop:Precision a ssn:Property ;
 dop:PredefinedType a ssn:Property ;
     rdfs:label "PredefinedType" ;
     rdfs:comment "Predefined classification for the object" ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
+                        owl:hasValue dop:PredefinedTypeScheme ;
+                        owl:onProperty skos:inScheme ] ) ] ;
     rdfs:seeAlso ifc:IfcDoorTypeEnum,
         ifc:IfcRoofTypeEnum,
         ifc:IfcWindowTypeEnum .
@@ -1002,6 +1207,11 @@ dop:RadioActivity a ssn:Property ;
 dop:Radius a ssn:Property ;
     qudt:quantityKind quantitykind:Radius ;
     skos:broader dop:PositiveLength .
+
+dop:RainbowRoof a skos:Concept ;
+    skos:exactMatch ifc:RAINBOW_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Rainbow Roof"@en .
 
 dop:RasterCode a ssn:Property ;
     rdfs:range xsd:hexBinary ;
@@ -1066,9 +1276,24 @@ dop:Revision a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
+dop:Revolving a skos:Concept ;
+    skos:exactMatch ifc:REVOLVING ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Revolving"@en .
+
+dop:Right a skos:Concept ;
+    skos:exactMatch ifc:RIGHT ;
+    skos:inScheme dop:PositionScheme ;
+    skos:prefLabel "Right"@en .
+
 dop:RiserHeight a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
+
+dop:Rollingup a skos:Concept ;
+    skos:exactMatch ifc:ROLLINGUP ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Rollingup"@en .
 
 dop:RotationalDisplacementRX a ssn:Property ;
     qudt:quantityKind quantitykind:PlaneAngle ;
@@ -1145,7 +1370,7 @@ dop:SectionModulus a ssn:Property ;
 
 dop:SelfIntersect a ssn:Property ;
     rdfs:range xsd:boolean ;
-    skos:broader dop:Logical .
+    skos:broader dop:Boolean .
 
 dop:SemiAxis1 a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
@@ -1170,6 +1395,27 @@ dop:SheathDiameter a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
 
+dop:ShedRoof a skos:Concept ;
+    skos:exactMatch ifc:SHED_ROOF ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Shed Roof"@en .
+
+dop:SinglePanel a skos:Concept ;
+    skos:exactMatch ifc:SINGLE_PANEL ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Single Panel"@en .
+
+dop:SingleSwingLeft a skos:Concept ;
+    skos:exactMatch ifc:SINGLE_SWING_LEFT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Single Swing Left"@en .
+
+dop:SingleSwingRight a skos:Concept ;
+    skos:exactMatch ifc:SINGLE_SWING_RIGHT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Single Swing Right"@en .
+
 dop:SizeInX a ssn:Property ;
     qudt:quantityKind quantitykind:Length ;
     skos:broader dop:Length .
@@ -1181,6 +1427,21 @@ dop:SizeInY a ssn:Property ;
 dop:Sizeable a ssn:Property ;
     rdfs:range xsd:boolean ;
     skos:broader dop:Boolean .
+
+dop:Skylight a skos:Concept ;
+    skos:exactMatch ifc:SKYLIGHT ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Skylight"@en .
+
+dop:SlidingToLeft a skos:Concept ;
+    skos:exactMatch ifc:SLIDING_TO_LEFT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Sliding To Left"@en .
+
+dop:SlidingToRight a skos:Concept ;
+    skos:exactMatch ifc:SLIDING_TO_RIGHT ;
+    skos:inScheme dop:OperationTypeScheme ;
+    skos:prefLabel "Sliding To Right"@en .
 
 dop:SlippageX a ssn:Property ;
     qudt:quantityKind quantitykind:Length ;
@@ -1239,6 +1500,11 @@ dop:StatusTime a ssn:Property ;
     rdfs:range xsd:dateTime ;
     skos:broader dop:DateTime .
 
+dop:Steel a skos:Concept ;
+    skos:exactMatch ifc:STEEL ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "Steel"@en .
+
 dop:SteelGrade a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
@@ -1252,7 +1518,8 @@ dop:SupportedLength a ssn:Property ;
     skos:broader dop:Length .
 
 dop:Tag a ssn:Property ;
-    skos:broader dop:Identifier .
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Label .
 
 dop:TemperatureGradient a ssn:Property ;
     qudt:quantityKind quantitykind:TemperatureGradient .
@@ -1319,6 +1586,11 @@ dop:TimeValue a ssn:Property ;
     qudt:quantityKind quantitykind:Time ;
     skos:broader dop:Time .
 
+dop:Top a skos:Concept ;
+    skos:exactMatch ifc:TOP ;
+    skos:inScheme dop:PositionScheme ;
+    skos:prefLabel "Top"@en .
+
 dop:TopFlangeEdgeRadius a ssn:Property ;
     qudt:quantityKind quantitykind:NonNegativeLength ;
     skos:broader dop:NonNegativeLength .
@@ -1383,9 +1655,50 @@ dop:TransversePosition a ssn:Property ;
     qudt:quantityKind quantitykind:Length ;
     skos:broader dop:Length .
 
+dop:Trapdoor a skos:Concept ;
+    skos:exactMatch ifc:TRAPDOOR ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Trapdoor"@en .
+
 dop:TreadLength a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
+
+dop:TriplePanelBottom a skos:Concept ;
+    skos:exactMatch ifc:TRIPLE_PANEL_BOTTOM ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Triple Panel Bottom"@en .
+
+dop:TriplePanelHorizontal a skos:Concept ;
+    skos:exactMatch ifc:TRIPLE_PANEL_HORIZONTAL ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Triple Panel Horizontal"@en .
+
+dop:TriplePanelLeft a skos:Concept ;
+    skos:exactMatch ifc:TRIPLE_PANEL_LEFT ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Triple Panel Left"@en .
+
+dop:TriplePanelRight a skos:Concept ;
+    skos:exactMatch ifc:TRIPLE_PANEL_RIGHT ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Triple Panel Right"@en .
+
+dop:TriplePanelTop a skos:Concept ;
+    skos:exactMatch ifc:TRIPLE_PANEL_TOP ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Triple Panel Top"@en .
+
+dop:TriplePanelVertical a skos:Concept ;
+    skos:exactMatch ifc:TRIPLE_PANEL_VERTICAL ;
+    skos:inScheme dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme ;
+    skos:prefLabel "Triple Panel Vertical"@en .
 
 dop:TypeIdentifier a ssn:Property ;
     skos:broader dop:Identifier .
@@ -1457,6 +1770,14 @@ dop:UserDefinedTargetView a ssn:Property ;
 dop:UserDefinedType a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
+
+dop:Userdefined a skos:Concept ;
+    skos:exactMatch ifc:USERDEFINED ;
+    skos:inScheme dop:ConstructionTypeScheme,
+        dop:OperationTypeScheme,
+        dop:PartitioningTypeScheme,
+        dop:PredefinedTypeScheme ;
+    skos:prefLabel "Userdefined"@en .
 
 dop:VClosed a ssn:Property ;
     rdfs:range xsd:boolean ;
@@ -1532,7 +1853,17 @@ dop:WeightValue a ssn:Property ;
 
 dop:Width a ssn:Property ;
     qudt:quantityKind quantitykind:Width ;
-    skos:broader dop:PositiveLength .
+    skos:broader dop:Integer .
+
+dop:Window a skos:Concept ;
+    skos:exactMatch ifc:WINDOW ;
+    skos:inScheme dop:PredefinedTypeScheme ;
+    skos:prefLabel "Window"@en .
+
+dop:Wood a skos:Concept ;
+    skos:exactMatch ifc:WOOD ;
+    skos:inScheme dop:ConstructionTypeScheme ;
+    skos:prefLabel "Wood"@en .
 
 dop:WorkMethod a ssn:Property ;
     rdfs:range xsd:normalizedString ;
@@ -1570,40 +1901,8 @@ dop:ZLength a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
     skos:broader dop:PositiveLength .
 
-dop:constructionType a ssn:Property ;
-    rdfs:range [ a owl:Class ;
-            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
-                        owl:hasValue dop:ConstructionTypeScheme ;
-                        owl:onProperty skos:inScheme ] ) ] .
-
-dop:operationType a ssn:Property ;
-    rdfs:range [ a owl:Class ;
-            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
-                        owl:hasValue dop:OperationTypeScheme ;
-                        owl:onProperty skos:inScheme ] ) ] .
-
-dop:partitioningType a ssn:Property ;
-    rdfs:range [ a owl:Class ;
-            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
-                        owl:hasValue dop:PartitioningTypeScheme ;
-                        owl:onProperty skos:inScheme ] ) ] .
-
-dop:position a ssn:Property ;
-    rdfs:range [ a owl:Class ;
-            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
-                        owl:hasValue dop:PositionScheme ;
-                        owl:onProperty skos:inScheme ] ) ] .
-
-dop:predefinedType a ssn:Property ;
-    rdfs:range [ a owl:Class ;
-            owl:intersectionOf ( skos:Concept [ a owl:Restriction ;
-                        owl:hasValue dop:PredefinedTypeScheme ;
-                        owl:onProperty skos:inScheme ] ) ] .
-
 dop:Binary a ssn:Property ;
     rdfs:range xsd:hexBinary .
-
-dop:ConstructionTypeScheme a skos:ConceptScheme .
 
 dop:Curvature a ssn:Property ;
     qudt:quantityKind quantitykind:Curvature .
@@ -1613,14 +1912,6 @@ dop:LanguageId a ssn:Property ;
 
 dop:Mass a ssn:Property ;
     qudt:quantityKind quantitykind:Mass .
-
-dop:OperationTypeScheme a skos:ConceptScheme .
-
-dop:PartitioningTypeScheme a skos:ConceptScheme .
-
-dop:PositionScheme a skos:ConceptScheme .
-
-dop:PredefinedTypeScheme a skos:ConceptScheme .
 
 dop:Pressure a ssn:Property ;
     qudt:quantityKind quantitykind:Pressure .
@@ -1660,6 +1951,11 @@ dop:Time a ssn:Property ;
 dop:Area a ssn:Property ;
     qudt:quantityKind quantitykind:Area .
 
+dop:PositionScheme a skos:ConceptScheme .
+
+dop:Logical a ssn:Property ;
+    rdfs:range xsd:boolean .
+
 dop:Text a ssn:Property ;
     rdfs:range xsd:normalizedString .
 
@@ -1669,14 +1965,15 @@ dop:Date a ssn:Property ;
 dop:Duration a ssn:Property ;
     rdfs:range xsd:duration .
 
-dop:Logical a ssn:Property ;
-    rdfs:range xsd:boolean .
-
 dop:Force a ssn:Property ;
     qudt:quantityKind quantitykind:Force .
 
+dop:ConstructionTypeScheme a skos:ConceptScheme .
+
 dop:Integer a ssn:Property ;
     rdfs:range xsd:integer .
+
+dop:PartitioningTypeScheme a skos:ConceptScheme .
 
 dop:PlaneAngle a ssn:Property ;
     qudt:quantityKind quantitykind:PlaneAngle .
@@ -1684,18 +1981,22 @@ dop:PlaneAngle a ssn:Property ;
 dop:Real a ssn:Property ;
     rdfs:range xsd:double .
 
+dop:Identifier a ssn:Property ;
+    rdfs:range dcterms:identifier .
+
 dop:NonNegativeLength a ssn:Property ;
     qudt:quantityKind quantitykind:NonNegativeLength ;
     skos:broader dop:Length .
-
-dop:Identifier a ssn:Property ;
-    rdfs:range dcterms:identifier .
 
 dop:Boolean a ssn:Property ;
     rdfs:range xsd:boolean .
 
 dop:DateTime a ssn:Property ;
     rdfs:range xsd:dateTime .
+
+dop:PredefinedTypeScheme a skos:ConceptScheme .
+
+dop:OperationTypeScheme a skos:ConceptScheme .
 
 dop:Length a ssn:Property ;
     qudt:quantityKind quantitykind:Length .
