@@ -65,7 +65,7 @@ dop:ApplicableOccurrence a ssn:Property ;
     skos:broader dop:Identifier .
 
 dop:ApplicationFullName a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ApplicationIdentifier a ssn:Property ;
@@ -79,7 +79,7 @@ dop:AttributeIdentifier a ssn:Property ;
     skos:broader dop:Identifier .
 
 dop:AxisTag a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:BarCount a ssn:Property ;
@@ -95,7 +95,7 @@ dop:BeamWidthAngle a ssn:Property ;
     skos:broader dop:PositivePlaneAngle .
 
 dop:BendingShapeCode a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:BottomFlangeEdgeRadius a ssn:Property ;
@@ -127,7 +127,7 @@ dop:BottomXDim a ssn:Property ;
     skos:broader dop:PositiveLength .
 
 dop:BoxAlignment a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:CasingDepth a ssn:Property ;
@@ -139,7 +139,7 @@ dop:CasingThickness a ssn:Property ;
     skos:broader dop:PositiveLength .
 
 dop:Category a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Closed a ssn:Property ;
@@ -179,11 +179,11 @@ dop:ConcentrationExponent a ssn:Property ;
     skos:broader dop:Real .
 
 dop:Condition a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ConnectionType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ConstantAttenuation a ssn:Property ;
@@ -191,7 +191,7 @@ dop:ConstantAttenuation a ssn:Property ;
     skos:broader dop:Real .
 
 dop:ConstraintSource a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ConstructionType a ssn:Property ;
@@ -201,11 +201,11 @@ dop:ConstructionType a ssn:Property ;
         ifc:IfcWindowStyleConstructionEnum .
 
 dop:ContextIdentifier a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ContextType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ConversionOffset a ssn:Property ;
@@ -217,12 +217,12 @@ dop:CountValue a ssn:Property ;
     skos:broader dop:Count .
 
 dop:Country a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:CreationDate a ssn:Property ;
-    rdfs:range xsd:dateTime ;
-    skos:broader dop:DateTime .
+    rdfs:range xsd:dateTimeStamp ;
+    skos:broader dop:TimeStamp .
 
 dop:CreationTime a ssn:Property ;
     rdfs:range xsd:dateTime ;
@@ -233,11 +233,11 @@ dop:CrossSectionArea a ssn:Property ;
     skos:broader dop:Area .
 
 dop:Currency a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:DefinitionType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Degree a ssn:Property ;
@@ -258,7 +258,7 @@ dop:DeltaTZ a ssn:Property ;
 
 dop:Depth a ssn:Property ;
     qudt:quantityKind quantitykind:Depth ;
-    skos:broader dop:Length .
+    skos:broader dop:PositiveLength .
 
 dop:Description a ssn:Property ;
     rdfs:range xsd:normalizedString ;
@@ -269,7 +269,7 @@ dop:DestabilizingLoad a ssn:Property ;
     skos:broader dop:Boolean .
 
 dop:Discrimination a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:DispersionFactor a ssn:Property ;
@@ -339,7 +339,7 @@ dop:EdgeRadius a ssn:Property ;
     skos:broader dop:NonNegativeLength .
 
 dop:Edition a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:EditionDate a ssn:Property ;
@@ -360,7 +360,7 @@ dop:ElectronicFormat a ssn:Property ;
     skos:broader dop:Identifier .
 
 dop:ElementType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Elevation a ssn:Property ;
@@ -395,12 +395,12 @@ dop:Factor a ssn:Property ;
     skos:broader dop:Ratio .
 
 dop:FamilyName a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:FilletRadius a ssn:Property ;
-    qudt:quantityKind quantitykind:NonNegativeLength ;
-    skos:broader dop:NonNegativeLength .
+    qudt:quantityKind quantitykind:PositiveLength ;
+    skos:broader dop:PositiveLength .
 
 dop:Finish a ssn:Property ;
     rdfs:range xsd:date ;
@@ -443,7 +443,7 @@ dop:ForceZ a ssn:Property ;
     skos:broader dop:Force .
 
 dop:Formula a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:FrameDepth a ssn:Property ;
@@ -472,7 +472,7 @@ dop:Girth a ssn:Property ;
     skos:broader dop:PositiveLength .
 
 dop:GivenName a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:HatchLineAngle a ssn:Property ;
@@ -487,7 +487,7 @@ dop:HeatingValue a ssn:Property ;
 
 dop:Height a ssn:Property ;
     qudt:quantityKind quantitykind:Height ;
-    skos:broader dop:Integer .
+    skos:broader dop:PositiveLength .
 
 dop:Identification a ssn:Property ;
     skos:broader dop:Identifier .
@@ -515,7 +515,7 @@ dop:InnerRadius a ssn:Property ;
     skos:broader dop:PositiveLength .
 
 dop:InstanceName a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:IntendedUse a ssn:Property ;
@@ -523,7 +523,7 @@ dop:IntendedUse a ssn:Property ;
     skos:broader dop:Text .
 
 dop:Intent a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:InterferenceType a ssn:Property ;
@@ -534,7 +534,7 @@ dop:InternalFilletRadius a ssn:Property ;
     skos:broader dop:NonNegativeLength .
 
 dop:InternalLocation a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Interval a ssn:Property ;
@@ -579,7 +579,7 @@ dop:KinematicViscosity a ssn:Property ;
     qudt:quantityKind quantitykind:KinematicViscosity .
 
 dop:LandTitleNumber a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Language a ssn:Property ;
@@ -623,7 +623,7 @@ dop:LayerOn a ssn:Property ;
     skos:broader dop:Logical .
 
 dop:LayerSetName a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:LayerThickness a ssn:Property ;
@@ -639,7 +639,7 @@ dop:LengthValue a ssn:Property ;
     skos:broader dop:Length .
 
 dop:Level a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:LevelingDelay a ssn:Property ;
@@ -647,7 +647,7 @@ dop:LevelingDelay a ssn:Property ;
     skos:broader dop:Duration .
 
 dop:LifeCyclePhase a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:LinearForceX a ssn:Property ;
@@ -693,7 +693,7 @@ dop:LongDescription a ssn:Property ;
     skos:broader dop:Text .
 
 dop:LongName a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:LongitudinalBarCrossSectionArea a ssn:Property ;
@@ -767,7 +767,7 @@ dop:MeshWidth a ssn:Property ;
     skos:broader dop:PositiveLength .
 
 dop:MethodOfMeasurement a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:MinCurvatureRadius a ssn:Property ;
@@ -848,7 +848,7 @@ dop:NumberOfTreads a ssn:Property ;
     skos:broader dop:Integer .
 
 dop:ObjectType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Occurrences a ssn:Property ;
@@ -890,7 +890,7 @@ dop:OverallWidth a ssn:Property ;
     skos:broader dop:PositiveLength .
 
 dop:PagerNumber a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:PanelDepth a ssn:Property ;
@@ -907,7 +907,7 @@ dop:PartitioningType a ssn:Property ;
     rdfs:seeAlso ifc:IfcWindowTypePartitioningEnum .
 
 dop:Phase a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:PlanarForceX a ssn:Property ;
@@ -935,11 +935,11 @@ dop:PositiveInteger a ssn:Property ;
     skos:broader dop:Integer .
 
 dop:PostalBox a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:PostalCode a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Power a ssn:Property ;
@@ -961,7 +961,7 @@ dop:PredefinedType a ssn:Property ;
         ifc:IfcWindowTypeEnum .
 
 dop:PrimaryMeasureType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Priority a ssn:Property ;
@@ -969,7 +969,7 @@ dop:Priority a ssn:Property ;
     skos:broader dop:Integer .
 
 dop:ProcessType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ProductDefinitional a ssn:Property ;
@@ -977,7 +977,7 @@ dop:ProductDefinitional a ssn:Property ;
     skos:broader dop:Logical .
 
 dop:ProfileName a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Purpose a ssn:Property ;
@@ -993,7 +993,7 @@ dop:Qualifier a ssn:Property ;
     skos:broader dop:Text .
 
 dop:Quality a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:RadioActivity a ssn:Property ;
@@ -1027,11 +1027,11 @@ dop:RefractionIndex a ssn:Property ;
     skos:broader dop:Real .
 
 dop:Region a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:RelationshipType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:RemainingTime a ssn:Property ;
@@ -1051,19 +1051,19 @@ dop:RepeatT a ssn:Property ;
     skos:broader dop:Boolean .
 
 dop:RepresentationIdentifier a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:RepresentationType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ResourceType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:Revision a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:RiserHeight a ssn:Property ;
@@ -1109,7 +1109,7 @@ dop:Scale3 a ssn:Property ;
     skos:broader dop:Real .
 
 dop:ScheduleContour a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:ScheduleDate a ssn:Property ;
@@ -1137,7 +1137,7 @@ dop:Scope a ssn:Property ;
     skos:broader dop:Text .
 
 dop:SecondaryMeasureType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:SectionModulus a ssn:Property ;
@@ -1145,7 +1145,7 @@ dop:SectionModulus a ssn:Property ;
 
 dop:SelfIntersect a ssn:Property ;
     rdfs:range xsd:boolean ;
-    skos:broader dop:Boolean .
+    skos:broader dop:Logical .
 
 dop:SemiAxis1 a ssn:Property ;
     qudt:quantityKind quantitykind:PositiveLength ;
@@ -1213,7 +1213,7 @@ dop:SoundPressureLevel a ssn:Property ;
     qudt:quantityKind quantitykind:SoundPressureLevel .
 
 dop:Source a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:SpecificHeatCapacity a ssn:Property ;
@@ -1232,7 +1232,7 @@ dop:StartTime a ssn:Property ;
     skos:broader dop:Time .
 
 dop:Status a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:StatusTime a ssn:Property ;
@@ -1240,7 +1240,7 @@ dop:StatusTime a ssn:Property ;
     skos:broader dop:DateTime .
 
 dop:SteelGrade a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:SubmittedOn a ssn:Property ;
@@ -1356,7 +1356,7 @@ dop:TotalFloat a ssn:Property ;
     skos:broader dop:Duration .
 
 dop:Town a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:TransomOffset a ssn:Property ;
@@ -1403,58 +1403,59 @@ dop:UpdateDate a ssn:Property ;
     skos:broader dop:DateTime .
 
 dop:Usage a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UsageName a ssn:Property ;
-    skos:broader dop:Identifier .
+    rdfs:range xsd:normalizedString ;
+    skos:broader dop:Text .
 
 dop:Usense a ssn:Property ;
     rdfs:range xsd:boolean ;
     skos:broader dop:Boolean .
 
 dop:UserDefinedDataOrigin a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedEventTriggerType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedGrade a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedOperationType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedPartitioningType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedPurpose a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedQualifier a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedRole a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedSequenceType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedTargetView a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:UserDefinedType a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:VClosed a ssn:Property ;
@@ -1474,14 +1475,14 @@ dop:ValidUntil a ssn:Property ;
     skos:broader dop:Date .
 
 dop:ValueSource a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:VaporPermeability a ssn:Property ;
     qudt:quantityKind quantitykind:VaporPermeability .
 
 dop:Version a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:VersionDate a ssn:Property ;
@@ -1531,10 +1532,10 @@ dop:WeightValue a ssn:Property ;
 
 dop:Width a ssn:Property ;
     qudt:quantityKind quantitykind:Width ;
-    skos:broader dop:Integer .
+    skos:broader dop:PositiveLength .
 
 dop:WorkMethod a ssn:Property ;
-    rdfs:range xsd:string ;
+    rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
 dop:XAxisAbscissa a ssn:Property ;
@@ -1624,10 +1625,6 @@ dop:PredefinedTypeScheme a skos:ConceptScheme .
 dop:Pressure a ssn:Property ;
     qudt:quantityKind quantitykind:Pressure .
 
-dop:TimeStamp a ssn:Property ;
-    rdfs:range xsd:dateTimeStamp ;
-    skos:broader dop:DateTime .
-
 dop:Volume a ssn:Property ;
     qudt:quantityKind quantitykind:Volume .
 
@@ -1637,6 +1634,10 @@ dop:Count a ssn:Property ;
 dop:PositivePlaneAngle a ssn:Property ;
     qudt:quantityKind quantitykind:PositivePlaneAngle ;
     skos:broader dop:PlaneAngle .
+
+dop:TimeStamp a ssn:Property ;
+    rdfs:range xsd:dateTimeStamp ;
+    skos:broader dop:DateTime .
 
 dop:LinearForce a ssn:Property ;
     qudt:quantityKind quantitykind:LinearForce .
@@ -1662,23 +1663,23 @@ dop:Area a ssn:Property ;
 dop:Text a ssn:Property ;
     rdfs:range xsd:normalizedString .
 
-dop:Logical a ssn:Property ;
-    rdfs:range xsd:boolean .
-
 dop:Date a ssn:Property ;
     rdfs:range xsd:date .
 
 dop:Duration a ssn:Property ;
     rdfs:range xsd:duration .
 
+dop:Logical a ssn:Property ;
+    rdfs:range xsd:boolean .
+
 dop:Force a ssn:Property ;
     qudt:quantityKind quantitykind:Force .
 
-dop:PlaneAngle a ssn:Property ;
-    qudt:quantityKind quantitykind:PlaneAngle .
-
 dop:Integer a ssn:Property ;
     rdfs:range xsd:integer .
+
+dop:PlaneAngle a ssn:Property ;
+    qudt:quantityKind quantitykind:PlaneAngle .
 
 dop:Real a ssn:Property ;
     rdfs:range xsd:double .
@@ -1704,5 +1705,5 @@ dop:PositiveLength a ssn:Property ;
     skos:broader dop:Length .
 
 dop:Label a ssn:Property ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:normalizedString .
 
