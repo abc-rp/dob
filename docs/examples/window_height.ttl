@@ -11,7 +11,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix beo: <https://pi.pauwel.be/voc/buildingelement> .
 
-@prefix did: <https://w3id.org/dob/id#> .
+@prefix did: <https://w3id.org/dob/id/> .
 @prefix dob: <https://w3id.org/dob/voc#> .
 @prefix dop: <https://w3id.org/dob/voc/prop#> .
 

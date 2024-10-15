@@ -31,7 +31,7 @@ The following namespace prefixes are used throughout this document.
 | skos   | http://www.w3.org/2004/02/skos/core#        | [[SKOS-REFERENCE]](#skos-reference)                      |
 | dob    | https://www.w3id.org/dob/voc#                  | Namespace for the DOB Ontology vocabulary                              |
 | dop    | https://www.w3id.org/dob/voc/prop#                  | Namespace for the DOB Ontology properties vocabulary                              |
-| did    | https://www.w3id.org/dob/id#                   | Namespace for DOB IDs                                                  |
+| did    | https://www.w3id.org/dob/id/                   | Namespace for DOB IDs                                                  |
 | bng    | https://www.w3id.org/dob/voc/epsg-27700#              | Namespace for British National Grid (BNG) coordinates                  |
 | prov   | http://www.w3.org/ns/prov#                  | [[PROV-O]](#prov-o)                                      |
 | bot    | https://w3id.org/bot#                       | [[BOT]](#bot)                                     |
@@ -193,6 +193,18 @@ did:activity-1235 a prov:Activity ;
     prov:generated did:result_1235 ;
     sosa:hasFeatureOfInterest did:zone_1235 ;
     ssn:forProperty dop:EnergyRating .
+```
+
+```turtle
+did:result_1236 a dob:Result ;
+    prov:wasGeneratedBy did:activity_1236 ;
+    sosa:hasSimpleResult dop:AluminiumWood ; ????
+    dct:issued "2024-01-01"^^xsd:date .
+    
+did:activity-1236 a prov:Activity ;
+    prov:generated did:result_1236 ;
+    sosa:hasFeatureOfInterest did:zone_1235 ;
+    ssn:forProperty dop:ConstructionType .
 ```
 
 These custom properties are not well developed so are not documented here. 
