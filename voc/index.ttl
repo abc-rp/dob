@@ -12,12 +12,12 @@
 @prefix dob: <https://w3id.org/dob/voc#> .
 
 dob: a owl:Ontology ;
-    dct:title "Open Built Environment Data Ontology"@en
+    dct:title "Open Built Environment Data Ontology"@en ;
     owl:imports prov: , sosa: , ssn: , bot: , dcat: .
                      
 dob:Result a rdfs:Class , owl:Class ;
     rdfs:subClassOf prov:Entity ;
-    rdfs:label "Result"@en
+    rdfs:label "Result"@en ;
     rdfs:comment "The Result of an Activity. This class is limited to distinct and identifiable data points and and does not represent collections or aggregations of data."@en ;
     rdfs:subClassOf [
         a owl:Restriction ;
