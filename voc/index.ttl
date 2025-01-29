@@ -8,24 +8,24 @@
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-
+@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix dob: <https://w3id.org/dob/voc#> .
 
 dob: a owl:Ontology ;
-    dct:title "Open Built Environment Data Ontology"@en
-    owl:imports prov: , sosa: , ssn: , bot: , dcat: .
-                     
+    dct:title "Open Built Environment Data Ontology"@en ;
+    owl:imports prov:, sosa:, ssn:, bot:, dcat:, doap: .
+
 dob:Result a rdfs:Class , owl:Class ;
     rdfs:subClassOf prov:Entity ;
-    rdfs:label "Result"@en
-    rdfs:comment "The Result of an Activity. This class is limited to distinct and identifiable data points and and does not represent collections or aggregations of data."@en ;
+    rdfs:label "Result"@en ;
+    rdfs:comment "The Result of an Activity. This class is limited to distinct and identifiable data points and does not represent collections or aggregations of data."@en ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty prov:isGeneratedBy ;
         owl:allValuesFrom [
             a owl:Restriction ;
             owl:onProperty ssn:forProperty ;
-            owl:cardinality "1"^^xsd:nonNegativeInteger 
+            owl:cardinality "1"^^xsd:nonNegativeInteger
         ]
     ] ;
     rdfs:subClassOf [
@@ -34,24 +34,63 @@ dob:Result a rdfs:Class , owl:Class ;
         owl:allValuesFrom [
             a owl:Restriction ;
             owl:onProperty sosa:hasFeatureOfInterest ;
-            owl:cardinality "1"^^xsd:nonNegativeInteger 
-        ] 
+            owl:cardinality "1"^^xsd:nonNegativeInteger
+        ]
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty prov:isGeneratedBy ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger ] .
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] .
 
 dob:hasUPRN a rdf:Property ;
     rdfs:label "Unique Property Reference Number"@en ;
     rdfs:subPropertyOf dct:identifier ;
-    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain"@en ;
+    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain."@en ;
     rdfs:seeAlso <https://www.geoplace.co.uk/addresses-streets/location-data/the-uprn> ;
     rdfs:domain bot:Zone ;
     rdfs:range xsd:integer .
 
 dob:usedProcedure a owl:ObjectProperty ;
-    rdfs:comment "A relation that links to a re-usable Plan used in an Activity."@en ;
+    rdfs:comment "A relation that links to a re-usable Plan used in an Activity, including Software Pipelines."@en ;
     rdfs:subPropertyOf prov:used ;
     rdfs:domain prov:Activity ;
     rdfs:range prov:Plan .
+
+dob:SoftwarePipeline a owl:Class ;
+    rdfs:subClassOf prov:Plan ;
+    rdfs:label "Software Pipeline"@en ;
+    rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en .
+
+dob:wasAuthoredBy a owl:ObjectProperty ;
+    rdfs:label "was authored by"@en ;
+    rdfs:comment "Links a Software Pipeline (a prov:Plan) to its author (modeled as a prov:Agent)."@en ;
+    rdfs:subPropertyOf prov:wasAttributedTo ;
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range prov:Agent .
+
+dob:createdTime a owl:DatatypeProperty ;
+    rdfs:subPropertyOf prov:endedAtTime ;
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "Execution Time"@en ;
+    rdfs:comment "The timestamp associated with the pipeline plan (e.g., when last updated). Note: typically, a time property is used on Activities, not Plans."@en .
+
+dob:GitRepository a rdfs:Class , owl:Class ;
+    owl:equivalentClass doap:GitRepository ;
+    rdfs:label "Git Repository"@en ;
+    rdfs:comment "A Git repository containing source code for a software pipeline, equivalent to a DOAP Git Repository."@en .
+
+dob:hasRepository a owl:ObjectProperty ;
+    rdfs:subPropertyOf doap:repository ;
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range dob:GitRepository ;
+    rdfs:label "has Repository"@en ;
+    rdfs:comment "A link from a Software Pipeline plan to its associated Git repository."@en ;
+    rdfs:seeAlso <http://usefulinc.com/ns/doap#repository> .
+
+dob:commit a owl:DatatypeProperty ;
+    rdfs:label "Git commit"@en ;
+    rdfs:comment "The specific commit hash or tag that identifies this software pipeline plan."@en ;
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range xsd:string .
