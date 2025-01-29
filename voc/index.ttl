@@ -94,3 +94,29 @@ dob:commit a owl:DatatypeProperty ;
     rdfs:comment "The specific commit hash or tag that identifies this software pipeline plan."@en ;
     rdfs:domain dob:SoftwarePipeline ;
     rdfs:range xsd:string .
+
+#########################################################################
+# Inverse properties
+# 1. Inverse of dob:usedProcedure
+dob:wasProcedureUsedIn a owl:ObjectProperty ;
+    rdfs:label "was procedure used in"@en ;
+    rdfs:comment "Inverse property of dob:usedProcedure, linking the Plan to the Activity in which it was used."@en ;
+    rdfs:domain prov:Plan ;
+    rdfs:range prov:Activity ;
+    owl:inverseOf dob:usedProcedure .
+
+# 2. Inverse of dob:wasAuthoredBy
+dob:authored a owl:ObjectProperty ;
+    rdfs:label "authored"@en ;
+    rdfs:comment "Inverse of dob:wasAuthoredBy, linking an Agent to a Software Pipeline they authored."@en ;
+    rdfs:domain prov:Agent ;
+    rdfs:range dob:SoftwarePipeline ;
+    owl:inverseOf dob:wasAuthoredBy .
+
+# 3. Inverse of dob:hasRepository
+dob:isRepositoryOf a owl:ObjectProperty ;
+    rdfs:label "is repository of"@en ;
+    rdfs:comment "Inverse of dob:hasRepository, linking the Git repository back to the Software Pipeline."@en ;
+    rdfs:domain dob:GitRepository ;
+    rdfs:range dob:SoftwarePipeline ;
+    owl:inverseOf dob:hasRepository .
