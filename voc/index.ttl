@@ -13,7 +13,8 @@
 
 dob: a owl:Ontology ;
     dct:title "Open Built Environment Data Ontology"@en ;
-    owl:imports prov:, sosa:, ssn:, bot:, dcat:, doap: .
+    owl:imports prov:, sosa:, ssn:, bot:, dcat:, doap: ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> .
 
 dob:Result a rdfs:Class , owl:Class ;
     rdfs:subClassOf prov:Entity ;
