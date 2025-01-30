@@ -8,12 +8,11 @@
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix dob: <https://w3id.org/dob/voc#> .
 
 dob: a owl:Ontology ;
     dct:title "Open Built Environment Data Ontology"@en ;
-    owl:imports prov:, sosa:, ssn:, bot:, dcat:, doap: ;
+    owl:imports prov:, sosa:, ssn:, bot:, dcat:, ;
     dct:license <http://creativecommons.org/licenses/by/4.0/> .
 
 dob:Result a rdfs:Class , owl:Class ;
@@ -70,23 +69,38 @@ dob:wasAuthoredBy a owl:ObjectProperty ;
     rdfs:domain dob:SoftwarePipeline ;
     rdfs:range prov:Agent .
 
-dob:GitRepository a rdfs:Class , owl:Class , prov:Entity ;
-    owl:equivalentClass doap:GitRepository ;
-    rdfs:label "Git Repository"@en ;
-    rdfs:comment "A Git repository containing source code for a software pipeline, equivalent to a DOAP Git Repository."@en .
+dob:CodeRepository a rdfs:Class, owl:Class, prov:Entity ;
+    rdfs:label "Code Repository"@en ;
+    rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en .
+
+dob:CodeRevision a rdfs:Class, owl:Class, prov:Entity ;
+    rdfs:label "Code Revision"@en ;
+    rdfs:comment "A particular revision of a repository, such as a Git commit or tag."@en .
+
+dob:hasCodeRevision a owl:ObjectProperty ;
+    rdfs:label "has code revision"@en ;
+    rdfs:comment "Links a Software Pipeline to a specific code revision (commit or tag) it uses."@en ;
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range dob:CodeRevision .
+
+dob:belongsToRepository a owl:ObjectProperty ;
+    rdfs:label "belongs to repository"@en ;
+    rdfs:comment "Links a code revision to the top-level code repository it belongs to."@en ;
+    rdfs:domain dob:CodeRevision ;
+    rdfs:range dob:CodeRepository .
 
 dob:hasRepository a owl:ObjectProperty ;
-    rdfs:subPropertyOf doap:repository ;
+    rdfs:subPropertyOf dct:source ;  
     rdfs:domain dob:SoftwarePipeline ;
-    rdfs:range dob:GitRepository ;
-    rdfs:label "has Repository"@en ;
-    rdfs:comment "A link from a Software Pipeline plan to its associated Git repository."@en ;
-    rdfs:seeAlso <http://usefulinc.com/ns/doap#repository> .
+    rdfs:range dob:CodeRepository ;
+    rdfs:label "has repository"@en ;
+    rdfs:comment "A link from a Software Pipeline plan to its associated code repository."@en .
 
-dob:usedCommit a owl:DatatypeProperty ;
-    rdfs:label "Git commit"@en ;
-    rdfs:comment "The specific commit hash or tag that identifies this software pipeline plan."@en ;
-    rdfs:domain dob:GitRepository ;
+dob:commitHash a owl:DatatypeProperty ;
+    rdfs:subPropertyOf dct:identifier ;
+    rdfs:label "commit hash"@en ;
+    rdfs:comment "The specific commit hash or tag that identifies the repository revision."@en ;
+    rdfs:domain dob:CodeRevision ;
     rdfs:range xsd:string .
 
 dob:wasProcedureUsedIn a owl:ObjectProperty ;
@@ -105,7 +119,7 @@ dob:authored a owl:ObjectProperty ;
 
 dob:isRepositoryOf a owl:ObjectProperty ;
     rdfs:label "is repository of"@en ;
-    rdfs:comment "Inverse of dob:hasRepository, linking the Git repository back to the Software Pipeline."@en ;
-    rdfs:domain dob:GitRepository ;
+    rdfs:comment "Inverse of dob:hasRepository, linking the code repository back to the software pipeline."@en ;
+    rdfs:domain dob:CodeRepository ;
     rdfs:range dob:SoftwarePipeline ;
     owl:inverseOf dob:hasRepository .

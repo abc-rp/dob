@@ -984,7 +984,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="liaQvpi3vW3MpIqvQNq9-20" value="dob:GitRepository" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-20" value="dob:GitRepository" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#FFFFCC;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="2540" y="1640" width="140" height="20" as="geometry" />
         </mxCell>
         <mxCell id="liaQvpi3vW3MpIqvQNq9-21" value="xsd:string" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#f5f5f5;strokeColor=#666666;arcSize=0;fontColor=#333333;" vertex="1" parent="1">
