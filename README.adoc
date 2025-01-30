@@ -1,5 +1,7 @@
 = DOB: Open Built Environment Data (Draft)
 
+[![Correct TTL format](https://github.com/abc-rp/dob/actions/workflows/ttlformat.yaml/badge.svg)](https://github.com/abc-rp/dob/actions/workflows/ttlformat.yaml)
+
 IMPORTANT: This document is a draft and is subject to change.
 
 == Introduction
