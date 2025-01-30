@@ -62,7 +62,18 @@ dob:CodeRevision rdfs:subClassOf [
     owl:cardinality "1"^^xsd:nonNegativeInteger
 ] .
 
+dob:CodeCommit a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Code Commit"@en ;
+    rdfs:comment "A specific commit or tagged revision of code in a repository."@en .
+
 ### PROPERTIES ###
+
+dob:usedProcedure a owl:ObjectProperty ;
+    rdfs:label "used procedure"@en ;
+    rdfs:comment "Links an Activity to the Plan that was used in its execution."@en ;
+    rdfs:domain prov:Activity ;
+    rdfs:range prov:Plan .
 
 dob:hasUPRN a rdf:Property ;
     rdfs:label "Unique Property Reference Number"@en ;
@@ -72,13 +83,22 @@ dob:hasUPRN a rdf:Property ;
     rdfs:domain bot:Zone ;
     rdfs:range xsd:integer .
 
+dob:hasCommit a owl:ObjectProperty ;
+    rdfs:label "has commit"@en ;
+    rdfs:comment "Links a Code Revision to its associated commit."@en ;
+    rdfs:domain dob:CodeRevision ;
+    rdfs:range dob:CodeCommit .
+
+dob:usesCommit a owl:ObjectProperty ;
+    rdfs:label "uses commit"@en ;
+    rdfs:comment "Links a Software Pipeline to the commit it used during execution."@en ;
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range dob:CodeCommit .
+
 dob:commitURI a owl:DatatypeProperty ;
     rdfs:label "commit URL"@en ;
-    rdfs:comment "A full external link for the commit or tag (e.g., on GitHub). This can be linked directly from a Software Pipeline or from a more descriptive Code Revision."@en ;
-    rdfs:domain [ 
-        a owl:Class ;
-        owl:unionOf ( dob:SoftwarePipeline dob:CodeRevision ) 
-    ] ;
+    rdfs:comment "A full external link for the commit or tag (e.g., on GitHub)."@en ;
+    rdfs:domain dob:CodeCommit ;
     rdfs:range xsd:anyURI .
 
 dob:hasRepository a owl:ObjectProperty ;
@@ -93,45 +113,53 @@ dob:hasCodeRevision a owl:ObjectProperty ;
     rdfs:domain dob:CodeRepository ;
     rdfs:range dob:CodeRevision .
 
-dob:hasRevision a owl:ObjectProperty ;
+dob:usesRevision a owl:ObjectProperty ;
     rdfs:label "has revision"@en ;
     rdfs:comment "Links a Software Pipeline to a specific code revision used in its execution."@en ;
     rdfs:domain dob:SoftwarePipeline ;
     rdfs:range dob:CodeRevision ;
-    owl:inverseOf dob:revisionOfPipeline .
 
-dob:usedProcedure a owl:ObjectProperty ;
-    rdfs:label "used procedure"@en ;
-    rdfs:comment "Links an Activity to the Plan that was used in its execution."@en ;
-    rdfs:domain prov:Activity ;
-    rdfs:range prov:Plan .
+### INVERSE PROPERTIES ###
 
-### INVERSE RELATIONS ###
-
-dob:belongsToRepository a owl:ObjectProperty ;
-    rdfs:label "belongs to repository"@en ;
-    rdfs:comment "Links a Code Revision back to the Code Repository it belongs to."@en ;
-    rdfs:domain dob:CodeRevision ;
-    rdfs:range dob:CodeRepository ;
-    owl:inverseOf dob:hasCodeRevision .
-
-dob:isRepositoryOf a owl:ObjectProperty ;
-    rdfs:label "is repository of"@en ;
-    rdfs:comment "Inverse of dob:hasRepository, linking the code repository back to the software pipeline."@en ;
-    rdfs:domain dob:CodeRepository ;
-    rdfs:range dob:SoftwarePipeline ;
-    owl:inverseOf dob:hasRepository .
-
-dob:wasProcedureUsedIn a owl:ObjectProperty ;
-    rdfs:label "was procedure used in"@en ;
-    rdfs:comment "Inverse property of dob:usedProcedure, linking the Plan to the Activity in which it was used."@en ;
+dob:isUsedByProcedure a owl:ObjectProperty ;
+    rdfs:label "is used by procedure"@en ;
+    rdfs:comment "Links a Plan to the Activities that used it in execution."@en ;
     rdfs:domain prov:Plan ;
     rdfs:range prov:Activity ;
     owl:inverseOf dob:usedProcedure .
 
-dob:revisionOfPipeline a owl:ObjectProperty ;
-    rdfs:label "revision of pipeline"@en ;
-    rdfs:comment "Inverse of dob:hasRevision, linking the Code Revision back to the Software Pipeline."@en ;
+dob:isCommitOf a owl:ObjectProperty ;
+    rdfs:label "is commit of"@en ;
+    rdfs:comment "Links a Code Commit to the Code Revision it belongs to."@en ;
+    rdfs:domain dob:CodeCommit ;
+    rdfs:range dob:CodeRevision ;
+    owl:inverseOf dob:hasCommit .
+
+dob:isUsedByPipeline a owl:ObjectProperty ;
+    rdfs:label "is used by pipeline"@en ;
+    rdfs:comment "Links a Code Commit to the Software Pipeline that used it during execution."@en ;
+    rdfs:domain dob:CodeCommit ;
+    rdfs:range dob:SoftwarePipeline ;
+    owl:inverseOf dob:usesCommit .
+
+dob:isRepositoryOf a owl:ObjectProperty ;
+    rdfs:label "is repository of"@en ;
+    rdfs:comment "Links a Code Repository to the Software Pipeline that it is associated with."@en ;
+    rdfs:domain dob:CodeRepository ;
+    rdfs:range dob:SoftwarePipeline ;
+    owl:inverseOf dob:hasRepository .
+
+dob:isCodeRevisionOf a owl:ObjectProperty ;
+    rdfs:label "is code revision of"@en ;
+    rdfs:comment "Links a Code Revision to the Code Repository it belongs to."@en ;
+    rdfs:domain dob:CodeRevision ;
+    rdfs:range dob:CodeRepository ;
+    owl:inverseOf dob:hasCodeRevision .
+
+### Inverse of dob:hasRevision ###
+dob:isRevisionOf a owl:ObjectProperty ;
+    rdfs:label "is revision of"@en ;
+    rdfs:comment "Links a Code Revision to the Software Pipeline that used it in execution."@en ;
     rdfs:domain dob:CodeRevision ;
     rdfs:range dob:SoftwarePipeline ;
-    owl:inverseOf dob:hasRevision .
+    owl:inverseOf dob:usedRevision .
