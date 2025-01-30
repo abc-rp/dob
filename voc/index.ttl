@@ -113,7 +113,7 @@ dob:hasCodeRevision a owl:ObjectProperty ;
     rdfs:domain dob:CodeRepository ;
     rdfs:range dob:CodeRevision .
 
-dob:usesRevision a owl:ObjectProperty ;
+dob:usedRevision a owl:ObjectProperty ;
     rdfs:label "has revision"@en ;
     rdfs:comment "Links a Software Pipeline to a specific code revision used in its execution."@en ;
     rdfs:domain dob:SoftwarePipeline ;
