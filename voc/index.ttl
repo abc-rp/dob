@@ -70,14 +70,7 @@ dob:wasAuthoredBy a owl:ObjectProperty ;
     rdfs:domain dob:SoftwarePipeline ;
     rdfs:range prov:Agent .
 
-dob:createdTime a owl:DatatypeProperty ;
-    rdfs:subPropertyOf prov:endedAtTime ;
-    rdfs:domain dob:SoftwarePipeline ;
-    rdfs:range xsd:dateTime ;
-    rdfs:label "Execution Time"@en ;
-    rdfs:comment "The timestamp associated with the pipeline plan (e.g., when last updated). Note: typically, a time property is used on Activities, not Plans."@en .
-
-dob:GitRepository a rdfs:Class , owl:Class ;
+dob:GitRepository a rdfs:Class , owl:Class , prov:Entity ;
     owl:equivalentClass doap:GitRepository ;
     rdfs:label "Git Repository"@en ;
     rdfs:comment "A Git repository containing source code for a software pipeline, equivalent to a DOAP Git Repository."@en .
@@ -90,15 +83,12 @@ dob:hasRepository a owl:ObjectProperty ;
     rdfs:comment "A link from a Software Pipeline plan to its associated Git repository."@en ;
     rdfs:seeAlso <http://usefulinc.com/ns/doap#repository> .
 
-dob:commit a owl:DatatypeProperty ;
+dob:usedCommit a owl:DatatypeProperty ;
     rdfs:label "Git commit"@en ;
     rdfs:comment "The specific commit hash or tag that identifies this software pipeline plan."@en ;
-    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:domain dob:GitRepository ;
     rdfs:range xsd:string .
 
-#########################################################################
-# Inverse properties
-# 1. Inverse of dob:usedProcedure
 dob:wasProcedureUsedIn a owl:ObjectProperty ;
     rdfs:label "was procedure used in"@en ;
     rdfs:comment "Inverse property of dob:usedProcedure, linking the Plan to the Activity in which it was used."@en ;
@@ -106,7 +96,6 @@ dob:wasProcedureUsedIn a owl:ObjectProperty ;
     rdfs:range prov:Activity ;
     owl:inverseOf dob:usedProcedure .
 
-# 2. Inverse of dob:wasAuthoredBy
 dob:authored a owl:ObjectProperty ;
     rdfs:label "authored"@en ;
     rdfs:comment "Inverse of dob:wasAuthoredBy, linking an Agent to a Software Pipeline they authored."@en ;
@@ -114,7 +103,6 @@ dob:authored a owl:ObjectProperty ;
     rdfs:range dob:SoftwarePipeline ;
     owl:inverseOf dob:wasAuthoredBy .
 
-# 3. Inverse of dob:hasRepository
 dob:isRepositoryOf a owl:ObjectProperty ;
     rdfs:label "is repository of"@en ;
     rdfs:comment "Inverse of dob:hasRepository, linking the Git repository back to the Software Pipeline."@en ;
