@@ -1,4 +1,4 @@
-name: Check TTL Formatting
+name: Correct TTL format
 
 on:
   push:
