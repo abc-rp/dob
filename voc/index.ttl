@@ -12,8 +12,10 @@
 
 dob: a owl:Ontology ;
     dct:title "Open Built Environment Data Ontology"@en ;
-    owl:imports prov:, sosa:, ssn:, bot:, dcat:, ;
+    owl:imports prov:, sosa:, ssn:, bot:, dcat:, dct: ;
     dct:license <http://creativecommons.org/licenses/by/4.0/> .
+
+### CLASSES ###
 
 dob:Result a rdfs:Class , owl:Class ;
     rdfs:subClassOf prov:Entity ;
@@ -43,31 +45,10 @@ dob:Result a rdfs:Class , owl:Class ;
         owl:cardinality "1"^^xsd:nonNegativeInteger
     ] .
 
-dob:hasUPRN a rdf:Property ;
-    rdfs:label "Unique Property Reference Number"@en ;
-    rdfs:subPropertyOf dct:identifier ;
-    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain."@en ;
-    rdfs:seeAlso <https://www.geoplace.co.uk/addresses-streets/location-data/the-uprn> ;
-    rdfs:domain bot:Zone ;
-    rdfs:range xsd:integer .
-
-dob:usedProcedure a owl:ObjectProperty ;
-    rdfs:comment "A relation that links to a re-usable Plan used in an Activity, including Software Pipelines."@en ;
-    rdfs:subPropertyOf prov:used ;
-    rdfs:domain prov:Activity ;
-    rdfs:range prov:Plan .
-
 dob:SoftwarePipeline a owl:Class ;
     rdfs:subClassOf prov:Plan ;
     rdfs:label "Software Pipeline"@en ;
     rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en .
-
-dob:wasAuthoredBy a owl:ObjectProperty ;
-    rdfs:label "was authored by"@en ;
-    rdfs:comment "Links a Software Pipeline (a prov:Plan) to its author (modeled as a prov:Agent)."@en ;
-    rdfs:subPropertyOf prov:wasAttributedTo ;
-    rdfs:domain dob:SoftwarePipeline ;
-    rdfs:range prov:Agent .
 
 dob:CodeRepository a rdfs:Class, owl:Class, prov:Entity ;
     rdfs:label "Code Repository"@en ;
@@ -77,45 +58,63 @@ dob:CodeRevision a rdfs:Class, owl:Class, prov:Entity ;
     rdfs:label "Code Revision"@en ;
     rdfs:comment "A particular revision of a repository, such as a Git commit or tag."@en .
 
+### PROPERTIES ###
+
+dob:hasUPRN a rdf:Property ;
+    rdfs:label "Unique Property Reference Number"@en ;
+    rdfs:subPropertyOf dct:identifier ;
+    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain."@en ;
+    rdfs:seeAlso <https://www.geoplace.co.uk/addresses-streets/location-data/the-uprn> ;
+    rdfs:domain bot:Zone ;
+    rdfs:range xsd:integer .
+
+dob:commitURL a owl:DatatypeProperty ;
+    rdfs:label "commit URL"@en ;
+    rdfs:comment "A full external link for the commit or tag (e.g., on GitHub). This can be linked directly from a Software Pipeline or from a more descriptive Code Revision."@en ;
+    rdfs:domain [ 
+        a owl:Class ;
+        owl:unionOf ( dob:SoftwarePipeline dob:CodeRevision ) 
+    ] ;
+    rdfs:range xsd:anyURI .
+
+dob:hasRepository a owl:ObjectProperty ;
+    rdfs:label "has repository"@en ;
+    rdfs:comment "A link from a Software Pipeline to its associated code repository."@en ;
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range dob:CodeRepository .
+
 dob:hasCodeRevision a owl:ObjectProperty ;
     rdfs:label "has code revision"@en ;
-    rdfs:comment "Links a Software Pipeline to a specific code revision (commit or tag) it uses."@en ;
+    rdfs:comment "Links a Code Repository to the Code Revisions it contains."@en ;
+    rdfs:domain dob:CodeRepository ;
+    rdfs:range dob:CodeRevision .
+
+dob:revisionOfPipeline a owl:ObjectProperty ;
+    rdfs:label "revision of pipeline"@en ;
+    rdfs:comment "Links a Code Revision to the Software Pipeline that uses it."@en ;
+    rdfs:domain dob:CodeRevision ;
+    rdfs:range dob:SoftwarePipeline .
+
+dob:hasRevision a owl:ObjectProperty ;
+    rdfs:label "has revision"@en ;
+    rdfs:comment "Links a Software Pipeline to a specific code revision used in its execution."@en ;
     rdfs:domain dob:SoftwarePipeline ;
     rdfs:range dob:CodeRevision .
 
+dob:usedProcedure a owl:ObjectProperty ;
+    rdfs:label "used procedure"@en ;
+    rdfs:comment "Links an Activity to the Plan that was used in its execution."@en ;
+    rdfs:domain prov:Activity ;
+    rdfs:range prov:Plan .
+
+### INVERSE RELATIONS ###
+
 dob:belongsToRepository a owl:ObjectProperty ;
     rdfs:label "belongs to repository"@en ;
-    rdfs:comment "Links a code revision to the top-level code repository it belongs to."@en ;
+    rdfs:comment "Links a Code Revision back to the Code Repository it belongs to."@en ;
     rdfs:domain dob:CodeRevision ;
-    rdfs:range dob:CodeRepository .
-
-dob:hasRepository a owl:ObjectProperty ;
-    rdfs:subPropertyOf dct:source ;  
-    rdfs:domain dob:SoftwarePipeline ;
     rdfs:range dob:CodeRepository ;
-    rdfs:label "has repository"@en ;
-    rdfs:comment "A link from a Software Pipeline plan to its associated code repository."@en .
-
-dob:commitHash a owl:DatatypeProperty ;
-    rdfs:subPropertyOf dct:identifier ;
-    rdfs:label "commit hash"@en ;
-    rdfs:comment "The specific commit hash or tag that identifies the repository revision."@en ;
-    rdfs:domain dob:CodeRevision ;
-    rdfs:range xsd:string .
-
-dob:wasProcedureUsedIn a owl:ObjectProperty ;
-    rdfs:label "was procedure used in"@en ;
-    rdfs:comment "Inverse property of dob:usedProcedure, linking the Plan to the Activity in which it was used."@en ;
-    rdfs:domain prov:Plan ;
-    rdfs:range prov:Activity ;
-    owl:inverseOf dob:usedProcedure .
-
-dob:authored a owl:ObjectProperty ;
-    rdfs:label "authored"@en ;
-    rdfs:comment "Inverse of dob:wasAuthoredBy, linking an Agent to a Software Pipeline they authored."@en ;
-    rdfs:domain prov:Agent ;
-    rdfs:range dob:SoftwarePipeline ;
-    owl:inverseOf dob:wasAuthoredBy .
+    owl:inverseOf dob:hasCodeRevision .
 
 dob:isRepositoryOf a owl:ObjectProperty ;
     rdfs:label "is repository of"@en ;
@@ -123,3 +122,10 @@ dob:isRepositoryOf a owl:ObjectProperty ;
     rdfs:domain dob:CodeRepository ;
     rdfs:range dob:SoftwarePipeline ;
     owl:inverseOf dob:hasRepository .
+
+dob:wasProcedureUsedIn a owl:ObjectProperty ;
+    rdfs:label "was procedure used in"@en ;
+    rdfs:comment "Inverse property of dob:usedProcedure, linking the Plan to the Activity in which it was used."@en ;
+    rdfs:domain prov:Plan ;
+    rdfs:range prov:Activity ;
+    owl:inverseOf dob:usedProcedure .
