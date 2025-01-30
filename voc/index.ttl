@@ -50,11 +50,13 @@ dob:SoftwarePipeline a owl:Class ;
     rdfs:label "Software Pipeline"@en ;
     rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en .
 
-dob:CodeRepository a rdfs:Class, owl:Class, prov:Entity ;
+dob:CodeRepository a rdfs:Class, owl:Class ;
+    rdfs:subClassOf prov:Entity ;
     rdfs:label "Code Repository"@en ;
     rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en .
 
-dob:CodeRevision a rdfs:Class, owl:Class, prov:Entity ;
+dob:CodeRevision a rdfs:Class, owl:Class ;
+    rdfs:subClassOf prov:Entity ;
     rdfs:label "Code Revision"@en ;
     rdfs:comment "A particular revision of a repository, such as a Git commit or tag."@en .
 
