@@ -74,7 +74,7 @@ dob:usedProcedure a owl:ObjectProperty ;
     rdfs:subPropertyOf prov:hadPlan ;
     rdfs:label "used procedure"@en ;
     rdfs:comment "Links an Activity to the Plan that was used in its execution."@en ;
-    rdfs:domain prov:Activity ;
+    rdfs:domain prov:Association ;
     rdfs:range prov:Plan ;
     owl:inverseOf dob:isUsedByProcedure .
 
@@ -98,7 +98,8 @@ dob:usedCommit a owl:ObjectProperty ;
     rdfs:subPropertyOf prov:wasDerivedFrom ;
     rdfs:label "used commit"@en ;
     rdfs:comment "Links a Software Pipeline to the commit it used during execution."@en ;
-    rdfs:domain dob:SoftwarePipeline .
+    rdfs:domain dob:SoftwarePipeline ;
+    rdfs:range dob:CodeCommit .
 
 dob:commitURI a owl:DatatypeProperty ;
     rdfs:label "commit URL"@en ;
