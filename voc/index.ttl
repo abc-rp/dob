@@ -128,6 +128,7 @@ dob:commitURI a owl:DatatypeProperty ;
     rdfs:range xsd:anyURI .
 
 dob:hasRepository a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasInfluencedBy ;
     rdfs:label "has repository"@en ;
     rdfs:comment "Links a Software Pipeline to its associated code repository."@en ;
     rdfs:domain dob:SoftwarePipeline ;
@@ -141,6 +142,7 @@ dob:hasCodeRevision a owl:ObjectProperty ;
     rdfs:range dob:CodeRevision .
 
 dob:usedRevision a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:used ;
     rdfs:label "used revision"@en ;
     rdfs:comment "Links a Software Pipeline to a specific code revision used in its execution."@en ;
     rdfs:domain dob:SoftwarePipeline ;
