@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
   <diagram name="Page-1" id="d_sv0UrmA0pkKPBzu-4M">
-    <mxGraphModel dx="3585" dy="2098" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="794" dy="1196" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -937,6 +937,69 @@
         </mxCell>
         <mxCell id="9Oqew1JKMZColQfG4jG8-1" value="File Metadata (optional)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="70" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="liaQvpi3vW3MpIqvQNq9-4" target="liaQvpi3vW3MpIqvQNq9-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-11" value="dob:usedProcedure" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="liaQvpi3vW3MpIqvQNq9-2">
+          <mxGeometry x="-0.1872" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-4" value="prov:Activity" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="2879.86" y="1750" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-5" value="dob:SoftwarePipeline" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#FFFFCC;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="2540" y="1750" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="liaQvpi3vW3MpIqvQNq9-5" target="liaQvpi3vW3MpIqvQNq9-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2720" y="1840" as="sourcePoint" />
+            <mxPoint x="2610" y="1870" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2610" y="1835" />
+              <mxPoint x="2611" y="1835" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-13" value="dob:wasAuthoredBy" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="liaQvpi3vW3MpIqvQNq9-12">
+          <mxGeometry x="-0.1872" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-14" value="" style="shape=offPageConnector;whiteSpace=wrap;html=1;rotation=-180;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="2550" y="1900" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-15" value="prov:&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Agent&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="2580" y="1902" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="liaQvpi3vW3MpIqvQNq9-5" target="liaQvpi3vW3MpIqvQNq9-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2750" y="1620" as="sourcePoint" />
+            <mxPoint x="2600" y="1640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-19" value="dob:hasRepository" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="liaQvpi3vW3MpIqvQNq9-18">
+          <mxGeometry x="-0.1872" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-20" value="dob:GitRepository" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#FFFFCC;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="2540" y="1640" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-21" value="xsd:string" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#f5f5f5;strokeColor=#666666;arcSize=0;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="2790" y="1640" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="liaQvpi3vW3MpIqvQNq9-20" target="liaQvpi3vW3MpIqvQNq9-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2950" y="1690" as="sourcePoint" />
+            <mxPoint x="2950" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="liaQvpi3vW3MpIqvQNq9-24" value="dob:usedCommit" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="liaQvpi3vW3MpIqvQNq9-23">
+          <mxGeometry x="-0.1872" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

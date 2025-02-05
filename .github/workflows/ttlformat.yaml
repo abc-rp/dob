@@ -1,0 +1,32 @@
+name: Correct TTL format
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-ttl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Install Python + rdflib
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-rdflib
+
+      - name: Validate TTL files
+        run: |
+          ttl_files=$(find . -type f -name "*.ttl")
+          if [ -z "$ttl_files" ]; then
+            echo "No TTL files found."
+            exit 0
+          fi
+
+          for file in $ttl_files; do
+            echo "Validating $file ..."
+            python3 -c "import rdflib; rdflib.Graph().parse('$file', format='turtle')"
+          done

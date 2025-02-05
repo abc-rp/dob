@@ -13,6 +13,8 @@
 @prefix dob: <https://w3id.org/dob/voc#> .
 @prefix bng: <https://w3id.org/dob/voc/epsg-27700#> .
 @prefix did: <https://w3id.org/dob/id/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+
 
 did:zone_550e8400-e29b-41d4-a716-446655440000 a sosa:FeatureOfInterest ;
     dob:hasUPRN "85128358125"^^xsd:integer ;
