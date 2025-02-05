@@ -100,6 +100,13 @@ dob:hasUPRN a owl:DatatypeProperty ;
     rdfs:domain bot:Zone ;
     rdfs:range xsd:integer .
 
+dob:usedProcedure a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasInfluencedBy ;
+    rdfs:label "used procedure"@en ;
+    rdfs:comment "Links a Result to the Procedure that generated it."@en ;
+    rdfs:domain dob:Result ;
+    rdfs:range dob:SoftwarePipeline .
+
 ### Code/Version Control-Related Properties
 dob:hasCommit a owl:ObjectProperty ;
     rdfs:subPropertyOf prov:wasRevisionOf ;
