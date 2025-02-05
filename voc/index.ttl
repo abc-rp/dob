@@ -30,8 +30,6 @@ dob: a owl:Ontology ;
 ### CLASSES
 ###################################################
 
-# 1) Result
-
 dob:Result a owl:Class ;
     rdfs:subClassOf prov:Entity ,
                     skos:Concept ;
@@ -138,6 +136,7 @@ dob:hasUPRN a owl:DatatypeProperty ;
     rdfs:label "Unique Property Reference Number"@en ;
     rdfs:subPropertyOf dct:identifier ;
     rdfs:comment "A unique numeric identifier for every spatial address in Great Britain."@en ;
+    rdfs:seeAlso <https://www.geoplace.co.uk/addresses-streets/location-data/the-uprn> ;
     rdfs:domain bot:Zone ;
     rdfs:range xsd:integer .
 
