@@ -72,20 +72,15 @@ dob:CodeRepository a owl:Class ;
     rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en .
 
 dob:CodeRevision a owl:Class ;
-    rdfs:subClassOf prov:Entity ;
-    rdfs:label "Code Revision"@en ;
-    rdfs:comment "A specific revision of code (e.g., a branch or a snapshot) in a repository."@en .
-
-dob:CodeCommit a owl:Class ;
     rdfs:subClassOf 
         prov:Entity ,
         [
             a owl:Restriction ;
-            owl:onProperty dob:commitURI ;
+            owl:onProperty dob:tagURI ;
             owl:cardinality "1"^^xsd:nonNegativeInteger
         ] ;
-    rdfs:label "Code Commit"@en ;
-    rdfs:comment "A specific commit or tagged revision of code in a repository."@en .
+    rdfs:label "Code Revision"@en ;
+    rdfs:comment "A specific tagged revision of code in a repository."@en .
 
 ###################################################
 ### PROPERTIES
@@ -99,40 +94,19 @@ dob:hasUPRN a owl:DatatypeProperty ;
     rdfs:domain bot:Zone ;
     rdfs:range xsd:integer .
 
-dob:usedProcedure a owl:ObjectProperty ;
-    rdfs:subPropertyOf prov:wasInfluencedBy ;
-    rdfs:label "used procedure"@en ;
-    rdfs:comment "Links a Result to the Procedure that generated it."@en ;
-    rdfs:domain dob:Result ;
-    rdfs:range dob:SoftwarePipeline .
-
 ### Code/Version Control-Related Properties
-dob:hasCommit a owl:ObjectProperty ;
+dob:usedRevision a owl:ObjectProperty ;
     rdfs:subPropertyOf prov:wasDerivedFrom ;
-    rdfs:label "has commit"@en ;
-    rdfs:comment "Links a Code Revision to its associated commit."@en ;
-    rdfs:domain dob:CodeRevision ;
-    rdfs:range dob:CodeCommit .
-
-dob:usedCommit a owl:ObjectProperty ;
-    rdfs:subPropertyOf prov:wasDerivedFrom ;
-    rdfs:label "used commit"@en ;
+    rdfs:label "used revision"@en ;
     rdfs:comment "Links a Software Pipeline to the commit it used during execution."@en ;
     rdfs:domain dob:SoftwarePipeline ;
     rdfs:range dob:CodeCommit .
 
-dob:commitURI a owl:DatatypeProperty ;
+dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "commit URL"@en ;
     rdfs:comment "A full external link for the commit or tag (e.g., on GitHub)."@en ;
-    rdfs:domain dob:CodeCommit ;
+    rdfs:domain dob:CodeRevision ;
     rdfs:range xsd:anyURI .
-
-dob:hasRepository a owl:ObjectProperty ;
-    rdfs:subPropertyOf prov:wasInfluencedBy ;
-    rdfs:label "has repository"@en ;
-    rdfs:comment "Links a Software Pipeline to its associated code repository."@en ;
-    rdfs:domain dob:SoftwarePipeline ;
-    rdfs:range dob:CodeRepository .
 
 dob:hasCodeRevision a owl:ObjectProperty ;
     rdfs:subPropertyOf prov:wasRevisionOf ;
