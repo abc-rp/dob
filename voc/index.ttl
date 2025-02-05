@@ -9,6 +9,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
 @prefix dob: <https://w3id.org/dob/voc#> .
 
 ###################################################
@@ -17,7 +18,7 @@
 
 dob: a owl:Ontology ;
     dct:title "Open Built Environment Data Ontology"@en ;
-    owl:imports prov:, sosa:, ssn:, bot:, dcat:, dct: ;
+    owl:imports prov:, sosa:, ssn:, bot:, dcat:, dct:, schema:;
     dct:license <http://creativecommons.org/licenses/by/4.0/> ;
     dct:creator [
         a foaf:Organization ;
@@ -67,7 +68,8 @@ dob:SoftwarePipeline a owl:Class ;
     rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en .
 
 dob:CodeRepository a owl:Class ;
-    rdfs:subClassOf prov:Entity ;
+    rdfs:subClassOf prov:Entity ,
+                    schema:SoftwareSourceCode ;
     rdfs:label "Code Repository"@en ;
     rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en .
 
