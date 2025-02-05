@@ -91,7 +91,6 @@ dob:CodeCommit a owl:Class ;
 ### PROPERTIES
 ###################################################
 
-### UPRN-Related Properties
 dob:hasUPRN a owl:DatatypeProperty ;
     rdfs:label "Unique Property Reference Number"@en ;
     rdfs:subPropertyOf dct:identifier ;
@@ -109,12 +108,11 @@ dob:usedProcedure a owl:ObjectProperty ;
 
 ### Code/Version Control-Related Properties
 dob:hasCommit a owl:ObjectProperty ;
-    rdfs:subPropertyOf prov:wasRevisionOf ;
+    rdfs:subPropertyOf prov:wasDerivedFrom ;
     rdfs:label "has commit"@en ;
     rdfs:comment "Links a Code Revision to its associated commit."@en ;
     rdfs:domain dob:CodeRevision ;
-    rdfs:range dob:CodeCommit ;
-    owl:inverseOf dob:isCommitOf .
+    rdfs:range dob:CodeCommit .
 
 dob:usedCommit a owl:ObjectProperty ;
     rdfs:subPropertyOf prov:wasDerivedFrom ;
@@ -133,20 +131,18 @@ dob:hasRepository a owl:ObjectProperty ;
     rdfs:label "has repository"@en ;
     rdfs:comment "Links a Software Pipeline to its associated code repository."@en ;
     rdfs:domain dob:SoftwarePipeline ;
-    rdfs:range dob:CodeRepository ;
-    owl:inverseOf dob:isRepositoryOf .
+    rdfs:range dob:CodeRepository .
 
 dob:hasCodeRevision a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasRevisionOf ;
     rdfs:label "has code revision"@en ;
     rdfs:comment "Links a Code Repository to the Code Revisions it contains."@en ;
     rdfs:domain dob:CodeRepository ;
-    rdfs:range dob:CodeRevision ;
-    owl:inverseOf dob:isCodeRevisionOf .
+    rdfs:range dob:CodeRevision .
 
 dob:usedRevision a owl:ObjectProperty ;
     rdfs:label "used revision"@en ;
     rdfs:comment "Links a Software Pipeline to a specific code revision used in its execution."@en ;
     rdfs:domain dob:SoftwarePipeline ;
-    rdfs:range dob:CodeRevision ;
-    owl:inverseOf dob:isRevisionOf .
+    rdfs:range dob:CodeRevision .
 
