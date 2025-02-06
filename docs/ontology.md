@@ -48,7 +48,9 @@ The following namespace prefixes are used throughout this document.
 
 ## DOB Overview
 
-![Diagram](resources/dob_overview.png)
+<div align="center">
+    <img src="resources/dob_overview.png" alt="Diagram">
+</div>
 
 The DOB Ontology uses the W3C PROV Ontology [[PROV-O](#prov-o)] as a framework. This ontology is composed of three main classes: 
 
@@ -86,7 +88,9 @@ Classes and properties in this diagram:
 
 ## Sensor Observations
 
-![Diagram](resources/sensor_observation.png)
+<div align="center">
+    <img src="resources/sensor_observation.png" alt="Diagram">
+</div>
 
 The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
 * The observation must be connected to 1 Feature Of Interest
