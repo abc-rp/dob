@@ -129,7 +129,9 @@ Classes and properties in this diagram:
 
 ## External Datasets
 
-![Diagram](resources/external_datasets.png)
+<div align="center">
+    <img src="resources/external_datasets.png" alt="Diagram">
+</div>
 
 This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
 
@@ -225,7 +227,9 @@ The codelists used may include those recommended or created by
 
 ## Zone Identifier and Location
 
-![Diagram](resources/zone_identifier.png)
+<div align="center">
+    <img src="resources/zone_identifier.png" alt="Diagram">
+</div>
 
 Instances of `bot:Zone` serve as our unique identifiers for buildings, storeys, spaces and sites, and all data released ultimately links back to a `bot:Zone`.
 
@@ -246,7 +250,9 @@ Classes and properties in this diagram:
 
 ## Zone Topology and Elements
 
-![Diagram](resources/building_topology.png)
+<div align="center">
+    <img src="resources/building_topology.png" alt="Diagram">
+</div>
 
 All zones and elements are instances of `sosa:FeatureOfInterest`. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
 
@@ -264,7 +270,9 @@ Classes and properties in this diagram:
 
 ## Sensor Metadata
 
-![Diagram](resources/sensor_metadata.png)
+<div align="center">
+    <img src="resources/sensor_metadata.png" alt="Diagram">
+</div>
 
 This section describes metadata about our sensors and their deployment. Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). 
 
@@ -272,8 +280,9 @@ This section of the ontology is currently unstable and will be for internal use.
 
 ## Software, Procedure, and File Metadata
 
-![Diagram](resources/file_metadata.png)
-
+<div align="center">
+    <img src="resources/file_metadata.png" alt="Diagram">
+</div>
 As our current files are hosted on GitHub, tracking the provenance of these files involves tracking Git commits. This takes the form of the Git commits section of the [MLFlow2PROV](#mlflow2prov) model. This section will also be for internal use and unlikely to be released publicly. The relevant classes and properties suggested here are not included in the current documentation.
 
 Inferences derived from ML Pipelines may be described using the [MLFlow2PROV](#mlflow2prov) or [DLProv](#dlprov) models.
