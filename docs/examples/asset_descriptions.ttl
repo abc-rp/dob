@@ -1,0 +1,31 @@
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix did: <https://w3id.org/dob/id/> .
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+did:result_6e2dce6a-b941-4bc4-be09-977a02221b31
+    rdfs:type dob:Result;
+    rdfs:type schema:ImageObject ;
+    schema:contentUrl <https://api.xri.dev/v1/media/image/result/6e2dce6a-b941-4bc4-be09-977a02221b31> ;
+    schema:thumbnailUrl <https://api.xri.dev/v1/media/thumbnail/result/6e2dce6a-b941-4bc4-be09-977a02221b31> ;
+    schema:encodingFormat "image/webp" ;
+    schema:width "640"^^xsd:integer ;
+    exif:colorSpace "sRGB" .
+
+did:result_2aa43a2e-cb51-46db-b298-cddbc52ffc60
+    rdfs:type dob:Result;
+    rdfs:type schema:ImageObject ;
+    schema:contentUrl <https://api.xri.dev/v1/media/image/result/2aa43a2e-cb51-46db-b298-cddbc52ffc60> ;
+    schema:thumbnailUrl <https://api.xri.dev/v1/media/thumbnail/result/2aa43a2e-cb51-46db-b298-cddbc52ffc60> ;
+    schema:encodingFormat "image/webp" ;
+    schema:width "640"^^xsd:integer ;
+    exif:colorSpace "sRGB" .
+
+did:result_64eae5e1-8cca-42d1-ac2e-9c65489d2930
+    rdfs:type dob:Result;
+    rdfs:type schema:DataDownload ;
+    schema:contentUrl <https://api.xri.dev/v1/media/data-download/result/64eae5e1-8cca-42d1-ac2e-9c65489d2930> ;
+    schema:encodingFormat "application/x-npz" ;
+    schema:width "640"^^xsd:integer .
