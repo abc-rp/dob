@@ -91,7 +91,8 @@ The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest
 The following classes are documented in more detail [here](../voc/index.ttl).
 
 #### dob:Result
-The Result is an OWL union of the Entity and Activity. This class is limited to distinct data points and does not represent collections or aggregations of data.
+The Result is an OWL union of the Entity and Activity. This class is limited to distinct data points and does not represent collections or aggregations of data. 
+This class is discussed in more detail in the next section.
 
 #### dob:SoftwarePipeline
 A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan.
@@ -128,92 +129,21 @@ The following wrapper vocabulary is documented in more detail [here](../voc/epsg
 
 ## Predefined Instances
 
-A discussed in the [Results](#results) section, a list of predefined instances will be released. This will include a list of instances of `ssn:Property`. 
+A list of predefined instances will be released. This will include a list of instances of `ssn:Property`. 
 
 An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
-
-## Sensor Observations
-
-<div align="center">
-    <img src="resources/sensor_observation.png" alt="Diagram">
-</div>
-
-The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
-* The observation must be connected to 1 Feature Of Interest
-* The observation must be made by 1 Sensor
-* The observation took place at a particular time
-
-Using `sosa:Observation` is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
-
-It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data.
-
-<!-- Classes and properties in this diagram:
-
-* [dob:Result](#dobresult)
-* prov:Activity [[PROV-O](#prov-o)]
-* prov:Plan [[PROV-O](#prov-o)]
-* prov:Agent [[PROV-O](#prov-o)]
-* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
-* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
-* ssn:Deployment [[VOCAB-SSN](#vocab-ssn)]
-* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:Sensor [[VOCAB-SSN](#vocab-ssn)]
-* sosa:Observation [[VOCAB-SSN](#vocab-ssn)]
-* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
-* [dob:usedProcedure](#dobusedprocedure)
-* prov:used [[PROV-O](#prov-o)]
-* prov:generated [[PROV-O](#prov-o)]
-* prov:wasGeneratedBy [[PROV-O](#prov-o)]
-* prov:wasAssociatedWith [[PROV-O](#prov-o)]
-* prov:wasInformedBy [[PROV-O](#prov-o)]
-* ssn:deployedSystem [[VOCAB-SSN](#vocab-ssn)]
-* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-* sosa:madeBySensor [[VOCAB-SSN](#vocab-ssn)]
-* sosa:madeObservation [[VOCAB-SSN](#vocab-ssn)]
-* sosa:resultTime [[VOCAB-SSN](#vocab-ssn)] -->
-
-## External Datasets
-
-<div align="center">
-    <img src="resources/external_datasets.png" alt="Diagram">
-</div>
-
-This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
-
-DCAT is widely used in open linked data. Some of the organisations that use DCAT are [ONS (Office for National Statistics)](https://github.com/ONSdigital/application-profile/blob/531fd289f8200491ae7b21d18978bdc8cd565704/cataloguing.md), European Data Portal [[DCAT-AP](#dcat-ap)], and US Department of the Interior [[DCAT-US](#dcat-us)]. 
-
-We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
-
-<!-- Classes and properties in this diagram:
-
-* [dob:Result](#dobresult)
-* prov:Activity [[PROV-O](#prov-o)]
-* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
-* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
-* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
-* dcat:Dataset [[VOCAB-DCAT](#vocab-dcat)]
-* prov:used [[PROV-O](#prov-o)]
-* prov:generated [[PROV-O](#prov-o)]
-* prov:wasGeneratedBy [[PROV-O](#prov-o)]
-* prov:wasQuotedFrom [[PROV-O](#prov-o)]
-* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-* dcat:accessURL [[VOCAB-DCAT](#vocab-dcat)]
-* dcat:theme [[VOCAB-DCAT](#vocab-dcat)]
-* dcat:distribution [[VOCAB-DCAT](#vocab-dcat)]
-* dct:format [[DCTERMS](#dcterms)]
-* dct:license [[DCTERMS](#dcterms)]
-* dct:issued [[DCTERMS](#dcterms)]
-* dct:publisher [[DCTERMS](#dcterms)]
-* dct:spatial [[DCTERMS](#dcterms)]
-* dct:title [[DCTERMS](#dcterms)]
-* dct:description [[DCTERMS](#dcterms)] -->
 
 ## Results
 
 This section is about how we would present our results and observations (around the class `dob:Result`).
+
+This class has been constructed to be an owl:UnionOf prov:Entity and prov:Activity. We appreciate that this may be viewed as a strange move considering that these two fundamental prov classes are understood in the prov onotology to be implicitly disjoint. 
+
+We require that they a union for the result for economy of triples. If activity and entity are separated such that the result is solely an entity, to produce N triples relating to the result of a property, e.g. temperature, we would require N activities all relating to the same resuable plan (dob:SoftwarePipeline) to describe these results and keep them unambiguously linked to their bot:zone classes, upon which all things depend. 
+
+This may not be an issue for small knowledge graphs but we immediately create a bot:zone for every domicile in the UK, plus we require a prov process to keep track of how this is generated from the OS Open UPRN dataset. Hence we save 40 million triples at start by creating our dob:Result.
+
+Additionally defining results in this manner allows easy comparison between observations of properties made by our own systems, and those contained in datasets captured and curated by others.
 
 The general structure is as follows:
 
@@ -300,6 +230,105 @@ The codelists used may include those recommended or created by
 * [SDMX](http://purl.org/linked-data/sdmx/2009/code#)
 * [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs)
 
+
+## Sensor Observations
+
+<div align="center">
+    <img src="resources/sensor_observation.png" alt="Diagram">
+</div>
+
+The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
+* The observation must be connected to 1 Feature Of Interest
+* The observation must be made by 1 Sensor
+* The observation took place at a particular time
+
+Using `sosa:Observation` is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
+
+It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data.
+
+<!-- Classes and properties in this diagram:
+
+* [dob:Result](#dobresult)
+* prov:Activity [[PROV-O](#prov-o)]
+* prov:Plan [[PROV-O](#prov-o)]
+* prov:Agent [[PROV-O](#prov-o)]
+* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
+* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
+* ssn:Deployment [[VOCAB-SSN](#vocab-ssn)]
+* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
+* sosa:Sensor [[VOCAB-SSN](#vocab-ssn)]
+* sosa:Observation [[VOCAB-SSN](#vocab-ssn)]
+* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
+* [dob:usedProcedure](#dobusedprocedure)
+* prov:used [[PROV-O](#prov-o)]
+* prov:generated [[PROV-O](#prov-o)]
+* prov:wasGeneratedBy [[PROV-O](#prov-o)]
+* prov:wasAssociatedWith [[PROV-O](#prov-o)]
+* prov:wasInformedBy [[PROV-O](#prov-o)]
+* ssn:deployedSystem [[VOCAB-SSN](#vocab-ssn)]
+* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
+* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
+* sosa:madeBySensor [[VOCAB-SSN](#vocab-ssn)]
+* sosa:madeObservation [[VOCAB-SSN](#vocab-ssn)]
+* sosa:resultTime [[VOCAB-SSN](#vocab-ssn)] -->
+
+## Sensor Metadata
+
+<!-- <div align="center">
+    <img src="resources/sensor_metadata.png" alt="Diagram">
+</div> -->
+
+Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). We will likely only include basic information in the graph, e.g. camera type, device serial, which INS it is deployed with. Full calibration files describing sensor geometry for sensor fusion purposes will be linked to as URI literals.
+
+This section of the ontology is currently unstable and will be for internal use. Describing sensor systems will likely only be of interest/use to xRI for data provenance purporses. 
+
+## Software Pipelines
+
+<div align="center">
+    <img src="resources/file_metadata.png" alt="Diagram">
+</div>
+As our current files are hosted on GitHub, tracking the provenance of these files involves tracking Git commits. This takes the form of the Git commits section of the [MLFlow2PROV](#mlflow2prov) model. This section will also be for internal use and unlikely to be released publicly. The relevant classes and properties suggested here are not included in the current documentation.
+
+Inferences derived from ML Pipelines may be described using the [MLFlow2PROV](#mlflow2prov) or [DLProv](#dlprov) models.
+
+## External Datasets
+
+<div align="center">
+    <img src="resources/external_datasets.png" alt="Diagram">
+</div>
+
+This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
+
+DCAT is widely used in open linked data. Some of the organisations that use DCAT are [ONS (Office for National Statistics)](https://github.com/ONSdigital/application-profile/blob/531fd289f8200491ae7b21d18978bdc8cd565704/cataloguing.md), European Data Portal [[DCAT-AP](#dcat-ap)], and US Department of the Interior [[DCAT-US](#dcat-us)]. 
+
+We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
+
+<!-- Classes and properties in this diagram:
+
+* [dob:Result](#dobresult)
+* prov:Activity [[PROV-O](#prov-o)]
+* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
+* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
+* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
+* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
+* dcat:Dataset [[VOCAB-DCAT](#vocab-dcat)]
+* prov:used [[PROV-O](#prov-o)]
+* prov:generated [[PROV-O](#prov-o)]
+* prov:wasGeneratedBy [[PROV-O](#prov-o)]
+* prov:wasQuotedFrom [[PROV-O](#prov-o)]
+* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
+* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
+* dcat:accessURL [[VOCAB-DCAT](#vocab-dcat)]
+* dcat:theme [[VOCAB-DCAT](#vocab-dcat)]
+* dcat:distribution [[VOCAB-DCAT](#vocab-dcat)]
+* dct:format [[DCTERMS](#dcterms)]
+* dct:license [[DCTERMS](#dcterms)]
+* dct:issued [[DCTERMS](#dcterms)]
+* dct:publisher [[DCTERMS](#dcterms)]
+* dct:spatial [[DCTERMS](#dcterms)]
+* dct:title [[DCTERMS](#dcterms)]
+* dct:description [[DCTERMS](#dcterms)] -->
+
 ## Zone Identifier and Location
 
 <div align="center">
@@ -342,25 +371,6 @@ All zones and elements are instances of `sosa:FeatureOfInterest`. Building topol
 * bot:hasElement [[BOT](#bot)]
 * bot:hasStorey [[BOT](#bot)]
 * bot:hasSubElement [[BOT](#bot)] -->
-
-## Sensor Metadata
-
-<!-- <div align="center">
-    <img src="resources/sensor_metadata.png" alt="Diagram">
-</div> -->
-
-Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). We will likely only include basic information in the graph, e.g. camera type, device serial, which INS it is deployed with. Full calibration files describing sensor geometry for sensor fusion purposes will be linked to as URI literals.
-
-This section of the ontology is currently unstable and will be for internal use. Describing sensor systems will likely only be of interest/use to xRI for data provenance purporses. 
-
-## Software Pipelines
-
-<div align="center">
-    <img src="resources/file_metadata.png" alt="Diagram">
-</div>
-As our current files are hosted on GitHub, tracking the provenance of these files involves tracking Git commits. This takes the form of the Git commits section of the [MLFlow2PROV](#mlflow2prov) model. This section will also be for internal use and unlikely to be released publicly. The relevant classes and properties suggested here are not included in the current documentation.
-
-Inferences derived from ML Pipelines may be described using the [MLFlow2PROV](#mlflow2prov) or [DLProv](#dlprov) models.
 
 ## Reused Ontologies
 
