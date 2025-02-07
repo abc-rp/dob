@@ -173,11 +173,11 @@ The general structure is as follows:
 
 * The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. A working list of properties is available in [Predefined Instances](#predefined-instances)
 
-A simple example can be seen below:
+* Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
 
 ```turtle
 did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
-    prov:used did:pipeline_os_uprn_ttl_c67cc713-4621-4b50-b2e6-597ee05f5f2a ;
+    prov:used did:pipeline_height_dgfhvuy63-4621-4b50-b2e6-597ee05f86785 ;
     sosa:hasFeatureOfInterest did:zone_a7d8239e-a998-46ca-9b38-6de906701389 ;
     ssn:forProperty dop:Height
     qudt:numericValue "0.52"^^xsd:float ;
@@ -189,9 +189,7 @@ did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
     dob:hasUPRN 906700039263 .
 ```
 
-<!-- * Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
-
-```turtle
+<!-- ```turtle
 did:result_1234 a dob:Result , qudt:QuantityValue ;
     prov:wasGeneratedBy did:activity_1234 ;
     qudt:numericValue "0.52"^^xsd:float ;
@@ -201,11 +199,26 @@ did:activity_1234 a prov:Activity ;
     prov:generated did:result_1234 ;
     sosa:hasFeatureOfInterest did:window_1234 ;
     ssn:forProperty dop:Height .
-```
+``` -->
 
 * Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
 
 ```turtle
+did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
+    prov:used did:pipeline_os_uprn_ttl_c67cc713-4621-4b50-b2e6-597ee05f5f2a ;
+    sosa:hasFeatureOfInterest did:zone_a7d8239e-a998-46ca-9b38-6de906701389 ;
+    ssn:forProperty dop:EnergyRating .
+    dop:energyRating dop:EPC_Energy_Rating_A ;
+    dop:energyRatingSystem dop:UK_EPC ;
+    dct:issued "2024-01-01"^^xsd:date .
+
+did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
+        bot:Zone ;
+    sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
+    dob:hasUPRN 906700039263 .
+```
+
+<!-- ```turtle
 did:result_1235 a dob:Result ;
     prov:wasGeneratedBy did:activity_1235 ;
     dop:energyRating dop:EPC_Energy_Rating_A ;
