@@ -88,31 +88,23 @@ The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest
 
 # DOB Classes
 
-<div align="center">
-
-| Class                   | Description                                                                                                                                                                                                                                                   |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **dob:Result**          | The Result is an OWL union of the Entity and Activity. This class is limited to distinct data points and does not represent collections or aggregations of data. <br><br>**For more documentation, see:** [../voc/index.ttl](../voc/index.ttl)               |
-| **dob:SoftwarePipeline**| A software-based workflow or pipeline that can be used by an Activity, specializing `prov:Plan`. <br><br>**For more documentation, see:** [../voc/index.ttl](../voc/index.ttl)                                                                               |
-| **dob:CodeRepository**  | A repository (e.g., Git) containing source code for a software pipeline. <br><br>**For more documentation, see:** [../voc/index.ttl](../voc/index.ttl)                                                                                                       |
-| **dob:CodeRevision**    | A specific tagged release of code from a repository. <br><br>**For more documentation, see:** [../voc/index.ttl](../voc/index.ttl)                                                                                                                           |
-
-</div>
+| Class                 | Subclass Of                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                    |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **dob:Result**        | **Union of:**<br/>• `prov:Entity`<br/>• `prov:Activity`<br/><br/>**Additional Restrictions:**<br/>• `sosa:hasFeatureOfInterest` ⟶ `sosa:FeatureOfInterest`<br/>• `rdf:value` ⟶ *Only* `(xsd:string, xsd:double, xsd:anyURI, xsd:boolean, xsd:dateTime, xsd:integer, xsd:float, xsd:decimal, xsd:time, xsd:date)` | This class is limited to distinct and identifiable data points and does not represent collections or aggregations of data. It is primarily used to present results of sensor data capture mediated by software processes.                                                                                                                                |
+| **dob:SoftwarePipeline** | `prov:Plan`                                                                                                                                                                                             | A software-based workflow or pipeline that can be used by an Activity, specializing `prov:Plan`.                                                                                                                                                                                                                                                                                              |
+| **dob:CodeRepository** | `prov:Entity`, `schema:SoftwareSourceCode`                                                                                                                                                                | A repository (e.g., Git) containing source code for a software pipeline.                                                                                                                                                                                                                                                                                                                      |
+| **dob:CodeRevision**   | `prov:Entity`<br/><br/>**Restriction:**<br/>• `dob:tagURI` (cardinality = 1)                                                                                                                              | A specific tagged revision of code in a repository. The property `dob:tagURI` must have exactly one value, representing the link (e.g., GitHub URL) for that particular release or tag.                                                                                                                                                                 |
 
 ---
 
 # DOB Properties
 
-<div align="center">
-
-| Property                 | Description                                                                                                                            |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| **dob:hasUPRN**          | The Unique Property Reference Number (UPRN) of the zone. <br><br>**For more documentation, see:** [../voc/index.ttl#uprn](../voc/index.ttl#uprn) |
-| **dob:tagURI**           | This is a full external link to a release of source code. <br><br>**For more documentation, see:** [../voc/index.ttl](../voc/index.ttl)          |
-| **dob:hasCodeRevision**  | Links the release back to the code repository. <br><br>**For more documentation, see:** [../voc/index.ttl](../voc/index.ttl)                     |
-| **dob:usedCodeRevision** | Indicates the version of a code repository used by a software pipeline. <br><br>**For more documentation, see:** [../voc/index.ttl](../voc/index.ttl) |
-
-</div>
+| Property                 | Subproperty Of        | Domain                 | Range                | Description                                                                                                          |
+|--------------------------|-----------------------|------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------|
+| **dob:hasUPRN**          | `dct:identifier`      | `bot:Zone`            | `xsd:integer`        | A unique numeric identifier for every spatial address in Great Britain.                                             |
+| **dob:tagURI**           | *(none)*             | `dob:CodeRevision`     | `xsd:anyURI`         | A full external link for the tag (e.g., GitHub).                                                                     |
+| **dob:hasCodeRevision**  | `prov:wasRevisionOf`  | `dob:CodeRepository`   | `dob:CodeRevision`   | Links a Code Repository to the Code Revisions it contains.                                                           |
+| **dob:usedCodeRevision** | `prov:used`           | `dob:SoftwarePipeline` | `dob:CodeRevision`   | Links a Software Pipeline to a specific code revision used in its execution.                                        |
 
 ---
 
