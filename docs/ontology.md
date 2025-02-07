@@ -64,7 +64,7 @@ We have chosen to use this ontology as a framework as it is very flexible and al
 
 The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest` is based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) but more generalised. This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 * [dob:Result](#dobresult)
 * prov:Activity [[PROV-O](#prov-o)]
 * prov:Plan [[PROV-O](#prov-o)]
@@ -84,7 +84,7 @@ Classes and properties in this diagram:
 * ssn:forProperty [[VOCAB-SSN](#vocab-ssn)]
 * sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
 * sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-* xsd:dateTime [[XML-SCHEMA11-2](#xml-schema11-2)]
+* xsd:dateTime [[XML-SCHEMA11-2](#xml-schema11-2)] -->
 
 ## Sensor Observations
 
@@ -101,7 +101,7 @@ Using `sosa:Observation` is useful when we want the data to be linked back to a 
 
 It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data.
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * [dob:Result](#dobresult)
 * prov:Activity [[PROV-O](#prov-o)]
@@ -125,7 +125,7 @@ Classes and properties in this diagram:
 * sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
 * sosa:madeBySensor [[VOCAB-SSN](#vocab-ssn)]
 * sosa:madeObservation [[VOCAB-SSN](#vocab-ssn)]
-* sosa:resultTime [[VOCAB-SSN](#vocab-ssn)]
+* sosa:resultTime [[VOCAB-SSN](#vocab-ssn)] -->
 
 ## External Datasets
 
@@ -139,7 +139,7 @@ DCAT is widely used in open linked data. Some of the organisations that use DCAT
 
 We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * [dob:Result](#dobresult)
 * prov:Activity [[PROV-O](#prov-o)]
@@ -163,7 +163,7 @@ Classes and properties in this diagram:
 * dct:publisher [[DCTERMS](#dcterms)]
 * dct:spatial [[DCTERMS](#dcterms)]
 * dct:title [[DCTERMS](#dcterms)]
-* dct:description [[DCTERMS](#dcterms)]
+* dct:description [[DCTERMS](#dcterms)] -->
 
 ## Results
 
@@ -241,12 +241,12 @@ The `within:outputarea` property is an [ONS Geography Linked Data](#ons-geograph
 
 An [output area](https://www.ons.gov.uk/methodology/geography/ukgeographies/statisticalgeographies) [[ONS Geography Linked Data](#ons-geography-linked-data)] is the lowest level of geographical area for census statistics. It is maintained by the ONS and is updated every 10 years following the census. 
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * `bot:Zone` [[BOT](#bot)]
 * [dob:hasUPRN](#dobhasuprn)
 * `within:outputarea` [[ONS Geography Linked Data](#ons-geography-linked-data)]
-* `sid:` [[ONS Geography Linked Data](#ons-geography-linked-data)]
+* `sid:` [[ONS Geography Linked Data](#ons-geography-linked-data)] -->
 
 ## Zone Topology and Elements
 
@@ -256,7 +256,7 @@ Classes and properties in this diagram:
 
 All zones and elements are instances of `sosa:FeatureOfInterest`. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * bot:Zone [[BOT](#bot)]
 * bot:Building [[BOT](#bot)]
@@ -266,7 +266,7 @@ Classes and properties in this diagram:
 * beo:Window [[BEO](#beo)]
 * bot:hasElement [[BOT](#bot)]
 * bot:hasStorey [[BOT](#bot)]
-* bot:hasSubElement [[BOT](#bot)]
+* bot:hasSubElement [[BOT](#bot)] -->
 
 ## Sensor Metadata
 
@@ -303,9 +303,6 @@ The Unique Property Reference Number [[UPRN](#uprn)] of the zone.
 
 #### dob:usedProcedure
 A relation that links to a re-usable Plan used in an Activity.
-
-#### dob:wasInformedByDeployment
-An activity A is dependent on or informed by a deployment D, by way of some unspecified entity that is generated in deployment D and used by A.
 
 ## BNG Properties
 
