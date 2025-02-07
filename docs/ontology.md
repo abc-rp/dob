@@ -86,46 +86,35 @@ The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest
 * sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
 * xsd:dateTime [[XML-SCHEMA11-2](#xml-schema11-2)] -->
 
-## DOB Classes
+# DOB Classes
 
-The following classes are documented in more detail [here](../voc/index.ttl).
+| Class                         | Description                                                                                                                                                                                                            | Documentation                                |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| **dob:Result**               | The Result is an OWL union of the Entity and Activity. This class is limited to distinct data points and does not represent collections or aggregations of data. This class is discussed in more detail in the next section. | [More details](../voc/index.ttl)             |
+| **dob:SoftwarePipeline**      | A software-based workflow or pipeline that can be used by an Activity, specializing `prov:Plan`.                                                                                                                                 | [More details](../voc/index.ttl)             |
+| **dob:CodeRepository**        | A repository (e.g., Git) containing source code for a software pipeline.                                                                                                                                                  | [More details](../voc/index.ttl)             |
+| **dob:CodeRevision**          | A specific tagged release of code from a repository.                                                                                                                                                                     | [More details](../voc/index.ttl)             |
 
-#### dob:Result
-The Result is an OWL union of the Entity and Activity. This class is limited to distinct data points and does not represent collections or aggregations of data. 
-This class is discussed in more detail in the next section.
+---
 
-#### dob:SoftwarePipeline
-A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan.
+# DOB Properties
 
-#### dob:CodeRepository
-A repository (e.g., Git) containing source code for a software pipeline.
+| Property                 | Description                                                                                                                                       | Documentation                                |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| **dob:hasUPRN**          | The Unique Property Reference Number (UPRN) of the zone.                                                                                          | [More details](../voc/index.ttl#uprn)        |
+| **dob:tagURI**           | This is a full external link to a release of source code.                                                                                         | [More details](../voc/index.ttl)             |
+| **dob:hasCodeRevision**  | Links the release back to the code repository.                                                                                                    | [More details](../voc/index.ttl)             |
+| **dob:usedCodeRevision** | Indicates the version of a code repository used by a software pipeline.                                                                           | [More details](../voc/index.ttl)             |
 
-#### dob:CodeRevision
-A specific tagged release of code in from a repository.
+---
 
-## DOB Properties
+# BNG Properties
 
-The following properties are documented in more detail [here](../voc/index.ttl).
+| Property       | Description                          | Documentation                                              |
+|----------------|--------------------------------------|------------------------------------------------------------|
+| **bng:easting**| Easting coordinate in EPSG:27700.    | [More details](../voc/epsg-27700/index.ttl)               |
+| **bng:nothing**| Northing coordinate in EPSG:27700.   | [More details](../voc/epsg-27700/index.ttl)               |
 
-#### dob:hasUPRN
-The Unique Property Reference Number [[UPRN](#uprn)] of the zone.
-
-#### dob:tagURI
-This is a full external link to a release of source code.
-
-#### dob:hasCodeRevision
-Links the release back to the code repository.
-
-#### dob:usedCodeRevision
-Indicates the version of a code repository used by a software pipeline.
-
-## BNG Properties
-
-The following wrapper vocabulary is documented in more detail [here](../voc/epsg-27700/index.ttl).
-
-#### bng:easting
-
-#### bng:northing
 
 ## Predefined Instances
 
