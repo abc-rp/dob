@@ -172,7 +172,24 @@ This section is about how we would present our results and observations (around 
 The general structure is as follows:
 
 * The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. A working list of properties is available in [Predefined Instances](#predefined-instances)
-* Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
+
+A simple example can be seen below:
+
+```turtle
+did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
+    prov:used did:pipeline_os_uprn_ttl_c67cc713-4621-4b50-b2e6-597ee05f5f2a ;
+    sosa:hasFeatureOfInterest did:zone_a7d8239e-a998-46ca-9b38-6de906701389 ;
+    ssn:forProperty dop:Height
+    qudt:numericValue "0.52"^^xsd:float ;
+    qudt:hasUnit qudt-unit:M .
+
+did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
+        bot:Zone ;
+    sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
+    dob:hasUPRN 906700039263 .
+```
+
+<!-- * Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
 
 ```turtle
 did:result_1234 a dob:Result , qudt:QuantityValue ;
@@ -211,7 +228,7 @@ did:activity-1236 a prov:Activity ;
     prov:generated did:result_1236 ;
     sosa:hasFeatureOfInterest did:zone_1235 ;
     ssn:forProperty dop:ConstructionType .
-```
+``` -->
 
 These custom properties are not well developed so are not documented here. 
 
