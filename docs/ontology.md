@@ -106,7 +106,7 @@ Classes and properties in this diagram:
 * [dob:Result](#dobresult)
 * prov:Activity [[PROV-O](#prov-o)]
 * prov:Plan [[PROV-O](#prov-o)]
-* prov:SoftwareAgent [[PROV-O](#prov-o)]
+* prov:Agent [[PROV-O](#prov-o)]
 * skos:Concept [[SKOS-REFERENCE](#skos-reference)]
 * ssn:Property [[VOCAB-SSN](#vocab-ssn)]
 * ssn:Deployment [[VOCAB-SSN](#vocab-ssn)]
