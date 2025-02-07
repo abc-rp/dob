@@ -48,7 +48,9 @@ The following namespace prefixes are used throughout this document.
 
 ## DOB Overview
 
-![Diagram](resources/dob_overview.png)
+<div align="center">
+    <img src="resources/dob_overview.png" alt="Diagram">
+</div>
 
 The DOB Ontology uses the W3C PROV Ontology [[PROV-O](#prov-o)] as a framework. This ontology is composed of three main classes: 
 
@@ -86,7 +88,9 @@ Classes and properties in this diagram:
 
 ## Sensor Observations
 
-![Diagram](resources/sensor_observation.png)
+<div align="center">
+    <img src="resources/sensor_observation.png" alt="Diagram">
+</div>
 
 The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
 * The observation must be connected to 1 Feature Of Interest
@@ -125,7 +129,9 @@ Classes and properties in this diagram:
 
 ## External Datasets
 
-![Diagram](resources/external_datasets.png)
+<div align="center">
+    <img src="resources/external_datasets.png" alt="Diagram">
+</div>
 
 This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
 
@@ -221,7 +227,9 @@ The codelists used may include those recommended or created by
 
 ## Zone Identifier and Location
 
-![Diagram](resources/zone_identifier.png)
+<div align="center">
+    <img src="resources/zone_identifier.png" alt="Diagram">
+</div>
 
 Instances of `bot:Zone` serve as our unique identifiers for buildings, storeys, spaces and sites, and all data released ultimately links back to a `bot:Zone`.
 
@@ -242,7 +250,9 @@ Classes and properties in this diagram:
 
 ## Zone Topology and Elements
 
-![Diagram](resources/building_topology.png)
+<div align="center">
+    <img src="resources/building_topology.png" alt="Diagram">
+</div>
 
 All zones and elements are instances of `sosa:FeatureOfInterest`. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
 
@@ -260,16 +270,19 @@ Classes and properties in this diagram:
 
 ## Sensor Metadata
 
-![Diagram](resources/sensor_metadata.png)
+<!-- <div align="center">
+    <img src="resources/sensor_metadata.png" alt="Diagram">
+</div> -->
 
-This section describes metadata about our sensors and their deployment. Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). 
+Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). We will likely only include basic information in the graph, e.g. camera type, device serial, which INS it is deployed with. Full calibration files describing sensor geometry for sensor fusion purposes will be linked to as URI literals.
 
-This section of the ontology is currently unstable and will be for internal use. As a result, the relevant classes and properties suggested here are not included in the current documentation.
+This section of the ontology is currently unstable and will be for internal use. Describing sensor systems will likely only be of interest/use to xRI for data provenance purporses. 
 
-## Software, Procedure, and File Metadata
+## Software Pipelines
 
-![Diagram](resources/file_metadata.png)
-
+<div align="center">
+    <img src="resources/file_metadata.png" alt="Diagram">
+</div>
 As our current files are hosted on GitHub, tracking the provenance of these files involves tracking Git commits. This takes the form of the Git commits section of the [MLFlow2PROV](#mlflow2prov) model. This section will also be for internal use and unlikely to be released publicly. The relevant classes and properties suggested here are not included in the current documentation.
 
 Inferences derived from ML Pipelines may be described using the [MLFlow2PROV](#mlflow2prov) or [DLProv](#dlprov) models.
