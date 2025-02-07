@@ -270,15 +270,15 @@ Classes and properties in this diagram:
 
 ## Sensor Metadata
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/sensor_metadata.png" alt="Diagram">
-</div>
+</div> -->
 
-This section describes metadata about our sensors and their deployment. Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). 
+Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). We will likely only include basic information in the graph, e.g. camera type, device serial, which INS it is deployed with. Full calibration files describing sensor geometry for sensor fusion purposes will be linked to as URI literals.
 
-This section of the ontology is currently unstable and will be for internal use. As a result, the relevant classes and properties suggested here are not included in the current documentation.
+This section of the ontology is currently unstable and will be for internal use. Describing sensor systems will likely only be of interest/use to xRI for data provenance purporses. 
 
-## Software, Procedure, and File Metadata
+## Software Pipelines
 
 <div align="center">
     <img src="resources/file_metadata.png" alt="Diagram">
