@@ -238,7 +238,7 @@ The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#v
 
 Using `sosa:Observation` is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
 
-It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data.
+It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data. This information has been economically condensed into the singular dob:Result class.
 
 <!-- Classes and properties in this diagram:
 
@@ -281,9 +281,9 @@ This section of the ontology is currently unstable and will be for internal use.
 <div align="center">
     <img src="resources/file_metadata.png" alt="Diagram">
 </div>
-As our current files are hosted on GitHub, tracking the provenance of these files involves tracking Git commits. This takes the form of the Git commits section of the [MLFlow2PROV](#mlflow2prov) model. This section will also be for internal use and unlikely to be released publicly. The relevant classes and properties suggested here are not included in the current documentation.
 
-Inferences derived from ML Pipelines may be described using the [MLFlow2PROV](#mlflow2prov) or [DLProv](#dlprov) models.
+Inspiration is taken from prov as well as [MLFlow2PROV](#mlflow2prov), however we opt for an initially simpler description of software pipelines by linking to repositories, which can have lots of information about authorship etc... and then we only really require knowledge of a tagged release of source code to know the code used from this repository that is used in a pipeline. A software pipeline can link to multiple repositories. We accept the current limitation of not knowing which script(s) is directly employed, this may be a direction of future development. However, encouraging atomic repos with singular purposes may generally be good practice for managing pipeline provenance so this may not be an issue and simply an opinated way in which to develop data processing that is surfaced as linked data.
+
 
 ## External Datasets
 
