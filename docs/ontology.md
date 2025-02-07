@@ -2,7 +2,7 @@
 
 # DOB DRAFT Version 0.0.1
 
-## Contents
+<!-- ## Contents
 
 * [DOB Overview](#dob-overview)
 * [Sensor Observations](#sensor-observations)
@@ -17,9 +17,9 @@
 * [BNG Properties](#bng-properties)
 * [Predefined Instances](#predefined-instances)
 * [Reused Ontologies](#reused-ontologies)
-* [Alignments](#alignments)
+* [Alignments](#alignments) -->
 
-Note: The diagrams align with Alex Donker's [Ontology Design Template](#ontology-design-template), as well as the colouring used in the W3C PROV Ontology [[PROV-O](#prov-o)].
+<!-- Note: The diagrams align with Alex Donker's [Ontology Design Template](#ontology-design-template), as well as the colouring used in the W3C PROV Ontology [[PROV-O](#prov-o)]. -->
 
 The following namespace prefixes are used throughout this document.
 
@@ -64,7 +64,7 @@ We have chosen to use this ontology as a framework as it is very flexible and al
 
 The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest` is based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) but more generalised. This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 * [dob:Result](#dobresult)
 * prov:Activity [[PROV-O](#prov-o)]
 * prov:Plan [[PROV-O](#prov-o)]
@@ -84,7 +84,146 @@ Classes and properties in this diagram:
 * ssn:forProperty [[VOCAB-SSN](#vocab-ssn)]
 * sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
 * sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-* xsd:dateTime [[XML-SCHEMA11-2](#xml-schema11-2)]
+* xsd:dateTime [[XML-SCHEMA11-2](#xml-schema11-2)] -->
+
+# DOB Classes
+
+| Class                 | Subclass Of                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                    |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **dob:Result**        | **Union of:**<br/>• `prov:Entity`<br/>• `prov:Activity`<br/><br/>**Additional Restrictions:**<br/>• `sosa:hasFeatureOfInterest` ⟶ `sosa:FeatureOfInterest`<br/>• `rdf:value` ⟶ *Only* `(xsd:string, xsd:double, xsd:anyURI, xsd:boolean, xsd:dateTime, xsd:integer, xsd:float, xsd:decimal, xsd:time, xsd:date)` | This class is limited to distinct and identifiable data points and does not represent collections or aggregations of data. It is primarily used to present results of sensor data capture mediated by software processes.                                                                                                                                |
+| **dob:SoftwarePipeline** | `prov:Plan`                                                                                                                                                                                             | A software-based workflow or pipeline that can be used by an Activity, specializing `prov:Plan`.                                                                                                                                                                                                                                                                                              |
+| **dob:CodeRepository** | `prov:Entity`, `schema:SoftwareSourceCode`                                                                                                                                                                | A repository (e.g., Git) containing source code for a software pipeline.                                                                                                                                                                                                                                                                                                                      |
+| **dob:CodeRevision**   | `prov:Entity`<br/><br/>**Restriction:**<br/>• `dob:tagURI` (cardinality = 1)                                                                                                                              | A specific tagged revision of code in a repository. The property `dob:tagURI` must have exactly one value, representing the link (e.g., GitHub URL) for that particular release or tag.                                                                                                                                                                 |
+
+---
+
+# DOB Properties
+
+| Property                 | Subproperty Of        | Domain                 | Range                | Description                                                                                                          |
+|--------------------------|-----------------------|------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------|
+| **dob:hasUPRN**          | `dct:identifier`      | `bot:Zone`            | `xsd:integer`        | A unique numeric identifier for every spatial address in Great Britain.                                             |
+| **dob:tagURI**           | *(none)*             | `dob:CodeRevision`     | `xsd:anyURI`         | A full external link for the tag (e.g., GitHub).                                                                     |
+| **dob:hasCodeRevision**  | `prov:wasRevisionOf`  | `dob:CodeRepository`   | `dob:CodeRevision`   | Links a Code Repository to the Code Revisions it contains.                                                           |
+| **dob:usedCodeRevision** | `prov:used`           | `dob:SoftwarePipeline` | `dob:CodeRevision`   | Links a Software Pipeline to a specific code revision used in its execution.                                        |
+
+---
+
+# BNG Properties
+
+<div align="center">
+
+| Property          | Description                                                                                       |
+|-------------------|---------------------------------------------------------------------------------------------------|
+| **bng:easting**   | Easting coordinate in EPSG:27700. <br><br>**For more documentation, see:** [../voc/epsg-27700/index.ttl](../voc/epsg-27700/index.ttl)   |
+| **bng:nothing**   | Northing coordinate in EPSG:27700. <br><br>**For more documentation, see:** [../voc/epsg-27700/index.ttl](../voc/epsg-27700/index.ttl)  |
+
+</div>
+
+
+
+## Predefined Instances
+
+A list of predefined instances will be released. This will include a list of instances of `ssn:Property`. 
+
+An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
+
+## Results
+
+This section is about how we would present our results and observations (around the class `dob:Result`).
+
+This class has been constructed to be an owl:UnionOf prov:Entity and prov:Activity. We appreciate that this may be viewed as a strange move considering that these two fundamental prov classes are understood in the prov onotology to be implicitly disjoint. 
+
+We require that they a union for the result for economy of triples. If activity and entity are separated such that the result is solely an entity, to produce N triples relating to the result of a property, e.g. temperature, we would require N activities all relating to the same resuable plan (dob:SoftwarePipeline) to describe these results and keep them unambiguously linked to their bot:zone classes, upon which all things depend. 
+
+This may not be an issue for small knowledge graphs but we immediately create a bot:zone for every domicile in the UK, plus we require a prov process to keep track of how this is generated from the OS Open UPRN dataset. Hence we save 40 million triples at start by creating our dob:Result.
+
+Additionally defining results in this manner allows easy comparison between observations of properties made by our own systems, and those contained in datasets captured and curated by others.
+
+The general structure is as follows:
+
+* The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. Which is of course all economcially captured by dob:Result. A working list of properties is available in [Predefined Instances](#predefined-instances)
+* Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
+
+```turtle
+did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
+    prov:used did:pipeline_height_dgfhvuy63-4621-4b50-b2e6-597ee05f86785 ;
+    sosa:hasFeatureOfInterest did:zone_a7d8239e-a998-46ca-9b38-6de906701389 ;
+    ssn:forProperty dop:Height
+    qudt:numericValue "0.52"^^xsd:float ;
+    qudt:hasUnit qudt-unit:M .
+
+did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
+        bot:Zone ;
+    sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
+    dob:hasUPRN 906700039263 .
+```
+
+<!-- ```turtle
+did:result_1234 a dob:Result , qudt:QuantityValue ;
+    prov:wasGeneratedBy did:activity_1234 ;
+    qudt:numericValue "0.52"^^xsd:float ;
+    qudt:hasUnit qudt-unit:M .
+    
+did:activity_1234 a prov:Activity ;
+    prov:generated did:result_1234 ;
+    sosa:hasFeatureOfInterest did:window_1234 ;
+    ssn:forProperty dop:Height .
+``` -->
+
+* Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
+
+```turtle
+did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
+    prov:used did:pipeline_os_uprn_ttl_c67cc713-4621-4b50-b2e6-597ee05f5f2a ;
+    sosa:hasFeatureOfInterest did:zone_a7d8239e-a998-46ca-9b38-6de906701389 ;
+    ssn:forProperty dop:EnergyRating .
+    dop:energyRating dop:EPC_Energy_Rating_A ;
+    dop:energyRatingSystem dop:UK_EPC ;
+    dct:issued "2024-01-01"^^xsd:date .
+
+did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
+        bot:Zone ;
+    sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
+    dob:hasUPRN 906700039263 .
+```
+
+<!-- ```turtle
+did:result_1235 a dob:Result ;
+    prov:wasGeneratedBy did:activity_1235 ;
+    dop:energyRating dop:EPC_Energy_Rating_A ;
+    dop:energyRatingSystem dop:UK_EPC ;
+    dct:issued "2024-01-01"^^xsd:date .
+    
+did:activity-1235 a prov:Activity ;
+    prov:generated did:result_1235 ;
+    sosa:hasFeatureOfInterest did:zone_1235 ;
+    ssn:forProperty dop:EnergyRating .
+```
+
+```turtle
+did:result_1236 a dob:Result ;
+    prov:wasGeneratedBy did:activity_1236 ;
+    sosa:hasSimpleResult dop:AluminiumWood ; ????
+    dct:issued "2024-01-01"^^xsd:date .
+    
+did:activity-1236 a prov:Activity ;
+    prov:generated did:result_1236 ;
+    sosa:hasFeatureOfInterest did:zone_1235 ;
+    ssn:forProperty dop:ConstructionType .
+``` -->
+
+These custom properties are not well developed so are not documented here. 
+
+* Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common `wgs84:lat` and `wgs84:long` [[W3C BASIC GEO](#w3c-basic-geo)].
+
+If we proceed with the above structure, a table of instances of `ssn:Property` [[VOCAB SSN](#vocab-ssn)] and their associated object/datatype properties will be released. 
+
+The codelists used may include those recommended or created by 
+
+* [ONS](https://github.com/ONSdigital/application-profile/blob/draft/code-lists.md)
+* [SDMX](http://purl.org/linked-data/sdmx/2009/code#)
+* [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs)
+
 
 ## Sensor Observations
 
@@ -99,14 +238,14 @@ The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#v
 
 Using `sosa:Observation` is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
 
-It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data.
+It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data. This information has been economically condensed into the singular dob:Result class.
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * [dob:Result](#dobresult)
 * prov:Activity [[PROV-O](#prov-o)]
 * prov:Plan [[PROV-O](#prov-o)]
-* prov:SoftwareAgent [[PROV-O](#prov-o)]
+* prov:Agent [[PROV-O](#prov-o)]
 * skos:Concept [[SKOS-REFERENCE](#skos-reference)]
 * ssn:Property [[VOCAB-SSN](#vocab-ssn)]
 * ssn:Deployment [[VOCAB-SSN](#vocab-ssn)]
@@ -125,7 +264,26 @@ Classes and properties in this diagram:
 * sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
 * sosa:madeBySensor [[VOCAB-SSN](#vocab-ssn)]
 * sosa:madeObservation [[VOCAB-SSN](#vocab-ssn)]
-* sosa:resultTime [[VOCAB-SSN](#vocab-ssn)]
+* sosa:resultTime [[VOCAB-SSN](#vocab-ssn)] -->
+
+## Sensor Metadata
+
+<!-- <div align="center">
+    <img src="resources/sensor_metadata.png" alt="Diagram">
+</div> -->
+
+Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). We will likely only include basic information in the graph, e.g. camera type, device serial, which INS it is deployed with. Full calibration files describing sensor geometry for sensor fusion purposes will be linked to as URI literals.
+
+This section of the ontology is currently unstable and will be for internal use. Describing sensor systems will likely only be of interest/use to xRI for data provenance purporses. 
+
+## Software Pipelines
+
+<div align="center">
+    <img src="resources/file_metadata.png" alt="Diagram">
+</div>
+
+Inspiration is taken from prov as well as [MLFlow2PROV](#mlflow2prov), however we opt for an initially simpler description of software pipelines by linking to repositories, which can have lots of information about authorship etc... and then we only really require knowledge of a tagged release of source code to know the code used from this repository that is used in a pipeline. A software pipeline can link to multiple repositories. We accept the current limitation of not knowing which script(s) is directly employed, this may be a direction of future development. However, encouraging atomic repos with singular purposes may generally be good practice for managing pipeline provenance so this may not be an issue and simply an opinated way in which to develop data processing that is surfaced as linked data.
+
 
 ## External Datasets
 
@@ -139,7 +297,7 @@ DCAT is widely used in open linked data. Some of the organisations that use DCAT
 
 We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * [dob:Result](#dobresult)
 * prov:Activity [[PROV-O](#prov-o)]
@@ -163,67 +321,7 @@ Classes and properties in this diagram:
 * dct:publisher [[DCTERMS](#dcterms)]
 * dct:spatial [[DCTERMS](#dcterms)]
 * dct:title [[DCTERMS](#dcterms)]
-* dct:description [[DCTERMS](#dcterms)]
-
-## Results
-
-This section is about how we would present our results and observations (around the class `dob:Result`).
-
-The general structure is as follows:
-
-* The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. A working list of properties is available in [Predefined Instances](#predefined-instances)
-* Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
-
-```turtle
-did:result_1234 a dob:Result , qudt:QuantityValue ;
-    prov:wasGeneratedBy did:activity_1234 ;
-    qudt:numericValue "0.52"^^xsd:float ;
-    qudt:hasUnit qudt-unit:M .
-    
-did:activity_1234 a prov:Activity ;
-    prov:generated did:result_1234 ;
-    sosa:hasFeatureOfInterest did:window_1234 ;
-    ssn:forProperty dop:Height .
-```
-
-* Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
-
-```turtle
-did:result_1235 a dob:Result ;
-    prov:wasGeneratedBy did:activity_1235 ;
-    dop:energyRating dop:EPC_Energy_Rating_A ;
-    dop:energyRatingSystem dop:UK_EPC ;
-    dct:issued "2024-01-01"^^xsd:date .
-    
-did:activity-1235 a prov:Activity ;
-    prov:generated did:result_1235 ;
-    sosa:hasFeatureOfInterest did:zone_1235 ;
-    ssn:forProperty dop:EnergyRating .
-```
-
-```turtle
-did:result_1236 a dob:Result ;
-    prov:wasGeneratedBy did:activity_1236 ;
-    sosa:hasSimpleResult dop:AluminiumWood ; ????
-    dct:issued "2024-01-01"^^xsd:date .
-    
-did:activity-1236 a prov:Activity ;
-    prov:generated did:result_1236 ;
-    sosa:hasFeatureOfInterest did:zone_1235 ;
-    ssn:forProperty dop:ConstructionType .
-```
-
-These custom properties are not well developed so are not documented here. 
-
-* Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common `wgs84:lat` and `wgs84:long` [[W3C BASIC GEO](#w3c-basic-geo)].
-
-If we proceed with the above structure, a table of instances of `ssn:Property` [[VOCAB SSN](#vocab-ssn)] and their associated object/datatype properties will be released. 
-
-The codelists used may include those recommended or created by 
-
-* [ONS](https://github.com/ONSdigital/application-profile/blob/draft/code-lists.md)
-* [SDMX](http://purl.org/linked-data/sdmx/2009/code#)
-* [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs)
+* dct:description [[DCTERMS](#dcterms)] -->
 
 ## Zone Identifier and Location
 
@@ -241,12 +339,12 @@ The `within:outputarea` property is an [ONS Geography Linked Data](#ons-geograph
 
 An [output area](https://www.ons.gov.uk/methodology/geography/ukgeographies/statisticalgeographies) [[ONS Geography Linked Data](#ons-geography-linked-data)] is the lowest level of geographical area for census statistics. It is maintained by the ONS and is updated every 10 years following the census. 
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * `bot:Zone` [[BOT](#bot)]
 * [dob:hasUPRN](#dobhasuprn)
 * `within:outputarea` [[ONS Geography Linked Data](#ons-geography-linked-data)]
-* `sid:` [[ONS Geography Linked Data](#ons-geography-linked-data)]
+* `sid:` [[ONS Geography Linked Data](#ons-geography-linked-data)] -->
 
 ## Zone Topology and Elements
 
@@ -256,7 +354,7 @@ Classes and properties in this diagram:
 
 All zones and elements are instances of `sosa:FeatureOfInterest`. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
 
-Classes and properties in this diagram:
+<!-- Classes and properties in this diagram:
 
 * bot:Zone [[BOT](#bot)]
 * bot:Building [[BOT](#bot)]
@@ -266,60 +364,7 @@ Classes and properties in this diagram:
 * beo:Window [[BEO](#beo)]
 * bot:hasElement [[BOT](#bot)]
 * bot:hasStorey [[BOT](#bot)]
-* bot:hasSubElement [[BOT](#bot)]
-
-## Sensor Metadata
-
-<!-- <div align="center">
-    <img src="resources/sensor_metadata.png" alt="Diagram">
-</div> -->
-
-Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). We will likely only include basic information in the graph, e.g. camera type, device serial, which INS it is deployed with. Full calibration files describing sensor geometry for sensor fusion purposes will be linked to as URI literals.
-
-This section of the ontology is currently unstable and will be for internal use. Describing sensor systems will likely only be of interest/use to xRI for data provenance purporses. 
-
-## Software Pipelines
-
-<div align="center">
-    <img src="resources/file_metadata.png" alt="Diagram">
-</div>
-As our current files are hosted on GitHub, tracking the provenance of these files involves tracking Git commits. This takes the form of the Git commits section of the [MLFlow2PROV](#mlflow2prov) model. This section will also be for internal use and unlikely to be released publicly. The relevant classes and properties suggested here are not included in the current documentation.
-
-Inferences derived from ML Pipelines may be described using the [MLFlow2PROV](#mlflow2prov) or [DLProv](#dlprov) models.
-
-## All Classes
-
-The following classes are documented in more detail [here](../voc/index.ttl).
-
-#### dob:Result
-The Result of an Activity. This class is limited to distinct data points and does not represent collections or aggregations of data.
-
-## DOB Properties
-
-The following properties are documented in more detail [here](../voc/index.ttl).
-
-#### dob:hasUPRN
-The Unique Property Reference Number [[UPRN](#uprn)] of the zone.
-
-#### dob:usedProcedure
-A relation that links to a re-usable Plan used in an Activity.
-
-#### dob:wasInformedByDeployment
-An activity A is dependent on or informed by a deployment D, by way of some unspecified entity that is generated in deployment D and used by A.
-
-## BNG Properties
-
-The following wrapper vocabulary is documented in more detail [here](../voc/epsg-27700/index.ttl).
-
-#### bng:easting
-
-#### bng:northing
-
-## Predefined Instances
-
-A discussed in the [Results](#results) section, a list of predefined instances will be released. This will include a list of instances of `ssn:Property`. 
-
-An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
+* bot:hasSubElement [[BOT](#bot)] -->
 
 ## Reused Ontologies
 
