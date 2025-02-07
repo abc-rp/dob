@@ -2,7 +2,7 @@
 
 # DOB DRAFT Version 0.0.1
 
-## Contents
+<!-- ## Contents
 
 * [DOB Overview](#dob-overview)
 * [Sensor Observations](#sensor-observations)
@@ -17,9 +17,9 @@
 * [BNG Properties](#bng-properties)
 * [Predefined Instances](#predefined-instances)
 * [Reused Ontologies](#reused-ontologies)
-* [Alignments](#alignments)
+* [Alignments](#alignments) -->
 
-Note: The diagrams align with Alex Donker's [Ontology Design Template](#ontology-design-template), as well as the colouring used in the W3C PROV Ontology [[PROV-O](#prov-o)].
+<!-- Note: The diagrams align with Alex Donker's [Ontology Design Template](#ontology-design-template), as well as the colouring used in the W3C PROV Ontology [[PROV-O](#prov-o)]. -->
 
 The following namespace prefixes are used throughout this document.
 
@@ -171,8 +171,7 @@ This section is about how we would present our results and observations (around 
 
 The general structure is as follows:
 
-* The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. A working list of properties is available in [Predefined Instances](#predefined-instances)
-
+* The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. Which is of course all economcially captured by dob:Result. A working list of properties is available in [Predefined Instances](#predefined-instances)
 * Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
 
 ```turtle
