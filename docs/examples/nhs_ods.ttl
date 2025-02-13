@@ -1,0 +1,92 @@
+@prefix bot:    <https://w3id.org/bot#> .
+@prefix schema: <https://schema.org/> .
+@prefix did: <https://w3id.org/dob/id/> .
+# https://github.com/w3c-lbd-cg/bot/blob/master/SCHEMAORGAlignment.ttl
+
+did:OS_Open_UPRN_August2024 a dcat:Distribution ;
+    dct:issued "2024-08-01"^^xsd:date ; 
+    dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
+    dcat:accessURL <https://osdatahub.os.uk/downloads/open/OpenUPRN/> .
+
+did:OS_UPRN a dcat:Dataset ;
+    dct:title "OS Open UPRN"@en ;
+    dct:description "An open dataset containing all the Unique Property Reference Numbers (UPRNs) found in AddressBase Premium, with their respective geometries in British National Grid and Latitude, Longitude."@en ;
+    dcat:distribution did:OS_Open_UPRN_August2024 ;
+    dct:licence <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    dct:publisher <https://www.ordnancesurvey.co.uk/> ;
+    dcat:theme dop:Location .
+
+did:NHS_ODS_February2025 a dcat:Distribution ;
+    dct:issued "2025-02-12"^^xsd:date ; 
+    dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
+    dcat:accessURL <https://www.odsdatasearchandexport.nhs.uk/> .
+
+did:NHS_ODS a dcat:Dataset ;
+    dct:title "NHS Organisation Data Service (ODS)"@en ;
+    dct:description "The Organisation Data Service (ODS) is a national service for managing reference information about organisations that are involved in health and social care in England and beyond."@en ;
+    dcat:distribution did:NHS_ODS_February2025 ;
+    dct:licence <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    dct:publisher <https://digital.nhs.uk/> ;
+    dcat:theme dop:Location .
+
+did:SoftwarePipeline_AIMS_5f4fc6e
+    rdf:type dob:SoftwarePipeline ;
+    dob:hasRepository did:CodeRepository_AIMS ;
+    # Do we need the extra dob:CodeRevision Step
+    dob:CodeRevision "5f4fc6e842334abc76d26bef2c92e66cc8fa9452" .
+
+# did:CodeRepository_AIMS
+#     rdf:type dob:CodeRepository ;
+#     schema:codeRepository "https://github.com/ONSdigital/aims-api"^^xsd:AnyURI ;
+#     schema:name "AIMS 1 Scala API" .
+
+did:SoftwareSourceCode_AIMS
+    rdf:type schema:SoftwareSourceCode ;
+    rdf:type prov:Plan ;
+    schema:name "AIMS 1 Scala API" ;
+    schema:codeRepository "https://github.com/ONSdigital/aims-api" ;
+    schema:licence "MIT" .
+    # schema:version "5f4fc6e842334abc76d26bef2c92e66cc8fa9452" .
+
+did:zone_550e8400-e29b-41d4-a716-446655440000
+    rdf:type sosa:FeatureOfInterest ;
+    rdf:type bot:Zone ;
+    # rdf:type schema:Place ; 
+    schema:identifier did:uprn_20d42b74-304c-4c01-9072-2d66e35eb741 ;
+    schema:identifier did:ods_b7e34967-c995-4cfe-b82c-7ca45978eecb ;
+    sosa:isFeatureOfInterestOf did:activity_afb3ae07-cbb8-4791-9149-7a0439c2c269 .
+
+did:uprn_20d42b74-304c-4c01-9072-2d66e35eb741
+    # rdf:type dob:Result ;
+    rdf:type schema:PropertyValue ;
+    prov:wasInformedBy did:OS_Open_UPRN_August2024 ;
+    # sosa:hasFeatureOfInterest did:zone-550e8400-e29b-41d4-a716-44665544000 ;
+    schema:propertyID "UPRN" ;
+    schema:value "100021907534" ;
+    wgs84:lat "51.47756"^^xsd:float ;
+    wgs84:long "-0.1084862"^^xsd:float .
+
+did:ods_b7e34967-c995-4cfe-b82c-7ca45978eecb
+    # rdf:type dob:Result ;
+    rdf:type schema:PropertyValue ;
+    prov:wasInformedBy did:NHS_ODS_February2025 ;
+    prov:used did:SoftwarePipeline_AIMS_5f4fc6e ;
+    # sosa:hasFeatureOfInterest did:zone-550e8400-e29b-41d4-a716-44665544000 ;
+    schema:propertyID "ODS" ;
+    schema:value "S2R6V" .
+    # # Need to find a better name for this one:
+    # ex:requiresClericalIntervention "false"^^xsd:boolean ;
+    # schema:name "CHEC @ VASSALL MEDICAL CENTRE";
+    # ex:status "Active" ;
+    # ex:legalStartDate "2024-04-16"^^xsd:date ;
+    # ex:legalEndDate "" ;
+    # ex:operationalStartDate "2024-04-16"^^xsd:date ;
+    # ex:operationalEndDate "" ;
+    # schema:address [
+    #   a schema:PostalAddress ;
+    #   schema:streetAddress "89 VASSALL ROAD" ;
+    #   schema:addressLocality "LONDON" ;
+    #   schema:postalCode "SW9 6NA"
+    # ] .
+
+
