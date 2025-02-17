@@ -103,6 +103,38 @@ This allows users to connect DOB’s unique zone identifiers to existing dataset
 Where possible, DOB will publish alignment data under open licences like `CC-BY` to facilitate reuse.  
 If source data has specific licensing requirements (e.g., OS UPRN data using `OGL-UK-3.0`), these licences will be reflected in the alignment graph licence.
 
-## Feedback and Submission
+## Feedback and Contributions
 
 Please submit any feedback, suggestions, or issues through our GitHub issue tracker. Contributions are welcome as we improve the design.
+
+### How to Contribute
+
+#### 1. Reporting Issues
+If you find a bug, inconsistency, or have suggestions for improvements, please open an issue in our [GitHub issue tracker](https://github.com/abc-rp/dob/issues).
+
+When submitting an issue:
+- Provide a clear and concise description of the problem.
+- If possible suggest potential solutions or improvements.
+
+#### 2. Contributing to the Ontology
+If you want to propose changes or additions to the DOB ontology:
+1. **Check for existing discussions**: Review open issues and discussions to see if your suggestion has already been proposed.
+2. **Fork the repository**: Create your own copy of the repository to work on.
+3. **Make changes**: Edit the ontology files in accordance with the [ontology guidelines](resources/ontology.md).
+4. **Submit a pull request**:
+   - Ensure that your modifications follow Linked Data best practices.
+   - Provide a description of why the change is necessary.
+   - Reference any related issues in the pull request description.
+
+A general aim of the DOB ontology is to be as lightweight as possible. Only suggest new classes or properties where no existing ontology (especially bot, prov-o, ssn/sosa, dcterms or dcat) do not suffice.
+
+#### 3. Improving Documentation
+Clear documentation is essential. You can contribute by:
+- Fixing typos and improving readability.
+- Expanding sections with more details or examples.
+- Adding translations (if applicable).
+
+To contribute documentation changes:
+1. Open an issue or check for existing documentation updates.
+2. Fork the repository and edit markdown or ttl files.
+3. Submit a pull request.
