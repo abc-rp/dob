@@ -109,7 +109,7 @@ Please submit any feedback, suggestions, or issues through our GitHub issue trac
 
 ### How to Contribute
 
-**NOTE:** No pull request will be accepted or manually reviewed until all ttl files in the repository are passing the correct formatting test.
+**NOTE:** No pull request will be accepted or reviewed until all ttl files in the repository are passing the correct formatting test.
 
 #### 1. Reporting Issues
 If you find a bug, inconsistency, or have suggestions for improvements, please open an issue in our [GitHub issue tracker](https://github.com/abc-rp/dob/issues).
