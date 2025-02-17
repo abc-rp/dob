@@ -128,7 +128,7 @@ If you want to propose changes or additions to the DOB ontology:
    - Provide a description of why the change is necessary.
    - Reference any related issues in the pull request description.
 
-A general aim of the DOB ontology is to be as lightweight as possible. Only suggest new classes or properties where no existing ontology (especially bot, prov-o, ssn/sosa, dcterms or dcat) do not suffice.
+A general aim of the DOB ontology is to be as lightweight as possible. Only suggest new classes or properties where no existing ontology (especially bot, prov-o, ssn/sosa, dcterms or dcat) suffice.
 
 #### 3. Improving Documentation
 Clear documentation is essential. You can contribute by:
