@@ -56,12 +56,12 @@ did:zone_550e8400-e29b-41d4-a716-446655440000
 
 did:uprn_100021907534
     rdf:type dob:UPRNValue ;
-    prov:wasDerivedFrom did:OS_Open_UPRN_August2024 ;
+    prov:hadPrimarySource did:OS_Open_UPRN_August2024 ;
     schema:value "100021907534" .
 
 did:ods_S2R6V
     rdf:type dob:ODSValue ;
-    prov:wasDerivedFrom did:NHS_ODS_February2025 ;
+    prov:hadPrimarySource did:NHS_ODS_February2025 ;
     prov:wasGeneratedBy did:SoftwarePipeline_AIMS_5f4fc6e ;
     schema:valueReference "Accept result"^^xsd:string ;
     # schema:valueReference "Requires clerical intervention"^^xsd:string ;
