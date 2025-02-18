@@ -51,42 +51,18 @@ did:SoftwareSourceCode_AIMS
 did:zone_550e8400-e29b-41d4-a716-446655440000
     rdf:type sosa:FeatureOfInterest ;
     rdf:type bot:Zone ;
-    # rdf:type schema:Place ; 
-    schema:identifier did:uprn_20d42b74-304c-4c01-9072-2d66e35eb741 ;
-    schema:identifier did:ods_b7e34967-c995-4cfe-b82c-7ca45978eecb ;
-    sosa:isFeatureOfInterestOf did:activity_afb3ae07-cbb8-4791-9149-7a0439c2c269 .
+    schema:identifier did:uprn_100021907534 ;
+    schema:identifier did:ods_S2R6V .
 
-did:uprn_20d42b74-304c-4c01-9072-2d66e35eb741
-    # rdf:type dob:Result ;
-    rdf:type schema:PropertyValue ;
-    prov:wasInformedBy did:OS_Open_UPRN_August2024 ;
-    # sosa:hasFeatureOfInterest did:zone-550e8400-e29b-41d4-a716-44665544000 ;
-    schema:propertyID "UPRN" ;
-    schema:value "100021907534" ;
-    wgs84:lat "51.47756"^^xsd:float ;
-    wgs84:long "-0.1084862"^^xsd:float .
+did:uprn_100021907534
+    rdf:type dob:UPRNValue ;
+    prov:wasDerivedFrom did:OS_Open_UPRN_August2024 ;
+    schema:value "100021907534" .
 
-did:ods_b7e34967-c995-4cfe-b82c-7ca45978eecb
-    # rdf:type dob:Result ;
-    rdf:type schema:PropertyValue ;
-    prov:wasInformedBy did:NHS_ODS_February2025 ;
-    prov:used did:SoftwarePipeline_AIMS_5f4fc6e ;
-    # sosa:hasFeatureOfInterest did:zone-550e8400-e29b-41d4-a716-44665544000 ;
-    schema:propertyID "ODS" ;
+did:ods_S2R6V
+    rdf:type dob:ODSValue ;
+    prov:wasDerivedFrom did:NHS_ODS_February2025 ;
+    prov:wasGeneratedBy did:SoftwarePipeline_AIMS_5f4fc6e ;
+    schema:valueReference "Accept result"^^xsd:string ;
+    # schema:valueReference "Requires clerical intervention"^^xsd:string ;
     schema:value "S2R6V" .
-    # # Need to find a better name for this one:
-    # ex:requiresClericalIntervention "false"^^xsd:boolean ;
-    # schema:name "CHEC @ VASSALL MEDICAL CENTRE";
-    # ex:status "Active" ;
-    # ex:legalStartDate "2024-04-16"^^xsd:date ;
-    # ex:legalEndDate "" ;
-    # ex:operationalStartDate "2024-04-16"^^xsd:date ;
-    # ex:operationalEndDate "" ;
-    # schema:address [
-    #   a schema:PostalAddress ;
-    #   schema:streetAddress "89 VASSALL ROAD" ;
-    #   schema:addressLocality "LONDON" ;
-    #   schema:postalCode "SW9 6NA"
-    # ] .
-
-
