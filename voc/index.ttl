@@ -63,7 +63,8 @@ dob:Result a owl:Class ;
 
 
 dob:SoftwarePipeline a owl:Class ;
-    rdfs:subClassOf prov:Plan ;
+    rdfs:subClassOf prov:Plan ,
+                    schema:SoftwareApplication ;
     rdfs:label "Software Pipeline"@en ;
     rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en .
 
@@ -74,13 +75,13 @@ dob:CodeRepository a owl:Class ;
     rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en .
 
 dob:CodeRevision a owl:Class ;
-    rdfs:subClassOf 
-        prov:Entity ,
-        [
-            a owl:Restriction ;
-            owl:onProperty dob:tagURI ;
-            owl:cardinality "1"^^xsd:nonNegativeInteger
-        ] ;
+    rdfs:subClassOf prov:Entity ,
+                    schema:SoftwareSourceCode ,
+                    [
+                        a owl:Restriction ;
+                        owl:onProperty dob:tagURI ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                    ] ;
     rdfs:label "Code Revision"@en ;
     rdfs:comment "A specific tagged revision of code in a repository."@en .
 
@@ -99,12 +100,14 @@ dob:hasUPRN a owl:DatatypeProperty ;
 ### Code/Version Control-Related Properties
 dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "tag URL"@en ;
+    rdfs:subPropertyOf schema:url ;
     rdfs:comment "A full external link for the tag (e.g., on GitHub)."@en ;
     rdfs:domain dob:CodeRevision ;
     rdfs:range xsd:anyURI .
 
 dob:hasCodeRevision a owl:ObjectProperty ;
-    rdfs:subPropertyOf prov:wasRevisionOf ;
+    rdfs:subPropertyOf prov:wasRevisionOf ,
+                       schema:hasPart ;   
     rdfs:label "has code revision"@en ;
     rdfs:comment "Links a Code Repository to the Code Revisions it contains."@en ;
     rdfs:domain dob:CodeRepository ;
