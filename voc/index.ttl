@@ -61,6 +61,33 @@ dob:Result a owl:Class ;
         ]
     ] .
 
+dob:PropertyValue a owl:Class ;
+    rdfs:label "Property Value"@en ;
+    rdfs:comment "A property value is a specific value of a property of an entity."@en ;
+    rdfs:subClassOf prov:Entity ,
+                    schema:PropertyValue .
+
+dob:UPRNValue a owl:Class ;
+    rdfs:label "Unique Property Reference Number"@en ;
+    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain"@en ;
+    rdfs:seeAlso <https://www.ordnancesurvey.co.uk/public/unique-property-reference-numbers> ;
+    rdfs:subClassOf dob:PropertyValue ,
+                    [           
+                        a owl:Restriction ;
+                        owl:onProperty schema:propertyID ;
+                        owl:hasValue "UPRN"^^xsd:string
+                    ] .
+
+dob:ODSValue a owl:Class ;
+    rdfs:label "NHS Organisation Data Service (ODS) identifier"@en ;
+    rdfs:comment "The Organisation Data Service (ODS) is a national service for managing reference information about organisations that are involved in health and social care in England and beyond."@en ;
+    rdfs:seeAlso <https://www.odsdatasearchandexport.nhs.uk/> ;
+    rdfs:subClassOf dob:PropertyValue ,
+                    [           
+                        a owl:Restriction ;
+                        owl:onProperty schema:propertyID ;
+                        owl:hasValue "ODS"^^xsd:string
+                    ] .
 
 dob:SoftwarePipeline a owl:Class ;
     rdfs:subClassOf prov:Plan ,
@@ -88,14 +115,6 @@ dob:CodeRevision a owl:Class ;
 ###################################################
 ### PROPERTIES
 ###################################################
-
-dob:hasUPRN a owl:DatatypeProperty ;
-    rdfs:label "Unique Property Reference Number"@en ;
-    rdfs:subPropertyOf dct:identifier ;
-    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain."@en ;
-    rdfs:seeAlso <https://www.geoplace.co.uk/addresses-streets/location-data/the-uprn> ;
-    rdfs:domain bot:Zone ;
-    rdfs:range xsd:integer .
 
 ### Code/Version Control-Related Properties
 dob:tagURI a owl:DatatypeProperty ;
