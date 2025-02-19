@@ -101,7 +101,7 @@ The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest
 
 | Property                 | Subproperty Of        | Domain                 | Range                | Description                                                                                                          |
 |--------------------------|-----------------------|------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------|
-| **dob:tagURI**           | *(none)*             | `dob:CodeRevision`     | `xsd:anyURI`         | A full external link for the tag (e.g., GitHub).                                                                     |
+| **dob:tagURI**           | `schema:url`             | `dob:CodeRevision`     | `xsd:anyURI`         | A full external link for the tag (e.g., GitHub).                                                                     |
 | **dob:hasCodeRevision**  | `prov:wasRevisionOf`  | `dob:CodeRepository`   | `dob:CodeRevision`   | Links a Code Repository to the Code Revisions it contains.                                                           |
 | **dob:usedCodeRevision** | `prov:used`           | `dob:SoftwarePipeline` | `dob:CodeRevision`   | Links a Software Pipeline to a specific code revision used in its execution.                                        |
 ---
