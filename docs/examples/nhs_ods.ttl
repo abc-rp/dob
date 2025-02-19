@@ -22,8 +22,7 @@ did:OS_UPRN
     dct:description "An open dataset containing all the Unique Property Reference Numbers (UPRNs) found in AddressBase Premium, with their respective geometries in British National Grid and Latitude, Longitude."@en ;
     dcat:distribution did:OS_Open_UPRN_August2024 ;
     dct:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    dct:publisher <https://www.ordnancesurvey.co.uk/> ;
-    dcat:theme dop:Location .
+    dct:publisher <https://www.ordnancesurvey.co.uk/> .
 
 did:NHS_ODS_February2025
     a dcat:Distribution ;
@@ -37,8 +36,7 @@ did:NHS_ODS
     dct:description "The Organisation Data Service (ODS) is a national service for managing reference information about organisations that are involved in health and social care in England and beyond."@en ;
     dcat:distribution did:NHS_ODS_February2025 ;
     dct:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    dct:publisher <https://digital.nhs.uk/> ;
-    dcat:theme dop:Location .
+    dct:publisher <https://digital.nhs.uk/> .
 
 did:SoftwarePipeline_AIMS_5f4fc6e
     a dob:SoftwarePipeline ;
