@@ -1,0 +1,30 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix did: <https://w3id.org/dob/id/> .
+
+did:result_6e2dce6a-b941-4bc4-be09-977a02221b31
+    a dob:Result,
+      schema:ImageObject ;
+    schema:contentUrl <https://example.com/v1/result/6e2dce6a-b941-4bc4-be09-977a02221b31> ;
+    schema:thumbnailUrl <https://example.com/v1/result/6e2dce6a-b941-4bc4-be09-977a02221b31> ;
+    schema:encodingFormat "image/webp" ;
+    schema:width "640"^^xsd:integer ;
+    exif:colorSpace "sRGB" .
+
+did:result_2aa43a2e-cb51-46db-b298-cddbc52ffc60
+    a dob:Result,
+      schema:ImageObject ;
+    schema:contentUrl <https://example.com/v1/result/2aa43a2e-cb51-46db-b298-cddbc52ffc60> ;
+    schema:thumbnailUrl <https://example.com/v1/result/2aa43a2e-cb51-46db-b298-cddbc52ffc60> ;
+    schema:encodingFormat "image/webp" ;
+    schema:width "640"^^xsd:integer ;
+    exif:colorSpace "sRGB" .
+
+did:result_64eae5e1-8cca-42d1-ac2e-9c65489d2930
+    a dob:Result,
+      schema:DataDownload ;
+    schema:contentUrl <https://example.com/v1/result/64eae5e1-8cca-42d1-ac2e-9c65489d2930> ;
+    schema:encodingFormat "application/x-npz" ;
+    schema:width "640"^^xsd:integer .
