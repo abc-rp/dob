@@ -1,66 +1,74 @@
-@prefix bot:    <https://w3id.org/bot#> .
-@prefix schema: <https://schema.org/> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix did: <https://w3id.org/dob/id/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix bot: <https://w3id.org/bot#> .
 # https://github.com/w3c-lbd-cg/bot/blob/master/SCHEMAORGAlignment.ttl
 
-did:OS_Open_UPRN_August2024 a dcat:Distribution ;
-    dct:issued "2024-08-01"^^xsd:date ; 
+did:OS_Open_UPRN_August2024 
+    a dcat:Distribution ;
+    dct:issued "2024-08-01"^^xsd:date ;
     dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
     dcat:accessURL <https://osdatahub.os.uk/downloads/open/OpenUPRN/> .
 
-did:OS_UPRN a dcat:Dataset ;
+did:OS_UPRN 
+    a dcat:Dataset ;
     dct:title "OS Open UPRN"@en ;
     dct:description "An open dataset containing all the Unique Property Reference Numbers (UPRNs) found in AddressBase Premium, with their respective geometries in British National Grid and Latitude, Longitude."@en ;
     dcat:distribution did:OS_Open_UPRN_August2024 ;
-    dct:licence <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    dct:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
     dct:publisher <https://www.ordnancesurvey.co.uk/> ;
     dcat:theme dop:Location .
 
-did:NHS_ODS_February2025 a dcat:Distribution ;
-    dct:issued "2025-02-12"^^xsd:date ; 
+did:NHS_ODS_February2025
+    a dcat:Distribution ;
+    dct:issued "2025-02-12"^^xsd:date ;
     dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
     dcat:accessURL <https://www.odsdatasearchandexport.nhs.uk/> .
 
-did:NHS_ODS a dcat:Dataset ;
+did:NHS_ODS
+    a dcat:Dataset ;
     dct:title "NHS Organisation Data Service (ODS)"@en ;
     dct:description "The Organisation Data Service (ODS) is a national service for managing reference information about organisations that are involved in health and social care in England and beyond."@en ;
     dcat:distribution did:NHS_ODS_February2025 ;
-    dct:licence <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    dct:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
     dct:publisher <https://digital.nhs.uk/> ;
     dcat:theme dop:Location .
 
 did:SoftwarePipeline_AIMS_5f4fc6e
-    rdf:type dob:SoftwarePipeline ;
-    dob:hasRepository did:CodeRepository_AIMS ;
-    # Do we need the extra dob:CodeRevision Step
-    dob:CodeRevision "5f4fc6e842334abc76d26bef2c92e66cc8fa9452" .
+    a dob:SoftwarePipeline ;
+    dob:usedCodeRevision did:CodeRevision_AIMS_5f4fc6e ;
+    prov:used did:CodeRepository_AIMS .
 
-# did:CodeRepository_AIMS
-#     rdf:type dob:CodeRepository ;
-#     schema:codeRepository "https://github.com/ONSdigital/aims-api"^^xsd:AnyURI ;
-#     schema:name "AIMS 1 Scala API" .
-
-did:SoftwareSourceCode_AIMS
-    rdf:type schema:SoftwareSourceCode ;
-    rdf:type prov:Plan ;
+did:CodeRepository_AIMS
+    a dob:CodeRepository ;
     schema:name "AIMS 1 Scala API" ;
     schema:codeRepository "https://github.com/ONSdigital/aims-api" ;
-    schema:licence "MIT" .
-    # schema:version "5f4fc6e842334abc76d26bef2c92e66cc8fa9452" .
+    schema:license "MIT" ;
+    dob:hasCodeRevision did:CodeRevision_AIMS_5f4fc6e .
+
+did:CodeRevision_AIMS_5f4fc6e
+    a dob:CodeRevision ;
+    dob:tagURI <https://github.com/ONSdigital/aims-api/commit/5f4fc6e842334abc76d26bef2c92e66cc8fa9452> .
 
 did:zone_550e8400-e29b-41d4-a716-446655440000
-    rdf:type sosa:FeatureOfInterest ;
-    rdf:type bot:Zone ;
+    a sosa:FeatureOfInterest,
+      bot:Zone ;
     schema:identifier did:uprn_100021907534 ;
     schema:identifier did:ods_S2R6V .
 
 did:uprn_100021907534
-    rdf:type dob:UPRNValue ;
+    a dob:UPRNValue ;
     prov:hadPrimarySource did:OS_Open_UPRN_August2024 ;
     schema:value "100021907534" .
 
 did:ods_S2R6V
-    rdf:type dob:ODSValue ;
+    a dob:ODSValue ;
     prov:hadPrimarySource did:NHS_ODS_February2025 ;
     prov:wasGeneratedBy did:SoftwarePipeline_AIMS_5f4fc6e ;
     schema:valueReference "Accept result"^^xsd:string ;
