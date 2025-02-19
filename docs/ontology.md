@@ -338,7 +338,7 @@ Instances of `bot:Zone` serve as our unique identifiers for buildings, storeys, 
 
 The class `bot:Zone` [[BOT](#bot)] is defined as "A part of the physical world or a virtual world that is inherently both located in this world and has a 3D spatial extent". This includes individual buildings, a site such as a school or park, individual flats or even specific rooms. The reason for using this class is because of the range of objects that UPRNs [[UPRN](#uprn)] have been assigned to (they have been assigned to objects like bus shelters and post boxes). 
 
-As UPRNs are intrinsic to the building and describe the building all the way from its construction to demolition, the property `dob:hasUPRN` is one of the few properties that is connected directly to the `bot:Zone` without an intermediate node. 
+As UPRNs are intrinsic to the building and describe the building all the way from its construction to demolition. This is described as a subclass of the schema:PropertyValue, this approach allows the creation of custom identifier classes for more than just UPRN and allows the alignment of multiple identifier systems.
 
 The `within:outputarea` property is an [ONS Geography Linked Data](#ons-geography-linked-data) property, and the E00 identifier refers to a specific output area. This is used to enable us to use their [SPARQL endpoint](https://statistics.data.gov.uk/sparql) [[SPARQL](#sparql)] for querying to allow for more detailed location data. 
 
