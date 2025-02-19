@@ -154,7 +154,10 @@ did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
 did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
         bot:Zone ;
     sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
-    dob:hasUPRN 906700039263 .
+    schema:identifier dob:uprn_906700039263 .
+
+dob:uprn_906700039263 a dob:UPRNValue ;
+    schema:value "906700039263" .
 ```
 
 <!-- ```turtle
@@ -183,7 +186,10 @@ did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
 did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
         bot:Zone ;
     sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
-    dob:hasUPRN 906700039263 .
+    schema:identifier dob:uprn_906700039263 .
+
+dob:uprn_906700039263 a dob:UPRNValue ;
+    schema:value "906700039263" .
 ```
 
 <!-- ```turtle
