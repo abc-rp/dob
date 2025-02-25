@@ -1,6 +1,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix bot: <https://w3id.org/bot#> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -81,6 +82,7 @@ dob:UPRNValue a owl:Class ;
 dob:ODSValue a owl:Class ;
     rdfs:label "NHS Organisation Data Service (ODS) identifier"@en ;
     rdfs:comment "The Organisation Data Service (ODS) is a national service for managing reference information about organisations that are involved in health and social care in England and beyond."@en ;
+    skos:note "It is recommended that dob:recommendationCodeAIMS be used to indicate matching confidence for this identifier."@en ;
     rdfs:seeAlso <https://www.odsdatasearchandexport.nhs.uk/> ;
     rdfs:subClassOf dob:PropertyValue ,
                     [           
