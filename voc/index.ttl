@@ -92,27 +92,27 @@ dob:ODSValue a owl:Class ;
                     ] .
 
 dob:SoftwarePipeline a owl:Class ;
-    rdfs:subClassOf prov:Plan ,
-                    schema:SoftwareApplication ;
     rdfs:label "Software Pipeline"@en ;
-    rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en .
+    rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en ;
+    rdfs:subClassOf prov:Plan ,
+                    schema:SoftwareApplication .
 
 dob:CodeRepository a owl:Class ;
-    rdfs:subClassOf prov:Entity ,
-                    schema:SoftwareSourceCode ;
     rdfs:label "Code Repository"@en ;
-    rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en .
+    rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en ;
+    rdfs:subClassOf prov:Entity ,
+                    schema:SoftwareSourceCode .
 
 dob:CodeRevision a owl:Class ;
+    rdfs:label "Code Revision"@en ;
+    rdfs:comment "A specific tagged revision of code in a repository."@en ;
     rdfs:subClassOf prov:Entity ,
                     schema:SoftwareSourceCode ,
                     [
                         a owl:Restriction ;
                         owl:onProperty dob:tagURI ;
                         owl:cardinality "1"^^xsd:nonNegativeInteger
-                    ] ;
-    rdfs:label "Code Revision"@en ;
-    rdfs:comment "A specific tagged revision of code in a repository."@en .
+                    ] .
 
 ###################################################
 ### PROPERTIES
@@ -121,16 +121,16 @@ dob:CodeRevision a owl:Class ;
 ### Code/Version Control-Related Properties
 dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "tag URL"@en ;
-    rdfs:subPropertyOf schema:url ;
     rdfs:comment "A full external link for the tag (e.g., on GitHub)."@en ;
+    rdfs:subPropertyOf schema:url ;
     rdfs:domain dob:CodeRevision ;
     rdfs:range xsd:anyURI .
 
 dob:hasCodeRevision a owl:ObjectProperty ;
-    rdfs:subPropertyOf prov:wasRevisionOf ,
-                       schema:hasPart ;   
     rdfs:label "has code revision"@en ;
     rdfs:comment "Links a Code Repository to the Code Revisions it contains."@en ;
+    rdfs:subPropertyOf prov:wasRevisionOf ,
+                       schema:hasPart ;   
     rdfs:domain dob:CodeRepository ;
     rdfs:range dob:CodeRevision .
 
