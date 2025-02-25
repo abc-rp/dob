@@ -140,14 +140,21 @@ dob:usedCodeRevision a owl:ObjectProperty ;
     rdfs:range dob:CodeRevision .
 
 dob:recommendationCode a owl:DatatypeProperty;
-    rdfs:label "AIMs matching recommendation code"@en ;
-    rdfs:comment "A code that represents the recommendation of the AIMS matching process. A for accepted and I for clerical intervention required."@en ;
+    rdfs:label "A generic value reference for confidence in matching identifiers."@en ;
+    rdfs:comment "A code that represents the recommendation a matching process. One should sub-property this for specific recommendation codes and add restrictions to the valid codes of the process."@en ;
     rdfs:subPropertyOf schema:valueReference ;
     rdfs:domain dob:PropertyValue ;
+    rdfs:range xsd:string .
+
+dob:recommendationCodeAIMS a owl:DatatypeProperty;
+    rdfs:label "AIMs matching recommendation code"@en ;
+    rdfs:comment "A code that represents the recommendation of the AIMS matching process. A for accepted and I for clerical intervention required."@en ;
+    rdfs:subPropertyOf dob:recommendationCode ;
     rdfs:range [
         a owl:Restriction ;
         owl:onDatatype xsd:string ;
         owl:withRestrictions (
             [ xsd:pattern "A|I" ]
         )
-    ] .
+    ] ;
+    rdfs:seeAlso <https://github.com/ONSdigital/aims-api/blob/v1.3.2/server/app/uk/gov/ons/addressIndex/server/utils/AIRatingHelper.scala> .
