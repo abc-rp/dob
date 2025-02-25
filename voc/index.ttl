@@ -149,6 +149,7 @@ dob:recommendationCode a owl:DatatypeProperty;
 dob:recommendationCodeAIMS a owl:DatatypeProperty;
     rdfs:label "AIMs matching recommendation code"@en ;
     rdfs:comment "A code that represents the recommendation of the AIMS matching process. A for accepted and I for clerical intervention required."@en ;
+    rdfs:seeAlso <https://github.com/ONSdigital/aims-api/blob/v1.3.2/server/app/uk/gov/ons/addressIndex/server/utils/AIRatingHelper.scala> ;
     rdfs:subPropertyOf dob:recommendationCode ;
     rdfs:range [
         a owl:Restriction ;
@@ -156,5 +157,4 @@ dob:recommendationCodeAIMS a owl:DatatypeProperty;
         owl:withRestrictions (
             [ xsd:pattern "A|I" ]
         )
-    ] ;
-    rdfs:seeAlso <https://github.com/ONSdigital/aims-api/blob/v1.3.2/server/app/uk/gov/ons/addressIndex/server/utils/AIRatingHelper.scala> .
+    ] .
