@@ -1,6 +1,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix bot: <https://w3id.org/bot#> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -81,6 +82,7 @@ dob:UPRNValue a owl:Class ;
 dob:ODSValue a owl:Class ;
     rdfs:label "NHS Organisation Data Service (ODS) identifier"@en ;
     rdfs:comment "The Organisation Data Service (ODS) is a national service for managing reference information about organisations that are involved in health and social care in England and beyond."@en ;
+    skos:note "It is recommended that dob:recommendationCodeAIMS be used to indicate matching confidence for this identifier."@en ;
     rdfs:seeAlso <https://www.odsdatasearchandexport.nhs.uk/> ;
     rdfs:subClassOf dob:PropertyValue ,
                     [           
@@ -90,27 +92,27 @@ dob:ODSValue a owl:Class ;
                     ] .
 
 dob:SoftwarePipeline a owl:Class ;
-    rdfs:subClassOf prov:Plan ,
-                    schema:SoftwareApplication ;
     rdfs:label "Software Pipeline"@en ;
-    rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en .
+    rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en ;
+    rdfs:subClassOf prov:Plan ,
+                    schema:SoftwareApplication .
 
 dob:CodeRepository a owl:Class ;
-    rdfs:subClassOf prov:Entity ,
-                    schema:SoftwareSourceCode ;
     rdfs:label "Code Repository"@en ;
-    rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en .
+    rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en ;
+    rdfs:subClassOf prov:Entity ,
+                    schema:SoftwareSourceCode .
 
 dob:CodeRevision a owl:Class ;
+    rdfs:label "Code Revision"@en ;
+    rdfs:comment "A specific tagged revision of code in a repository."@en ;
     rdfs:subClassOf prov:Entity ,
                     schema:SoftwareSourceCode ,
                     [
                         a owl:Restriction ;
                         owl:onProperty dob:tagURI ;
                         owl:cardinality "1"^^xsd:nonNegativeInteger
-                    ] ;
-    rdfs:label "Code Revision"@en ;
-    rdfs:comment "A specific tagged revision of code in a repository."@en .
+                    ] .
 
 ###################################################
 ### PROPERTIES
@@ -119,16 +121,16 @@ dob:CodeRevision a owl:Class ;
 ### Code/Version Control-Related Properties
 dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "tag URL"@en ;
-    rdfs:subPropertyOf schema:url ;
     rdfs:comment "A full external link for the tag (e.g., on GitHub)."@en ;
+    rdfs:subPropertyOf schema:url ;
     rdfs:domain dob:CodeRevision ;
     rdfs:range xsd:anyURI .
 
 dob:hasCodeRevision a owl:ObjectProperty ;
-    rdfs:subPropertyOf prov:wasRevisionOf ,
-                       schema:hasPart ;   
     rdfs:label "has code revision"@en ;
     rdfs:comment "Links a Code Repository to the Code Revisions it contains."@en ;
+    rdfs:subPropertyOf prov:wasRevisionOf ,
+                       schema:hasPart ;   
     rdfs:domain dob:CodeRepository ;
     rdfs:range dob:CodeRevision .
 
@@ -139,3 +141,22 @@ dob:usedCodeRevision a owl:ObjectProperty ;
     rdfs:domain dob:SoftwarePipeline ;
     rdfs:range dob:CodeRevision .
 
+dob:recommendationCode a owl:DatatypeProperty;
+    rdfs:label "A generic value reference for confidence in matching identifiers."@en ;
+    rdfs:comment "A code that represents the recommendation a matching process. One should sub-property this for specific recommendation codes and add restrictions to the valid codes of the process."@en ;
+    rdfs:subPropertyOf schema:valueReference ;
+    rdfs:domain dob:PropertyValue ;
+    rdfs:range xsd:string .
+
+dob:recommendationCodeAIMS a owl:DatatypeProperty;
+    rdfs:label "AIMs matching recommendation code"@en ;
+    rdfs:comment "A code that represents the recommendation of the AIMS matching process. A for accepted and I for clerical intervention required."@en ;
+    rdfs:seeAlso <https://github.com/ONSdigital/aims-api/blob/v1.3.2/server/app/uk/gov/ons/addressIndex/server/utils/AIRatingHelper.scala> ;
+    rdfs:subPropertyOf dob:recommendationCode ;
+    rdfs:range [
+        a owl:Restriction ;
+        owl:onDatatype xsd:string ;
+        owl:withRestrictions (
+            [ xsd:pattern "A|I" ]
+        )
+    ] .
