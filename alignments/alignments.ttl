@@ -21,3 +21,5 @@ sosa:Result
 qudt:QuantityValue 
     rdfs:subClassOf dob:Result ;
 .
+
+xsd:string owl:equivalentClass schema:Text .
