@@ -1,4 +1,4 @@
-@prefix schema: <http://schema.org/> .
+@prefix so: <http://schema.org/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dob: <https://w3id.org/dob/voc#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -45,9 +45,9 @@ did:SoftwarePipeline_AIMS_5f4fc6e
 
 did:CodeRepository_AIMS
     a dob:CodeRepository ;
-    schema:name "AIMS 1 Scala API" ;
-    schema:codeRepository "https://github.com/ONSdigital/aims-api" ;
-    schema:license "MIT" ;
+    so:name "AIMS 1 Scala API" ;
+    so:codeRepository "https://github.com/ONSdigital/aims-api" ;
+    so:license "MIT" ;
     dob:hasCodeRevision did:CodeRevision_AIMS_5f4fc6e .
 
 did:CodeRevision_AIMS_5f4fc6e
@@ -57,18 +57,18 @@ did:CodeRevision_AIMS_5f4fc6e
 did:zone_550e8400-e29b-41d4-a716-446655440000
     a sosa:FeatureOfInterest,
       bot:Zone ;
-    schema:identifier did:uprn_100021907534 ;
-    schema:identifier did:ods_S2R6V .
+    so:identifier did:uprn_100021907534 ;
+    so:identifier did:ods_S2R6V .
 
 did:uprn_100021907534
     a dob:UPRNValue ;
     prov:hadPrimarySource did:OS_Open_UPRN_August2024 ;
-    schema:value "100021907534" .
+    so:value "100021907534" .
 
 did:ods_S2R6V
     a dob:ODSValue ;
     prov:hadPrimarySource did:NHS_ODS_February2025 ;
     prov:wasGeneratedBy did:SoftwarePipeline_AIMS_5f4fc6e ;
-    schema:valueReference "Accept result"^^xsd:string ;
+    so:valueReference "Accept result"^^xsd:string ;
     # schema:valueReference "Requires clerical intervention"^^xsd:string ;
-    schema:value "S2R6V" .
+    so:value "S2R6V" .

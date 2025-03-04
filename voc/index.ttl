@@ -10,7 +10,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix schema: <http://schema.org/> .
+@prefix so: <http://schema.org/> .
 @prefix dob: <https://w3id.org/dob/voc#> .
 
 ###################################################
@@ -19,7 +19,7 @@
 
 dob: a owl:Ontology ;
     dct:title "Open Built Environment Data Ontology"@en ;
-    owl:imports prov:, sosa:, ssn:, bot:, dcat:, dct:, schema:;
+    owl:imports prov:, sosa:, ssn:, bot:, dcat:, dct:, so:;
     dct:license <http://creativecommons.org/licenses/by/4.0/> ;
     dct:creator [
         a foaf:Organization ;
@@ -66,7 +66,7 @@ dob:PropertyValue a owl:Class ;
     rdfs:label "Property Value"@en ;
     rdfs:comment "A property value is a specific value of a property of an entity."@en ;
     rdfs:subClassOf prov:Entity ,
-                    schema:PropertyValue .
+                    so:PropertyValue .
 
 dob:UPRNValue a owl:Class ;
     rdfs:label "Unique Property Reference Number"@en ;
@@ -75,7 +75,7 @@ dob:UPRNValue a owl:Class ;
     rdfs:subClassOf dob:PropertyValue ,
                     [           
                         a owl:Restriction ;
-                        owl:onProperty schema:propertyID ;
+                        owl:onProperty so:propertyID ;
                         owl:hasValue "UPRN"^^xsd:string
                     ] .
 
@@ -87,7 +87,7 @@ dob:ODSValue a owl:Class ;
     rdfs:subClassOf dob:PropertyValue ,
                     [           
                         a owl:Restriction ;
-                        owl:onProperty schema:propertyID ;
+                        owl:onProperty so:propertyID ;
                         owl:hasValue "ODS"^^xsd:string
                     ] .
 
@@ -95,19 +95,19 @@ dob:SoftwarePipeline a owl:Class ;
     rdfs:label "Software Pipeline"@en ;
     rdfs:comment "A software-based workflow or pipeline that can be used by an Activity, specializing prov:Plan."@en ;
     rdfs:subClassOf prov:Plan ,
-                    schema:SoftwareApplication .
+                    so:SoftwareApplication .
 
 dob:CodeRepository a owl:Class ;
     rdfs:label "Code Repository"@en ;
     rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en ;
     rdfs:subClassOf prov:Entity ,
-                    schema:SoftwareSourceCode .
+                    so:SoftwareSourceCode .
 
 dob:CodeRevision a owl:Class ;
     rdfs:label "Code Revision"@en ;
     rdfs:comment "A specific tagged revision of code in a repository."@en ;
     rdfs:subClassOf prov:Entity ,
-                    schema:SoftwareSourceCode ,
+                    so:SoftwareSourceCode ,
                     [
                         a owl:Restriction ;
                         owl:onProperty dob:tagURI ;
@@ -122,7 +122,7 @@ dob:CodeRevision a owl:Class ;
 dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "tag URL"@en ;
     rdfs:comment "A full external link for the tag (e.g., on GitHub)."@en ;
-    rdfs:subPropertyOf schema:url ;
+    rdfs:subPropertyOf so:url ;
     rdfs:domain dob:CodeRevision ;
     rdfs:range xsd:anyURI .
 
@@ -130,7 +130,7 @@ dob:hasCodeRevision a owl:ObjectProperty ;
     rdfs:label "has code revision"@en ;
     rdfs:comment "Links a Code Repository to the Code Revisions it contains."@en ;
     rdfs:subPropertyOf prov:wasRevisionOf ,
-                       schema:hasPart ;   
+                       so:hasPart ;   
     rdfs:domain dob:CodeRepository ;
     rdfs:range dob:CodeRevision .
 
@@ -144,7 +144,7 @@ dob:usedCodeRevision a owl:ObjectProperty ;
 dob:recommendationCode a owl:DatatypeProperty;
     rdfs:label "A generic value reference for confidence in matching identifiers."@en ;
     rdfs:comment "A code that represents the recommendation a matching process. One should sub-property this for specific recommendation codes and add restrictions to the valid codes of the process."@en ;
-    rdfs:subPropertyOf schema:valueReference ;
+    rdfs:subPropertyOf so:valueReference ;
     rdfs:domain dob:PropertyValue ;
     rdfs:range xsd:string .
 
