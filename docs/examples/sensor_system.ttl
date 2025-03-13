@@ -24,7 +24,7 @@ did:6284_156243 a sosa:Platform;
         did:ir_camera_89901857, 
         did:ir_camera_9900593, 
         did:lidar_122310001278,
-        did:ins_6284_156243
+        did:ins_6284_156243,
         did:humidity_sensor_123456789, 
         did:temperature_sensor_123456789 . 
 
