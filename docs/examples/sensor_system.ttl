@@ -77,7 +77,7 @@ did:humidity_sensor_123456789 a sosa:Sensor ;
 did:camera_procedure_76123 a sosa:Procedure ;
     rdfs:label "Procedure 76123"@en ;
     rdfs:comment "Procedure 76123 is the procedure for capturing images using the camera."@en ;
-    sosa:usedSensor did:ir_camera_89901857 .
+    sosa:usedSensor did:camera_21424401  .
 
 did:camera_observation_12345 a sosa:Observation ;
     sosa:madeBySensor did:camera_21334177 ;
@@ -90,7 +90,9 @@ did:result_16fc2e78-204d-4e1c-996b-5737f80301db a so:ImageObject,
         dob:Result ;
     so:contentUrl <s3://gla-uprns-api/result_16fc2e78-204d-4e1c-996b-5737f80301db.webp> ;
     so:encodingFormat "image/webp"^^xsd:string ;
+    so:height 480 ;
     so:width 640 ;
     exif:colorSpace "sRGB" ;
+    sosa:hasFeatureOfInterest did:zone_550e8400-e29b-41d4-a716-446655440000 ;
     prov:wasInformedBy did:camera_observation_12345 ;
     prov:used did:pipeline_api_writer_d2b99a5c-a3b0-4354-9368-8e0042ebb662 .
