@@ -1,0 +1,98 @@
+@prefix so: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix did: <https://w3id.org/dob/id/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
+
+did:bess2 a sosa:Platform ;
+    rdfs:comment "BESS2 is the car that hosts the sensor stack for monitoring the environment."@en ;
+    rdfs:label "BESS2"@en ;
+    sosa:hosts did:6284_156243 .
+
+did:6284_156243 a sosa:Platform;
+    rdfs:label "6284_156243"@en ;
+    rdfs:comment "6284_156243 is the sensor stack for monitoring the environment. Each stack is identified by its INS serial number."@en ;
+    sosa:hosts did:camera_21424401, 
+        did:camera_21334177, 
+        did:ir_camera_89901857, 
+        did:ir_camera_9900593, 
+        did:lidar_122310001278,
+        did:ins_6284_156243,
+        did:humidity_sensor_123456789, 
+        did:temperature_sensor_123456789 . 
+
+did:camera_21424401 a sosa:Sensor ;
+    rdfs:label "Camera 21424401"@en ;
+    rdfs:comment "Camera 21424401 is an RGB camera sensor that captures images."@en ;
+    sosa:observes so:ImageObject .
+
+did:camera_21334177 a sosa:Sensor ;
+    rdfs:label "Camera 21334177"@en ;
+    rdfs:comment "Camera 21334177 is an RGB camera sensor that captures images."@en ;
+    sosa:observes so:ImageObject .
+
+did:ir_camera_89901857 a sosa:Sensor ;
+    rdfs:label "IR Camera 89901857"@en ;
+    rdfs:comment "IR Camera 89901857 is an IR camera sensor that captures images."@en ;
+    sosa:observes so:ImageObject .
+
+did:ir_camera_9900593 a sosa:Sensor ;
+    rdfs:label "IR Camera 9900593"@en ;
+    rdfs:comment "IR Camera 9900593 is an IR camera sensor that captures images."@en ;
+    sosa:observes so:ImageObject .
+
+did:lidar_122310001278 a sosa:Sensor ;
+    rdfs:label "Lidar 122310001278"@en ;
+    rdfs:comment "Lidar 122310001278 is a lidar sensor that captures point cloud data."@en ;
+    sosa:observes so:DataDownload .
+
+did:ins_6284_156243 a sosa:Sensor ;
+    rdfs:label "INS 6284_156243"@en ;
+    rdfs:comment "INS 6284_156243 is an inertial navigation system that captures orientation data."@en ;
+    sosa:observes so:DataDownload .
+
+did:humidity_sensor_123456789 a sosa:Sensor ;
+    rdfs:label "Humidity Sensor 123456789"@en ;
+    rdfs:comment "Humidity Sensor 123456789 is a humidity sensor that captures humidity data."@en ;
+    sosa:observes so:DataDownload .
+
+did:temperature_sensor_123456789 a sosa:Sensor ;
+    rdfs:label "Temperature Sensor 123456789"@en ;
+    rdfs:comment "Temperature Sensor 123456789 is a temperature sensor that captures temperature data."@en ;
+    sosa:observes dop:CelsiusTemperature .
+
+did:humidity_sensor_123456789 a sosa:Sensor ;
+    rdfs:label "Humidity Sensor 123456789"@en ;
+    rdfs:comment "Humidity Sensor 123456789 is a humidity sensor that captures humidity data."@en ;
+    sosa:observes dop:RelativeHumidity .
+
+did:camera_procedure_76123 a sosa:Procedure ;
+    rdfs:label "Procedure 76123"@en ;
+    rdfs:comment "Procedure 76123 is the procedure for capturing images using the camera."@en ;
+    sosa:usedSensor did:camera_21424401  .
+
+did:camera_observation_12345 a sosa:Observation ;
+    sosa:madeBySensor did:camera_21334177 ;
+    sosa:hasFeatureOfInterest did:zone_550e8400-e29b-41d4-a716-446655440000 ;
+    sosa:hasResult did:result_16fc2e78-204d-4e1c-996b-5737f80301db ;
+    sosa:resultTime "2022-02-25T00:00:00Z"^^xsd:dateTime ;
+    sosa:usedProcedure did:camera_procedure_76123 .
+
+did:result_16fc2e78-204d-4e1c-996b-5737f80301db a so:ImageObject,
+        dob:Result ;
+    so:contentUrl <s3://gla-uprns-api/result_16fc2e78-204d-4e1c-996b-5737f80301db.webp> ;
+    so:encodingFormat "image/webp"^^xsd:string ;
+    so:height 480 ;
+    so:width 640 ;
+    exif:colorSpace "sRGB" ;
+    sosa:hasFeatureOfInterest did:zone_550e8400-e29b-41d4-a716-446655440000 ;
+    prov:wasInformedBy did:camera_observation_12345 ;
+    prov:used did:pipeline_api_writer_d2b99a5c-a3b0-4354-9368-8e0042ebb662 .

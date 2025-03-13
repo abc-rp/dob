@@ -172,6 +172,9 @@ dop:Category a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
 
+dop:CelsiusTemperature a ssn:Property ;
+    qudt:quantityKind quantitykind:CelsiusTemperature .
+
 dop:Closed a ssn:Property ;
     rdfs:range xsd:boolean ;
     skos:broader dop:Boolean .
@@ -1243,6 +1246,9 @@ dop:Region a ssn:Property ;
 dop:RelationshipType a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
+
+dop:RelativeHumidity a ssn:Property ;
+    qudt:quantityKind quantitykind:RelativeHumidity .
 
 dop:RemainingTime a ssn:Property ;
     rdfs:range xsd:duration ;
