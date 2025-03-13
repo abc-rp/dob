@@ -10,6 +10,7 @@
 @prefix bot: <https://w3id.org/bot#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
 
 did:bess2 a sosa:Platform ;
     rdfs:comment "BESS2 is the car that hosts the sensor stack for monitoring the environment."@en ;
