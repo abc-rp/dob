@@ -9,6 +9,50 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+
+################### New definitions for bess sensors ############################
+
+dop:PrincipalElevationAppearance a sosa:ObservableProperty ;
+    rdfs:label "RGB Image"@en ;
+    rdfs:comment "Visual appearance of the building facade observable through RGB imaging."@en .
+
+dop:PrincipalElevationThermalMap a sosa:ObservableProperty ;
+    rdfs:label "Infrared Image"@en ;
+    rdfs:comment "An observable property representing thermal characteristics of a building's principal facade captured in the infrared spectrum."@en .
+
+dop:PrincipalElevation3D a sosa:ObservableProperty ;
+    rdfs:label "Point Cloud of Principal Elevation"@en ;
+    rdfs:comment "Spatial representation of the principal facade of a building captured as a lidar-derived point cloud."@en .
+
+dop:PrincipalElevationNearIR a sosa:ObservableProperty ;
+    rdfs:label "Near-Infrared of Principal Elevation"@en ;
+    rdfs:comment "Visual representation of the principal facade of a building captured in the near-infrared spectrum by a LiDAR sensor."@en .
+
+dop:PrincipalElevationRange a sosa:ObservableProperty ;
+    rdfs:label "Range of Principal Elevation"@en ;
+    rdfs:comment "Distance measurements of the principal facade of a building captured as a range image by a LiDAR sensor."@en .
+
+dop:PrincipalElevationReflectance a sosa:ObservableProperty ;
+    rdfs:label "Reflectance of Principal Elevation"@en ;
+    rdfs:comment "Reflectance intensity representation of the principal facade of a building derived from LiDAR data."@en .
+
+dop:PrincipalElevationSignal a sosa:ObservableProperty ;
+    rdfs:label "Signal of Principal Elevation"@en ;
+    rdfs:comment "LiDAR return signal strength representation of the principal facade of a building captured as a panoramic image using LiDAR."@en .
+
+dop:WGS84Coordinates a sosa:ObservableProperty ;
+    rdfs:label "WGS84 Coordinates"@en ;
+    rdfs:comment "Geographical coordinates expressed using WGS84 standard, represented as a latitude-longitude point."@en ;
+    rdfs:range wgs84:Point .
+
+dop:CelsiusTemperature a ssn:Property ;
+    qudt:quantityKind quantitykind:CelsiusTemperature .
+
+dop:RelativeHumidity a ssn:Property ;
+    qudt:quantityKind quantitykind:RelativeHumidity .
+
+##################################################################################
 
 dop:AbsorbedDose a ssn:Property ;
     qudt:quantityKind quantitykind:AbsorbedDose .
@@ -171,9 +215,6 @@ dop:CasingThickness a ssn:Property ;
 dop:Category a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
-
-dop:CelsiusTemperature a ssn:Property ;
-    qudt:quantityKind quantitykind:CelsiusTemperature .
 
 dop:Closed a ssn:Property ;
     rdfs:range xsd:boolean ;
@@ -1246,9 +1287,6 @@ dop:Region a ssn:Property ;
 dop:RelationshipType a ssn:Property ;
     rdfs:range xsd:normalizedString ;
     skos:broader dop:Label .
-
-dop:RelativeHumidity a ssn:Property ;
-    qudt:quantityKind quantitykind:RelativeHumidity .
 
 dop:RemainingTime a ssn:Property ;
     rdfs:range xsd:duration ;

@@ -83,7 +83,6 @@ did:camera_observation_12345 a sosa:Observation ;
     sosa:madeBySensor did:camera_21334177 ;
     sosa:hasFeatureOfInterest did:zone_550e8400-e29b-41d4-a716-446655440000 ;
     sosa:hasResult did:result_16fc2e78-204d-4e1c-996b-5737f80301db ;
-    sosa:resultTime "2022-02-25T00:00:00Z"^^xsd:dateTime ;
     sosa:usedProcedure did:camera_procedure_76123 .
 
 did:result_16fc2e78-204d-4e1c-996b-5737f80301db a so:ImageObject,
@@ -93,6 +92,7 @@ did:result_16fc2e78-204d-4e1c-996b-5737f80301db a so:ImageObject,
     so:height 480 ;
     so:width 640 ;
     exif:colorSpace "sRGB" ;
+    sosa:resultTime "2022-02-25T00:00:00Z"^^xsd:dateTime ;
     sosa:hasFeatureOfInterest did:zone_550e8400-e29b-41d4-a716-446655440000 ;
     prov:wasInformedBy did:camera_observation_12345 ;
     prov:used did:pipeline_api_writer_d2b99a5c-a3b0-4354-9368-8e0042ebb662 .
