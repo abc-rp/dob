@@ -30,34 +30,22 @@ dob: a owl:Ontology ;
 ###################################################
 
 dob:Result a owl:Class ;
-    rdfs:label "Result"@en ;
-    rdfs:comment "A distinct and identifiable data point from sensor capture mediated by software processes. Collections or aggregations are not represented."@en ;
-    owl:unionOf ( prov:Entity prov:Activity ) ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty sosa:hasFeatureOfInterest ;
-        owl:allValuesFrom sosa:FeatureOfInterest
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty rdf:value ;
-        owl:allValuesFrom [
-            owl:unionOf ( xsd:string xsd:double xsd:anyURI xsd:boolean 
-                          xsd:dateTime xsd:integer xsd:float xsd:decimal 
-                          xsd:time xsd:date )
-        ]
-    ] .
+    rdfs:label "Atomic Data Result"@en ;
+    rdfs:comment "A distinct and identifiable data point from sensor capture mediated by software processes. Collections or aggregations are not represented. Results may be produced directly by sensors or imported as atomic data units from external datasets, where they were originally generated through equivalent sensing or computational processes."@en ;
+    skos:example "A temperature reading of 22.5°C captured by a specific IoT temperature sensor at 2024-04-11T15:30:00Z, or a row representing sensor data extracted from an external database table."@en ;
+    rdfs:subClassOf prov:Entity .
 
 dob:PropertyValue a owl:Class ;
-    rdfs:label "Property Value"@en ;
-    rdfs:comment "A specific value of a property associated with an entity."@en ;
-    rdfs:subClassOf prov:Entity, so:PropertyValue .
+    rdfs:label "Property-Value Pair"@en ;
+    rdfs:comment "A pair consisting of a property name and a specific value, used to describe a feature or attribute of an entity. Subclasses of PropertyValue specialize the kind of identifier or characteristic being captured. Typically, use schema.org-specific properties where available."@en ;
+    rdfs:subClassOf prov:Entity , so:PropertyValue .
 
 dob:UPRNValue a owl:Class ;
-    rdfs:label "Unique Property Reference Number"@en ;
-    rdfs:comment "A unique numeric identifier for every spatial address in Great Britain."@en ;
+    rdfs:label "Unique Property Reference Number (UPRN)"@en ;
+    rdfs:comment "A unique numeric identifier for a spatial addressable location in Great Britain, as defined by the Ordnance Survey. Used to unambiguously reference properties across datasets."@en ;
+    skos:example "A UPRN is a unique numeric identifier, e.g., 100012345678, used to reference a single spatial addressable location."@en ;
     rdfs:seeAlso <https://www.ordnancesurvey.co.uk/public/unique-property-reference-numbers> ;
-    rdfs:subClassOf dob:PropertyValue, [
+    rdfs:subClassOf dob:PropertyValue , [
         a owl:Restriction ;
         owl:onProperty so:propertyID ;
         owl:hasValue "UPRN"^^xsd:string
@@ -65,29 +53,29 @@ dob:UPRNValue a owl:Class ;
 
 dob:ODSValue a owl:Class ;
     rdfs:label "NHS Organisation Data Service (ODS) Identifier"@en ;
-    rdfs:comment "An identifier for organisations involved in health and social care in England and beyond."@en ;
-    skos:note "Use dob:recommendationCodeAIMS to indicate matching confidence for this identifier."@en ;
+    rdfs:comment "An identifier assigned by NHS Digital for organisations involved in health and social care across England and associated services. Used for consistent referencing across health datasets."@en ;
+    skos:note "Use dob:recommendationCodeAIMS to indicate the system’s confidence in automated matching of ODS identifiers."@en ;
     rdfs:seeAlso <https://www.odsdatasearchandexport.nhs.uk/> ;
-    rdfs:subClassOf dob:PropertyValue, [
+    rdfs:subClassOf dob:PropertyValue , [
         a owl:Restriction ;
         owl:onProperty so:propertyID ;
         owl:hasValue "ODS"^^xsd:string
     ] .
 
 dob:SoftwarePipeline a owl:Class ;
-    rdfs:label "Software Pipeline"@en ;
-    rdfs:comment "A software-based workflow or pipeline used by an Activity, specializing prov:Plan."@en ;
-    rdfs:subClassOf prov:Plan, so:SoftwareApplication .
+    rdfs:label "Software Pipeline Execution"@en ;
+    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system."@en ;
+    rdfs:subClassOf prov:Activity .
 
 dob:CodeRepository a owl:Class ;
-    rdfs:label "Code Repository"@en ;
-    rdfs:comment "A repository (e.g., Git) containing source code for a software pipeline."@en ;
-    rdfs:subClassOf prov:Entity, so:SoftwareSourceCode .
+    rdfs:label "Source Code Repository"@en ;
+    rdfs:comment "A version-controlled repository (e.g., Git) containing source code and configuration files for software pipelines or components."@en ;
+    rdfs:subClassOf prov:Entity , so:SoftwareSourceCode .
 
 dob:CodeRevision a owl:Class ;
     rdfs:label "Code Revision"@en ;
-    rdfs:comment "A specific tagged revision of code in a repository."@en ;
-    rdfs:subClassOf prov:Entity, so:SoftwareSourceCode, [
+    rdfs:comment "A specific, immutable revision of code from a version-controlled repository, typically referenced by a tag or commit hash. Used to unambiguously associate a software pipeline execution with the exact code used."@en ;
+    rdfs:subClassOf prov:Entity , so:SoftwareSourceCode , [
         a owl:Restriction ;
         owl:onProperty dob:tagURI ;
         owl:cardinality "1"^^xsd:nonNegativeInteger
@@ -100,41 +88,41 @@ dob:CodeRevision a owl:Class ;
 # Code/Version Control-Related Properties
 
 dob:tagURI a owl:DatatypeProperty ;
-    rdfs:label "Tag URL"@en ;
-    rdfs:comment "A full external link for the tag (e.g., on GitHub)."@en ;
+    rdfs:label "Code Tag URI"@en ;
+    rdfs:comment "A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URL)."@en ;
     rdfs:subPropertyOf so:url ;
-    so:domainIncludes dob:CodeRevision ;
-    so:rangeIncludes xsd:anyURI .
+    schema:domainIncludes dob:CodeRevision ;
+    schema:rangeIncludes xsd:anyURI .
 
-dob:hasCodeRevision a owl:ObjectProperty ;
-    rdfs:label "Has Code Revision"@en ;
-    rdfs:comment "Links a Code Repository to the Code Revisions it contains."@en ;
-    rdfs:subPropertyOf prov:wasRevisionOf, so:hasPart ;
-    so:domainIncludes dob:CodeRepository ;
-    so:rangeIncludes dob:CodeRevision .
+dob:isCodeRevisionOf a owl:ObjectProperty ;
+    rdfs:label "Is Revision Of"@en ;
+    rdfs:comment "Links a code revision to the code repository it belongs to."@en ;
+    rdfs:subPropertyOf prov:wasDerivedFrom , so:isPartOf ;
+    schema:domainIncludes dob:CodeRevision ;
+    schema:rangeIncludes dob:CodeRepository .
 
 dob:usedCodeRevision a owl:ObjectProperty ;
-    rdfs:label "Used Revision"@en ;
-    rdfs:comment "Links a Software Pipeline to a specific Code Revision used during execution."@en ;
+    rdfs:label "Used Code Revision"@en ;
+    rdfs:comment "Associates a Software Pipeline execution with the specific Code Revision it used during execution."@en ;
     rdfs:subPropertyOf prov:used ;
-    so:domainIncludes dob:SoftwarePipeline ;
-    so:rangeIncludes dob:CodeRevision .
+    schema:domainIncludes dob:SoftwarePipeline ;
+    schema:rangeIncludes dob:CodeRevision .
 
 dob:recommendationCode a owl:DatatypeProperty ;
-    rdfs:label "Recommendation Code"@en ;
-    rdfs:comment "A generic code representing the confidence in matching identifiers. Specific recommendation codes should be defined as sub-properties with added restrictions."@en ;
+    rdfs:label "Matching Recommendation Code"@en ;
+    rdfs:comment "A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching."@en ;
     rdfs:subPropertyOf so:valueReference ;
-    so:domainIncludes dob:PropertyValue ;
-    so:rangeIncludes xsd:string .
+    schema:domainIncludes dob:PropertyValue ;
+    schema:rangeIncludes xsd:string .
 
 dob:recommendationCodeAIMS a owl:DatatypeProperty ;
-    rdfs:label "AIMS Matching Recommendation Code"@en ;
-    rdfs:comment "A code representing the recommendation of the AIMS matching process. 'A' indicates acceptance; 'I' indicates clerical intervention required."@en ;
+    rdfs:label "AIMS Match Recommendation"@en ;
+    rdfs:comment "A confidence code output by the AIMS matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention)."@en ;
     rdfs:seeAlso <https://github.com/ONSdigital/aims-api/blob/v1.3.2/server/app/uk/gov/ons/addressIndex/server/utils/AIRatingHelper.scala> ;
     rdfs:subPropertyOf dob:recommendationCode ;
-    so:domainIncludes dob:PropertyValue ;
-    so:rangeIncludes [
-        a owl:Restriction ;
+    schema:domainIncludes dob:PropertyValue ;
+    schema:rangeIncludes [
+        a rdfs:Datatype ;
         owl:onDatatype xsd:string ;
         owl:withRestrictions ( [ xsd:pattern "A|I" ] )
     ] .
