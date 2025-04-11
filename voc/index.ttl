@@ -85,8 +85,6 @@ dob:CodeRevision a owl:Class ;
 ### PROPERTIES
 ###################################################
 
-# Code/Version Control-Related Properties
-
 dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "Code Tag URI"@en ;
     rdfs:comment "A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URL)."@en ;
@@ -126,3 +124,23 @@ dob:recommendationCodeAIMS a owl:DatatypeProperty ;
         owl:onDatatype xsd:string ;
         owl:withRestrictions ( [ xsd:pattern "A|I" ] )
     ] .
+
+###################################################
+### INVERSE PROPERTIES
+###################################################
+
+dob:hasCodeRevision a owl:ObjectProperty ;
+    rdfs:label "Has Code Revision"@en ;
+    rdfs:comment "Relates a Code Repository to one of its contained Code Revisions."@en ;
+    owl:inverseOf dob:isCodeRevisionOf ;
+    rdfs:subPropertyOf so:hasPart ;
+    schema:domainIncludes dob:CodeRepository ;
+    schema:rangeIncludes dob:CodeRevision .
+
+dob:wasUsedInPipeline a owl:ObjectProperty ;
+    rdfs:label "Was Used In Pipeline"@en ;
+    rdfs:comment "Links a Code Revision to a Software Pipeline execution that used it."@en ;
+    owl:inverseOf dob:usedCodeRevision ;
+    rdfs:subPropertyOf prov:wasUsedBy ;
+    schema:domainIncludes dob:CodeRevision ;
+    schema:rangeIncludes dob:SoftwarePipeline .
