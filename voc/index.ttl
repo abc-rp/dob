@@ -8,7 +8,6 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix so:   <http://schema.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix dob:  <https://w3id.org/dob/voc#> .
 
 ###################################################
@@ -17,7 +16,7 @@
 
 dob: a owl:Ontology ;
     dct:title "Open Built Environment Data Ontology"@en ;
-    owl:imports prov:, sosa:, bot:, dct:, so:, foaf: ;
+    owl:imports prov:, bot:, dct:, so:, foaf: ;
     dct:license <http://creativecommons.org/licenses/by/4.0/> ;
     dct:creator [
         a foaf:Organization ;
