@@ -232,9 +232,9 @@ The codelists used may include those recommended or created by
 
 ## Sensor Observations
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/sensor_observation.png" alt="Diagram">
-</div>
+</div> -->
 
 The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
 * The observation must be connected to 1 Feature Of Interest
