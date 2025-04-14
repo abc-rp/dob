@@ -88,37 +88,37 @@ dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "Code Tag URI"@en ;
     rdfs:comment "A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URL)."@en ;
     rdfs:subPropertyOf so:url ;
-    schema:domainIncludes dob:CodeRevision ;
-    schema:rangeIncludes xsd:anyURI .
+    so:domainIncludes dob:CodeRevision ;
+    so:rangeIncludes xsd:anyURI .
 
 dob:isCodeRevisionOf a owl:ObjectProperty ;
     rdfs:label "Is Revision Of"@en ;
     rdfs:comment "Links a code revision to the code repository it belongs to."@en ;
     rdfs:subPropertyOf prov:wasDerivedFrom , so:isPartOf ;
-    schema:domainIncludes dob:CodeRevision ;
-    schema:rangeIncludes dob:CodeRepository .
+    so:domainIncludes dob:CodeRevision ;
+    so:rangeIncludes dob:CodeRepository .
 
 dob:usedCodeRevision a owl:ObjectProperty ;
     rdfs:label "Used Code Revision"@en ;
     rdfs:comment "Associates a Software Pipeline execution with the specific Code Revision it used during execution."@en ;
     rdfs:subPropertyOf prov:used ;
-    schema:domainIncludes dob:SoftwarePipeline ;
-    schema:rangeIncludes dob:CodeRevision .
+    so:domainIncludes dob:SoftwarePipeline ;
+    so:rangeIncludes dob:CodeRevision .
 
 dob:recommendationCode a owl:DatatypeProperty ;
     rdfs:label "Matching Recommendation Code"@en ;
     rdfs:comment "A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching."@en ;
     rdfs:subPropertyOf so:valueReference ;
-    schema:domainIncludes dob:PropertyValue ;
-    schema:rangeIncludes xsd:string .
+    so:domainIncludes dob:PropertyValue ;
+    so:rangeIncludes xsd:string .
 
 dob:recommendationCodeAIMS a owl:DatatypeProperty ;
     rdfs:label "AIMS Match Recommendation"@en ;
     rdfs:comment "A confidence code output by the AIMS matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention)."@en ;
     rdfs:seeAlso <https://github.com/ONSdigital/aims-api/blob/v1.3.2/server/app/uk/gov/ons/addressIndex/server/utils/AIRatingHelper.scala> ;
     rdfs:subPropertyOf dob:recommendationCode ;
-    schema:domainIncludes dob:PropertyValue ;
-    schema:rangeIncludes [
+    so:domainIncludes dob:PropertyValue ;
+    so:rangeIncludes [
         a rdfs:Datatype ;
         owl:onDatatype xsd:string ;
         owl:withRestrictions ( [ xsd:pattern "A|I" ] )
@@ -133,13 +133,13 @@ dob:hasCodeRevision a owl:ObjectProperty ;
     rdfs:comment "Relates a Code Repository to one of its contained Code Revisions."@en ;
     owl:inverseOf dob:isCodeRevisionOf ;
     rdfs:subPropertyOf so:hasPart ;
-    schema:domainIncludes dob:CodeRepository ;
-    schema:rangeIncludes dob:CodeRevision .
+    so:domainIncludes dob:CodeRepository ;
+    so:rangeIncludes dob:CodeRevision .
 
 dob:wasUsedInPipeline a owl:ObjectProperty ;
     rdfs:label "Was Used In Pipeline"@en ;
     rdfs:comment "Links a Code Revision to a Software Pipeline execution that used it."@en ;
     owl:inverseOf dob:usedCodeRevision ;
     rdfs:subPropertyOf prov:wasUsedBy ;
-    schema:domainIncludes dob:CodeRevision ;
-    schema:rangeIncludes dob:SoftwarePipeline .
+    so:domainIncludes dob:CodeRevision ;
+    so:rangeIncludes dob:SoftwarePipeline .
