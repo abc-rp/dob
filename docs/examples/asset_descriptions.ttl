@@ -1,30 +1,157 @@
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix so: <http://schema.org/> .
-@prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
-@prefix dob: <https://w3id.org/dob/voc#> .
 @prefix did: <https://w3id.org/dob/id/> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix so: <http://schema.org/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-did:result_6e2dce6a-b941-4bc4-be09-977a02221b31
-    a dob:Result,
-      so:ImageObject ;
-    so:contentUrl <https://example.com/v1/result/6e2dce6a-b941-4bc4-be09-977a02221b31> ;
-    so:thumbnailUrl <https://example.com/v1/result/6e2dce6a-b941-4bc4-be09-977a02221b31> ;
-    so:encodingFormat "image/webp" ;
-    so:width "640"^^xsd:integer ;
-    exif:colorSpace "sRGB" .
+did:1b452224-121a-53f3-97a5-b0dfc646f820 a so:DataDownload,
+        dob:Result ;
+    rdfs:label "Compressed numpy temperature array" ;
+    so:contentUrl <https://didapi.io/v1/result/1b452224-121a-53f3-97a5-b0dfc646f820.npz> ;
+    so:encodingFormat "application/x-npz"^^xsd:string ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-6f767179-027d-50b4-9cac-7c39b7d25129 ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
 
-did:result_2aa43a2e-cb51-46db-b298-cddbc52ffc60
-    a dob:Result,
-      so:ImageObject ;
-    so:contentUrl <https://example.com/v1/result/2aa43a2e-cb51-46db-b298-cddbc52ffc60> ;
-    so:thumbnailUrl <https://example.com/v1/result/2aa43a2e-cb51-46db-b298-cddbc52ffc60> ;
-    so:encodingFormat "image/webp" ;
-    so:width "640"^^xsd:integer ;
-    exif:colorSpace "sRGB" .
+did:304c87b2-d068-515e-8b9f-7ee4583221b7 a so:ImageObject,
+        dob:Result ;
+    rdfs:label "False colour IR image" ;
+    so:contentUrl <https://didapi.io/v1/result/304c87b2-d068-515e-8b9f-7ee4583221b7.png> ;
+    so:encodingFormat "image/png"^^xsd:string ;
+    so:height 480 ;
+    so:width 640 ;
+    exif:colorSpace "mono16" ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-58a58b80-4562-5809-8d23-f05aefa46e2e ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
 
-did:result_64eae5e1-8cca-42d1-ac2e-9c65489d2930
-    a dob:Result,
-      so:DataDownload ;
-    so:contentUrl <https://example.com/v1/result/64eae5e1-8cca-42d1-ac2e-9c65489d2930> ;
-    so:encodingFormat "application/x-npz" ;
-    so:width "640"^^xsd:integer .
+did:76a14ebd-1338-5bd6-8c82-3ad871cbba9d a so:ImageObject,
+        dob:Result ;
+    rdfs:label "range LiDAR panorama" ;
+    so:contentUrl <https://didapi.io/v1/result/76a14ebd-1338-5bd6-8c82-3ad871cbba9d.png> ;
+    so:encodingFormat "image/png"^^xsd:string ;
+    so:height 128 ;
+    so:width 2048 ;
+    exif:colorSpace "mono16" ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-2e6d2e9d-89b7-58d4-9026-9fb64d2be3b0 ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
+
+did:7fe60b42-1e41-578a-9410-cf8dfcf7db08 a so:ImageObject,
+        dob:Result ;
+    rdfs:label "reflectance LiDAR panorama" ;
+    so:contentUrl <https://didapi.io/v1/result/7fe60b42-1e41-578a-9410-cf8dfcf7db08.png> ;
+    so:encodingFormat "image/png"^^xsd:string ;
+    so:height 128 ;
+    so:width 2048 ;
+    exif:colorSpace "mono16" ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-e51c080d-8d23-50ad-9bfe-3cc171565166 ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
+
+did:80f340f0-8ad4-5033-916d-0b200f7f37ed a so:ImageObject,
+        dob:Result ;
+    rdfs:label "signal LiDAR panorama" ;
+    so:contentUrl <https://didapi.io/v1/result/80f340f0-8ad4-5033-916d-0b200f7f37ed.png> ;
+    so:encodingFormat "image/png"^^xsd:string ;
+    so:height 128 ;
+    so:width 2048 ;
+    exif:colorSpace "mono16" ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-a37121ee-e9fe-5d96-ad60-968e3f33b92a ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
+
+did:97001560-a190-5c8f-9ac2-f05fc7f3a13b a so:ImageObject,
+        dob:Result ;
+    rdfs:label "nearIR LiDAR panorama" ;
+    so:contentUrl <https://didapi.io/v1/result/97001560-a190-5c8f-9ac2-f05fc7f3a13b.png> ;
+    so:encodingFormat "image/png"^^xsd:string ;
+    so:height 128 ;
+    so:width 2048 ;
+    exif:colorSpace "mono16" ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-2a3f4776-3e55-57b4-8ccb-68181d97faec ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
+
+did:a02df04e-fc05-5cdf-983c-67e0cb465527 a so:DataDownload,
+        dob:Result ;
+    rdfs:label "Single pointcloud: centre file" ;
+    so:contentUrl <https://didapi.io/v1/result/a02df04e-fc05-5cdf-983c-67e0cb465527.pcd.br> ;
+    so:encodingFormat "application/octet-stream"^^xsd:string ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-d6176f72-1a39-5c4d-b649-2abde459245d ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
+
+did:be5302ec-7a9a-58b0-8b45-34c481d9826a a so:DataDownload,
+        dob:Result ;
+    rdfs:label "ICP merged pointcloud" ;
+    so:contentUrl <https://didapi.io/v1/result/be5302ec-7a9a-58b0-8b45-34c481d9826a.pcd.br> ;
+    so:encodingFormat "application/octet-stream"^^xsd:string ;
+    prov:used did:api-writer-f912300e-5c31-5689-b1a4-6cd9e335d645 ;
+    prov:wasInformedBy did:observation-1f8563f5-0e2a-510f-9e21-6a3bcecd6932 ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:resultTime "2025-04-07T13:00:51+00:00"^^xsd:dateTime .
+
+did:observation-1f8563f5-0e2a-510f-9e21-6a3bcecd6932 a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:be5302ec-7a9a-58b0-8b45-34c481d9826a ;
+    sosa:madeBySensor did:lidar-1000000 ;
+    sosa:usedProcedure did:lidar-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
+
+did:observation-2a3f4776-3e55-57b4-8ccb-68181d97faec a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:97001560-a190-5c8f-9ac2-f05fc7f3a13b ;
+    sosa:madeBySensor did:lidar-1000000 ;
+    sosa:phenomenonTime "2025-01-07T18:50:02+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure did:lidar-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
+
+did:observation-2e6d2e9d-89b7-58d4-9026-9fb64d2be3b0 a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:76a14ebd-1338-5bd6-8c82-3ad871cbba9d ;
+    sosa:madeBySensor did:lidar-1000000 ;
+    sosa:phenomenonTime "2025-01-07T18:50:02+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure did:lidar-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
+
+did:observation-58a58b80-4562-5809-8d23-f05aefa46e2e a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:304c87b2-d068-515e-8b9f-7ee4583221b7 ;
+    sosa:madeBySensor did:ir-camera-1000000 ;
+    sosa:phenomenonTime "2025-01-07T18:50:02+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure did:ir-camera_procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
+
+did:observation-6f767179-027d-50b4-9cac-7c39b7d25129 a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:1b452224-121a-53f3-97a5-b0dfc646f820 ;
+    sosa:madeBySensor did:ir-camera-1000000 ;
+    sosa:phenomenonTime "2025-01-07T18:50:02+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure did:ir-camera_procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
+
+did:observation-a37121ee-e9fe-5d96-ad60-968e3f33b92a a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:80f340f0-8ad4-5033-916d-0b200f7f37ed ;
+    sosa:madeBySensor did:lidar-1000000 ;
+    sosa:phenomenonTime "2025-01-07T18:50:02+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure did:lidar-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
+
+did:observation-d6176f72-1a39-5c4d-b649-2abde459245d a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:a02df04e-fc05-5cdf-983c-67e0cb465527 ;
+    sosa:madeBySensor did:lidar-1000000 ;
+    sosa:usedProcedure did:lidar-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
+
+did:observation-e51c080d-8d23-50ad-9bfe-3cc171565166 a sosa:Observation ;
+    sosa:hasFeatureOfInterest did:zone-c9ea9476-11ba-4c73-ab2d-fbfdf5e8ca6a ;
+    sosa:hasResult did:7fe60b42-1e41-578a-9410-cf8dfcf7db08 ;
+    sosa:madeBySensor did:lidar-1000000 ;
+    sosa:phenomenonTime "2025-01-07T18:50:02+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure did:lidar-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
