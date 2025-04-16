@@ -28,10 +28,16 @@ dob: a owl:Ontology ;
 ### CLASSES
 ###################################################
 
-dob:Result a owl:Class ;
+dob:AtomicResult a owl:Class ;
     rdfs:label "Atomic Data Result"@en ;
-    rdfs:comment "A distinct and identifiable data point from sensor capture mediated by software processes. Collections or aggregations are not represented. Results may be produced directly by sensors or imported as atomic data units from external datasets, where they were originally generated through equivalent sensing or computational processes."@en ;
-    skos:example "A temperature reading of 22.5°C captured by a specific IoT temperature sensor at 2024-04-11T15:30:00Z, or a row representing sensor data extracted from an external database table."@en ;
+    rdfs:comment "A distinct and identifiable data point/object extracted from a dataset. Collections or aggregations are not represented. Anything that can be considered a single instance of data from a dataset can be a dob:AtomicResult e.g. an single image from a collection can be a dob:Result. Results may be imported as atomic data units from external datasets, where they were originally generated through sensing or computational processes."@en ;
+    skos:example "A temperature value of 295K representing sensor data extracted from an external database table. Or a single image taken from the ImageNet dataset."@en ;
+    rdfs:subClassOf prov:Entity .
+
+dob:DerivedResult a owl:Class ;
+    rdfs:label "Derived Result"@en ;
+    rdfs:comment "These are results derived from other results from sensor data and/or from other datasets via dob:Processing. E.g. a dob:DerivedResult can be arrived by taking input from 3 sosa:Results and one dob:AtomicResult"@en ;
+    skos:example "A matrix of temperature values calculated radiometrically from the sosa:Result that is the raw mono16 image of the photon counts on the detector and the two sosa:Results for temperature and humidity taken from a thermometer and a relative humidity sensor. A dob:Processing occurs and combines these inputs to generate the temperature matrix as a single dob:DerivedResult ouput."@en ;
     rdfs:subClassOf prov:Entity .
 
 dob:PropertyValue a owl:Class ;
@@ -61,9 +67,14 @@ dob:ODSValue a owl:Class ;
         owl:hasValue "ODS"^^xsd:string
     ] .
 
-dob:SoftwarePipeline a owl:Class ;
-    rdfs:label "Software Pipeline Execution"@en ;
-    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system."@en ;
+dob:Enumeration a owl:Class ;
+    rdfs:label "dob specific enumeration"@en ;
+    rdfs:comment "A set of discrete values or categories that can be used to classify or describe a dob:AtomicResult or dob:DerivedResult. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology."@en ;
+    rdfs:subClassOf prov:Entity , so:Enumeration .
+
+dob:Processing a owl:Class ;
+    rdfs:label "Processing inputs programmticaly to derived results."@en ;
+    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system and generates a dob:DerivedResult."@en ;
     rdfs:subClassOf prov:Activity .
 
 dob:CodeRepository a owl:Class ;
@@ -84,26 +95,19 @@ dob:CodeRevision a owl:Class ;
 ### PROPERTIES
 ###################################################
 
+dob:typeQualifier a owl:ObjectProperty ;
+    rdfs:label "Type Qualifier"@en ;
+    rdfs:comment "A property that qualifies the type of dob:AtomicResult or dob:DerivedResult. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class."@en ;
+    rdfs:subPropertyOf so:measurementQualifier ;
+    so:domainIncludes dob:AtomicResult, dob:DerivedResult ;
+    so:rangeIncludes dob:Enumeration .
+
 dob:tagURI a owl:DatatypeProperty ;
     rdfs:label "Code Tag URI"@en ;
     rdfs:comment "A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URL)."@en ;
     rdfs:subPropertyOf so:url ;
     so:domainIncludes dob:CodeRevision ;
     so:rangeIncludes xsd:anyURI .
-
-dob:isCodeRevisionOf a owl:ObjectProperty ;
-    rdfs:label "Is Revision Of"@en ;
-    rdfs:comment "Links a code revision to the code repository it belongs to."@en ;
-    rdfs:subPropertyOf prov:wasDerivedFrom , so:isPartOf ;
-    so:domainIncludes dob:CodeRevision ;
-    so:rangeIncludes dob:CodeRepository .
-
-dob:usedCodeRevision a owl:ObjectProperty ;
-    rdfs:label "Used Code Revision"@en ;
-    rdfs:comment "Associates a Software Pipeline execution with the specific Code Revision it used during execution."@en ;
-    rdfs:subPropertyOf prov:used ;
-    so:domainIncludes dob:SoftwarePipeline ;
-    so:rangeIncludes dob:CodeRevision .
 
 dob:recommendationCode a owl:DatatypeProperty ;
     rdfs:label "Matching Recommendation Code"@en ;
@@ -123,23 +127,3 @@ dob:recommendationCodeAIMS a owl:DatatypeProperty ;
         owl:onDatatype xsd:string ;
         owl:withRestrictions ( [ xsd:pattern "A|I" ] )
     ] .
-
-###################################################
-### INVERSE PROPERTIES
-###################################################
-
-dob:hasCodeRevision a owl:ObjectProperty ;
-    rdfs:label "Has Code Revision"@en ;
-    rdfs:comment "Relates a Code Repository to one of its contained Code Revisions."@en ;
-    owl:inverseOf dob:isCodeRevisionOf ;
-    rdfs:subPropertyOf so:hasPart ;
-    so:domainIncludes dob:CodeRepository ;
-    so:rangeIncludes dob:CodeRevision .
-
-dob:wasUsedInPipeline a owl:ObjectProperty ;
-    rdfs:label "Was Used In Pipeline"@en ;
-    rdfs:comment "Links a Code Revision to a Software Pipeline execution that used it."@en ;
-    owl:inverseOf dob:usedCodeRevision ;
-    rdfs:subPropertyOf prov:wasUsedBy ;
-    so:domainIncludes dob:CodeRevision ;
-    so:rangeIncludes dob:SoftwarePipeline .
