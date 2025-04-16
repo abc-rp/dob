@@ -292,9 +292,9 @@ Inspiration is taken from prov as well as [MLFlow2PROV](#mlflow2prov), however w
 
 ## External Datasets
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/external_datasets.png" alt="Diagram">
-</div>
+</div> -->
 
 This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
 
