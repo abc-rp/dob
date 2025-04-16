@@ -30,7 +30,7 @@ dob: a owl:Ontology ;
 
 dob:AtomicResult a owl:Class ;
     rdfs:label "Atomic Data Result"@en ;
-    rdfs:comment "A distinct and identifiable data point/object extracted from a dataset. Collections or aggregations are not represented. Anything that can be considered a single instance of data from a dataset can be a dob:AtomicResult e.g. an single image from a collection can be a dob:Result. Results may be imported as atomic data units from external datasets, where they were originally generated through sensing or computational processes."@en ;
+    rdfs:comment "A distinct and identifiable data point/object extracted from a dataset. Collections or aggregations are not represented. Anything that can be considered a single instance of data from a dataset can be a dob:AtomicResult e.g. an single image from a collection can be a dob:Result. Results may be imported as atomic data units from external datasets, where they were originally generated through sensing or computational processes. This can also be a single row in a table from an external dataset."@en ;
     skos:example "A temperature value of 295K representing sensor data extracted from an external database table. Or a single image taken from the ImageNet dataset."@en ;
     rdfs:subClassOf prov:Entity .
 
