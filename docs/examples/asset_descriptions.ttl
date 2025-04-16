@@ -16,6 +16,7 @@ did:0b077370-fb22-55c8-bb94-ca2e179fd61c a so:ImageObject,
     so:height 480 ;
     so:width 640 ;
     exif:colorSpace "sRGB" ;
+    dob:Enumeration "ir-false-colour" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:3eb6c404-58ab-5f1d-b98a-b832e4439274 a so:DataDownload,
@@ -23,6 +24,7 @@ did:3eb6c404-58ab-5f1d-b98a-b832e4439274 a so:DataDownload,
     rdfs:label "Compressed numpy temperature array" ;
     so:contentUrl <https://didapi.io/v1/result/3eb6c404-58ab-5f1d-b98a-b832e4439274.npz> ;
     so:encodingFormat "application/x-npz"^^xsd:string ;
+    dob:Enumeration "ir-temperature-array" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:4a9f4d00-6023-58e3-8052-ac958baf71a8 a so:ImageObject,
@@ -33,6 +35,7 @@ did:4a9f4d00-6023-58e3-8052-ac958baf71a8 a so:ImageObject,
     so:height 128 ;
     so:width 2048 ;
     exif:colorSpace "mono16" ;
+    dob:Enumeration "lidar-signal" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:b7799ac8-5fac-5dd6-8870-75dbd57c3053 a so:ImageObject,
@@ -43,6 +46,7 @@ did:b7799ac8-5fac-5dd6-8870-75dbd57c3053 a so:ImageObject,
     so:height 128 ;
     so:width 2048 ;
     exif:colorSpace "mono16" ;
+    dob:Enumeration "lidar-nearir" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:b9d89501-8d32-5d1b-9986-25bb54e3a333 a so:DataDownload,
@@ -50,6 +54,7 @@ did:b9d89501-8d32-5d1b-9986-25bb54e3a333 a so:DataDownload,
     rdfs:label "Single pointcloud: centre file" ;
     so:contentUrl <https://didapi.io/v1/result/b9d89501-8d32-5d1b-9986-25bb54e3a333.pcd.br> ;
     so:encodingFormat "application/octet-stream"^^xsd:string ;
+    dob:Enumeration "lidar-pointcloud-frame" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:bef021cc-e7a8-52c4-8965-914c577990a0 a so:ImageObject,
@@ -60,6 +65,7 @@ did:bef021cc-e7a8-52c4-8965-914c577990a0 a so:ImageObject,
     so:height 128 ;
     so:width 2048 ;
     exif:colorSpace "mono16" ;
+    dob:Enumeration "lidar-range" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:e79d75b9-a3e5-5cb0-99e5-6ebf288ee84a a so:DataDownload,
@@ -67,6 +73,7 @@ did:e79d75b9-a3e5-5cb0-99e5-6ebf288ee84a a so:DataDownload,
     rdfs:label "ICP merged pointcloud" ;
     so:contentUrl <https://didapi.io/v1/result/e79d75b9-a3e5-5cb0-99e5-6ebf288ee84a.pcd.br> ;
     so:encodingFormat "application/octet-stream"^^xsd:string ;
+    dob:Enumeration "lidar-pointcloud-merged" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:fa5b31a2-3161-50f4-a271-3cb8aff623fc a so:ImageObject,
@@ -77,6 +84,7 @@ did:fa5b31a2-3161-50f4-a271-3cb8aff623fc a so:ImageObject,
     so:height 128 ;
     so:width 2048 ;
     exif:colorSpace "mono16" ;
+    dob:Enumeration "lidar-reflectance" ;
     sosa:resultTime "2025-04-07T12:59:47+00:00"^^xsd:dateTime .
 
 did:observation-0d3ac53a-9b67-5a03-9d9c-d9e1ee7953de a sosa:Observation ;
