@@ -232,9 +232,9 @@ The codelists used may include those recommended or created by
 
 ## Sensor Observations
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/sensor_observation.png" alt="Diagram">
-</div>
+</div> -->
 
 The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
 * The observation must be connected to 1 Feature Of Interest
@@ -283,18 +283,18 @@ This section of the ontology is currently unstable and will be for internal use.
 
 ## Software Pipelines
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/file_metadata.png" alt="Diagram">
-</div>
+</div> -->
 
 Inspiration is taken from prov as well as [MLFlow2PROV](#mlflow2prov), however we opt for an initially simpler description of software pipelines by linking to repositories, which can have lots of information about authorship etc... and then we only really require knowledge of a tagged release of source code to know the code used from this repository that is used in a pipeline. A software pipeline can link to multiple repositories. We accept the current limitation of not knowing which script(s) is directly employed, this may be a direction of future development. However, encouraging atomic repos with singular purposes may generally be good practice for managing pipeline provenance so this may not be an issue and simply an opinated way in which to develop data processing that is surfaced as linked data.
 
 
 ## External Datasets
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/external_datasets.png" alt="Diagram">
-</div>
+</div> -->
 
 This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
 
