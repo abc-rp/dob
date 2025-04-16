@@ -16,13 +16,17 @@
 
 dob: a owl:Ontology ;
     dct:title "Open Built Environment Data Ontology"@en ;
-    owl:imports prov:, bot:, dct:, so:, foaf: ;
     dct:license <http://creativecommons.org/licenses/by/4.0/> ;
     dct:creator [
         a foaf:Organization ;
         foaf:name "xRI" ;
         foaf:homepage <https://www.xri.online/>
-    ] .
+    ] ;
+    owl:imports 
+        <http://www.w3.org/ns/prov#> ,
+        <http://purl.org/dc/terms/> ,
+        <http://schema.org/> ,
+        <http://xmlns.com/foaf/0.1/> .
 
 ###################################################
 ### CLASSES
