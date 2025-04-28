@@ -63,7 +63,7 @@ dob:UPRNValue a owl:Class ;
 dob:ODSValue a owl:Class ;
     rdfs:label "NHS Organisation Data Service (ODS) Identifier"@en ;
     rdfs:comment "An identifier assigned by NHS Digital for organisations involved in health and social care across England and associated services. Used for consistent referencing across health datasets."@en ;
-    skos:note "Use dob:recommendationCodeAIMS to indicate the system’s confidence in automated matching of ODS identifiers."@en ;
+    skos:note "Use dob:recommendationCodeAddress to indicate the system’s confidence in automated matching of ODS identifiers."@en ;
     rdfs:seeAlso <https://www.odsdatasearchandexport.nhs.uk/> ;
     rdfs:subClassOf dob:PropertyValue , [
         a owl:Restriction ;
