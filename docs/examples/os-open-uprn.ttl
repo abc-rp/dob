@@ -1,0 +1,65 @@
+@prefix did: <https://w3id.org/dob/id/> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix so: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+did:uprn-value-47040255 a dob:UPRNValue ;
+    so:value 47040255 .
+
+did:uprn-value-49036545 a dob:UPRNValue ;
+    so:value 49036545 .
+
+did:uprn-value-50014006 a dob:UPRNValue ;
+    so:value 50014006 .
+
+did:uprn-value-48036331 a dob:UPRNValue ;
+    so:value 48036331 .
+
+did:dataset-aa55bde8-896a-5487-b961-22172f9bc273 a dcat:Dataset ;
+    dct:description "An open dataset containing all the Unique Property Reference Numbers (UPRNs) found in AddressBase Premium, with geometries in British National Grid and WGS84."@en ;
+    dct:publisher <https://www.ordnancesurvey.co.uk/> ;
+    dct:title "OS Open UPRN"@en ;
+    dcat:distribution did:distribution-ebf9c9d8-94ea-5424-9782-d920f1691fe2 ;
+    dcat:theme dop:Location .
+
+did:processing-454e94e0-94de-5ff0-bb59-da0fdecbb205 a dob:Processing ;
+    prov:used did:distribution-ebf9c9d8-94ea-5424-9782-d920f1691fe2 ;
+    prov:wasInfluencedBy did:revision-os-uprn-ttl-a4eccf89-8a9d-57ac-9bcc-c7ce51ce6a5d .
+
+did:repository-os-uprn-ttl-5a89264b-8072-5461-8c25-7a6bb31ed24b a dob:CodeRepository ;
+    rdfs:label "os-uprn-ttl GitHub Repository"@en ;
+    foaf:homepage <https://github.com/abc-rp/os-uprn-ttl> .
+
+did:revision-os-uprn-ttl-a4eccf89-8a9d-57ac-9bcc-c7ce51ce6a5d a dob:CodeRevision ;
+    so:isPartOf did:repository-os-uprn-ttl-5a89264b-8072-5461-8c25-7a6bb31ed24b ;
+    dob:tagURI <https://github.com/abc-rp/os-uprn-ttl/commit/1e6708e956187fdd5ad1ef4b38b900dfea2e496a> .
+
+did:distribution-ebf9c9d8-94ea-5424-9782-d920f1691fe2 a dcat:Distribution,
+        prov:Entity ;
+    dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
+    dct:issued "2024-08-01"^^xsd:date ;
+    dcat:accessURL <https://osdatahub.os.uk/downloads/open/OpenUPRN> .
+
+did:zone-00001d6b-6dda-47f7-902c-b4fb8bd408c7 a sosa:FeatureOfInterest,
+        bot:Zone ;
+    so:identifier did:uprn-value-47040255 .
+
+did:zone-00003933-97d7-4753-a2b3-38f84c7abd7a a sosa:FeatureOfInterest,
+        bot:Zone ;
+    so:identifier did:uprn-value-49036545 .
+
+did:zone-00003c7b-764c-49e5-a793-94393a8c834f a sosa:FeatureOfInterest,
+        bot:Zone ;
+    so:identifier did:uprn-value-50014006 .
+
+did:zone-000044e0-a8b0-4451-8255-572975624adb a sosa:FeatureOfInterest,
+        bot:Zone ;
+    so:identifier did:uprn-value-48036331 .

@@ -1,0 +1,81 @@
+@prefix so: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix did: <https://w3id.org/dob/id/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bess: <https://w3id.org/bess/voc#> .
+
+# BESS2 Platform
+did:bess2-20250314 a sosa:Platform ;
+    rdfs:comment "BESS2 is a car that hosts the sensor stack for monitoring the environment."@en ;
+    rdfs:label "BESS2"@en ;
+    dct:identifier "bess2" ;
+    sosa:hosts did:6284-156243-20250314 ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:6284-156243-20250314 a sosa:Platform ;
+    rdfs:label "6284_156243"@en ;
+    rdfs:comment "6284_156243 is the sensor stack for monitoring the environment. Each stack is identified by its INS serial number."@en ;
+    dct:identifier "sensor-head-6284-156243" ;
+    sosa:hosts did:camera-21424401, 
+        did:camera-21334177, 
+        did:ir-camera-89901857, 
+        did:ir-camera-9900593, 
+        did:lidar-122310001278,
+        did:ins-6284-156243,
+        did:humidity-sensor-254b5bb9-14a9-422a-a1bf-095354255469, 
+        did:temperature-sensor-34f18e39-ad8a-4b95-a54c-295729b4e7dd ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+# Sensor instances using class definitions
+did:camera-21424401 a bess:FlirOryxCamera, so:IndividualProduct ;
+    rdfs:label "Camera 21424401"@en ;
+    rdfs:comment "Camera 21424401 is an RGB camera sensor that captures images."@en ;
+    so:serialNumber "21424401" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:camera-21334177 a bess:FlirOryxCamera, so:IndividualProduct ;
+    rdfs:label "Camera 21334177"@en ;
+    rdfs:comment "Camera 21334177 is an RGB camera sensor that captures images."@en ;
+    so:serialNumber "21334177" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:ir-camera-89901857 a bess:FlirA70Camera, so:IndividualProduct ;
+    rdfs:label "IR Camera 89901857"@en ;
+    rdfs:comment "IR Camera 89901857 is an IR camera sensor that captures images."@en ;
+    so:serialNumber "89901857" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:ir-camera-9900593 a bess:FlirA70Camera, so:IndividualProduct ;
+    rdfs:label "IR Camera 9900593"@en ;
+    rdfs:comment "IR Camera 9900593 is an IR camera sensor that captures images."@en ;
+    so:serialNumber "9900593" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:lidar-122310001278 a bess:OusterLidarSensor, so:IndividualProduct ;
+    rdfs:label "Lidar 122310001278"@en ;
+    rdfs:comment "Lidar 122310001278 is a lidar sensor that captures detailed point cloud data."@en ;
+    so:serialNumber "122310001278" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:ins-6284-156243 a bess:LordMicrostrainINSGQ7, so:IndividualProduct ;
+    rdfs:label "INS 6284_156243"@en ;
+    rdfs:comment "INS 6284_156243 is an inertial navigation system sensor capturing orientation and coordinate data."@en ;
+    so:serialNumber "6284_156243" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:humidity-sensor-254b5bb9-14a9-422a-a1bf-095354255469 a bess:PhidgetHumiditySensor, so:IndividualProduct ;
+    rdfs:label "Humidity Sensor 254b5bb9-14a9-422a-a1bf-095354255469"@en ;
+    rdfs:comment "Humidity Sensor 254b5bb9-14a9-422a-a1bf-095354255469 captures humidity data."@en ;
+    so:serialNumber "254b5bb9-14a9-422a-a1bf-095354255469" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .
+
+did:temperature-sensor-34f18e39-ad8a-4b95-a54c-295729b4e7dd a bess:PhidgetTemperatureSensor, so:IndividualProduct ;
+    rdfs:label "Temperature Sensor 34f18e39-ad8a-4b95-a54c-295729b4e7dd"@en ;
+    rdfs:comment "Temperature Sensor 34f18e39-ad8a-4b95-a54c-295729b4e7dd captures temperature data."@en ;
+    so:serialNumber "34f18e39-ad8a-4b95-a54c-295729b4e7dd" ;
+    prov:wasGeneratedBy did:update-activity-20250314 .

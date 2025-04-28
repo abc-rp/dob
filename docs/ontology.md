@@ -36,6 +36,7 @@ The following namespace prefixes are used throughout this document.
 | prov   | http://www.w3.org/ns/prov#                  | [[PROV-O]](#prov-o)                                      |
 | bot    | https://w3id.org/bot#                       | [[BOT]](#bot)                                     |
 | beo    | http://pi.pauwel.be/voc/buildingelement#    | [[BEO]](#beo)                |
+| so     | http://schema.org/                          | [[SCHEMA]](#schema)                                |
 | sosa   | http://www.w3.org/ns/sosa/                  | [[VOCAB-SSN]](#vocab-ssn)                                |
 | ssn    | http://www.w3.org/ns/ssn/                   | [[VOCAB-SSN]](#vocab-ssn)                                |
 | dcat   | http://www.w3.org/ns/dcat#                  | [[VOCAB-DCAT]](#vocab-dcat-3)                            |
@@ -43,7 +44,7 @@ The following namespace prefixes are used throughout this document.
 | qudt   | http://qudt.org/schema/qudt#                | [[QUDT]](#qudt)                                                    |
 | xsd    | http://www.w3.org/2001/XMLSchema#           | [[XML-SCHEMA-11-2]](#xml-schema11-2)                      |
 | wgs84  | http://www.w3.org/2003/01/geo/wgs84_pos#    | [[W3C-BASIC-GEO]](#w3c-basic-geo)                          |
-| within | http://statistics.data.gov.uk/def/spatialrelations/within#                  | [[ONS Geography Linked Data](#ons-geography-linked-data)] |
+| spr | http://statistics.data.gov.uk/def/spatialrelations/                  | [[ONS Geography Linked Data](#ons-geography-linked-data)] |
 | sid    | http://statistics.data.gov.uk/id/statistical-geography/                     | [[ONS Geography Linked Data](#ons-geography-linked-data)] |
 
 ## DOB Overview
@@ -62,7 +63,7 @@ PROV-O expresses the W3C PROV standard PROV-DM [[PROV-DM](#prov-dm)] as an OWL o
 
 We have chosen to use this ontology as a framework as it is very flexible and allows us to easily extend our ontology when needed. 
 
-The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest` is based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) but more generalised. This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
+Generally we aim to be as based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) as possible This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
 
 <!-- Classes and properties in this diagram:
 * [dob:Result](#dobresult)
@@ -89,23 +90,32 @@ The section concerning `dob:Result`, `prov:Activity` and `sosa:FeatureOfInterest
 
 | Class                | Subclass Of                                                                                                                                                                                                                                                       | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **dob:Result**       | **Union of:**<br/>• `prov:Entity`<br/>• `prov:Activity`                                                                                                                                                                                                          | <br/>• `sosa:hasFeatureOfInterest` ⟶ `sosa:FeatureOfInterest`<br/>• `rdf:value` ⟶ *Only* `(xsd:string, xsd:double, xsd:anyURI, xsd:boolean, xsd:dateTime, xsd:integer, xsd:float, xsd:decimal, xsd:time, xsd:date)`                                                                                                                                                                                                                                   | This class is limited to distinct and identifiable data points and does not represent collections or aggregations of data. It is primarily used to present results of the combination of sensor data capture mediated by software processes.                                                                                                                                                   |
-| **dob:PropertyValue** | `prov:Entity`, `schema:PropertyValue`                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                          | A property value is a specific value of a property of an entity.                                                                                                                                                                                                                                                                                                                                                                          |
-| **dob:UPRNValue**    | **Subclass Of:**<br/>• `dob:PropertyValue`                                                                                                                                                                                                                       | <br/>• `schema:propertyID` ⟶ hasValue `"UPRN"`                                                                                                                                                                                                                                                                                                                                                                           | A unique numeric identifier for every spatial address in Great Britain.                                                                                                                                                                                                                                                                                                                                                                   |
-| **dob:ODSValue**     | **Subclass Of:**<br/>• `dob:PropertyValue`                                                                                                                                                                                                                       | <br/>• `schema:propertyID` ⟶ hasValue `"ODS"`                                                                                                                                                                                                                                                                                                                                                                            | An identifier used by the NHS Organisation Data Service (ODS), which manages reference information about organisations involved in health and social care in England and beyond.                                                                                                                                                                                                                   |
-| **dob:SoftwarePipeline** | `prov:Plan`, `schema:SoftwareApplication`                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                          | A software-based workflow or pipeline that can be used by an Activity, specializing `prov:Plan`.                                                                                                                                                                                                                                                                                                                                          |
-| **dob:CodeRepository**   | `prov:Entity`, `schema:SoftwareSourceCode`                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                          | A repository (e.g., a Git repository) containing source code for a software pipeline.                                                                                                                                                                                                                                                                                                                                                     |
-| **dob:CodeRevision**     | **Subclass Of:**<br/>• `prov:Entity`<br/>• `schema:SoftwareSourceCode`                                                                                                                                                                                        | <br/>• `dob:tagURI` (cardinality = 1)                                                                                                                                                                                                                                                                                                                                                                                    | A specific tagged revision of code in a repository. The property `dob:tagURI` must have exactly one value (e.g., the GitHub URL corresponding to the tag).                                                                                                                                                                                                                                                                               |
+| **dob:AtomicResult**       | `prov:Entity`                                                                                                                                                                                                        |                                                                                                                                                                                                                                | A distinct and identifiable data point/object extracted from a dataset. Collections or aggregations are not represented. Anything that can be considered a single instance of data from a dataset can be a dob:AtomicResult e.g. an single image from a collection can be a dob:Result. Results may be imported as atomic data units from external datasets, where they were originally generated through sensing or computational processes. This can also be a single row in a table from an external dataset.                                                                                                                                                  |
+| **dob:DerivedResult**       | `prov:Entity`                                                                                                                                                                                                        |                                                                                                                                                                                                                                | These are results derived from other results from sensor data and/or from other datasets via dob:Processing. E.g. a dob:DerivedResult can be arrived by taking input from 3 sosa:Results and one dob:AtomicResult.                                                                                                                                                 |
+| **dob:PropertyValue** | `prov:Entity`, `schema:PropertyValue`                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                          | A pair consisting of a property name and a specific value, used to describe a feature or attribute of an entity. Subclasses of PropertyValue specialize the kind of identifier or characteristic being captured. Typically, use schema.org-specific properties where available.                                                                                                                                                                                                                                                                                                                                                                         |
+| **dob:UPRNValue**    | `dob:PropertyValue`                                                                                                                                                                                                                       | `schema:propertyID` ⟶ hasValue `"UPRN"`                                                                                                                                                                                                                                                                                                                                                                           | A unique numeric identifier for a spatial addressable location in Great Britain, as defined by the Ordnance Survey. Used to unambiguously reference properties across datasets.                                                                                                                                                                                                                                                                                                                                                              |
+| **dob:ODSValue**     | `dob:PropertyValue`                                                                                                                                                                                                                       | `schema:propertyID` ⟶ hasValue `"ODS"`                                                                                                                                                                                                                                                                                                                                                                            | An identifier assigned by NHS Digital for organisations involved in health and social care across England and associated services. Used for consistent referencing across health datasets.                                                                                                                                                                                                            |
+| **dob:Processing** | `prov:Activity`                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                          | An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system and generates a dob:DerivedResult.                                                                                                                                                                                                                                                                                                                      |
+| **dob:Enumeration** | `prov:Entity`, `so:Enumeration`                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                          | A set of discrete values or categories that can be used to classify or describe a dob:AtomicResult or dob:DerivedResult. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology.                                                                                                                                                                                                                                                                                                                         |
+| **dob:CodeRepository**   | `prov:Entity`, `schema:SoftwareSourceCode`                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                          | A version-controlled repository (e.g., Git) containing source code and configuration files for software pipelines or components.                                                                                                                                                                                                                                                                                                                                                   |
+| **dob:CodeRevision**     | `prov:Entity`,`schema:SoftwareSourceCode`                                                                                                                                                                                        | `dob:tagURI` (cardinality = 1)                                                                                                                                                                                                                                                                                                                                                                                    | A specific, immutable revision of code from a version-controlled repository, typically referenced by a tag or commit hash. Used to unambiguously associate a software pipeline execution with the exact code used.                                                                                                                                                                                                                                                                              |
 
 ---
 
 # DOB Properties
 
-| Property                 | Subproperty Of                         | Domain                 | Range        | Description                                                                                             |
+| Property                 | Subproperty Of                         | Domain Includes                | Range Includes       | Description                                                                                             |
 |--------------------------|----------------------------------------|------------------------|-------------|---------------------------------------------------------------------------------------------------------|
-| **dob:tagURI**           | `schema:url`                           | `dob:CodeRevision`     | `xsd:anyURI` | A full external link for the tag (e.g., on GitHub).                                                      |
-| **dob:hasCodeRevision**  | • `prov:wasRevisionOf`<br/>• `schema:hasPart` | `dob:CodeRepository`   | `dob:CodeRevision` | Links a Code Repository to the Code Revisions it contains.                                              |
-| **dob:usedCodeRevision** | `prov:used`                            | `dob:SoftwarePipeline` | `dob:CodeRevision` | Links a Software Pipeline to a specific code revision used in its execution.                             |
+| **dob:typeQualifier**           | `so:measurementQualifier`                           | `dob:AtomicResult`, `dob:DerivedResult`     | `dob:Enumeration` | A property that qualifies the type of dob:AtomicResult or dob:DerivedResult. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class.                                                  |
+| **dob:tagURI**           | `so:url`                           | `dob:CodeRevision`     | `xsd:anyURI` | A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URI).                                                   |
+| **dob:recommendationCode**  | `so:valueReference`| `dob:PropertyValue`   | `xsd:string` | A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching                                             |
+| **dob:recommendationCodeAddress** | `dob:recommendationCode`           | `dob:PropertyValue` | `xsd:string` | A confidence code output by the address-to-uprn matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention).                            |
+
+Inverse properties are also defined for object type properties to aid the reasoner, these are not described in detail for brevity.
+
+- dob:isTypeQualifierOf
+- dob:isRecommendationForPropertyValue
+- dob:isAddressRecommendationForPropertyValue 
 
 # BNG Properties
 
@@ -126,13 +136,7 @@ A list of predefined instances will be released. This will include a list of ins
 
 An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
 
-## Results
-
-This section is about how we would present our results and observations (around the class `dob:Result`).
-
-This class has been constructed to be an owl:UnionOf prov:Entity and prov:Activity. We appreciate that this may be viewed as a strange move considering that these two fundamental prov classes are understood in the prov onotology to be implicitly disjoint. 
-
-We require that they a union for the result for economy of triples. If activity and entity are separated such that the result is solely an entity, to produce N triples relating to the result of a property, e.g. temperature, we would require N activities all relating to the same resuable plan (dob:SoftwarePipeline) to describe these results and keep them unambiguously linked to their bot:zone classes, upon which all things depend. 
+<!-- ## Results
 
 This may not be an issue for small knowledge graphs but we immediately create a bot:zone for every domicile in the UK, plus we require a prov process to keep track of how this is generated from the OS Open UPRN dataset. Hence we save 40 million triples at start by creating our dob:Result.
 
@@ -158,7 +162,7 @@ did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
 
 did:uprn_906700039263 a dob:UPRNValue ;
     schema:value "906700039263" .
-```
+``` -->
 
 <!-- ```turtle
 did:result_1234 a dob:Result , qudt:QuantityValue ;
@@ -172,7 +176,7 @@ did:activity_1234 a prov:Activity ;
     ssn:forProperty dop:Height .
 ``` -->
 
-* Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
+<!-- * Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
 
 ```turtle
 did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
@@ -190,7 +194,7 @@ did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
 
 did:uprn_906700039263 a dob:UPRNValue ;
     schema:value "906700039263" .
-```
+``` -->
 
 <!-- ```turtle
 did:result_1235 a dob:Result ;
@@ -217,7 +221,7 @@ did:activity-1236 a prov:Activity ;
     ssn:forProperty dop:ConstructionType .
 ``` -->
 
-These custom properties are not well developed so are not documented here. 
+<!-- These custom properties are not well developed so are not documented here. 
 
 * Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common `wgs84:lat` and `wgs84:long` [[W3C BASIC GEO](#w3c-basic-geo)].
 
@@ -227,14 +231,14 @@ The codelists used may include those recommended or created by
 
 * [ONS](https://github.com/ONSdigital/application-profile/blob/draft/code-lists.md)
 * [SDMX](http://purl.org/linked-data/sdmx/2009/code#)
-* [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs)
+* [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs) -->
 
 
 ## Sensor Observations
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/sensor_observation.png" alt="Diagram">
-</div>
+</div> -->
 
 The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
 * The observation must be connected to 1 Feature Of Interest
@@ -243,7 +247,9 @@ The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#v
 
 Using `sosa:Observation` is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
 
-It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data. This information has been economically condensed into the singular dob:Result class.
+It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `dob:Processing`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `dob:Processing`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the processing took place and what software and procedure was used to generate the data. The final output is a `dob:DerivedResult.`
+
+Where results are meaningful assets, e.g. RGB images, such images will of class `sosa:Result`.
 
 <!-- Classes and properties in this diagram:
 
@@ -283,24 +289,26 @@ This section of the ontology is currently unstable and will be for internal use.
 
 ## Software Pipelines
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/file_metadata.png" alt="Diagram">
-</div>
+</div> -->
 
 Inspiration is taken from prov as well as [MLFlow2PROV](#mlflow2prov), however we opt for an initially simpler description of software pipelines by linking to repositories, which can have lots of information about authorship etc... and then we only really require knowledge of a tagged release of source code to know the code used from this repository that is used in a pipeline. A software pipeline can link to multiple repositories. We accept the current limitation of not knowing which script(s) is directly employed, this may be a direction of future development. However, encouraging atomic repos with singular purposes may generally be good practice for managing pipeline provenance so this may not be an issue and simply an opinated way in which to develop data processing that is surfaced as linked data.
 
 
 ## External Datasets
 
-<div align="center">
+<!-- <div align="center">
     <img src="resources/external_datasets.png" alt="Diagram">
-</div>
+</div> -->
 
 This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
 
 DCAT is widely used in open linked data. Some of the organisations that use DCAT are [ONS (Office for National Statistics)](https://github.com/ONSdigital/application-profile/blob/531fd289f8200491ae7b21d18978bdc8cd565704/cataloguing.md), European Data Portal [[DCAT-AP](#dcat-ap)], and US Department of the Interior [[DCAT-US](#dcat-us)]. 
 
 We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
+
+We make use of our `dob:AtomicResult` to represent instance data from external datasets, this allows its representation in the graph as well in combination with `sosa:Results` and `dob:DerivedResults` to generate further `dob:DerivedResults`
 
 <!-- Classes and properties in this diagram:
 
@@ -498,4 +506,4 @@ Basic Geo (WGS84 lat/long) Vocabulary. Dan Brickley. W3C Semantic Web Interest G
 W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. David Peterson; Sandy Gao; Ashok Malhotra; Michael Sperberg-McQueen; Henry Thompson; Paul V. Biron et al. W3C. 5 April 2012. W3C Recommendation. URL: https://www.w3.org/TR/xmlschema11-2/ 
 
 #### [QUDT]
-QUDT - Quantities, Units, Dimensions and Data Types Ontologies. Ralph Hodgson; Paul J. Keller; Jack Hodges; Jack Spivak.18 March 2014. URL: http://www.qudt.org/ 
+QUDT - Quantities, Units, Dimensions and Data Types Ontologies. Ralph Hodgson; Paul J. Keller; Jack Hodges; Jack Spivak.18 March 2014. URL: http://www.qudt.org/
