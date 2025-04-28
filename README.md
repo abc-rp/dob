@@ -122,7 +122,7 @@ When submitting an issue:
 If you want to propose changes or additions to the DOB ontology:
 1. **Check for existing discussions**: Review open issues and discussions to see if your suggestion has already been proposed.
 2. **Fork the repository**: Create your own copy of the repository to work on.
-3. **Make changes**: Edit the [ontology files ttl files](voc/), then make sure the [ontology documentation](docs/resources/ontology.md) is also updated. Diagrams can be found and updated in the [.drawio file](docs/resources/ontology.drawio). Additionally provide some [example](docs/resources/examples/) ttl files for any new classes or properties showing how they relate to the existing ontology.
+3. **Make changes**: Edit the [ontology files ttl files](voc/), then make sure the [ontology documentation](docs/resources/ontology.md) is also updated. Diagrams can be found and updated in the [.jam file](docs/resources/dob.jam). Additionally provide some [example](docs/resources/examples/) ttl files for any new classes or properties showing how they relate to the existing ontology.
 4. **Submit a pull request**:
    - Ensure that your modifications follow Linked Data best practices.
    - Provide a description of why the change is necessary.
