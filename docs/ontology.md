@@ -104,11 +104,12 @@ Generally we aim to be as based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn)
 
 # DOB Properties
 
-| Property                 | Subproperty Of                         | Domain                 | Range        | Description                                                                                             |
+| Property                 | Subproperty Of                         | Domain Includes                | Range Includes       | Description                                                                                             |
 |--------------------------|----------------------------------------|------------------------|-------------|---------------------------------------------------------------------------------------------------------|
+| **dob:typeQualifier**           | `so:measurementQualifier`                           | `dob:AtomicResult`, `dob:DerivedResult`     | `dob:Enumeration` | A property that qualifies the type of dob:AtomicResult or dob:DerivedResult. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class.                                                  |
 | **dob:tagURI**           | `so:url`                           | `dob:CodeRevision`     | `xsd:anyURI` | A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URI).                                                   |
-| **dob:hasCodeRevision**  | • `prov:wasRevisionOf`<br/>• `schema:hasPart` | `dob:CodeRepository`   | `dob:CodeRevision` | Links a Code Repository to the Code Revisions it contains.                                              |
-| **dob:usedCodeRevision** | `prov:used`                            | `dob:SoftwarePipeline` | `dob:CodeRevision` | Links a Software Pipeline to a specific code revision used in its execution.                             |
+| **dob:recommendationCode**  | `so:valueReference`| `dob:PropertyValue`   | `xsd:string` | A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching                                             |
+| **dob:recommendationCodeAddress** | `dob:recommendationCode`           | `dob:PropertyValue` | `xsd:string` | A confidence code output by the address-to-uprn matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention).                            |
 
 # BNG Properties
 
