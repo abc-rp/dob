@@ -120,10 +120,9 @@ dob:recommendationCode a owl:DatatypeProperty ;
     so:domainIncludes dob:PropertyValue ;
     so:rangeIncludes xsd:string .
 
-dob:recommendationCodeAIMS a owl:DatatypeProperty ;
-    rdfs:label "AIMS Match Recommendation"@en ;
-    rdfs:comment "A confidence code output by the AIMS matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention)."@en ;
-    rdfs:seeAlso <https://github.com/ONSdigital/aims-api/blob/v1.3.2/server/app/uk/gov/ons/addressIndex/server/utils/AIRatingHelper.scala> ;
+dob:recommendationCodeAddress a owl:DatatypeProperty ;
+    rdfs:label "Address-to-UPRN Match Recommendation"@en ;
+    rdfs:comment "A confidence code output by the address-to-uprn matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention)."@en ;
     rdfs:subPropertyOf dob:recommendationCode ;
     so:domainIncludes dob:PropertyValue ;
     so:rangeIncludes [
@@ -164,9 +163,9 @@ dob:isRecommendationForPropertyValue a owl:ObjectProperty ;
     so:domainIncludes xsd:string ;
     so:rangeIncludes dob:PropertyValue .
 
-dob:isAIMSRecommendationForPropertyValue a owl:ObjectProperty ;
-    rdfs:label "Is AIMS Recommendation For Property Value"@en ;
-    rdfs:comment "Inverse property linking an AIMS recommendation code ('A' or 'I') back to the dob:PropertyValue it specifically applies to."@en ;
+dob:isAddressRecommendationForPropertyValue a owl:ObjectProperty ;
+    rdfs:label "Is Address Matched Recommendation For Property Value"@en ;
+    rdfs:comment "Inverse property linking an address-to-uprn recommendation code ('A' or 'I') back to the dob:PropertyValue it specifically applies to."@en ;
     owl:inverseOf dob:recommendationCodeAIMS ;
     so:domainIncludes [
         a rdfs:Datatype ;
