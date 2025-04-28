@@ -106,7 +106,7 @@ Generally we aim to be as based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn)
 
 | Property                 | Subproperty Of                         | Domain                 | Range        | Description                                                                                             |
 |--------------------------|----------------------------------------|------------------------|-------------|---------------------------------------------------------------------------------------------------------|
-| **dob:tagURI**           | `schema:url`                           | `dob:CodeRevision`     | `xsd:anyURI` | A full external link for the tag (e.g., on GitHub).                                                      |
+| **dob:tagURI**           | `so:url`                           | `dob:CodeRevision`     | `xsd:anyURI` | A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URI).                                                   |
 | **dob:hasCodeRevision**  | • `prov:wasRevisionOf`<br/>• `schema:hasPart` | `dob:CodeRepository`   | `dob:CodeRevision` | Links a Code Repository to the Code Revisions it contains.                                              |
 | **dob:usedCodeRevision** | `prov:used`                            | `dob:SoftwarePipeline` | `dob:CodeRevision` | Links a Software Pipeline to a specific code revision used in its execution.                             |
 
