@@ -136,13 +136,7 @@ A list of predefined instances will be released. This will include a list of ins
 
 An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
 
-## Results
-
-This section is about how we would present our results and observations (around the class `dob:Result`).
-
-This class has been constructed to be an owl:UnionOf prov:Entity and prov:Activity. We appreciate that this may be viewed as a strange move considering that these two fundamental prov classes are understood in the prov onotology to be implicitly disjoint. 
-
-We require that they a union for the result for economy of triples. If activity and entity are separated such that the result is solely an entity, to produce N triples relating to the result of a property, e.g. temperature, we would require N activities all relating to the same resuable plan (dob:SoftwarePipeline) to describe these results and keep them unambiguously linked to their bot:zone classes, upon which all things depend. 
+<!-- ## Results
 
 This may not be an issue for small knowledge graphs but we immediately create a bot:zone for every domicile in the UK, plus we require a prov process to keep track of how this is generated from the OS Open UPRN dataset. Hence we save 40 million triples at start by creating our dob:Result.
 
@@ -168,7 +162,7 @@ did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
 
 did:uprn_906700039263 a dob:UPRNValue ;
     schema:value "906700039263" .
-```
+``` -->
 
 <!-- ```turtle
 did:result_1234 a dob:Result , qudt:QuantityValue ;
@@ -182,7 +176,7 @@ did:activity_1234 a prov:Activity ;
     ssn:forProperty dop:Height .
 ``` -->
 
-* Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
+<!-- * Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
 
 ```turtle
 did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
@@ -200,7 +194,7 @@ did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
 
 did:uprn_906700039263 a dob:UPRNValue ;
     schema:value "906700039263" .
-```
+``` -->
 
 <!-- ```turtle
 did:result_1235 a dob:Result ;
@@ -227,7 +221,7 @@ did:activity-1236 a prov:Activity ;
     ssn:forProperty dop:ConstructionType .
 ``` -->
 
-These custom properties are not well developed so are not documented here. 
+<!-- These custom properties are not well developed so are not documented here. 
 
 * Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common `wgs84:lat` and `wgs84:long` [[W3C BASIC GEO](#w3c-basic-geo)].
 
@@ -237,7 +231,7 @@ The codelists used may include those recommended or created by
 
 * [ONS](https://github.com/ONSdigital/application-profile/blob/draft/code-lists.md)
 * [SDMX](http://purl.org/linked-data/sdmx/2009/code#)
-* [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs)
+* [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs) -->
 
 
 ## Sensor Observations
@@ -253,7 +247,9 @@ The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#v
 
 Using `sosa:Observation` is useful when we want the data to be linked back to a particular sensor, or we want to know exactly when the data was taken.
 
-It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `prov:Activity`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `prov:Activity`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the activity took place and what software and procedure was used to generate the data. This information has been economically condensed into the singular dob:Result class.
+It might not be suitable to release the raw data from our sensors, as the data is often difficult to interpret or has privacy issues. In these cases, an additional step (represented by `dob:Processing`) may be required to transform the data. For instance, let's consider the height of a window. The data ultimately comes from a 3D observation of the building made by the Lidar sensor, so it takes an extra step (the `dob:Processing`) to extract the height of the window from the initial raw data. This also allows us to describe in further detail when the processing took place and what software and procedure was used to generate the data. The final output is a `dob:DerivedResult.`
+
+Where results are meaningful assets, e.g. RGB images, such images will of class `sosa:Result`.
 
 <!-- Classes and properties in this diagram:
 
@@ -311,6 +307,8 @@ This is data that is taken directly from external datasets, such as from the Off
 DCAT is widely used in open linked data. Some of the organisations that use DCAT are [ONS (Office for National Statistics)](https://github.com/ONSdigital/application-profile/blob/531fd289f8200491ae7b21d18978bdc8cd565704/cataloguing.md), European Data Portal [[DCAT-AP](#dcat-ap)], and US Department of the Interior [[DCAT-US](#dcat-us)]. 
 
 We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
+
+We make use of our `dob:AtomicResult` to represent instance data from external datasets, this allows its representation in the graph as well in combination with `sosa:Results` and `dob:DerivedResults` to generate further `dob:DerivedResults`
 
 <!-- Classes and properties in this diagram:
 
