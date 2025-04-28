@@ -43,7 +43,7 @@ The following namespace prefixes are used throughout this document.
 | qudt   | http://qudt.org/schema/qudt#                | [[QUDT]](#qudt)                                                    |
 | xsd    | http://www.w3.org/2001/XMLSchema#           | [[XML-SCHEMA-11-2]](#xml-schema11-2)                      |
 | wgs84  | http://www.w3.org/2003/01/geo/wgs84_pos#    | [[W3C-BASIC-GEO]](#w3c-basic-geo)                          |
-| within | http://statistics.data.gov.uk/def/spatialrelations/within#                  | [[ONS Geography Linked Data](#ons-geography-linked-data)] |
+| spr | http://statistics.data.gov.uk/def/spatialrelations/                  | [[ONS Geography Linked Data](#ons-geography-linked-data)] |
 | sid    | http://statistics.data.gov.uk/id/statistical-geography/                     | [[ONS Geography Linked Data](#ons-geography-linked-data)] |
 
 ## DOB Overview
