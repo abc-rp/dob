@@ -111,6 +111,12 @@ Generally we aim to be as based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn)
 | **dob:recommendationCode**  | `so:valueReference`| `dob:PropertyValue`   | `xsd:string` | A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching                                             |
 | **dob:recommendationCodeAddress** | `dob:recommendationCode`           | `dob:PropertyValue` | `xsd:string` | A confidence code output by the address-to-uprn matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention).                            |
 
+Inverse properties are also defined for object type properties to aid the reasoner, these are not described in detail for brevity.
+
+- dob:isTypeQualifierOf
+- dob:isRecommendationForPropertyValue
+- dob:isAddressRecommendationForPropertyValue 
+
 # BNG Properties
 
 <div align="center">
