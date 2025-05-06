@@ -8,7 +8,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix so:   <http://schema.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix dob:  <https://w3id.org/dob/voc#> .
 
 ###################################################
@@ -85,12 +85,12 @@ dob:OAValue a rdfs:Class, owl:Class ;
 
 dob:Enumeration a rdfs:Class, owl:Class ;
     rdfs:label "dob specific enumeration"@en ;
-    rdfs:comment "A set of discrete values or categories that can be used to classify or describe a dob:AtomicResult or dob:DerivedResult. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology."@en ;
+    rdfs:comment "A set of discrete values or categories that can be used to classify or describe a sosa:Result. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology."@en ;
     rdfs:subClassOf prov:Entity , so:Enumeration .
 
 dob:Processing a rdfs:Class, owl:Class ;
-    rdfs:label "Processing inputs programmticaly to derived results."@en ;
-    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system and generates a dob:DerivedResult."@en ;
+    rdfs:label "Processing inputs programmatically to new derived results."@en ;
+    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system and generates a new sosa:Result."@en ;
     rdfs:subClassOf prov:Activity .
 
 dob:CodeRepository a rdfs:Class, owl:Class ;
@@ -119,9 +119,9 @@ dob:OutputArea a owl:Class ;
 
 dob:typeQualifier a rdf:Property, owl:ObjectProperty ;
     rdfs:label "Type Qualifier"@en ;
-    rdfs:comment "A property that qualifies the type of dob:AtomicResult or dob:DerivedResult. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class."@en ;
+    rdfs:comment "A property that qualifies the type of sosa:Result. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class."@en ;
     rdfs:subPropertyOf so:measurementQualifier ;
-    so:domainIncludes dob:AtomicResult, dob:DerivedResult ;
+    so:domainIncludes sosa:Result ;
     so:rangeIncludes dob:Enumeration .
 
 dob:tagURI a rdf:Property, owl:DatatypeProperty ;
@@ -155,10 +155,10 @@ dob:recommendationCodeAddress a rdf:Property, owl:DatatypeProperty ;
 
 dob:isTypeQualifierOf a rdf:Property, owl:ObjectProperty ;
     rdfs:label "Is Type Qualifier Of"@en ;
-    rdfs:comment "Inverse property for dob:typeQualifier, linking from dob:Enumeration back to dob:AtomicResult or dob:DerivedResult qualified by this enumeration."@en ;
+    rdfs:comment "Inverse property for dob:typeQualifier, linking from dob:Enumeration back to sosa:Result qualified by this enumeration."@en ;
     owl:inverseOf dob:typeQualifier ;
     so:domainIncludes dob:Enumeration ;
-    so:rangeIncludes dob:AtomicResult, dob:DerivedResult .
+    so:rangeIncludes sosa:Result .
 
 dob:isRecommendationForPropertyValue a rdf:Property, owl:ObjectProperty ;
     rdfs:label "Is Recommendation For Property Value"@en ;
