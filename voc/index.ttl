@@ -73,6 +73,16 @@ dob:ODSValue a rdfs:Class, owl:Class ;
         owl:hasValue "ODS"^^xsd:string
     ] .
 
+dob:OAValue a rdfs:Class, owl:Class ;
+    rdfs:label "ONS Output Area Identifier"@en ;
+    rdfs:comment "Identifying codes for ONS output areas for statistical geography."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf dob:PropertyValue , [
+        a owl:Restriction ;
+        owl:onProperty so:propertyID ;
+        owl:hasValue "OA"^^xsd:string
+    ] .
+
 dob:Enumeration a rdfs:Class, owl:Class ;
     rdfs:label "dob specific enumeration"@en ;
     rdfs:comment "A set of discrete values or categories that can be used to classify or describe a dob:AtomicResult or dob:DerivedResult. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology."@en ;
