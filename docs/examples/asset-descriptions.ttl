@@ -71,14 +71,14 @@ did:observation-e5b02e09-e324-5a13-ae78-c4ae8f168aae a sosa:Observation ;
     sosa:usedProcedure did:api-writer-0669539b-96b5-50b5-90e6-09e548115463,
         did:ir-camera-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
 
-did:observation-env-hum-18889c8b-c463-5f2e-9c19-27a4df664f5a a sosa:Observation ;
+did:observation-18889c8b-c463-5f2e-9c19-27a4df664f5a a sosa:Observation ;
     sosa:hasFeatureOfInterest did:zone-c7d626e6-20fb-4964-be29-a5382c1ad8fb ;
     sosa:hasResult did:b254003c-cc5f-5423-86a1-6b859b275b5e ;
     sosa:madeBySensor did:humidity-sensor-254b5bb9-14a9-422a-a1bf-095354255469 ;
     sosa:usedProcedure did:api-writer-0669539b-96b5-50b5-90e6-09e548115463,
         did:phidgets-procedure-049cf124-1454-53e0-96cb-9a85cd35d5a5 .
 
-did:observation-env-temp-a36365c9-94ed-52ed-9f48-6b7655d897dc a sosa:Observation ;
+did:observation-a36365c9-94ed-52ed-9f48-6b7655d897dc a sosa:Observation ;
     sosa:hasFeatureOfInterest did:zone-c7d626e6-20fb-4964-be29-a5382c1ad8fb ;
     sosa:hasResult did:80084e05-2ce1-5c58-b326-771b6d6406ee ;
     sosa:madeBySensor did:temperature-sensor-34f18e39-ad8a-4b95-a54c-295729b4e7dd ;
