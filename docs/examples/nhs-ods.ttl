@@ -10,13 +10,6 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-did:dataset-c2b14b85-152b-5a82-be0b-b0a8e5e534ec a dcat:Dataset ;
-    dct:description "A national service for managing reference information about health and social care organisations in England and beyond."@en ;
-    dct:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    dct:publisher <https://digital.nhs.uk/> ;
-    dct:title "NHS Organisation Data Service (ODS)"@en ;
-    dcat:distribution did:distribution-0d1a257e-5906-555c-9b37-cc3f73002349 .
-
 did:zone-0000a75d-eaa9-409a-a588-309f4efe20eb a sosa:FeatureOfInterest,
         bot:Zone ;
     so:identifier did:ods-value-VNKWK .
@@ -43,98 +36,60 @@ did:zone-0001c557-fcb0-49cd-b4fe-bdfd290a1b5d a sosa:FeatureOfInterest,
         bot:Zone ;
     so:identifier did:ods-value-FAX78 .
 
-did:zone-00026906-ff84-4d84-baf7-107cd0ce633d a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-RJN0B .
-
-did:zone-00027a07-5dc7-4f8a-a796-55883c537847 a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-EE143347 .
-
-did:zone-0002cbb1-5baa-47e9-bc34-d8d07ee6090c a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-RP733 .
-
-did:zone-0002faf3-5197-4f5b-bf09-47c03c19e7e1 a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-R0A25,
-        did:ods-value-RW3TE .
-
-did:zone-00032038-a492-4d79-827d-b713146ed2e4 a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-VM286 .
-
-did:zone-00037923-1aa6-4672-a52b-845815b36a39 a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-V05296 .
-
-did:zone-00037cac-af34-498a-acb2-add0fb088c3d a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-NWY01 .
-
-did:zone-0003e3de-a793-4795-9678-a9400357343a a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-AWGN .
-
-did:zone-0005603e-30b5-4f20-a328-49e92c56c1bf a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-TP811 .
-
-did:zone-0005855e-56f9-4dee-8dd8-eb86ac156e6f a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-TP09E .
-
-did:zone-00069381-6a93-4b19-a8ce-6263b2529644 a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-C7DR,
-        did:ods-value-VNT0X .
-
-did:zone-0007499a-8847-41e0-83d9-617cf228e13a a sosa:FeatureOfInterest,
-        bot:Zone ;
-    so:identifier did:ods-value-T8U1Q .
-
-did:ods-value-Z9X9M a dob:ODSValue ;
+did:ods-value-00L a dob:ODSValue ;
     so:propertyID "ODS"^^xsd:string ;
-    so:value "Z9X9M"^^xsd:string ;
-    prov:wasDerivedFrom did:distribution-0d1a257e-5906-555c-9b37-cc3f73002349 ;
-    prov:wasGeneratedBy did:processing-97115ddc-216f-5c7d-90dd-8874de68ea85 ;
+    so:value "00L"^^xsd:string ;
+    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
     dob:recommendationCodeAddress "A"^^xsd:string .
 
-did:ods-value-Z9Y2F a dob:ODSValue ;
+did:ods-value-00LAA a dob:ODSValue ;
     so:propertyID "ODS"^^xsd:string ;
-    so:value "Z9Y2F"^^xsd:string ;
-    prov:wasDerivedFrom did:distribution-0d1a257e-5906-555c-9b37-cc3f73002349 ;
-    prov:wasGeneratedBy did:processing-97115ddc-216f-5c7d-90dd-8874de68ea85 ;
-    dob:recommendationCodeAddress "A"^^xsd:string .
+    so:value "00LAA"^^xsd:string ;
+    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
+    dob:recommendationCodeAddress "I"^^xsd:string .
 
-did:ods-value-Z9Z1G a dob:ODSValue ;
+did:ods-value-00LAC a dob:ODSValue ;
     so:propertyID "ODS"^^xsd:string ;
-    so:value "Z9Z1G"^^xsd:string ;
-    prov:wasDerivedFrom did:distribution-0d1a257e-5906-555c-9b37-cc3f73002349 ;
-    prov:wasGeneratedBy did:processing-97115ddc-216f-5c7d-90dd-8874de68ea85 ;
-    dob:recommendationCodeAddress "A"^^xsd:string .
+    so:value "00LAC"^^xsd:string ;
+    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
+    dob:recommendationCodeAddress "I"^^xsd:string .
 
-did:ods-value-Z9Z4W a dob:ODSValue ;
+did:ods-value-00LAD a dob:ODSValue ;
     so:propertyID "ODS"^^xsd:string ;
-    so:value "Z9Z4W"^^xsd:string ;
-    prov:wasDerivedFrom did:distribution-0d1a257e-5906-555c-9b37-cc3f73002349 ;
-    prov:wasGeneratedBy did:processing-97115ddc-216f-5c7d-90dd-8874de68ea85 ;
-    dob:recommendationCodeAddress "A"^^xsd:string .
+    so:value "00LAD"^^xsd:string ;
+    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
+    dob:recommendationCodeAddress "I"^^xsd:string .
+
+did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 a dob:Processing ;
+    rdfs:label "ODS TTL Processing"@en ;
+    prov:used did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    sosa:usedProcedure did:procedure-d57c0881-b335-5f89-9aa8-837f8a590b67 .
+
+did:procedure-d57c0881-b335-5f89-9aa8-837f8a590b67 a sosa:Procedure ;
+    rdfs:label "ODS TTL generation procedure"@en ;
+    prov:wasInfluencedBy did:revision-ods-ttl-8bf2b7c6-c929-5baf-8d43-0adb95885168 .
 
 did:repository-ods-ttl-c206a9e1-6c26-587d-ab7e-b7b0bd451c91 a dob:CodeRepository ;
     rdfs:label "ods-ttl GitHub Repository"@en ;
     foaf:homepage <https://github.com/abc-rp/ods-ttl> .
 
-did:revision-ods-ttl-884b5f17-bda7-5364-af1c-9e1a6c8594e8 a dob:CodeRevision ;
+did:revision-ods-ttl-8bf2b7c6-c929-5baf-8d43-0adb95885168 a dob:CodeRevision ;
     so:isPartOf did:repository-ods-ttl-c206a9e1-6c26-587d-ab7e-b7b0bd451c91 ;
-    dob:tagURI <https://github.com/abc-rp/ods-ttl/commit/3adb2f45074a02b089d0f3c9e2a4e3284c9fed0c> .
+    dob:tagURI <https://github.com/abc-rp/ods-ttl/commit/7989d6a29249bb390b1ff1037f4c846f1cc7ec3e> .
 
-did:processing-97115ddc-216f-5c7d-90dd-8874de68ea85 a dob:Processing ;
-    rdfs:label "ODS TTL Processing"@en ;
-    dct:description "Processes ODS and location CSVs to generate TTL graphs with provenance."@en ;
-    prov:wasInfluencedBy did:revision-ods-ttl-884b5f17-bda7-5364-af1c-9e1a6c8594e8 .
+did:dataset-2fc66ab8-9012-5eb5-9fa7-84761398b027 a dcat:Dataset ;
+    dct:description "A national service for managing reference information about health and social care organisations in England and beyond."@en ;
+    dct:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    dct:publisher <https://digital.nhs.uk/> ;
+    dct:title "NHS Organisation Data Service (ODS)"@en ;
+    dcat:distribution did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 .
 
-did:distribution-0d1a257e-5906-555c-9b37-cc3f73002349 a dcat:Distribution ;
+did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 a dcat:Distribution,
+        prov:Entity ;
     dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
     dct:issued "2025-02-12"^^xsd:date ;
     dcat:accessURL <https://www.odsdatasearchandexport.nhs.uk/> .
