@@ -8,6 +8,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix so:   <http://schema.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix dob:  <https://w3id.org/dob/voc#> .
 
 ###################################################
@@ -22,6 +23,19 @@ dob: a owl:Ontology ;
         foaf:name "xRI" ;
         foaf:homepage <https://www.xri.online/>
     ] ;
+    dct:contributor [
+        a foaf:Person ;
+        foaf:name      "Gary Edwards" ;
+        foaf:mbox      <mailto:gary@xri.online>
+    ] , [
+        a foaf:Person ;
+        foaf:name      "Nathaniel Hey" ;
+        foaf:mbox      <mailto:nathaniel@xri.online>
+    ] , [
+        a foaf:Person ;
+        foaf:name      "Sofia Raffio-Curd" ;
+        foaf:mbox      <mailto:sofia@xri.online>
+    ] ;
     owl:imports 
         <http://www.w3.org/ns/prov#> ,
         <http://purl.org/dc/terms/> ,
@@ -32,24 +46,12 @@ dob: a owl:Ontology ;
 ### CLASSES
 ###################################################
 
-dob:AtomicResult a owl:Class ;
-    rdfs:label "Atomic Data Result"@en ;
-    rdfs:comment "A distinct and identifiable data point/object extracted from a dataset. Collections or aggregations are not represented. Anything that can be considered a single instance of data from a dataset can be a dob:AtomicResult e.g. an single image from a collection can be a dob:Result. Results may be imported as atomic data units from external datasets, where they were originally generated through sensing or computational processes. This can also be a single row in a table from an external dataset."@en ;
-    skos:example "A temperature value of 295K representing sensor data extracted from an external database table. Or a single image taken from the ImageNet dataset."@en ;
-    rdfs:subClassOf prov:Entity .
-
-dob:DerivedResult a owl:Class ;
-    rdfs:label "Derived Result"@en ;
-    rdfs:comment "These are results derived from other results from sensor data and/or from other datasets via dob:Processing. E.g. a dob:DerivedResult can be arrived by taking input from 3 sosa:Results and one dob:AtomicResult"@en ;
-    skos:example "A matrix of temperature values calculated radiometrically from the sosa:Result that is the raw mono16 image of the photon counts on the detector and the two sosa:Results for temperature and humidity taken from a thermometer and a relative humidity sensor. A dob:Processing occurs and combines these inputs to generate the temperature matrix as a single dob:DerivedResult ouput."@en ;
-    rdfs:subClassOf prov:Entity .
-
-dob:PropertyValue a owl:Class ;
+dob:PropertyValue a rdfs:Class, owl:Class ;
     rdfs:label "Property-Value Pair"@en ;
     rdfs:comment "A pair consisting of a property name and a specific value, used to describe a feature or attribute of an entity. Subclasses of PropertyValue specialize the kind of identifier or characteristic being captured. Typically, use schema.org-specific properties where available."@en ;
     rdfs:subClassOf prov:Entity , so:PropertyValue .
 
-dob:UPRNValue a owl:Class ;
+dob:UPRNValue a rdfs:Class, owl:Class ;
     rdfs:label "Unique Property Reference Number (UPRN)"@en ;
     rdfs:comment "A unique numeric identifier for a spatial addressable location in Great Britain, as defined by the Ordnance Survey. Used to unambiguously reference properties across datasets."@en ;
     skos:example "A UPRN is a unique numeric identifier, e.g., 100012345678, used to reference a single spatial addressable location."@en ;
@@ -60,7 +62,7 @@ dob:UPRNValue a owl:Class ;
         owl:hasValue "UPRN"^^xsd:string
     ] .
 
-dob:ODSValue a owl:Class ;
+dob:ODSValue a rdfs:Class, owl:Class ;
     rdfs:label "NHS Organisation Data Service (ODS) Identifier"@en ;
     rdfs:comment "An identifier assigned by NHS Digital for organisations involved in health and social care across England and associated services. Used for consistent referencing across health datasets."@en ;
     skos:note "Use dob:recommendationCodeAddress to indicate the system’s confidence in automated matching of ODS identifiers."@en ;
@@ -71,22 +73,32 @@ dob:ODSValue a owl:Class ;
         owl:hasValue "ODS"^^xsd:string
     ] .
 
-dob:Enumeration a owl:Class ;
+dob:OAValue a rdfs:Class, owl:Class ;
+    rdfs:label "ONS Output Area Identifier"@en ;
+    rdfs:comment "Identifying codes for ONS output areas for statistical geography."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf dob:PropertyValue , [
+        a owl:Restriction ;
+        owl:onProperty so:propertyID ;
+        owl:hasValue "OA"^^xsd:string
+    ] .
+
+dob:Enumeration a rdfs:Class, owl:Class ;
     rdfs:label "dob specific enumeration"@en ;
-    rdfs:comment "A set of discrete values or categories that can be used to classify or describe a dob:AtomicResult or dob:DerivedResult. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology."@en ;
+    rdfs:comment "A set of discrete values or categories that can be used to classify or describe a sosa:Result. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology."@en ;
     rdfs:subClassOf prov:Entity , so:Enumeration .
 
-dob:Processing a owl:Class ;
-    rdfs:label "Processing inputs programmticaly to derived results."@en ;
-    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system and generates a dob:DerivedResult."@en ;
+dob:Processing a rdfs:Class, owl:Class ;
+    rdfs:label "Processing inputs programmatically to new derived results."@en ;
+    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system and generates a new sosa:Result."@en ;
     rdfs:subClassOf prov:Activity .
 
-dob:CodeRepository a owl:Class ;
+dob:CodeRepository a rdfs:Class, owl:Class ;
     rdfs:label "Source Code Repository"@en ;
     rdfs:comment "A version-controlled repository (e.g., Git) containing source code and configuration files for software pipelines or components."@en ;
     rdfs:subClassOf prov:Entity , so:SoftwareSourceCode .
 
-dob:CodeRevision a owl:Class ;
+dob:CodeRevision a rdfs:Class, owl:Class ;
     rdfs:label "Code Revision"@en ;
     rdfs:comment "A specific, immutable revision of code from a version-controlled repository, typically referenced by a tag or commit hash. Used to unambiguously associate a software pipeline execution with the exact code used."@en ;
     rdfs:subClassOf prov:Entity , so:SoftwareSourceCode , [
@@ -95,32 +107,38 @@ dob:CodeRevision a owl:Class ;
         owl:cardinality "1"^^xsd:nonNegativeInteger
     ] .
 
+dob:OutputArea a owl:Class ;
+    rdfs:label "Output Area"@en ;
+    rdfs:comment "Output Areas (OAs) are the smallest geographic units used for publishing Census 2021 statistics in England and Wales. Designed to maintain consistent population and household sizes, they typically contain 40–250 households and 100–625 usual residents. For 2021, OAs were updated from their 2011 versions to reflect demographic changes: unchanged where they still met size thresholds, and otherwise split or merged accordingly. About 200 boundaries were also adjusted to better align with ward boundaries. Some OAs may exceed the usual population range in special cases, such as large prisons."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf prov:Entity , so:Place .
+
 ###################################################
 ### PROPERTIES
 ###################################################
 
-dob:typeQualifier a owl:ObjectProperty ;
+dob:typeQualifier a rdf:Property, owl:ObjectProperty ;
     rdfs:label "Type Qualifier"@en ;
-    rdfs:comment "A property that qualifies the type of dob:AtomicResult or dob:DerivedResult. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class."@en ;
+    rdfs:comment "A property that qualifies the type of sosa:Result. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class."@en ;
     rdfs:subPropertyOf so:measurementQualifier ;
-    so:domainIncludes dob:AtomicResult, dob:DerivedResult ;
+    so:domainIncludes sosa:Result ;
     so:rangeIncludes dob:Enumeration .
 
-dob:tagURI a owl:DatatypeProperty ;
+dob:tagURI a rdf:Property, owl:DatatypeProperty ;
     rdfs:label "Code Tag URI"@en ;
     rdfs:comment "A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URI)."@en ;
     rdfs:subPropertyOf so:url ;
     so:domainIncludes dob:CodeRevision ;
     so:rangeIncludes xsd:anyURI .
 
-dob:recommendationCode a owl:DatatypeProperty ;
+dob:recommendationCode a rdf:Property, owl:DatatypeProperty ;
     rdfs:label "Matching Recommendation Code"@en ;
     rdfs:comment "A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching."@en ;
     rdfs:subPropertyOf so:valueReference ;
     so:domainIncludes dob:PropertyValue ;
     so:rangeIncludes xsd:string .
 
-dob:recommendationCodeAddress a owl:DatatypeProperty ;
+dob:recommendationCodeAddress a rdf:Property, owl:DatatypeProperty ;
     rdfs:label "Address-to-UPRN Match Recommendation"@en ;
     rdfs:comment "A confidence code output by the address-to-uprn matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention)."@en ;
     rdfs:subPropertyOf dob:recommendationCode ;
@@ -135,21 +153,21 @@ dob:recommendationCodeAddress a owl:DatatypeProperty ;
 ### INVERSE PROPERTIES
 ###################################################
 
-dob:isTypeQualifierOf a owl:ObjectProperty ;
+dob:isTypeQualifierOf a rdf:Property, owl:ObjectProperty ;
     rdfs:label "Is Type Qualifier Of"@en ;
-    rdfs:comment "Inverse property for dob:typeQualifier, linking from dob:Enumeration back to dob:AtomicResult or dob:DerivedResult qualified by this enumeration."@en ;
+    rdfs:comment "Inverse property for dob:typeQualifier, linking from dob:Enumeration back to sosa:Result qualified by this enumeration."@en ;
     owl:inverseOf dob:typeQualifier ;
     so:domainIncludes dob:Enumeration ;
-    so:rangeIncludes dob:AtomicResult, dob:DerivedResult .
+    so:rangeIncludes sosa:Result .
 
-dob:isRecommendationForPropertyValue a owl:ObjectProperty ;
+dob:isRecommendationForPropertyValue a rdf:Property, owl:ObjectProperty ;
     rdfs:label "Is Recommendation For Property Value"@en ;
     rdfs:comment "Inverse property linking a recommendation code back to the dob:PropertyValue it applies to."@en ;
     owl:inverseOf dob:recommendationCode ;
     so:domainIncludes xsd:string ;
     so:rangeIncludes dob:PropertyValue .
 
-dob:isAddressRecommendationForPropertyValue a owl:ObjectProperty ;
+dob:isAddressRecommendationForPropertyValue a rdf:Property, owl:ObjectProperty ;
     rdfs:label "Is Address Matched Recommendation For Property Value"@en ;
     rdfs:comment "Inverse property linking an address-to-uprn recommendation code ('A' or 'I') back to the dob:PropertyValue it specifically applies to."@en ;
     owl:inverseOf dob:recommendationCodeAIMS ;
