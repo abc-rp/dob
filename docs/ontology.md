@@ -4,7 +4,6 @@
 
 The following namespace prefixes are used throughout this document.
 
-<div align="center">
 | prefix | namspace IRI                                | source                                                                         |
 |--------|---------------------------------------------|--------------------------------------------------------------------------------|
 | rdf    | http://www.w3.org/1999/02/22-rdf-syntax-ns# | [[RDF-SYNTAX-GRAMMER]](#rdf-syntax-grammar)              |
@@ -26,7 +25,6 @@ The following namespace prefixes are used throughout this document.
 | qudt   | http://qudt.org/schema/qudt#                | [[QUDT]](#qudt)                                                    |
 | xsd    | http://www.w3.org/2001/XMLSchema#           | [[XML-SCHEMA-11-2]](#xml-schema11-2)                      |
 | wgs84  | http://www.w3.org/2003/01/geo/wgs84_pos#    | [[W3C-BASIC-GEO]](#w3c-basic-geo)                          |
-</div>
 
 
 ## DOB Overview
