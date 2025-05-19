@@ -2,27 +2,9 @@
 
 # DOB DRAFT Version 0.0.1
 
-<!-- ## Contents
-
-* [DOB Overview](#dob-overview)
-* [Sensor Observations](#sensor-observations)
-* [External Datasets](#external-datasets)
-* [Results](#results)
-* [Zone Identifier and Location](#zone-identifier-and-location)
-* [Zone Topology and Elements](#zone-topology-and-elements)
-* [Sensor Metadata](#sensor-metadata)
-* [Software, Procedure and File Metadata](#software-procedure-and-file-metadata)
-* [All Classes](#all-classes)
-* [DOB Properties](#dob-properties)
-* [BNG Properties](#bng-properties)
-* [Predefined Instances](#predefined-instances)
-* [Reused Ontologies](#reused-ontologies)
-* [Alignments](#alignments) -->
-
-<!-- Note: The diagrams align with Alex Donker's [Ontology Design Template](#ontology-design-template), as well as the colouring used in the W3C PROV Ontology [[PROV-O](#prov-o)]. -->
-
 The following namespace prefixes are used throughout this document.
 
+<div align="center">
 | prefix | namspace IRI                                | source                                                                         |
 |--------|---------------------------------------------|--------------------------------------------------------------------------------|
 | rdf    | http://www.w3.org/1999/02/22-rdf-syntax-ns# | [[RDF-SYNTAX-GRAMMER]](#rdf-syntax-grammar)              |
@@ -44,6 +26,8 @@ The following namespace prefixes are used throughout this document.
 | qudt   | http://qudt.org/schema/qudt#                | [[QUDT]](#qudt)                                                    |
 | xsd    | http://www.w3.org/2001/XMLSchema#           | [[XML-SCHEMA-11-2]](#xml-schema11-2)                      |
 | wgs84  | http://www.w3.org/2003/01/geo/wgs84_pos#    | [[W3C-BASIC-GEO]](#w3c-basic-geo)                          |
+</div>
+
 
 ## DOB Overview
 
@@ -63,27 +47,6 @@ We have chosen to use this ontology as a framework as it is very flexible and al
 
 Generally we aim to be as based around the SOSA Ontology [VOCAB-SSN](#vocab-ssn) as possible This allows for both consistency between the different types and sources of data but also interoperability between different systems. A description of the alignments between SOSA our ontology is described [here](#alignments/alignments.ttl).
 
-<!-- Classes and properties in this diagram:
-* [dob:Result](#dobresult)
-* prov:Activity [[PROV-O](#prov-o)]
-* prov:Plan [[PROV-O](#prov-o)]
-* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
-* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
-* ssn:Deployment [[VOCAB-SSN](#vocab-ssn)]
-* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
-* [dob:usedProcedure](#dobusedprocedure)
-* [dob:wasInformedByDeployment](#dobwasinformedbydeployment)
-* prov:used [[PROV-O](#prov-o)]
-* prov:generated [[PROV-O](#prov-o)]
-* prov:wasGeneratedBy [[PROV-O](#prov-o)]
-* prov:endedAtTime [[PROV-O](#prov-o)]
-* prob:wasQuotedFrom [[PROV-O](#prov-o)]
-* ssn:hasProperty [[VOCAB-SSN](#vocab-ssn)]
-* ssn:forProperty [[VOCAB-SSN](#vocab-ssn)]
-* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-* xsd:dateTime [[XML-SCHEMA11-2](#xml-schema11-2)] -->
 # DOB Classes
 
 | Class                | Subclass Of                                                                                                             | Restrictions / Notes                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -133,109 +96,7 @@ A list of predefined instances will be released. This will include a list of ins
 
 An incomplete list is available under the [DOP](../voc/prop/index.ttl) vocabulary.
 
-<!-- ## Results
-
-This may not be an issue for small knowledge graphs but we immediately create a bot:zone for every domicile in the UK, plus we require a prov process to keep track of how this is generated from the OS Open UPRN dataset. Hence we save 40 million triples at start by creating our dob:Result.
-
-Additionally defining results in this manner allows easy comparison between observations of properties made by our own systems, and those contained in datasets captured and curated by others.
-
-The general structure is as follows:
-
-* The property being described would fall under `ssn:Property`. This would link to the relevant `sosa:FeatureOfInterest` and `prov:Activity`. Which is of course all economcially captured by dob:Result. A working list of properties is available in [Predefined Instances](#predefined-instances)
-* Basic numerical properties (such as height) are described using QUDT. For example, the height of a window would look like:
-
-```turtle
-did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
-    prov:used did:pipeline_height_dgfhvuy63-4621-4b50-b2e6-597ee05f86785 ;
-    sosa:hasFeatureOfInterest did:zone_a7d8239e-a998-46ca-9b38-6de906701389 ;
-    ssn:forProperty dop:Height
-    qudt:numericValue "0.52"^^xsd:float ;
-    qudt:hasUnit qudt-unit:M .
-
-did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
-        bot:Zone ;
-    sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
-    schema:identifier did:uprn_906700039263 .
-
-did:uprn_906700039263 a dob:UPRNValue ;
-    schema:value "906700039263" .
-``` -->
-
-<!-- ```turtle
-did:result_1234 a dob:Result , qudt:QuantityValue ;
-    prov:wasGeneratedBy did:activity_1234 ;
-    qudt:numericValue "0.52"^^xsd:float ;
-    qudt:hasUnit qudt-unit:M .
-    
-did:activity_1234 a prov:Activity ;
-    prov:generated did:result_1234 ;
-    sosa:hasFeatureOfInterest did:window_1234 ;
-    ssn:forProperty dop:Height .
-``` -->
-
-<!-- * Non-numerical properties (such as energy ratings and material) use either existing object/datatype properties from other vocabularies or custom properties. This property would then refer to a code-list (if relevent), which are instances of `skos:Concept`. An example for energy ratings is shown below.
-
-```turtle
-did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 a dob:Result ;
-    prov:used did:pipeline_os_uprn_ttl_c67cc713-4621-4b50-b2e6-597ee05f5f2a ;
-    sosa:hasFeatureOfInterest did:zone_a7d8239e-a998-46ca-9b38-6de906701389 ;
-    ssn:forProperty dop:EnergyRating .
-    dop:energyRating dop:EPC_Energy_Rating_A ;
-    dop:energyRatingSystem dop:UK_EPC ;
-    dct:issued "2024-01-01"^^xsd:date .
-
-did:zone_a7d8239e-a998-46ca-9b38-6de906701389 a sosa:FeatureOfInterest,
-        bot:Zone ;
-    sosa:isFeatureOfInterestOf did:result_b55f2b0f-0a30-4863-b93e-e9e6d943d637 ;
-    schema:identifier did:uprn_906700039263 .
-
-did:uprn_906700039263 a dob:UPRNValue ;
-    schema:value "906700039263" .
-``` -->
-
-<!-- ```turtle
-did:result_1235 a dob:Result ;
-    prov:wasGeneratedBy did:activity_1235 ;
-    dop:energyRating dop:EPC_Energy_Rating_A ;
-    dop:energyRatingSystem dop:UK_EPC ;
-    dct:issued "2024-01-01"^^xsd:date .
-    
-did:activity-1235 a prov:Activity ;
-    prov:generated did:result_1235 ;
-    sosa:hasFeatureOfInterest did:zone_1235 ;
-    ssn:forProperty dop:EnergyRating .
-```
-
-```turtle
-did:result_1236 a dob:Result ;
-    prov:wasGeneratedBy did:activity_1236 ;
-    sosa:hasSimpleResult dop:AluminiumWood ; ????
-    dct:issued "2024-01-01"^^xsd:date .
-    
-did:activity-1236 a prov:Activity ;
-    prov:generated did:result_1236 ;
-    sosa:hasFeatureOfInterest did:zone_1235 ;
-    ssn:forProperty dop:ConstructionType .
-``` -->
-
-<!-- These custom properties are not well developed so are not documented here. 
-
-* Exceptions may be made for common numerical properties like latitude and longitude, which would use the more common `wgs84:lat` and `wgs84:long` [[W3C BASIC GEO](#w3c-basic-geo)].
-
-If we proceed with the above structure, a table of instances of `ssn:Property` [[VOCAB SSN](#vocab-ssn)] and their associated object/datatype properties will be released. 
-
-The codelists used may include those recommended or created by 
-
-* [ONS](https://github.com/ONSdigital/application-profile/blob/draft/code-lists.md)
-* [SDMX](http://purl.org/linked-data/sdmx/2009/code#)
-* [DCAT-AP](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocs) -->
-
-
 ## Sensor Observations
-
-<!-- <div align="center">
-    <img src="resources/sensor_observation.png" alt="Diagram">
-</div> -->
 
 The sensor observations are compliant with the SOSA/SSN ontology [[VOCAB-SSN](#vocab-ssn)], and therefore have the following restrictions:
 * The observation must be connected to 1 Feature Of Interest
@@ -248,37 +109,7 @@ It might not be suitable to release the raw data from our sensors, as the data i
 
 Where results are meaningful assets, e.g. RGB images, such images will of class `sosa:Result`.
 
-<!-- Classes and properties in this diagram:
-
-* [dob:Result](#dobresult)
-* prov:Activity [[PROV-O](#prov-o)]
-* prov:Plan [[PROV-O](#prov-o)]
-* prov:Agent [[PROV-O](#prov-o)]
-* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
-* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
-* ssn:Deployment [[VOCAB-SSN](#vocab-ssn)]
-* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:Sensor [[VOCAB-SSN](#vocab-ssn)]
-* sosa:Observation [[VOCAB-SSN](#vocab-ssn)]
-* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
-* [dob:usedProcedure](#dobusedprocedure)
-* prov:used [[PROV-O](#prov-o)]
-* prov:generated [[PROV-O](#prov-o)]
-* prov:wasGeneratedBy [[PROV-O](#prov-o)]
-* prov:wasAssociatedWith [[PROV-O](#prov-o)]
-* prov:wasInformedBy [[PROV-O](#prov-o)]
-* ssn:deployedSystem [[VOCAB-SSN](#vocab-ssn)]
-* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-* sosa:madeBySensor [[VOCAB-SSN](#vocab-ssn)]
-* sosa:madeObservation [[VOCAB-SSN](#vocab-ssn)]
-* sosa:resultTime [[VOCAB-SSN](#vocab-ssn)] -->
-
 ## Sensor Metadata
-
-<!-- <div align="center">
-    <img src="resources/sensor_metadata.png" alt="Diagram">
-</div> -->
 
 Sensors and their properties are described using the [Semantic Sensor Network Ontology](#vocab-ssn). We will likely only include basic information in the graph, e.g. camera type, device serial, which INS it is deployed with. Full calibration files describing sensor geometry for sensor fusion purposes will be linked to as URI literals.
 
@@ -286,18 +117,10 @@ This section of the ontology is currently unstable and will be for internal use.
 
 ## Software Pipelines
 
-<!-- <div align="center">
-    <img src="resources/file_metadata.png" alt="Diagram">
-</div> -->
-
 Inspiration is taken from prov as well as [MLFlow2PROV](#mlflow2prov), however we opt for an initially simpler description of software pipelines by linking to repositories, which can have lots of information about authorship etc... and then we only really require knowledge of a tagged release of source code to know the code used from this repository that is used in a pipeline. A software pipeline can link to multiple repositories. We accept the current limitation of not knowing which script(s) is directly employed, this may be a direction of future development. However, encouraging atomic repos with singular purposes may generally be good practice for managing pipeline provenance so this may not be an issue and simply an opinated way in which to develop data processing that is surfaced as linked data.
 
 
 ## External Datasets
-
-<!-- <div align="center">
-    <img src="resources/external_datasets.png" alt="Diagram">
-</div> -->
 
 This is data that is taken directly from external datasets, such as from the Office for National Statistics [[ONSOpen Geography Portal](#ons-open-geography-portal)] or Ordnance Survey [[OS](#os)] websites. Metadata about datasets is described using the Data Catalog Vocabulary [[VOCAB DCAT](#vocab-dcat)].
 
@@ -306,32 +129,6 @@ DCAT is widely used in open linked data. Some of the organisations that use DCAT
 We represent activities that use data from external datasets by the property `prov:used` attached to an instance of the class `dcat:Distribution`. The `dcat:Distribution` is then described by its release date, format, licence and (optionally) access URL. Other metadata such as publisher, themes, frequency, spatial/geographical coverage, etc. are properties of the associated `dcat:Dataset`.
 
 We make use of our `dob:AtomicResult` to represent instance data from external datasets, this allows its representation in the graph as well in combination with `sosa:Results` and `dob:DerivedResults` to generate further `dob:DerivedResults`
-
-<!-- Classes and properties in this diagram:
-
-* [dob:Result](#dobresult)
-* prov:Activity [[PROV-O](#prov-o)]
-* skos:Concept [[SKOS-REFERENCE](#skos-reference)]
-* ssn:Property [[VOCAB-SSN](#vocab-ssn)]
-* sosa:FeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* dcat:Distribution [[VOCAB-DCAT](#vocab-dcat)]
-* dcat:Dataset [[VOCAB-DCAT](#vocab-dcat)]
-* prov:used [[PROV-O](#prov-o)]
-* prov:generated [[PROV-O](#prov-o)]
-* prov:wasGeneratedBy [[PROV-O](#prov-o)]
-* prov:wasQuotedFrom [[PROV-O](#prov-o)]
-* sosa:hasFeatureOfInterest [[VOCAB-SSN](#vocab-ssn)]
-* sosa:isFeatureOfInterestOf [[VOCAB-SSN](#vocab-ssn)]
-* dcat:accessURL [[VOCAB-DCAT](#vocab-dcat)]
-* dcat:theme [[VOCAB-DCAT](#vocab-dcat)]
-* dcat:distribution [[VOCAB-DCAT](#vocab-dcat)]
-* dct:format [[DCTERMS](#dcterms)]
-* dct:license [[DCTERMS](#dcterms)]
-* dct:issued [[DCTERMS](#dcterms)]
-* dct:publisher [[DCTERMS](#dcterms)]
-* dct:spatial [[DCTERMS](#dcterms)]
-* dct:title [[DCTERMS](#dcterms)]
-* dct:description [[DCTERMS](#dcterms)] -->
 
 ## Zone Identifier and Location
 
@@ -349,13 +146,6 @@ The `within:outputarea` property is an [ONS Geography Linked Data](#ons-geograph
 
 An [output area](https://www.ons.gov.uk/methodology/geography/ukgeographies/statisticalgeographies) [[ONS Geography Linked Data](#ons-geography-linked-data)] is the lowest level of geographical area for census statistics. It is maintained by the ONS and is updated every 10 years following the census. 
 
-<!-- Classes and properties in this diagram:
-
-* `bot:Zone` [[BOT](#bot)]
-* [dob:hasUPRN](#dobhasuprn)
-* `within:outputarea` [[ONS Geography Linked Data](#ons-geography-linked-data)]
-* `sid:` [[ONS Geography Linked Data](#ons-geography-linked-data)] -->
-
 ## Zone Topology and Elements
 
 <div align="center">
@@ -363,18 +153,6 @@ An [output area](https://www.ons.gov.uk/methodology/geography/ukgeographies/stat
 </div>
 
 All zones and elements are instances of `sosa:FeatureOfInterest`. Building topology is described in detail with the [Building Topology Ontology](https://w3c-lbd-cg.github.io/bot/) [[BOT](#bot)], and building elements are described with the [Building Element Ontology](https://pi.pauwel.be/voc/buildingelement/index-en.html) [[BEO](#beo)].
-
-<!-- Classes and properties in this diagram:
-
-* bot:Zone [[BOT](#bot)]
-* bot:Building [[BOT](#bot)]
-* bot:Storey [[BOT](#bot)]
-* bot:Element [[BOT](#bot)]
-* beo:Wall [[BEO](#beo)]
-* beo:Window [[BEO](#beo)]
-* bot:hasElement [[BOT](#bot)]
-* bot:hasStorey [[BOT](#bot)]
-* bot:hasSubElement [[BOT](#bot)] -->
 
 ## Reused Ontologies
 
