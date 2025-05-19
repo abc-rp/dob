@@ -1,4 +1,4 @@
-[back to readme](../README.adoc)
+[back to readme](../../README.md)
 
 # Open Built Environment Data Ontology (DOB)
 
