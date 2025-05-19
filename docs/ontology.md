@@ -2,9 +2,11 @@
 
 # Open Built Environment Data Ontology (DOB)
 
-This document describes the DOB ontology, designed for representing, integrating, and publishing built environment data using Linked Data and Semantic Web standards. The ontology leverages W3C PROV-O for provenance, SOSA/SSN for sensor and observation modeling, and aligns with established vocabularies such as Schema.org, DCAT, and BOT.
+The DOB ontology provides a semantic framework for representing, integrating, and publishing data about the built environment. It is designed to support interoperability, provenance tracking, and data integration across diverse sources such as sensor networks, external datasets, and software pipelines. The ontology builds on established standards including W3C PROV-O for provenance, SOSA/SSN for sensor and observation modeling, Schema.org for general data modeling, DCAT for dataset metadata, and BOT/BEO for building topology and elements.
 
 ## Namespace Prefixes
+
+<div align="center">
 
 | Prefix | Namespace IIR                                 | Source/Description                                              |
 |--------|-----------------------------------------------|-----------------------------------------------------------------|
@@ -28,6 +30,8 @@ This document describes the DOB ontology, designed for representing, integrating
 | xsd    | http://www.w3.org/2001/XMLSchema#             | XML Schema Datatypes                                            |
 | wgs84  | http://www.w3.org/2003/01/geo/wgs84_pos#      | WGS84 Geo                                                       |
 
+</div>
+
 ---
 
 ## Overview
@@ -36,59 +40,67 @@ This document describes the DOB ontology, designed for representing, integrating
     <img src="resources/dob_overview.png" alt="DOB Ontology Overview Diagram">
 </div>
 
-DOB provides a flexible, provenance-aware framework for representing built environment data, including sensor observations, derived results, software pipelines, and external datasets. It is based on:
-
-- **PROV-O**: Provenance of entities, activities, and agents.
-- **SOSA/SSN**: Observations, sensors, and features of interest.
-- **Schema.org**: Property values, software, and data objects.
-- **BOT/BEO**: Building topology and elements.
-- **DCAT**: Dataset and distribution metadata.
+The DOB ontology is designed to enable rich, interoperable descriptions of the built environment, including buildings, zones, sensors, observations, and the provenance of data and results. By aligning with widely adopted ontologies, DOB ensures that data can be easily linked, queried, and reused across different domains and applications. The ontology supports both raw sensor data and derived quantities, and provides mechanisms for tracking the origin, processing, and confidence of data.
 
 ---
 
 ## Core Classes
 
+This section describes the main classes defined in the DOB ontology. These classes form the backbone of the data model, enabling the representation of identifiers, results, processing activities, code provenance, and spatial/geographical units.
+
+<div align="center">
+
 | Class                | Subclass Of                                 | Restrictions / Notes                                                                 | Description                                                                                                    |
 |----------------------|---------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| **dob:PropertyValue** | `prov:Entity`, `so:PropertyValue`           |                                                                                        | A property name and value pair describing an entity attribute. Subclasses specialize identifier types.         |
-| **dob:UPRNValue**    | `dob:PropertyValue`                         | `so:propertyID` = `"UPRN"`                                                            | Unique numeric identifier for a spatial addressable location in Great Britain (Ordnance Survey).               |
-| **dob:ODSValue**     | `dob:PropertyValue`                         | `so:propertyID` = `"ODS"`                                                             | NHS Digital identifier for health/social care organisations.                                                   |
-| **dob:OAValue**      | `dob:PropertyValue`                         | `so:propertyID` = `"OA"`                                                              | ONS Output Area identifier for statistical geography.                                                          |
-| **dob:Enumeration**  | `prov:Entity`, `so:Enumeration`             |                                                                                        | Discrete values/categories for classifying sosa:Result.                                                        |
-| **dob:Processing**   | `prov:Activity`                             |                                                                                        | Software-based processing workflow that generates or transforms data.                                          |
-| **dob:CodeRepository** | `prov:Entity`, `so:SoftwareSourceCode`     |                                                                                        | Version-controlled source code repository (e.g., Git).                                                         |
-| **dob:CodeRevision**   | `prov:Entity`, `so:SoftwareSourceCode`     | `dob:tagURI` (cardinality = 1)                                                        | Specific, immutable code revision (tag or commit hash).                                                        |
-| **dob:OutputArea**     | `prov:Entity`, `so:Place`                  |                                                                                        | Smallest UK census geography unit (ONS Output Area).                                                           |
+| **dob:PropertyValue** | `prov:Entity`, `so:PropertyValue`           |                                                                                        | Represents a property name and value pair describing an attribute of an entity. Subclasses specialize identifier types such as UPRN, ODS, and OA.         |
+| **dob:UPRNValue**    | `dob:PropertyValue`                         | `so:propertyID` = `"UPRN"`                                                            | Unique numeric identifier for a spatial addressable location in Great Britain, as defined by Ordnance Survey.               |
+| **dob:ODSValue**     | `dob:PropertyValue`                         | `so:propertyID` = `"ODS"`                                                             | Identifier assigned by NHS Digital for health and social care organisations. Used for consistent referencing across health datasets.              |
+| **dob:OAValue**      | `dob:PropertyValue`                         | `so:propertyID` = `"OA"`                                                              | ONS Output Area identifier for statistical geography, supporting linkage to census and demographic data.         |
+| **dob:Enumeration**  | `prov:Entity`, `so:Enumeration`             |                                                                                        | Represents a controlled set of discrete values or categories for classifying results, supporting data quality and interoperability.                  |
+| **dob:Processing**   | `prov:Activity`                             |                                                                                        | Describes a software-based processing workflow or activity that generates, transforms, or analyzes data, supporting provenance tracking.           |
+| **dob:CodeRepository** | `prov:Entity`, `so:SoftwareSourceCode`     |                                                                                        | A version-controlled repository (e.g., Git) containing source code and configuration files for software pipelines or components.                   |
+| **dob:CodeRevision**   | `prov:Entity`, `so:SoftwareSourceCode`     | `dob:tagURI` (cardinality = 1)                                                        | A specific, immutable revision of code from a repository, referenced by a tag or commit hash, enabling reproducibility.                            |
+| **dob:OutputArea**     | `prov:Entity`, `so:Place`                  |                                                                                        | The smallest UK census geography unit (ONS Output Area), supporting fine-grained spatial analysis and linkage.                                      |
+
+</div>
 
 ---
 
 ## Core Properties
 
+DOB defines several key properties for linking entities, qualifying results, and expressing provenance and confidence. These properties enable detailed, machine-readable descriptions of data and its origins.
+
+<div align="center">
+
 | Property                      | Subproperty Of             | Domain Includes         | Range Includes      | Description                                                                                                   |
 |-------------------------------|----------------------------|------------------------|---------------------|---------------------------------------------------------------------------------------------------------------|
-| **dob:typeQualifier**         | `so:measurementQualifier`  | `sosa:Result`          | `dob:Enumeration`   | Qualifies the type of sosa:Result using a controlled enumeration.                                             |
-| **dob:tagURI**                | `so:url`                   | `dob:CodeRevision`      | `xsd:anyURI`        | URI of the specific tagged code revision (e.g., GitHub commit/tag).                                           |
-| **dob:recommendationCode**    | `so:valueReference`        | `dob:PropertyValue`     | `xsd:string`        | General-purpose recommendation or confidence code for identifier matching.                                     |
-| **dob:recommendationCodeAddress** | `dob:recommendationCode` | `dob:PropertyValue` | `"A"` or `"I"` (`xsd:string`) | Address-to-UPRN match confidence: 'A' (Accept) or 'I' (Intervention required).                                |
+| **dob:typeQualifier**         | `so:measurementQualifier`  | `sosa:Result`          | `dob:Enumeration`   | Associates a result with a controlled enumeration value, specifying the type or category of the result.       |
+| **dob:tagURI**                | `so:url`                   | `dob:CodeRevision`      | `xsd:anyURI`        | URI of the specific tagged code revision (e.g., GitHub commit/tag), supporting reproducibility and traceability.|
+| **dob:recommendationCode**    | `so:valueReference`        | `dob:PropertyValue`     | `xsd:string`        | General-purpose recommendation or confidence code for identifier matching, supporting data quality assessment. |
+| **dob:recommendationCodeAddress** | `dob:recommendationCode` | `dob:PropertyValue` | `"A"` or `"I"` (`xsd:string`) | Address-to-UPRN match confidence: 'A' (Accept) or 'I' (Intervention required), supporting automated and manual review workflows. |
+
+</div>
 
 ### Inverse Properties
 
-- **dob:isTypeQualifierOf**: Inverse of `dob:typeQualifier` (from enumeration to qualified result).
-- **dob:isRecommendationForPropertyValue**: Inverse of `dob:recommendationCode`.
-- **dob:isAddressRecommendationForPropertyValue**: Inverse of `dob:recommendationCodeAddress`.
+DOB also defines inverse properties to facilitate bidirectional reasoning and querying:
+
+- **dob:isTypeQualifierOf**: Inverse of `dob:typeQualifier`, linking from an enumeration value to all results it qualifies.
+- **dob:isRecommendationForPropertyValue**: Inverse of `dob:recommendationCode`, linking from a recommendation code to the property value it applies to.
+- **dob:isAddressRecommendationForPropertyValue**: Inverse of `dob:recommendationCodeAddress`, linking from an address match code to the relevant property value.
 
 ---
 
 ## Example Usage
 
+This section illustrates how to use the DOB ontology to represent sensor observations, results, and identifier linkage in RDF/Turtle.
+
 ### Sensor Observations and Results
 
-<div align="center">
-    <img src="resources/sensor_observation.png" alt="Sensor Observation Diagram">
-</div>
+Sensor observations are modeled using SOSA/SSN, with results typed and qualified using DOB enumerations.
 
 ```turtle
-# ...existing code...
+# Example: LiDAR observation and result
 did:observation-213ff099-403a-50a1-80d4-f0e61ab62c0a a sosa:Observation ;
     sosa:hasFeatureOfInterest did:zone-c7d626e6-20fb-4964-be29-a5382c1ad8fb ;
     sosa:hasResult did:63d55edf-9747-5be9-93a5-aece2658a36a ;
@@ -102,17 +114,17 @@ did:63d55edf-9747-5be9-93a5-aece2658a36a a so:ImageObject, sosa:Result ;
     so:encodingFormat "image/png"^^xsd:string ;
     sosa:resultTime "2025-05-08T11:07:20+00:00"^^xsd:dateTime ;
     dob:typeQualifier did:lidar-reflectance-pano .
-# ...existing code...
 ```
 
 ### Identifier Example
+
+DOB supports robust cross-dataset linking using custom identifier classes.
 
 <div align="center">
     <img src="resources/zone_identifier.png" alt="Zone Identifier Diagram">
 </div>
 
 ```turtle
-# ...existing code...
 did:zone-0000a75d-eaa9-409a-a588-309f4efe20eb a sosa:FeatureOfInterest, bot:Zone ;
     so:identifier did:ods-value-VNKWK .
 
@@ -120,17 +132,22 @@ did:ods-value-VNKWK a dob:ODSValue ;
     so:propertyID "ODS"^^xsd:string ;
     so:value "VNKWK"^^xsd:string ;
     dob:recommendationCodeAddress "A"^^xsd:string .
-# ...existing code...
 ```
 
 ---
 
 ## BNG Properties
 
+DOB supports spatial referencing using British National Grid (BNG) coordinates, enabling integration with UK geospatial datasets.
+
+<div align="center">
+
 | Property        | Description                                                                                         |
 |-----------------|-----------------------------------------------------------------------------------------------------|
 | **bng:easting** | Easting coordinate in EPSG:27700. See [../voc/epsg-27700/index.ttl](../voc/epsg-27700/index.ttl)    |
 | **bng:nothing** | Northing coordinate in EPSG:27700. See [../voc/epsg-27700/index.ttl](../voc/epsg-27700/index.ttl)   |
+
+</div>
 
 ---
 
@@ -140,17 +157,19 @@ did:ods-value-VNKWK a dob:ODSValue ;
     <img src="resources/building_topology.png" alt="Building Topology Diagram">
 </div>
 
-All zones and elements are instances of `sosa:FeatureOfInterest`. Building topology is described in detail with the [Building Topology Ontology (BOT)](https://w3c-lbd-cg.github.io/bot/) and [Building Element Ontology (BEO)](https://pi.pauwel.be/voc/buildingelement/index-en.html).
+Building topology and elements are modeled using the BOT and BEO ontologies. All zones and elements are instances of `sosa:FeatureOfInterest`, enabling detailed spatial and structural descriptions of the built environment. This supports queries about buildings, storeys, spaces, and elements such as walls and windows.
 
 ---
 
 ## Design Notes
 
-- **Provenance**: All data, results, and transformations are linked to their provenance using PROV-O.
-- **Identifiers**: Custom identifier classes (UPRN, ODS, OA) enable robust cross-dataset linking.
-- **Enumerations**: Use `dob:Enumeration` for controlled vocabularies and result typing.
-- **Software & Processing**: Software pipelines and code provenance are modeled using `dob:CodeRepository` and `dob:CodeRevision`.
-- **Extensibility**: The ontology is modular and can be extended for new identifier types, result types, or processing activities.
+DOB is designed for extensibility, interoperability, and provenance. Key features include:
+
+- **Provenance**: All data, results, and transformations are linked to their provenance using PROV-O, supporting auditability and reproducibility.
+- **Identifiers**: Custom identifier classes (UPRN, ODS, OA) enable robust cross-dataset linking and integration with national datasets.
+- **Enumerations**: Use `dob:Enumeration` for controlled vocabularies and result typing, supporting data quality and semantic clarity.
+- **Software & Processing**: Software pipelines and code provenance are modeled using `dob:CodeRepository` and `dob:CodeRevision`, supporting reproducibility.
+- **Extensibility**: The ontology is modular and can be extended for new identifier types, result types, or processing activities as needed.
 
 ---
 
@@ -165,20 +184,8 @@ BOT Building Topology Ontology. Mads Holten Rasmussen; Pieter Pauwels; Maxime Le
 #### [DCAT-AP]
 DCAT Application Profile for data portals in Europe. Version 2.0.1. European Commission. 8 June 2020. URL: https://joinup.ec.europa.eu/solution/dcat-application-profile-data-portals-europe 
 
-#### [DCAT-US]
-Data Catalog Application Profile for the United States of America. Thomas Dabolt; Michael Ratcliffe; Open Government Data; Stephane Fellah; Sofiane Fellah; John Davidson. Candidate Recommendation Snapshot. 7 March 2024. URL: https://doi-do.github.io/dcat-us/
-
 #### [DCTERMS]
 DCMI Metadata Terms. DCMI Usage Board. DCMI. 20 January 2020. DCMI Recommendation. URL: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/ 
-
-#### [DLProv]
-Débora Pina, Adriane Chapman, Liliane Kunstmann, Daniel de Oliveira, and Marta Mattoso. 2024. DLProv: A Data-Centric Support for Deep Learning Workflow Analyses. In Proceedings of the Eighth Workshop on Data Management for End-to-End Machine Learning (DEEM '24). Association for Computing Machinery, New York, NY, USA, 77–85. https://doi.org/10.1145/3650203.3663337
-
-#### [IANA-MEDIA-TYPES]
-Media Types. IANA. URL: https://www.iana.org/assignments/media-types/ 
-
-#### [MLFlow2PROV]
-Marius Schlegel and Kai-Uwe Sattler. 2023. MLflow2PROV: Extracting Provenance from Machine Learning Experiments. In Proceedings of the Seventh Workshop on Data Management for End-to-End Machine Learning (DEEM '23). Association for Computing Machinery, New York, NY, USA, Article 9, 1–4. https://doi.org/10.1145/3595360.3595859
 
 #### [OS]
 Ordnance Survey. URL: https://www.ordnancesurvey.co.uk/
@@ -189,44 +196,17 @@ ONS Geography Linked Data. Office for National Statistics. URL: https://statisti
 #### [ONS Open Geography Portal]
 ONS Open Geography Portal. Office for National Statistics. URL: https://geoportal.statistics.gov.uk/
 
-#### [Ontology Design Template]
-Donkers, A. (2022). Ontology Design Template. https://doi.org/10.5281/zenodo.6816899
-
 #### [OWL2-OVERVIEW]
 OWL 2 Web Ontology Language Document Overview (Second Edition). W3C OWL Working Group. W3C. 11 December 2012. W3C Recommendation. URL: https://www.w3.org/TR/owl2-overview/ 
 
-#### [OWL2-SYNTAX]
-OWL 2 Web Ontology Language Structural Specification and Functional-Style Syntax (Second Edition). Boris Motik; Peter Patel-Schneider; Bijan Parsia. W3C. 11 December 2012. W3C Recommendation. URL: https://www.w3.org/TR/owl2-syntax/ 
-
-#### [PROV-DC]
-Daniel Garijo; Kai Eckert; eds. Dublin Core to PROV Mapping. 30 April 2013, W3C Note. URL : http://www.w3.org/TR/2013/NOTE-prov-dc-20130430/
-
-#### [PROV-DM]
-Luc Moreau; Paolo Missier; eds. PROV-DM: The PROV Data Model. 30 April 2013, W3C Recommendation. URL: http://www.w3.org/TR/2013/REC-prov-dm-20130430/
-
 #### [PROV-O]
 PROV-O: The PROV Ontology. Timothy Lebo; Satya Sahoo; Deborah McGuinness. W3C. 30 April 2013. W3C Recommendation. URL: https://www.w3.org/TR/prov-o/ 
-
-#### [RDF-SYNTAX-GRAMMAR]
-RDF 1.1 XML Syntax. Fabien Gandon; Guus Schreiber. W3C. 25 February 2014. W3C Recommendation. URL: https://www.w3.org/TR/rdf-syntax-grammar/ 
 
 #### [RDF-SCHEMA]
 RDF Schema 1.1. Dan Brickley; Ramanathan Guha. W3C. 25 February 2014. W3C Recommendation. URL: https://www.w3.org/TR/rdf-schema/ 
 
 #### [SKOS-REFERENCE]
 SKOS Simple Knowledge Organization System Reference. Alistair Miles; Sean Bechhofer. W3C. 18 August 2009. W3C Recommendation. URL: https://www.w3.org/TR/skos-reference/ 
-
-#### [SPARQL]
-SPARQL 1.1 Query Language. Steve Harris; Andy Seaborne; Eric Prud'hommeaux. 21 March 2013. W3C Recommendation. URL: https://www.w3.org/TR/sparql11-query/
-
-#### [SSN-PROV]
-Sensor Data Provenance: SSNO and PROV-O Together at Last. Michael Compton; David Corsar; Kerry Taylor. CEUR: 7th International Conference on Semantic Sensor Networks. 2014. URL: http://ceur-ws.org/Vol-1401/paper-05.pdf 
-
-#### [Turtle]
-RDF 1.1 Turtle. Eric Prud'hommeaux; Gavin Carothers. W3C. 25 February 2014. W3C Recommendation. URL: https://www.w3.org/TR/turtle/ 
-
-#### [UPRN]
-Unique Property Reference Number (UPRN). GeoPlace. URL: https://www.geoplace.co.uk/addresses/unique-property-reference-number-uprn
 
 #### [VOCAB-DCAT]
 Data Catalog Vocabulary (DCAT). Fadi Maali; John Erickson. W3C. 4 February 2020. W3C Recommendation. URL: https://www.w3.org/TR/vocab-dcat/ 
