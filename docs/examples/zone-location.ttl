@@ -1,7 +1,59 @@
-@prefix bot: <https://w3id.org/bot#> .
-@prefix sid: <http://statistics.data.gov.uk/id/statistical-geography/> .
-@prefix spr: <http://statistics.data.gov.uk/def/spatialrelations/> .
 @prefix did: <https://w3id.org/dob/id/> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix so: <http://schema.org/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-did:zone-550e8400-e29b-41d4-a716-446655440000 a bot:Zone ;
-    spr:within sid:E00004259 .
+did:OA001 a dob:OutputArea ;
+    so:identifier did:oa-OA001 ;
+    prov:wasGeneratedBy did:processing-EXAMPLE .
+
+did:OA002 a dob:OutputArea ;
+    so:identifier did:oa-OA002 ;
+    prov:wasGeneratedBy did:processing-EXAMPLE .
+
+did:OA003 a dob:OutputArea ;
+    so:identifier did:oa-OA003 ;
+    prov:wasGeneratedBy did:processing-EXAMPLE .
+
+did:zone-001 a bot:Zone ;
+    so:containedInPlace did:OA001 .
+
+did:zone-002 a bot:Zone ;
+    so:containedInPlace did:OA002 .
+
+did:zone-003 a bot:Zone ;
+    so:containedInPlace did:OA003 .
+
+did:oa-OA001 a dob:OAValue ;
+    so:value "OA001"^^xsd:string ;
+    prov:wasGeneratedBy did:processing-EXAMPLE .
+
+did:oa-OA002 a dob:OAValue ;
+    so:value "OA002"^^xsd:string ;
+    prov:wasGeneratedBy did:processing-EXAMPLE .
+
+did:oa-OA003 a dob:OAValue ;
+    so:value "OA003"^^xsd:string ;
+    prov:wasGeneratedBy did:processing-EXAMPLE .
+
+did:processing-EXAMPLE a dob:Processing ;
+    rdfs:label "OA TTL Example Processing"@en ;
+    sosa:usedProcedure did:procedure-EXAMPLE .
+
+did:procedure-EXAMPLE a sosa:Procedure ;
+    rdfs:label "OA TTL example generation procedure"@en ;
+    prov:wasInfluencedBy did:revision-EXAMPLE .
+
+did:repository-EXAMPLE a dob:CodeRepository ;
+    rdfs:label "output-area-ttl Example GitHub Repository"@en ;
+    foaf:homepage <https://github.com/example/output-area-ttl> .
+
+did:revision-EXAMPLE a dob:CodeRevision ;
+    so:isPartOf did:repository-EXAMPLE ;
+    dob:tagURI <https://github.com/example/output-area-ttl/commit/EXAMPLE> .
+
