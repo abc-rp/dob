@@ -1,0 +1,35 @@
+@prefix soop:  <https://w3id.org/soop/voc#> ..
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+soop:DigitalCollection rdfs:subClassOf prov:Collection .
+
+soop:DigitalEntity rdfs:subClassOf prov:Entity .
+
+soop:Revision rdfs:subClassOf prov:Entity .
+
+soop:Repository rdfs:subClassOf prov:Entity .
+
+soop:Commit rdfs:subClassOf prov:Entity .
+
+soop:File rdfs:subClassOf prov:Entity .
+
+soop:FileRevision rdfs:subClassOf prov:Entity .
+
+soop:Pipeline rdfs:subClassOf prov:Plan .
+
+soop:Execution rdfs:subClassOf prov:Activity .
+
+soop:hasCommit rdfs:subPropertyOf prov:generalizationOf .
+
+soop:commitOfRepository rdfs:subPropertyOf prov:specializationOf .
+
+soop:commitAuthor rdfs:subPropertyOf prov:wasAttributedTo .
+
+soop:parentCommit rdfs:subPropertyOf prov:wasRevisionOf .
+
+soop:usedPlan owl:propertyChainAxiom (
+        prov:qualifiedAssociation
+        prov:hadPlan
+    ) .
+
+soop:executes rdfs:subPropertyOf prov:used .

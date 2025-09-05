@@ -9,22 +9,25 @@
 @prefix so: <http://schema.org/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+
+# Zones
 
 did:zone-0000a75d-eaa9-409a-a588-309f4efe20eb a sosa:FeatureOfInterest,
         bot:Zone ;
-    so:identifier did:ods-value-VNKWK .
+    adms:identifier did:ods-value-VNKWK .
 
 did:zone-0000a949-608f-4870-957a-140d9d158f04 a sosa:FeatureOfInterest,
         bot:Zone ;
-    so:identifier did:ods-value-8HY81 .
+    adms:identifier did:ods-value-8HY81 .
 
 did:zone-0001198a-8f64-4e75-a0de-dc87e3644ea7 a sosa:FeatureOfInterest,
         bot:Zone ;
-    so:identifier did:ods-value-TP0RD .
+    adms:identifier did:ods-value-TP0RD .
 
 did:zone-000143e7-c081-4c48-a37f-7c8496bedad5 a sosa:FeatureOfInterest,
         bot:Zone ;
-    so:identifier did:ods-value-8GA90,
+    adms:identifier did:ods-value-8GA90,
         did:ods-value-DJ0,
         did:ods-value-DJ001,
         did:ods-value-E84707,
@@ -34,52 +37,79 @@ did:zone-000143e7-c081-4c48-a37f-7c8496bedad5 a sosa:FeatureOfInterest,
 
 did:zone-0001c557-fcb0-49cd-b4fe-bdfd290a1b5d a sosa:FeatureOfInterest,
         bot:Zone ;
-    so:identifier did:ods-value-FAX78 .
+    adms:identifier did:ods-value-FAX78 .
+
+# ODS Values
 
 did:ods-value-00L a dob:ODSValue ;
-    so:propertyID "ODS"^^xsd:string ;
-    so:value "00L"^^xsd:string ;
-    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
-    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
-    dob:recommendationCodeAddress "A"^^xsd:string .
+    skos:notation "00L" ;
+    skos:inScheme did:ods .
 
 did:ods-value-00LAA a dob:ODSValue ;
-    so:propertyID "ODS"^^xsd:string ;
-    so:value "00LAA"^^xsd:string ;
-    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
-    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
-    dob:recommendationCodeAddress "I"^^xsd:string .
+    skos:notation "00LAA" ;
+    skos:inScheme did:ods .
 
 did:ods-value-00LAC a dob:ODSValue ;
-    so:propertyID "ODS"^^xsd:string ;
-    so:value "00LAC"^^xsd:string ;
-    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
-    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
-    dob:recommendationCodeAddress "I"^^xsd:string .
+    skos:notation "00LAC" ;
+    skos:inScheme did:ods .
 
 did:ods-value-00LAD a dob:ODSValue ;
-    so:propertyID "ODS"^^xsd:string ;
-    so:value "00LAD"^^xsd:string ;
+    skos:notation "00LAD" ;
+    skos:inScheme did:ods .
+
+# Qualifying the identifiers
+
+did:qualified-ods-value-00L a dob:QualifiedIdentifier ;
+    dop:relationType "adms:Identifier" ;
+    dop:describes did:zone-f56b129c-b134-494a-86c7-2747c4de9413 ;
+    dop:relatesIdentifier did:ods-value-00L ;
     prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
     prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
-    dob:recommendationCodeAddress "I"^^xsd:string .
+    dob:recommendationCodeAddress "A" .
 
-did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 a dob:Processing ;
+did:qualified-ods-value-00LAA a dob:QualifiedIdentifier ;
+    dop:relationType "adms:Identifier" ;
+    dop:describes did:zone-000143e7-c081-4c48-a37f-7c8496bedad5 ;
+    dop:relatesIdentifier did:ods-value-00LAA ;
+    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
+    dob:recommendationCodeAddress "I" .
+
+did:qualified-ods-value-00LAC a dob:QualifiedIdentifier ;
+    dop:relationType "adms:Identifier" ;
+    dop:describes did:zone-000143e7-c081-4c48-a37f-7c8496bedad5 ;
+    dop:relatesIdentifier did:ods-value-00LAC ;
+    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
+    dob:recommendationCodeAddress "I" .
+
+did:qualified-ods-value-00LAD a dob:QualifiedIdentifier ;
+    dop:relationType "adms:Identifier" ;
+    dop:describes did:zone-000143e7-c081-4c48-a37f-7c8496bedad5 ;
+    dop:relatesIdentifier did:ods-value-00LAD ;
+    prov:wasDerivedFrom did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
+    prov:wasGeneratedBy did:processing-2011ce04-7520-525c-b995-1ce5a6523c61 ;
+    dob:recommendationCodeAddress "I" .
+
+# Describing the provenance and generation process with SOOP
+
+did:execution-2011ce04-7520-525c-b995-1ce5a6523c61 a soop:Execution ;
     rdfs:label "ODS TTL Processing"@en ;
     prov:used did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 ;
-    sosa:usedProcedure did:procedure-d57c0881-b335-5f89-9aa8-837f8a590b67 .
+    soop:usedPlan did:procedure-d57c0881-b335-5f89-9aa8-837f8a590b67 .
 
-did:procedure-d57c0881-b335-5f89-9aa8-837f8a590b67 a sosa:Procedure ;
+did:procedure-d57c0881-b335-5f89-9aa8-837f8a590b67 a prov:Plan ;
     rdfs:label "ODS TTL generation procedure"@en ;
-    prov:wasInfluencedBy did:revision-ods-ttl-8bf2b7c6-c929-5baf-8d43-0adb95885168 .
+    soop:targetsCommit did:commit-ods-ttl-8bf2b7c6-c929-5baf-8d43-0adb95885168 .
 
-did:repository-ods-ttl-c206a9e1-6c26-587d-ab7e-b7b0bd451c91 a dob:CodeRepository ;
+did:repository-ods-ttl-c206a9e1-6c26-587d-ab7e-b7b0bd451c91 a soop:Repository ;
     rdfs:label "ods-ttl GitHub Repository"@en ;
-    foaf:homepage <https://github.com/abc-rp/ods-ttl> .
+    foaf:homepage <https://github.com/abc-rp/ods-ttl> ;
+    soop:hasCommit did:commit-ods-ttl-8bf2b7c6-c929-5baf-8d43-0adb95885168 .
 
-did:revision-ods-ttl-8bf2b7c6-c929-5baf-8d43-0adb95885168 a dob:CodeRevision ;
-    so:isPartOf did:repository-ods-ttl-c206a9e1-6c26-587d-ab7e-b7b0bd451c91 ;
-    dob:tagURI <https://github.com/abc-rp/ods-ttl/commit/7989d6a29249bb390b1ff1037f4c846f1cc7ec3e> .
+did:commit-ods-ttl-8bf2b7c6-c929-5baf-8d43-0adb95885168 a soop:Commit ;
+    soop:commitOfRepository did:repository-ods-ttl-c206a9e1-6c26-587d-ab7e-b7b0bd451c91 ;
+    soop:commitURI <https://github.com/abc-rp/ods-ttl/commit/7989d6a29249bb390b1ff1037f4c846f1cc7ec3e> .
 
 did:dataset-2fc66ab8-9012-5eb5-9fa7-84761398b027 a dcat:Dataset ;
     dct:description "A national service for managing reference information about health and social care organisations in England and beyond."@en ;
@@ -93,4 +123,3 @@ did:distribution-055c880c-5663-56a5-99bc-2c6cffc35db9 a dcat:Distribution,
     dct:format <https://www.w3.org/ns/iana/media-types/text/csv#Resource> ;
     dct:issued "2025-02-12"^^xsd:date ;
     dcat:accessURL <https://www.odsdatasearchandexport.nhs.uk/> .
-

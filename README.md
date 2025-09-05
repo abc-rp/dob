@@ -15,6 +15,17 @@ This enables the creation of a network of built environment data that can be use
 The draft DOB ontology documentation can be found [here](docs/ontology.md).  
 The documentation provides an overview of the core vocabulary and property definitions used in the DOB platform as well as how they interact with existing established ontologies.
 
+## Supporting Ontologies
+
+This repository includes two supporting ontologies:
+
+* **[The Software Provenance Ontology (SOOP)](soop/)**, an extension of PROV-O for describing softare provenance and pipelines;
+* **[The Sensor Metadata and Deployment Ontology (SMD)](smd/)**, a lightweight extension of the Semantic Sensor Network Ontology (SSN) that provides a more robust framework for modelling sensor configurations and deployments.
+
+These ontologies were originally developed to support DOB but have since evolved to cover more general or reusable concepts. While they remain part of this repository for now, they are structured as independent ontologies and may be moved to separate repositories in the future.
+
+Each ontology has its own folder and namespace, and can be used independently or in combination with the main ontology, depending on the use case.
+
 ## Persistent Identifier
 
 We use the w3id.org service to provide a persistent identifier for the DOB platform.  
@@ -34,7 +45,6 @@ The following prefixes will be used to distinguish between vocabularies and inst
 |--------|-----|-------------|---------|
 | **dob** | `https://w3id.org/dob/voc#` | Core DOB vocabulary. Example usage: `dob:Result` | Proposed: `CC-BY` |
 | **dop** | `https://w3id.org/dob/voc/prop#` | Property definitions. Example usage: `dop:Height` | Proposed: `CC-BY` |
-| **bng** | `https://w3id.org/dob/voc/epsg-27700#` | British National Grid vocabulary. Example usage: `bng:easting` | Proposed: `CC-BY` |
 | **did** | `https://w3id.org/dob/id/` | Instance Identifiers. Example usage: `did:zone_12345` | Proposed: Various (see [Named Graphs](#named-graphs)) |
 
 ## Named Graphs

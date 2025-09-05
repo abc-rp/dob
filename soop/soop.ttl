@@ -1,0 +1,181 @@
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix dcat:   <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix pav:    <http://purl.org/pav/> .
+@prefix adms:   <http://www.w3.org/ns/adms#> .
+
+@prefix soop:  <https://w3id.org/soop/voc#> .
+
+soop: a owl:Ontology ;
+    dct:title "Software Provenance Ontology"@en ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    dct:creator [
+        a foaf:Organization ;
+        foaf:name "xRI" ;
+        foaf:homepage <https://www.xri.online/>
+    ] ;
+    dct:contributor [
+        a foaf:Person ;
+        foaf:name      "Gary Edwards" ;
+        foaf:mbox      <mailto:gary@xri.online>
+    ] , [
+        a foaf:Person ;
+        foaf:name      "Nathaniel Hey" ;
+        foaf:mbox      <mailto:nathaniel@xri.online>
+    ] , [
+        a foaf:Person ;
+        foaf:name      "Sofia Raffio-Curd" ;
+        foaf:mbox      <mailto:sofia@xri.online>
+    ] ;
+    owl:imports prov: .
+
+
+#########################################################
+### Classes
+#########################################################
+
+soop:DigitalCollection a rdfs:Class , owl:Class ;
+    rdfs:label "Digital Collection"@en ;
+    rdfs:comment """A curated aggregation of digital resources, such as files, datasets, documents, 
+        code, images, videos, or other digital objects, managed together 
+        as a coherent group."""@en ;
+    rdf:subClassOf prov:Collection .
+
+soop:Repository a rdfs:Class , owl:Class ;
+    rdfs:label "Code Repository"@en ;
+    rdfs:comment "A code repository. For example, a GitHub repository."@en ;
+    rdf:subClassOf soop:DigitalCollection .
+
+soop:Revision a rdfs:Class , owl:Class ;
+    rdfs:label "Revision"@en ;
+    rdfs:comment "A specific version or snapshot of content or repository state."@en ;
+    rdf:subClassOf prov:Entity .
+
+soop:Commit a rdfs:Class , owl:Class ;
+    rdfs:label "Commit"@en ;
+    rdfs:comment "A specific state of a code repository, typically corresponding to an immutable revision such as a Git commit, tag, or other versioned snapshot."@en ;
+    rdf:subClassOf soop:Revision .
+
+soop:DigitalEntity a rdfs:Class , owl:Class ;
+    rdfs:label "Digital Entity"@en ;
+    rdfs:comment "A Digital Entity is a digital object that encapsulates information or data and has a stable identity within a system. It may be stored in a file system, a database, an object store, or any other digital medium. A digital entity can be versioned, referenced, or transformed by computational processes, and includes artifacts such as source code files, configuration documents, database records, binary blobs, and other structured or unstructured digital content."@en ;
+    rdf:subClassOf prov:Entity .
+
+soop:File a rdfs:Class , owl:Class ;
+    rdfs:label "File"@en ;
+    rdfs:comment "A digital file that is part of a code repository or other file system, which can be versioned and tracked over time."@en ;
+    rdf:subClassOf soop:DigitalEntity .
+
+soop:FileRevision a rdfs:Class , owl:Class ;
+    rdfs:label "File Revision"@en ;
+    rdfs:comment "A snapshot of a File at a specific point in time."@en ;
+    rdf:subClassOf soop:Revision .    
+
+soop:Pipeline a rdfs:Class , owl:Class ;
+    rdfs:label "Pipeline"@en ;
+    rdfs:comment "A structured sequence of computational steps used to process data, perform analysis, or generate results."@en ;
+    rdf:subClassOf prov:Plan .
+
+soop:Execution a rdfs:Class, owl:Class ;
+    rdfs:label "Execution"@en ;
+    rdfs:comment "An instance of a software-based process that executes a defined sequence of computational steps to transform or analyze data, generating new results."@en ;
+    rdfs:subClassOf prov:Activity .
+
+#########################################################
+### Properties
+#########################################################
+
+soop:targets a owl:ObjectProperty ;
+    rdfs:domain prov:Plan ;
+    rdfs:range rdfs:Resource ;
+    rdfs:label "Targets" ;
+    rdfs:comment "Links a plan to the resources it uses to implement the plan." .
+
+soop:targetsCommit a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Targets Code Revision"@en ;
+    rdfs:comment "Links a plan to a specific code revision that it is intended to use."@en ;
+    rdfs:subPropertyOf soop:targets ;
+    rdfs:domain prov:Plan ;
+    rdfs:range soop:Commit .
+
+soop:hasExecutionScript a owl:ObjectProperty ;
+    rdfs:domain soop:Plan ;
+    rdfs:range soop:FileRevision ;
+    rdfs:subPropertyOf soop:targets ;
+    rdfs:label "Has Execution Script" ;
+    rdfs:comment "Links a plan to its execution script." .
+
+soop:hasCommit a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Has Commit"@en ;
+    rdfs:comment "Links a repository to a specific code revision that belongs to it."@en ;
+    rdfs:subPropertyOf dct:hasVersion , pav:hasVersion , prov:generalizationOf ;
+    owl:inverseOf soop:commitOfRepository ;
+    rdfs:domain soop:Repository ;
+    rdfs:range soop:Commit.
+
+soop:commitOfRepository a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Commit of Respository"@en ;
+    rdfs:comment "Links a code revision with the repository it belongs to."@en ;
+    rdfs:subPropertyOf dct:isVersionOf , prov:specializationOf ;
+    rdfs:domain soop:Commit ;
+    rdfs:range soop:Repository.
+
+soop:usedPlan a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Used Plan"@en ;
+    rdfs:comment "The plan executed as part of an activity."@en ;
+    owl:propertyChainAxiom (
+        prov:qualifiedAssociation
+        prov:hadPlan
+    ) ;
+    rdfs:domain prov:Activity ;
+    rdfs:range prov:Plan .
+
+soop:executes a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Executes"@en ;
+    rdfs:comment "The script, commit or other resource executed as part of a computational process."@en ;
+    owl:propertyChainAxiom (
+        soop:usedPlan
+        soop:targets
+    ) ;
+    rdfs:domain soop:Execution ;
+    rdfs:range soop:Revision .
+
+soop:usedPipeline a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Used Pipeline"@en ;
+    rdfs:comment "The pipeline used in a computational process."@en ;
+    rdfs:subPropertyOf soop:usedPlan ;
+    rdfs:domain soop:Execution ;
+    rdfs:range soop:Pipeline .
+
+soop:parentCommit a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Parent Commit"@en ;
+    rdfs:subPropertyOf pav:previousVersion , prov:wasRevisionOf ;
+    rdfs:domain soop:Commit ;
+    rdfs:range soop:Commit .
+
+soop:commitURI a rdf:Property , owl:DatatypeProperty ;
+    rdfs:label "Commit URI"@en ;
+    rdfs:subPropertyOf dcat:accessURL , foaf:page ;
+    rdfs:domain soop:Commit ;
+    rdfs:range xsd:anyURI .
+
+soop:commitHash a rdf:Property , owl:DatatypeProperty ;
+    rdfs:label "Commit Hash"@en ;
+    rdfs:subPropertyOf dct:identifier ;
+    rdfs:domain soop:Commit ;
+    rdfs:range xsd:string .
+
+soop:commitAuthor a rdf:Property , owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasAttributedTo ;
+    rdfs:label "Commit Author"@en ;
+    rdfs:comment "The author of the commit."@en ;
+    rdfs:domain soop:Commit ;
+    rdfs:range prov:Agent .
+
