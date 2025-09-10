@@ -7,53 +7,69 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix bot: <https://w3id.org/bot#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo:  <http://www.opengis.net/ont/geosparql#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
 
-did:OA001 a dob:OutputArea ;
-    so:identifier did:oa-OA001 ;
-    prov:wasGeneratedBy did:processing-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+did:OA001 a dob:OutputArea , geo:Feature ;
+    adms:identifier did:oa-OA001 .
 
 did:OA002 a dob:OutputArea ;
-    so:identifier did:oa-OA002 ;
-    prov:wasGeneratedBy did:processing-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+    adms:identifier did:oa-OA002 .
 
 did:OA003 a dob:OutputArea ;
-    so:identifier did:oa-OA003 ;
-    prov:wasGeneratedBy did:processing-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+    adms:identifier did:oa-OA003 .
 
-did:zone-001 a bot:Zone ;
-    so:containedInPlace did:OA001 .
+did:oa-OA001 a dob:OACode ;
+    skos:notation "OA001" ;
+    skos:inScheme did:oa2021 .
 
-did:zone-002 a bot:Zone ;
-    so:containedInPlace did:OA002 .
+did:oa-OA002 a dob:OACode ;
+    skos:notation "OA002" ;
+    skos:inScheme did:oa2021 .
 
-did:zone-003 a bot:Zone ;
-    so:containedInPlace did:OA003 .
+did:oa-OA003 a dob:OACode ;
+    skos:notation "OA003" ;
+    skos:inScheme did:oa2021 .
 
-did:oa-OA001 a dob:OAValue ;
-    so:value "OA001"^^xsd:string ;
-    prov:wasGeneratedBy did:processing-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+did:zone-001 a bot:Zone , geo:Feature ;
+    geo:sfWithin did:OA001 .
 
-did:oa-OA002 a dob:OAValue ;
-    so:value "OA002"^^xsd:string ;
-    prov:wasGeneratedBy did:processing-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+did:zone-002 a bot:Zone , geo:Feature ;
+    geo:sfWithin did:OA002 .
 
-did:oa-OA003 a dob:OAValue ;
-    so:value "OA003"^^xsd:string ;
-    prov:wasGeneratedBy did:processing-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+did:zone-003 a bot:Zone , geo:Feature ;
+    geo:sfWithin did:OA003 .
 
-did:processing-b1e2c3d4-5678-90ab-cdef-1234567890ab a dob:Processing ;
-    rdfs:label "OA TTL Example Processing"@en ;
+did:qualified-zone-001-within-OA001 a dob:QualifiedGeospatialRelation ;
+    dop:relationType "geo:sfWithin" ;
+    dop:describes did:zone-001 ;
+    dop:relatesFeature did:oa-OA001 ;
+    prov:wasGeneratedBy did:commit-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+
+did:qualified-zone-002-within-OA002 a dob:QualifiedGeospatialRelation ;
+    dop:relationType "geo:sfWithin" ;
+    dop:describes did:zone-002 ;
+    dop:relatesFeature did:oa-OA002 ;
+    prov:wasGeneratedBy did:commit-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+
+did:qualified-zone-003-within-OA003 a dob:QualifiedGeospatialRelation ;
+    dop:relationType "geo:sfWithin" ;
+    dop:describes did:zone-003 ;
+    dop:relatesFeature did:oa-OA003 ;
+    prov:wasGeneratedBy did:commit-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+
+did:commit-b1e2c3d4-5678-90ab-cdef-1234567890ab a dob:Commit ;
+    rdfs:label "OA TTL Example Commit"@en ;
     sosa:usedProcedure did:procedure-b1e2c3d4-5678-90ab-cdef-1234567890ab .
 
 did:procedure-b1e2c3d4-5678-90ab-cdef-1234567890ab a sosa:Procedure ;
     rdfs:label "OA TTL example generation procedure"@en ;
-    prov:wasInfluencedBy did:revision-b1e2c3d4-5678-90ab-cdef-1234567890ab .
+    soop:executes did:revision-b1e2c3d4-5678-90ab-cdef-1234567890ab .
 
-did:repository-b1e2c3d4-5678-90ab-cdef-1234567890ab a dob:CodeRepository ;
+did:repository-b1e2c3d4-5678-90ab-cdef-1234567890ab a soop:Repository ;
     rdfs:label "output-area-ttl Example GitHub Repository"@en ;
     foaf:homepage <https://github.com/example/output-area-ttl> .
 
-did:revision-b1e2c3d4-5678-90ab-cdef-1234567890ab a dob:CodeRevision ;
+did:commit-b1e2c3d4-5678-90ab-cdef-1234567890ab a soop:Commit ;
     so:isPartOf did:repository-b1e2c3d4-5678-90ab-cdef-1234567890ab ;
     dob:tagURI <https://github.com/example/output-area-ttl/commit/b1e2c3d4-5678-90ab-cdef-1234567890ab> .
-

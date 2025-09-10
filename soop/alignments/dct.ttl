@@ -1,0 +1,16 @@
+@prefix soop:  <https://w3id.org/soop/voc#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+soop:hasCommit rdfs:subPropertyOf dct:hasVersion .
+
+soop:commitOfRepository rdfs:subPropertyOf dct:isVersionOf .
+
+soop:commitHash rdfs:subPropertyOf dct:identifier .
+
+soop:targets rdfs:subPropertyOf dct:requires .
+
+soop:targetsCommit rdfs:subPropertyOf dct:requires .
+
+soop:hasExecutionScript rdfs:subPropertyOf dct:requires .
+
+soop:commitAuthor rdfs:subPropertyOf dct:creator .

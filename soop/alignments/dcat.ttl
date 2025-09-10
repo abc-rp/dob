@@ -1,0 +1,18 @@
+@prefix soop:  <https://w3id.org/soop/voc#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+dcat:Catalog rdfs:subClassOf soop:DigitalCollection .
+
+dcat:Dataset rdfs:subClassOf soop:DigitalEntity .
+
+dcat:Distribution rdfs:subClassOf soop:Revision .
+
+dcat:DataService rdfs:subClassOf soop:DigitalEntity .
+
+dcat:DatasetSeries rdfs:subClassOf soop:DigitalCollection .
+
+soop:commitURI rdfs:subPropertyOf dcat:accessURL .
+
+soop:parentCommit rdfs:subPropertyOf dcat:previousVersion .
+
+soop:hasCommit rdfs:subPropertyOf dcat:hasVersion .

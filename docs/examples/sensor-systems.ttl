@@ -1,0 +1,144 @@
+@prefix so: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix did: <https://w3id.org/dob/id/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bess: <https://w3id.org/bess/voc#> .
+
+# BESS2 Platform
+did:bess2-20250314 a sosa:Platform ;
+    rdfs:comment "BESS2 is a car that hosts the sensor stack for monitoring the environment."@en ;
+    rdfs:label "BESS2"@en ;
+    dct:identifier "bess2" ;
+    ssn:inDeployment did:deployment-61528634 ;
+    sosa:hosts did:6284-156243-20250314 .
+
+did:deployment-61528634 a ssn:Deployment ;
+    ssn:deployedOnPlatform did:bess2-20250314 , did:6284-156243-20250314 ;
+    ssn:deployedSystem did:camera-21424401 ,
+        did:camera-21334177 ,
+        did:ir-camera-89901857 ,
+        did:ir-camera-9900593 ,
+        did:lidar-122310001278 ,
+        did:ins-6284-156243 ,
+        did:humidity-sensor-254b5bb9-14a9-422a-a1bf-095354255469 , 
+        did:temperature-sensor-34f18e39-ad8a-4b95-a54c-295729b4e7dd ;
+    prov:startedAtTime "2024-04-01"^^xsd:dateTime ;
+    prov:endedAtTime "2024-09-04"^^xsd:dateTime ;
+    dct:coverage did:London .
+    
+did:6284-156243-20250314 a ssn:System ;
+    rdfs:label "6284_156243"@en ;
+    rdfs:comment "6284_156243 is the sensor stack for monitoring the environment. Each stack is identified by its INS serial number."@en ;
+    dct:identifier "sensor-head-6284-156243" ;
+    ssn:hasSubSystem did:camera-21424401, 
+        did:camera-21334177, 
+        did:ir-camera-89901857, 
+        did:ir-camera-9900593, 
+        did:lidar-122310001278,
+        did:ins-6284-156243,
+        did:humidity-sensor-254b5bb9-14a9-422a-a1bf-095354255469, 
+        did:temperature-sensor-34f18e39-ad8a-4b95-a54c-295729b4e7dd .
+
+# Setup & Configuration
+
+did:setup-20250314 a ex:Configuration ;
+    rdfs:comment "Initial configuration for the BESS2 platform and its sensor stack."@en ;
+    smd:forDeployment did:deployment-61528634 ;
+    smd:configuredSystem did:6284-156243-20250314 ,
+        did:camera-21334177 , 
+        did:camera-21424401 , 
+        did:ir-camera-89901857 , 
+        did:ir-camera-9900593 , 
+        did:lidar-122310001278 , 
+        did:ins-6284-156243 , 
+        did:humidity-sensor-254b5bb9-14a9-422a-a1bf-095354255469 , 
+        did:temperature-sensor-34f18e39-ad8a-4b95-a54c-295729b4e7dd ;
+    smd:associatedResource <https:example.com/bess2-setup-20250314.urdf> ;
+    prov:wasAttributedTo did:agent-1625712 ;
+    so:validFrom "2024-04-01"^^xsd:dateTime ;
+    so:validUntil "2024-09-04"^^xsd:dateTime .
+
+did:setup-862834 a ex:Calibration ;
+    rdfs:comment "Intrinsic calibration for camera-21334177."@en ;
+    smd:forDeployment did:deployment-61528634 ;
+    smd:configuredSystem did:camera-21334177 ;
+    smd:associatedResource <https:example.com/camera-21334177-calibration.cal> ;
+    so:validFrom "2024-04-01"^^xsd:dateTime ;
+    so:validUntil "2024-09-04"^^xsd:dateTime .
+
+did:setup-765283584 a ex:Configuration ;
+    rdfs:comment "Lens-camera configuration."@en ;
+    smd:forDeployment did:deployment-61528634 ;
+    smd:configuredSystem did:camera-122310001278 , did:lens-87623874 ;
+    smd:associatedResource <https:example.com/lens-camera-config> ;
+    so:validFrom "2024-04-01"^^xsd:dateTime ;
+    so:validUntil "2024-09-04"^^xsd:dateTime .
+
+# Sensor instances using class definitions
+
+did:camera-21424401 a bess:FlirOryxCamera, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    ssn:hasSubSystem did:lens-87623874 .
+    rdfs:label "Camera 21424401"@en ;
+    rdfs:comment "Camera 21424401 is an RGB camera sensor that captures images."@en ;
+    so:serialNumber "21424401" .
+
+did:lens-87623874 a bess:LensType1, so:IndividualProduct ;
+    rdfs:label "Lens 87623874"@en ;
+    rdfs:comment "Lens 87623874 is a lens used with a camera sensor."@en ;
+    so:serialNumber "87623874" .
+
+did:camera-21334177 a bess:FlirOryxCamera, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    rdfs:label "Camera 21334177"@en ;
+    rdfs:comment "Camera 21334177 is an RGB camera sensor that captures images."@en ;
+    so:serialNumber "21334177" .
+
+did:ir-camera-89901857 a bess:FlirA70Camera, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    rdfs:label "IR Camera 89901857"@en ;
+    rdfs:comment "IR Camera 89901857 is an IR camera sensor that captures images."@en ;
+    so:serialNumber "89901857" .
+
+did:ir-camera-9900593 a bess:FlirA70Camera, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    rdfs:label "IR Camera 9900593"@en ;
+    rdfs:comment "IR Camera 9900593 is an IR camera sensor that captures images."@en ;
+    so:serialNumber "9900593" .
+
+did:lidar-122310001278 a bess:OusterLidarSensor, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    rdfs:label "Lidar 122310001278"@en ;
+    rdfs:comment "Lidar 122310001278 is a lidar sensor that captures detailed point cloud data."@en ;
+    so:serialNumber "122310001278" .
+
+did:ins-6284-156243 a bess:LordMicrostrainINSGQ7, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    rdfs:label "INS 6284_156243"@en ;
+    rdfs:comment "INS 6284_156243 is an inertial navigation system sensor capturing orientation and coordinate data."@en ;
+    so:serialNumber "6284_156243" .
+
+did:humidity-sensor-254b5bb9-14a9-422a-a1bf-095354255469 a bess:PhidgetHumiditySensor, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    rdfs:label "Humidity Sensor 254b5bb9-14a9-422a-a1bf-095354255469"@en ;
+    rdfs:comment "Humidity Sensor 254b5bb9-14a9-422a-a1bf-095354255469 captures humidity data."@en ;
+    so:serialNumber "254b5bb9-14a9-422a-a1bf-095354255469" .
+
+did:temperature-sensor-34f18e39-ad8a-4b95-a54c-295729b4e7dd a bess:PhidgetTemperatureSensor, so:IndividualProduct ;
+    so:startDate "2024-04-01"^^xsd:dateTime ;
+    so:endDate "2024-09-04"^^xsd:dateTime ;
+    rdfs:label "Temperature Sensor 34f18e39-ad8a-4b95-a54c-295729b4e7dd"@en ;
+    rdfs:comment "Temperature Sensor 34f18e39-ad8a-4b95-a54c-295729b4e7dd captures temperature data."@en ;
+    so:serialNumber "34f18e39-ad8a-4b95-a54c-295729b4e7dd" .

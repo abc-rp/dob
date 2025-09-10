@@ -3,177 +3,253 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix bot:  <https://w3id.org/bot#> .
-@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix so:   <http://schema.org/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix dc:  <http://purl.org/dc/elements/1.1/> .
+@prefix dcat:  <http://www.w3.org/ns/dcat#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix pav:  <http://purl.org/pav/> .
+@prefix so:  <http://schema.org/> .
+@prefix adms:  <http://www.w3.org/ns/adms#> .
+@prefix geo:  <http://www.opengis.net/ont/geosparql#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix dob:  <https://w3id.org/dob/voc#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
 
-###################################################
-### ONTOLOGY METADATA
-###################################################
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix did: <https://w3id.org/dob/id/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
 
-dob: a owl:Ontology ;
-    dct:title "Open Built Environment Data Ontology"@en ;
-    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
-    dct:creator [
-        a foaf:Organization ;
-        foaf:name "xRI" ;
-        foaf:homepage <https://www.xri.online/>
-    ] ;
-    dct:contributor [
-        a foaf:Person ;
-        foaf:name      "Gary Edwards" ;
-        foaf:mbox      <mailto:gary@xri.online>
-    ] , [
-        a foaf:Person ;
-        foaf:name      "Nathaniel Hey" ;
-        foaf:mbox      <mailto:nathaniel@xri.online>
-    ] , [
-        a foaf:Person ;
-        foaf:name      "Sofia Raffio-Curd" ;
-        foaf:mbox      <mailto:sofia@xri.online>
-    ] ;
-    owl:imports 
-        <http://www.w3.org/ns/prov#> ,
-        <http://purl.org/dc/terms/> ,
-        <http://schema.org/> ,
-        <http://xmlns.com/foaf/0.1/> .
+#########################################################
+### Core Classes
+#########################################################
 
-###################################################
-### CLASSES
-###################################################
+dob:Result a rdf:Class, owl:Class ;
+    rdfs:label "Result"@en ;
+    rdfs:comment "A discrete unit of information that describes some entity." ;
+    skos:example "This includes data derived as part of a software process, sensor data and observations from datasets." ;
+    rdfs:subClassOf prov:Entity .
 
-dob:PropertyValue a rdfs:Class, owl:Class ;
-    rdfs:label "Property-Value Pair"@en ;
-    rdfs:comment "A pair consisting of a property name and a specific value, used to describe a feature or attribute of an entity. Subclasses of PropertyValue specialize the kind of identifier or characteristic being captured. Typically, use schema.org-specific properties where available."@en ;
-    rdfs:subClassOf prov:Entity , so:PropertyValue .
+dob:QualifiedIdentifier a rdf:Class, owl:Class ;
+    rdfs:label "Qualified Identifier" ;
+    rdfs:comment "This class qualifies the relation between a resource and its identifier. This includes providing provenance information, status and confidence levels, and relating the source dataset or matching process used."@en ;
+    rdf:subClassOf dob:Result .
 
-dob:UPRNValue a rdfs:Class, owl:Class ;
+dob:QualifiedGeospatialRelation a rdf:Class, owl:Class ;
+    rdfs:label "Qualified Geospatial Relation" ;
+    rdfs:comment "This class qualifies a geospatial relation between two entities. This includes providing provenance information, status and confidence levels, and relating the source dataset or matching process used."@en ;
+    rdf:subClassOf dob:Result .
+
+#########################################################
+### Geospatial Feature Classes
+#########################################################
+
+dob:Thoroughfare a rdfs:Class , owl:Class ;
+    rdfs:label "Thoroughfare"@en ;
+    rdfs:comment "A thoroughfare is a road or path between two places."@en ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:Street a rdfs:Class , owl:Class ;
+    rdfs:label "Street"@en ;
+    rdfs:comment "A street is a public road in a city or town, typically with houses and buildings on one or both sides."@en ;
+    rdfs:subClassOf prov:Entity , geo:Feature , dob:Thoroughfare .
+
+dob:OutputArea a rdf:Class , owl:Class ;
+    rdfs:label "Output Area"@en ;
+    rdfs:comment "Output Areas (OAs) are the smallest geographic units used for publishing Census 2021 statistics in England and Wales. Designed to maintain consistent population and household sizes, they typically contain 40–250 households and 100–625 usual residents. For 2021, OAs were updated from their 2011 versions to reflect demographic changes: unchanged where they still met size thresholds, and otherwise split or merged accordingly. About 200 boundaries were also adjusted to better align with ward boundaries. Some OAs may exceed the usual population range in special cases, such as large prisons."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:LowerLayerSuperOutputArea a rdf:Class , owl:Class ;
+    rdfs:label "Lower Layer Super Output Area"@en ;
+    rdfs:comment "Lower Layer Super Output Areas (LSOAs) are geographic units used for publishing Census 2021 statistics in England and Wales. LSOAs are made up of groups of OAs, usually four or five. They comprise between 400 and 1,200 households and have a usually resident population between 1,000 and 3,000 persons."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:MiddleLayerSuperOutputArea a rdf:Class , owl:Class ;
+    rdfs:label "Middle Layer Super Output Area"@en ;
+    rdfs:comment "Middle layer Super Output Areas (MSOAs) are made up of groups of LSOAs, usually four or five. They comprise between 2,000 and 6,000 households and have a usually resident population between 5,000 and 15,000 persons. MSOAs fit within local authorities."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:PostcodeUnitArea a rdf:Class , owl:Class ;
+    rdfs:label "Postcode Unit Area"@en ;
+    rdfs:comment "The area designated by a postcode unit, which is usually either several addresses or a single major delivery point. Postcodes were designed to aid in delivering mail."@en ;
+    rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:PostcodeUnit a rdf:Class, owl:Class ;
+    rdfs:label "Postcode Unit"@en ;
+    rdfs:comment "A full postcode, which identifies a region with several addresses."@en ;
+    rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:PostalSector a rdf:Class, owl:Class ;
+	rdfs:label "Postal Sector"@en ;
+	rdfs:comment "A subdivision of a postal district, combining the outward and the first digit of the inward code."@en ;
+	rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+	rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:PostalDistrict a rdf:Class, owl:Class ;
+	rdfs:label "Postal District"@en ;
+	rdfs:comment "A subdivision of a postal area used by the Royal Mail to facilitate mail delivery, identified by the outward code in a postcode."@en ;
+	rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+	rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:PostalArea a rdf:Class, owl:Class ;
+	rdfs:label "Postal Area Code"@en ;
+	rdfs:comment "The largest unit in the UK postcode hierarchy, typically consisting of one or two letters and representing a broad geographical area."@en ;
+	rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+	rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:Ward a rdf:Class , owl:Class ;
+    rdfs:label "Ward Area"@en ;
+    rdfs:comment "An electoral district within a local authority area, used for electing local councillors."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/administrativegeography/england#electoral-wardselectoral-divisions> ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:LocalAuthority a rdf:Class , owl:Class ;
+	rdfs:label "Local Authority Area"@en ;
+	rdfs:comment "An administrative body responsible for local governance, such as a borough, city council, or unitary authority."@en ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/administrativegeography/england> ;
+	rdfs:subClassOf prov:Entity , geo:Feature .
+
+dob:LondonBorough a rdf:Class, owl:Class ;
+	rdfs:label "London Borough Code"@en ;
+	rdfs:comment "An administrative district that makes up Greater London."@en ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+	rdfs:subClassOf dob:LocalAuthority .
+
+dob:Region a rdf:Class, owl:Class ;
+	rdfs:label "Region Code"@en ;
+	rdfs:comment "A principal administrative subdivision within a country, as defined by that country’s own administrative structure. For example, England is divided into nine such regions."@en ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+	rdfs:subClassOf prov:Entity , geo:Feature.
+
+dob:Country a rdfs:Class , owl:Class ;
+    rdfs:label "Country"@en ;
+	rdfs:comment "A sovereign state or nation."@en ;
+    rdfs:subClassOf prov:Entity , geo:Feature .
+
+#########################################################
+### Identifier Classes
+#########################################################
+
+dob:TOIDValue a rdf:Class, owl:Class ;
+    rdfs:label "Topographic Identifier (UPRN)"@en ;
+    rdfs:comment "The unique topographical identifier for building polygons from OS MasterMap."@en ;
+    rdfs:seeAlso <https://www.ordnancesurvey.co.uk/products/os-open-toid> ;
+    rdfs:subClassOf adms:Identifier .
+
+dob:UPRNValue a rdf:Class, owl:Class ;
     rdfs:label "Unique Property Reference Number (UPRN)"@en ;
     rdfs:comment "A unique numeric identifier for a spatial addressable location in Great Britain, as defined by the Ordnance Survey. Used to unambiguously reference properties across datasets."@en ;
     skos:example "A UPRN is a unique numeric identifier, e.g., 100012345678, used to reference a single spatial addressable location."@en ;
     rdfs:seeAlso <https://www.ordnancesurvey.co.uk/public/unique-property-reference-numbers> ;
-    rdfs:subClassOf dob:PropertyValue , [
-        a owl:Restriction ;
-        owl:onProperty so:propertyID ;
-        owl:hasValue "UPRN"^^xsd:string
-    ] .
+    rdfs:subClassOf adms:Identifier .
 
-dob:ODSValue a rdfs:Class, owl:Class ;
+dob:ODSValue a rdf:Class, owl:Class ;
     rdfs:label "NHS Organisation Data Service (ODS) Identifier"@en ;
     rdfs:comment "An identifier assigned by NHS Digital for organisations involved in health and social care across England and associated services. Used for consistent referencing across health datasets."@en ;
     skos:note "Use dob:recommendationCodeAddress to indicate the system’s confidence in automated matching of ODS identifiers."@en ;
     rdfs:seeAlso <https://www.odsdatasearchandexport.nhs.uk/> ;
-    rdfs:subClassOf dob:PropertyValue , [
-        a owl:Restriction ;
-        owl:onProperty so:propertyID ;
-        owl:hasValue "ODS"^^xsd:string
-    ] .
+    rdfs:subClassOf adms:Identifier .
 
-dob:OAValue a rdfs:Class, owl:Class ;
+dob:UDPRNValue a rdfs:Class , owl:Class ;
+    rdfs:label "Unique Delivery Point Reference Number"@en ;
+    rdfs:comment "A Unique Delivery Point Reference Number (UDPRN) is a unique identifier assigned to each delivery point in the UK, used for postal and delivery purposes."@en ;
+    rdf:subClassOf adms:Identifier .
+
+dob:USRNValue a rdfs:Class , owl:Class ;
+    rdfs:label "Unique Street Reference Number"@en ;
+    rdfs:comment "Unique Street Reference Number (USRN) used to identify streets and paths in Great Britain."@en ;
+    rdf:subClassOf adms:Identifier .
+
+dob:OACode a rdf:Class, owl:Class ;
     rdfs:label "ONS Output Area Identifier"@en ;
     rdfs:comment "Identifying codes for ONS output areas for statistical geography."@en ;
     rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
-    rdfs:subClassOf dob:PropertyValue , [
-        a owl:Restriction ;
-        owl:onProperty so:propertyID ;
-        owl:hasValue "OA"^^xsd:string
-    ] .
+    rdfs:subClassOf adms:Identifier .
 
-dob:Enumeration a rdfs:Class, owl:Class ;
-    rdfs:label "dob specific enumeration"@en ;
-    rdfs:comment "A set of discrete values or categories that can be used to classify or describe a sosa:Result. Enumerations are used to represent a limited set of options or choices. This aids large language models in finding particular asset types when querying data structured with the dob ontology."@en ;
-    rdfs:subClassOf prov:Entity , so:Enumeration .
-
-dob:Processing a rdfs:Class, owl:Class ;
-    rdfs:label "Processing inputs programmatically to new derived results."@en ;
-    rdfs:comment "An instance of a software-based processing workflow that executes a defined sequence of computational steps or components. Represents a concrete activity that generates, transforms, or analyzes data as part of a broader processing system and generates a new sosa:Result."@en ;
-    rdfs:subClassOf prov:Activity .
-
-dob:CodeRepository a rdfs:Class, owl:Class ;
-    rdfs:label "Source Code Repository"@en ;
-    rdfs:comment "A version-controlled repository (e.g., Git) containing source code and configuration files for software pipelines or components."@en ;
-    rdfs:subClassOf prov:Entity , so:SoftwareSourceCode .
-
-dob:CodeRevision a rdfs:Class, owl:Class ;
-    rdfs:label "Code Revision"@en ;
-    rdfs:comment "A specific, immutable revision of code from a version-controlled repository, typically referenced by a tag or commit hash. Used to unambiguously associate a software pipeline execution with the exact code used."@en ;
-    rdfs:subClassOf prov:Entity , so:SoftwareSourceCode , [
-        a owl:Restriction ;
-        owl:onProperty dob:tagURI ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] .
-
-dob:OutputArea a owl:Class ;
-    rdfs:label "Output Area"@en ;
-    rdfs:comment "Output Areas (OAs) are the smallest geographic units used for publishing Census 2021 statistics in England and Wales. Designed to maintain consistent population and household sizes, they typically contain 40–250 households and 100–625 usual residents. For 2021, OAs were updated from their 2011 versions to reflect demographic changes: unchanged where they still met size thresholds, and otherwise split or merged accordingly. About 200 boundaries were also adjusted to better align with ward boundaries. Some OAs may exceed the usual population range in special cases, such as large prisons."@en ;
+dob:LSOACode a rdf:Class, owl:Class ;
+    rdfs:label "ONS Lower Layer Super Output Area Identifier"@en ;
+    rdfs:comment "Identifying codes for ONS lower layer super output areas for statistical geography."@en ;
     rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
-    rdfs:subClassOf prov:Entity , so:Place .
+    rdfs:subClassOf adms:Identifier .
 
-###################################################
-### PROPERTIES
-###################################################
+dob:MSOACode a rdf:Class, owl:Class ;
+    rdfs:label "ONS Middle Layer Super Output Area Identifier"@en ;
+    rdfs:comment "Identifying codes for ONS middle layer super output areas for statistical geography."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf adms:Identifier .
 
-dob:typeQualifier a rdf:Property, owl:ObjectProperty ;
-    rdfs:label "Type Qualifier"@en ;
-    rdfs:comment "A property that qualifies the type of sosa:Result. This property is used to specify the type of data or result being represented and can only have a limited number of options in a given dob structured dataset as it relates to the dob:Enumeration class."@en ;
-    rdfs:subPropertyOf so:measurementQualifier ;
-    so:domainIncludes sosa:Result ;
-    so:rangeIncludes dob:Enumeration .
+dob:PostalSectorCode a rdf:Class, owl:Class ;
+	rdfs:label "Postal Sector Code"@en ;
+	rdfs:comment "A code representing the outward code and the first digit of the inward code in UK postcodes."@en ;
+	rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+	rdfs:subClassOf adms:Identifier .
 
-dob:tagURI a rdf:Property, owl:DatatypeProperty ;
-    rdfs:label "Code Tag URI"@en ;
-    rdfs:comment "A full URI pointing to the specific tagged revision of a codebase (e.g., a GitHub tag or commit URI)."@en ;
-    rdfs:subPropertyOf so:url ;
-    so:domainIncludes dob:CodeRevision ;
-    so:rangeIncludes xsd:anyURI .
+dob:PostalDistrictCode a rdf:Class, owl:Class ;
+	rdfs:label "Postal District Code"@en ;
+	rdfs:comment "A code combining the postal area with a numeric or alphanumeric district, used in outward postcodes."@en ;
+	rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+	rdfs:subClassOf adms:Identifier .
 
-dob:recommendationCode a rdf:Property, owl:DatatypeProperty ;
-    rdfs:label "Matching Recommendation Code"@en ;
-    rdfs:comment "A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching."@en ;
-    rdfs:subPropertyOf so:valueReference ;
-    so:domainIncludes dob:PropertyValue ;
+dob:PostalAreaCode a rdf:Class, owl:Class ;
+	rdfs:label "Postal Area Code"@en ;
+	rdfs:comment "A one- or two-letter code representing a large geographic area in the UK postcode system."@en ;
+	rdfs:seeAlso <https://www.royalmail.com/find-a-postcode> ;
+	rdfs:subClassOf adms:Identifier .
+
+dob:WardCode a rdf:Class, owl:Class ;
+    rdfs:label "Ward Code"@en ;
+    rdfs:comment "A unique identifier created by the ONS to classify wards in the UK."@en ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:subClassOf adms:Identifier .
+
+dob:LondonBoroughCode a rdf:Class, owl:Class ;
+	rdfs:label "London Borough Code"@en ;
+	rdfs:comment "An ONS-assigned identifier for the 32 London boroughs and the City of London."@en ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+	rdfs:subClassOf adms:Identifier .
+
+dob:ISO3166-1Code a rdf:Class, owl:Class ;
+	rdfs:label "ISO 3166-1 Code"@en ;
+	rdfs:comment "International standard code designating countries and dependent territories."@en ;
+	rdfs:seeAlso <https://www.iso.org/iso-3166-country-codes.html> ;
+	rdfs:subClassOf adms:Identifier .
+
+#########################################################
+### Core Properties (a full list is found in prop/index.ttl)
+#########################################################
+
+dop:describes a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Describes"@en ;
+    rdfs:comment "A property that relates a result to the entity the result provides information about."@en ;
+    so:domainIncludes dob:Result ;
+    so:rangeIncludes sosa:FeatureOfInterest , geo:Feature , prov:Entity .
+
+dop:relationType a rdf:Property , owl:DatatypeProperty ;
+    rdfs:label "Relation Type" ;
+    rdfs:comment "Associates the qualified class with the relation being described." ;
+    so:domainIncludes dob:QualifiedIdentifier, dob:QualifiedGeospatialRelation ;
     so:rangeIncludes xsd:string .
 
-dob:recommendationCodeAddress a rdf:Property, owl:DatatypeProperty ;
-    rdfs:label "Address-to-UPRN Match Recommendation"@en ;
-    rdfs:comment "A confidence code output by the address-to-uprn matching algorithm: 'A' (Accept) or 'I' (Requires clerical Intervention)."@en ;
-    rdfs:subPropertyOf dob:recommendationCode ;
-    so:domainIncludes dob:PropertyValue ;
-    so:rangeIncludes [
-        a rdfs:Datatype ;
-        owl:onDatatype xsd:string ;
-        owl:withRestrictions ( [ xsd:pattern "A|I" ] )
-    ] .
+dop:relatesFeature a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Relates Feature" ; 
+    rdfs:comment "The secondary geo:Feature described by the geospatial relation." ;
+    so:domainIncludes dob:QualifiedGeospatialRelation ;
+    so:rangeIncludes geo:Feature .
 
-###################################################
-### INVERSE PROPERTIES
-###################################################
+dop:relatesIdentifier a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Relates Identifier" ; 
+    rdfs:comment "The identifier being qualified." ;
+    so:domainIncludes dob:QualifiedIdentifier ;
+    so:rangeIncludes adms:Identifier .
 
-dob:isTypeQualifierOf a rdf:Property, owl:ObjectProperty ;
-    rdfs:label "Is Type Qualifier Of"@en ;
-    rdfs:comment "Inverse property for dob:typeQualifier, linking from dob:Enumeration back to sosa:Result qualified by this enumeration."@en ;
-    owl:inverseOf dob:typeQualifier ;
-    so:domainIncludes dob:Enumeration ;
-    so:rangeIncludes sosa:Result .
-
-dob:isRecommendationForPropertyValue a rdf:Property, owl:ObjectProperty ;
-    rdfs:label "Is Recommendation For Property Value"@en ;
-    rdfs:comment "Inverse property linking a recommendation code back to the dob:PropertyValue it applies to."@en ;
-    owl:inverseOf dob:recommendationCode ;
-    so:domainIncludes xsd:string ;
-    so:rangeIncludes dob:PropertyValue .
-
-dob:isAddressRecommendationForPropertyValue a rdf:Property, owl:ObjectProperty ;
-    rdfs:label "Is Address Matched Recommendation For Property Value"@en ;
-    rdfs:comment "Inverse property linking an address-to-uprn recommendation code ('A' or 'I') back to the dob:PropertyValue it specifically applies to."@en ;
-    owl:inverseOf dob:recommendationCodeAIMS ;
-    so:domainIncludes [
-        a rdfs:Datatype ;
-        owl:onDatatype xsd:string ;
-        owl:withRestrictions ( [ xsd:pattern "A|I" ] )
-    ] ;
-    so:rangeIncludes dob:PropertyValue .
+dop:recommendationCode a rdf:Property , owl:DatatypeProperty ;
+    rdfs:label "Matching Recommendation Code"@en ;
+    rdfs:comment "A general-purpose recommendation or confidence code used to qualify the strength or reliability of identifier matching."@en ;
+    so:domainIncludes dob:QualifiedIdentifier ;
+    so:rangeIncludes xsd:string .

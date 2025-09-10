@@ -1,0 +1,12 @@
+@prefix soop:  <https://w3id.org/soop/voc#> .
+@prefix provone: <http://purl.dataone.org/provone/2015/01/15/ontology#> .
+
+soop:Execution rdfs:subClassOf provone:Execution .
+
+soop:Pipeline rdfs:subClassOf provone:Workflow .
+
+provone:Document rdfs:subClassOf soop:DigitalEntity .
+
+provone:Visualization rdfs:subClassOf soop:DigitalEntity .
+
+provone:Data rdfs:subClassOf soop:DigitalEntity .

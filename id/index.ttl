@@ -1,0 +1,242 @@
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix dc:  <http://purl.org/dc/elements/1.1/> .
+@prefix dcat:  <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix pav:  <http://purl.org/pav/> .
+@prefix so:  <http://schema.org/> .
+@prefix adms:  <http://www.w3.org/ns/adms#> .
+@prefix geo:  <http://www.opengis.net/ont/geosparql#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+
+@prefix dob: <https://w3id.org/dob/voc#> .
+@prefix did: <https://w3id.org/dob/id/> .
+@prefix dop: <https://w3id.org/dob/voc/prop#> .
+
+did:uprn a skos:ConceptScheme ;
+	dct:title "Unique Property Reference Number (UPRN)" ;
+	dct:description """The Unique Property Reference Number (UPRN) is the unique identifier for every addressable location across the UK. 
+					An addressable location may be any kind of building, or it may be an object that might not have a ‘normal' address – such 
+					as a bus shelter or an electricity substation for example. UPRNs provide every property (or object) with a consistent 
+					identifier throughout its lifecycle, from planning through to demolition."""@en ;
+	dct:creator <https://www.geoplace.co.uk/addresses-streets/location-data/the-uprn> ,
+				<https://www.ordnancesurvey.co.uk/> ;
+	dct:publisher <https://www.ordnancesurvey.co.uk/> ;
+        dc:creator "Ordnance Survey", "Geoplace" ;
+    dc:publisher "Ordnance Survey" ;
+	dct:source <https://www.ordnancesurvey.co.uk/products/os-open-uprn> ;
+	dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+	rdfs:seeAlso dob:UPRNValue .
+	
+did:toid a skos:ConceptScheme ;
+	dct:title "Topographic Identifier (TOID)" ;
+	dct:description """A TOID (Topographic Identifier) is a unique and persistent identifier for each and every feature found in OS MasterMap 
+					products. This dataset shows unique identifiers for a wide range of landscape and built environment features, with a 
+					generalised location, extracted from OS MasterMap products."""@en ;
+	dct:creator <https://www.ordnancesurvey.co.uk/> ;
+	dct:publisher <https://www.ordnancesurvey.co.uk/> ;
+    dc:creator "Ordnance Survey" ;
+    dc:publisher "Ordnance Survey" ;
+	dct:source <https://www.ordnancesurvey.co.uk/products/os-open-toid> ;
+	dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+	rdfs:seeAlso dob:TOIDValue .
+
+did:usrn a skos:ConceptScheme ;
+    dct:title "Unique Street Reference Number (USRN)" ;
+    dct:description """
+    The Unique Street Reference Number (USRN) is an eight‑digit unique and persistent identifier for every street, road, track, path, cycle track, or cycle way across Great Britain. It is the authoritative identifier allocated by highway authorities and maintained centrally by GeoPlace and the Improvement Service (Scotland). Once assigned, a USRN never changes or is reused, enabling consistent referencing across street‑related datasets and services.
+    """@en ;
+    dct:creator <https://www.geoplace.co.uk/addresses-streets/location-data/usrn> ,
+        <https://www.ordnancesurvey.co.uk/> ;
+    dct:publisher <https://www.ordnancesurvey.co.uk/> ;
+    dc:creator "Ordnance Survey", "Geoplace" ;
+    dc:publisher "Ordnance Survey" ;
+    dct:source <https://www.ordnancesurvey.co.uk/products/os-open-usrn> ;
+    dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    rdfs:seeAlso dob:USRNValue .
+
+did:ods a skos:ConceptScheme ;
+    dct:title "Organisation Data Service (ODS) Code" ;
+    dct:description """The ODS code is a unique identifier issued and managed by the NHS Organisation Data Service for organisations and their 
+                    sites across health and social care in England. It covers orgnisations such as NHS trusts, GP practices, pharmacies, 
+                    independent and social care providers."""@en ;
+    dct:creator <https://digital.nhs.uk/> ;
+    dct:publisher <https://digital.nhs.uk/> ;
+    dc:creator "NHS Digital" ;
+    dc:publisher "NHS Digital" ;
+    dct:source <https://digital.nhs.uk/services/organisation-data-service> ;
+    dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    rdfs:seeAlso dob:ODSValue .
+
+did:udprn a skos:ConceptScheme ;
+    dct:title "Unique Delivery Point Reference Number (UDPRN)" ;
+    dct:description """The UDPRN is a unique reference number assigned by Royal Mail for each delivery point as part of the Postcode 
+                    Address File (PAF). It is an up to 8-digit numeric code, persistent over the lifetime of the delivery point, and uniquely 
+                    identifies each delivery point."""@en ;
+    dct:creator <https://www.royalmail.com/> ;
+    dc:creator "Royal Mail" ;
+    dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    rdfs:seeAlso dob:UDPRNValue .
+
+did:oa2011 a skos:ConceptScheme ;
+	dct:title "2011 Output Area (OA) Codes" ;
+	dct:description """Output Areas (OAs) are the lowest level of geographical area for census statistics and were first created following the 
+					2001 Census. Using 2011 Census data, some changes were made to 2001 OAs as a result of population and household changes 
+					since 2001. 2001 OAs that were still made up of between 40 and 250 households and had a usually resident population between 
+					100 and 625 persons did not change. Otherwise, new 2011 OAs were created by merging or splitting 2001 OAs to make sure they 
+					fitted within the population and household thresholds of the unchanged 2001 OAs. There are some exceptions where OAs may 
+					have more than 625 people, for example, where there is a large prison. Outputs from the 2011 Census are for 2011 OAs and are 
+					made up of unchanged 2001 OAs and new 2011 OAs."""@en ;
+	dct:creator <https://geoportal.statistics.gov.uk/> ;
+	dct:publisher <https://geoportal.statistics.gov.uk/> ;
+    dc:creator "ONS Geography" ;
+	dc:publisher "ONS Geography" ;
+	dct:source <https://geoportal.statistics.gov.uk/search> ;
+	dct:issued "2011-12-31"^^xsd:dateTime ;
+	adms:status <http://purl.org/adms/status/Deprecated> ;
+	adms:next did:oa2021 ;
+	dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/2011censusgeographies> ;
+	rdfs:seeAlso dob:OACode .
+
+did:oa2021 a skos:ConceptScheme ;
+	dct:title "2021 Output Area (OA) Codes" ;
+	dct:description """Output Areas (OAs) are the lowest level of geographical area for census statistics and were first created following the 
+					2001 Census. Using Census 2021 data, some changes were made to 2011 OAs as a result of population and household changes 
+					since 2011. Additionally, around 200 OA boundaries were selectively realigned to ward boundaries. 2011 OAs that were still 
+					made up of between 40 and 250 households and had a usually resident population between 100 and 625 persons did not change. 
+					Otherwise, new 2021 OAs were created by merging or splitting 2011 OAs to make sure they fitted within the population and 
+					household thresholds of the unchanged 2011 OAs. There are some exceptions where OAs may have more than 625 people, for 
+					example, where there is a large prison. Outputs from Census 2021 are for 2021 OAs and are made up of unchanged 2011 OAs and 
+					new 2021 OAs."""@en ;
+	dct:creator <https://geoportal.statistics.gov.uk/> ;
+	dct:publisher <https://geoportal.statistics.gov.uk/> ;
+    dc:creator "ONS Geography" ;
+	dc:publisher "ONS Geography" ;
+	dct:source <https://geoportal.statistics.gov.uk/search> ;
+	dct:issued "2022-07-12"^^xsd:dateTime ;
+	adms:prev did:oa2011 ;
+	dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+	rdfs:seeAlso dob:OACode .
+
+did:lsoa2011 a skos:ConceptScheme ;
+	dct:title "2011 Lower layer Super Output Area (LSOA) Codes" ;
+	dct:description """Output Areas (OAs) are the lowest level of geographical area for census statistics and were first created following the 
+					2001 Census. Using 2011 Census data, some changes were made to 2001 OAs as a result of population and household changes 
+					since 2001. 2001 OAs that were still made up of between 40 and 250 households and had a usually resident population between 
+					100 and 625 persons did not change. Otherwise, new 2011 OAs were created by merging or splitting 2001 OAs to make sure they 
+					fitted within the population and household thresholds of the unchanged 2001 OAs. There are some exceptions where OAs may 
+					have more than 625 people, for example, where there is a large prison. Outputs from the 2011 Census are for 2011 OAs and are 
+					made up of unchanged 2001 OAs and new 2011 OAs."""@en ;
+	dct:creator <https://geoportal.statistics.gov.uk/> ;
+	dct:publisher <https://geoportal.statistics.gov.uk/> ;
+    dc:creator "ONS Geography" ;
+	dc:publisher "ONS Geography" ;
+	dct:source <https://geoportal.statistics.gov.uk/search> ;
+	dct:issued "2011-12-31"^^xsd:dateTime ;
+	owl:deprecated true ;
+	dct:isReplacedBy did:lsoa2021 ;
+	dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/2011censusgeographies> ;
+	rdfs:seeAlso dob:LSOACode .
+
+did:lsoa2021 a skos:ConceptScheme ;
+	dct:title "2021 Lower layer Super Output Area Codes" ;
+	dct:description """Lower layer Super Output Areas (LSOAs) are made up of groups of OAs, usually four or five. They comprise between 400 and 
+					1,200 households and have a usually resident population between 1,000 and 3,000 persons. Using 2011 Census data, some changes
+					were made to 2001 LSOAs as a result of population and household changes since 2001. New 2011 LSOAs were created by merging 
+					or splitting 2001 LSOAs to ensure that population and household thresholds were met. Outputs from the 2011 Census are for 
+					2011 LSOAs and are made up of unchanged 2001 LSOAs and new 2011 LSOAs. There were 32,844 LSOAs in England and 1,909 in 
+					Wales."""@en ;
+	dct:creator <https://geoportal.statistics.gov.uk/> ;
+	dct:publisher <https://geoportal.statistics.gov.uk/> ;
+    dc:creator "ONS Geography" ;
+	dc:publisher "ONS Geography" ;
+	dct:source <https://geoportal.statistics.gov.uk/search> ;
+	dct:issued "2022-07-12"^^xsd:dateTime ;
+	dct:replaces did:lsoa2011 ;
+	dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+	rdfs:seeAlso dob:LSOACode .
+
+did:msoa2011 a skos:ConceptScheme ;
+    dct:title "2011 Middle-layer Super Output Area (MSOA) Codes" ;
+    dct:description """ Middle layer Super Output Areas (MSOAs) are made up of groups of LSOAs, usually four or five. They comprise between 2,000
+                    and 6,000 households and have a usually resident population between 5,000 and 15,000 persons. MSOAs fit within local authorities.
+                    Outputs from the 2011 Census are for 2011 MSOAs and are made up of unchanged 2001 MSOAs and new 2011 MSOAs. There were 6,791 
+                    MSOAs in England and 410 in Wales."""@en ;
+    dct:creator <https://geoportal.statistics.gov.uk/> ;
+    dct:publisher <https://geoportal.statistics.gov.uk/> ;
+    dc:creator "ONS Geography" ;
+	dc:publisher "ONS Geography" ;
+    dct:issued "2011-12-31"^^xsd:dateTime ;
+    dct:isReplacedBy did:msoa2021 ;
+	dct:source <https://geoportal.statistics.gov.uk/search> ;
+    dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/2011censusgeographies> ;
+    rdfs:seeAlso dob:MSOACode .
+
+did:msoa2021 a skos:ConceptScheme ;
+    dct:title "2021 Middle-layer Super Output Area (MSOA) Codes" ;
+    dct:description """Middle layer Super Output Areas (MSOAs) are made up of groups of LSOAs, usually four or five. They comprise between 2,000
+                    and 6,000 households and have a usually resident population between 5,000 and 15,000 persons. MSOAs fit within local 
+                    authorities. Outputs from Census 2021 are for 2021 MSOAs and are made up of unchanged 2011 MSOAs and new 2021 MSOAs. There 
+                    are 6,856 MSOAs in England and 408 in Wales."""@en ;
+    dct:creator <https://geoportal.statistics.gov.uk/> ;
+    dct:publisher <https://geoportal.statistics.gov.uk/> ;
+    dc:creator "ONS Geography" ;
+	dc:publisher "ONS Geography" ;
+    dct:issued "2022-07-12"^^xsd:dateTime ;
+    dct:replaces did:lsoa2011 ;
+	dct:source <https://geoportal.statistics.gov.uk/search> ;
+    dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+    rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeographies/census2021geographies> ;
+    rdfs:seeAlso dob:MSOACode .
+
+did:ward2022 a skos:ConceptScheme ;
+	dct:title "2022 Electoral Ward Codes" ;
+	dct:description """Electoral wards/divisions are the key building blocks of UK administrative geography. They are used to elect local 
+					government councillors and vary in size and population. The 2022 Wards reflect changes from earlier boundaries due to local 
+					government reviews. These are the units used for publishing statistics and electoral data. Wards typically contain between 
+					1,000 and 20,000 residents, depending on urban or rural context, and on average they contain around 7,900 residents."""@en ;
+	dct:creator <https://geoportal.statistics.gov.uk/> ;
+	dct:publisher <https://geoportal.statistics.gov.uk/> ;
+    dc:creator "ONS Geography" ;
+	dc:publisher "ONS Geography" ;
+	dct:source <https://geoportal.statistics.gov.uk/search> ;
+	dct:issued "2022-12-05"^^xsd:date ;
+	dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
+	rdfs:seeAlso <https://www.ons.gov.uk/methodology/geography/ukgeographies/administrativegeography/england> ;
+	rdfs:seeAlso dob:WardCode .
+
+did:iso3166-1-alpha2 a skos:ConceptScheme ;
+    dct:title "ISO 3166-1 alpha-2 codes" ;
+    dct:description """ISO 3166-1 alpha-2 codes are two-letter country codes defined by the International Organization for Standardization 
+                    (ISO) under Part 1 of the ISO 3166 standard. These codes are internationally recognized and are issued and maintained by 
+                    the ISO 3166 Maintenance Agency (ISO 3166/MA)."""@en ;
+    dct:creator <https://www.iso.org/iso-3166-country-codes.html> ;
+    dct:publisher <https://www.iso.org/iso-3166-country-codes.html> ;
+    dc:publisher "International Organization for Standardization (ISO)" ;
+    dct:source <https://www.iso.org/iso-3166-country-codes.html> ;
+    rdfs:seeAlso <https://www.iso.org/iso-3166-country-codes.html> ;
+    rdfs:seeAlso dob:ISO3166-1Code .
+
+did:iso3166-1-alpha3 a skos:ConceptScheme ;
+    dct:title "ISO 3166-1 alpha-3 codes" ;
+    dct:description """ISO 3166-1 alpha-3 codes are three-letter country codes defined in Part 1 of the ISO 3166 standard by the ISO 3166 
+                    Maintenance Agency (ISO 3166/MA)."""@en ;
+    dct:creator <https://www.iso.org/iso-3166-country-codes.html> ;
+    dct:publisher <https://www.iso.org/iso-3166-country-codes.html> ;
+    dc:publisher "International Organization for Standardization (ISO)" ;
+    dct:source <https://www.iso.org/iso-3166-country-codes.html> ;
+    rdfs:seeAlso <https://www.iso.org/iso-3166-country-codes.html> ;
+    rdfs:seeAlso dob:ISO3166-1Code .

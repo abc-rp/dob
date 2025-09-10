@@ -1,0 +1,14 @@
+@prefix soop:  <https://w3id.org/soop/voc#> .
+@prefix pav: <http://purl.org/pav/> .
+
+soop:Revision rdfs:subClassOf pav:Version .
+
+soop:Commit rdfs:subClassOf pav:Version .
+
+soop:FileRevision rdfs:subClassOf pav:Version .
+
+soop:hasCommit rdfs:subPropertyOf pav:hasVersion .
+
+soop:parentCommit rdfs:subPropertyOf pav:previousVersion .
+
+soop:commitAuthor rdfs:subPropertyOf pav:authoredBy .

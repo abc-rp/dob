@@ -1,0 +1,8 @@
+@prefix soop:  <https://w3id.org/soop/voc#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+
+soop:Repository rdfs:subClassOf doap:Repository , doap:Project .
+
+soop:Pipeline rdfs:subClassOf doap:Project .
+
+soop:Commit rdfs:subClassOf doap:Version .

@@ -1,0 +1,8 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix soop:  <https://w3id.org/soop/voc#> .
+
+soop:commitURI rdfs:subPropertyOf foaf:page .
+
+foaf:Document rdfs:subClassOf soop:DigitalEntity .
+
+foaf:Image rdfs:subClassOf soop:DigitalEntity .

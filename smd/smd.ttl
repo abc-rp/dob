@@ -1,0 +1,101 @@
+@prefix smd: <https://w3id.org/smd/voc#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+smd: a owl:Ontology ;
+    rdfs:label "Sensor Metadata and Deployment Ontology"@en ;
+    rdfs:comment "An unofficial extension to the Semantic Sensor Network ontology that further describes sensor metadata and deployments, including sensor setups, calibrations, physical configurations, and firmware."@en ;
+    owl:versionInfo "1.0.0" ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    dct:creator [
+        a foaf:Organization ;
+        foaf:name "xRI" ;
+        foaf:homepage <https://www.xri.online/>
+    ] ;
+    dct:contributor [
+        a foaf:Person ;
+        foaf:name      "Gary Edwards" ;
+        foaf:mbox      <mailto:gary@xri.online>
+    ] , [
+        a foaf:Person ;
+        foaf:name      "Nathaniel Hey" ;
+        foaf:mbox      <mailto:nathaniel@xri.online>
+    ] , [
+        a foaf:Person ;
+        foaf:name      "Sofia Raffio-Curd" ;
+        foaf:mbox      <mailto:sofia@xri.online>
+    ] ;
+    owl:imports sosa: , ssn: , prov: .
+
+# Classes
+
+smd:Configuration a owl:Class ;
+    rdfs:label "Sensor Setup"@en ;
+    rdfs:comment "A configuration or setup of a sensor, including calibration, physical configuration, and firmware."@en ;
+    rdf:subClassOf prov:Entity .
+
+smd:Calibration a owl:Class ;
+    rdfs:label "Calibration"@en ;
+    rdfs:comment "The calibration of a sensor, which includes parameters and settings used to ensure accurate measurements."@en ;
+    rdf:subClassOf smd:Configuration .
+
+smd:PhysicalConfiguration a owl:Class ;
+    rdfs:label "Physical Configuration"@en ;
+    rdfs:comment "The physical configuration of a sensor, including its placement, orientation, and other physical attributes."@en ;
+    rdf:subClassOf smd:Configuration .
+
+smd:Firmware a owl:Class ;
+    rdfs:label "Firmware"@en ;
+    rdfs:comment "The firmware used by a sensor, which controls its operation and functionality."@en ;
+    rdf:subClassOf smd:Configuration .
+
+smd:DeploymentNote a owl:Class ;
+    rdfs:label "Deployment Note"@en ;
+    rdfs:comment "A note or comment related to a deployment. This may include but is not limited to descriptive, contextual, operational or performance information."@en ;
+    rdf:subClassOf prov:Entity .
+
+# Properties
+
+smd:firmware a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Firmware"@en ;
+    rdfs:comment "The firmware used by the sensor."@en ;
+    rdfs:domain ssn:System ;
+    rdfs:range smd:Firmware .
+
+smd:configuredSystem a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Applies To"@en ;
+    rdfs:comment "Indicates the system to which the configuration applied."@en ;
+    owl:inverseOf smd:hasConfiguration ;
+    rdfs:domain smd:Configuration ;
+    rdfs:range ssn:System .
+
+smd:hadConfiguration a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Has Configuration"@en ;
+    rdfs:comment "Indicates that a sensor or system had a specific configuration applied."@en ;
+    owl:inverseOf smd:configuresSystem ;
+    rdfs:domain ssn:System ;
+    rdfs:range smd:Configuration .
+
+smd:forDeployment a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "For Deployment"@en ;
+    rdfs:comment "The deployment that the configuration is intended for."@en ;
+    rdfs:domain smd:Configuration ;
+    rdfs:range ssn:Deployment .
+
+smd:configurationResource a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "Configuration Resource"@en ;
+    rdfs:comment "A resource that contains the configuration details of the sensor configuration."@en ;
+    rdfs:domain smd:Configuration .
+
+smd:forClient a rdf:Property , owl:ObjectProperty ;
+    rdfs:label "For Client"@en ;
+    rdfs:comment "The client associated with this deployment."@en ;
+    rdfs:subPropertyOf prov:wasAssociatedWith ;
+    rdfs:domain smd:Deployment ;
+    rdfs:range foaf:Agent .
